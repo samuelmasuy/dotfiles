@@ -1,0 +1,36 @@
+{
+	"installed_packages":
+	[
+		"AdvancedNewFile",
+		"All Autocomplete",
+		"BracketHighlighter",
+		"CSS Format",
+		"EclipseJavaFormatter",
+		"Git",
+		"Git Config",
+		"Google Spell Check",
+		"Homebrew-formula-syntax",
+		"HTMLAttributes",
+		"HTMLBeautify",
+		"Javatar",
+		"Jedi - Python autocompletion",
+		"Jinja2",
+		"MarieAssembly",
+		"Markdown Preview",
+		"MarkdownEditing",
+		"Pretty JSON",
+		"Python Auto-Complete",
+		"Python Flake8 Lint",
+		"Python PEP8 Autoformat",
+		"QuickJava",
+		"Selenium Snippets",
+		"SideBarEnhancements",
+		"SublimeCodeIntel",
+		"SublimeLinter",
+		"SublimeLinter-html-tidy",
+		"SublimeLinter-javac",
+		"Theme - Soda",
+		"TrailingSpaces",
+		"Vintageous"
+	]
+}

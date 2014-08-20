@@ -1,0 +1,11 @@
+# Make sure we’re using the latest Homebrew
+update
+
+# Upgrade any already-installed formulae
+upgrade
+
+# Cleanup any outdated formulas from the cellar
+cleanup
+
+# Ask the doctor how things are
+doctor
