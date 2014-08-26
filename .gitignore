@@ -1,2 +1,4 @@
 virtualenvs
 .DS_Store
+instal_linux.sh
+install.sh
