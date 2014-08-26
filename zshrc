@@ -12,3 +12,4 @@ plugins=(git git-flow brew github osx sublime virtualenvwrapper colorize pip vi-
 # Initiate oh-my-zsh.
 source $ZSH/oh-my-zsh.sh
 
+source /Users/samuel/.iterm2_shell_integration.zsh
