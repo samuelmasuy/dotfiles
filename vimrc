@@ -3,23 +3,60 @@
 " Pre vim  --------------------------------------------------------------- {{{
 
 " Setup Pathogen to manage plugins.
-call pathogen#infect()
+"call pathogen#infect()
 
 " Automatic reloading of .vimrc
 autocmd! bufwritepost .vimrc source %
 command! -nargs=* Wrap set wrap linebreak nolist
 
 set nocompatible
+set t_Co=256
+filetype off
+
+" Better copy & paste.
+set clipboard=unnamed
+" See the commands typed in the right bottom corner.
+set showcmd
+" Make backspace behave like normal again.
+set bs=2
+
+" Vundle set up
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+Bundle 'gmarik/vundle'
+Bundle 'vim-scripts/SQLComplete.vim'
+Bundle 'davidhalter/jedi-vim'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'morhetz/gruvbox'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'ervandew/supertab'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'kien/ctrlp.vim'
+Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/syntastic'
+Bundle 'tpope/vim-git'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-repeat'
+Bundle 'StanAngeloff/php.vim'
+Bundle "MarcWeber/vim-addon-mw-utils"
+Bundle "tomtom/tlib_vim"
+Bundle "garbas/vim-snipmate"
+Bundle 'honza/vim-snippets'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+Bundle 'alfredodeza/pytest.vim'
+Bundle 'terryma/vim-multiple-cursors'
+
+filetype plugin indent on
 
 " ------------------------------------------------------------------------ }}}
 " Appearance  ------------------------------------------------------------ {{{
 
-" Enable syntax highlighting.
-filetype off
-filetype plugin indent on
+" Auto Indent
 set autoindent
+" Enable syntax highlighting.
 syntax on
-
 
 " Show whitespace.
 autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red
@@ -34,18 +71,16 @@ endif
 
 " Color scheme.
 colorscheme gruvbox
+"set background=dark
+"colorscheme solarized
 
 " ------------------------------------------------------------------------ }}}
 " Miscellaneous settings ------------------------------------------------- {{{
 
+" Show the line that have been wrapped.
+let &showbreak='↪ '
 " Gdiff vertical split
 set diffopt+=vertical
-" Better copy & paste.
-set clipboard=unnamed
-" See the commands typed in the right bottom corner.
-set showcmd
-" Make backspace behave like normal again.
-set bs=2
 " Make Esc work faster.
 set ttimeoutlen=50
 " Always shows 5 lines above/below the cursor.
@@ -126,9 +161,6 @@ nnoremap : ;
 " Rebind <Leader> key.
 let mapleader = ","
 
-" Easier moving between tabs.
-map <Leader>m <esc>:tabnext<CR>
-map <Leader>n <esc>:tabprevious<CR>
 " Remap changing screen keys.
 map <leader>h <C-w>h
 map <leader>j <C-w>j
@@ -151,10 +183,29 @@ nnoremap <leader>z :setlocal spell! spelllang=en_us<CR>
 " Map sort function to a key
 vnoremap <Leader>s :sort<CR>
 
+
+
+" Easier moving between tabs.
+nnoremap <Leader>m <esc>:tabnext<CR>
+nnoremap <Leader>n <esc>:tabprevious<CR>
+
 " ------------------------------------------------------------------------ }}}
 " Plugins setup. --------------------------------------------------------- {{{
+source /usr/local/lib/python2.7/site-packages/powerline/bindings/vim/plugin/powerline.vim
 " Settings for vim-powerline
 set laststatus=2
+" Hide the default mode text (e.g. -- INSERT -- below the statusline)
+set noshowmode
+let g:Powerline_symbols = "fancy"
+set encoding=utf-8
+set fillchars+=stl:\ ,stlnc:\
+set term=xterm-256color
+if has("gui_running")
+   let s:uname = system("uname")
+   if s:uname == "Darwin\n"
+      set guifont=Monaco\ for\ Powerline
+   endif
+endif
 
 " Settings for ctrlp
 let g:ctrlp_max_height = 20
@@ -171,12 +222,16 @@ let g:jedi#popup_select_first = 0
 let g:SuperTabDefaultCompletionType = "context"
 
 " Settings for nerdTree
-map <Leader>x :NERDTreeToggle<CR>
+nnoremap <Leader>x :NERDTreeToggle<CR>
 let NERDTreeIgnore=['.pyc$[[file]]']
 let NERDTreeShowHidden=1
+let NERDTreeMapActivateNode='<space>'
+
+" Setting for vim-css-colors
+let g:cssColorVimDoNotMessMyUpdatetime = 1
 
 " Settings for hard mode.
 "autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
-"nnoremap <leader>h <Esc>:call ToggleHardMode()<CR>
+nnoremap <leader>h <Esc>:call ToggleHardMode()<CR>
 " ------------------------------------------------------------------------ }}}
 
