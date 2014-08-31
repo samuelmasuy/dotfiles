@@ -6,8 +6,12 @@
 "call pathogen#infect()
 
 " fix tmux background color.
-set term=screen-256color
-set t_ut=
+if &term =~ '256color'
+  " disable Background Color Erase (BCE) so that color schemes
+  " render properly when inside 256-color tmux and GNU screen.
+  " see also http://snk.tuxfamily.org/log/vim-256color-bce.html
+  set t_ut=
+endif
 
 " Remap for escape key.
 inoremap jj <ESC>
@@ -206,7 +210,7 @@ set noshowmode
 let g:Powerline_symbols = "fancy"
 set encoding=utf-8
 set fillchars+=stl:\ ,stlnc:\
-set term=xterm-256color
+"set term=xterm-256color
 if has("gui_running")
    let s:uname = system("uname")
    if s:uname == "Darwin\n"
