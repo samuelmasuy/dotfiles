@@ -5,6 +5,13 @@
 " Setup Pathogen to manage plugins.
 "call pathogen#infect()
 
+" fix tmux background color.
+set term=screen-256color
+set t_ut=
+
+" Remap for escape key.
+inoremap jj <ESC>
+
 " Automatic reloading of .vimrc
 autocmd! bufwritepost .vimrc source %
 command! -nargs=* Wrap set wrap linebreak nolist
