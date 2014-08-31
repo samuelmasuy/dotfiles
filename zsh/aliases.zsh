@@ -23,5 +23,4 @@ alias clock='while sleep 1;do tput sc;tput cup 0 $(($(tput cols)-29));date;tput 
 # Open mac vim
 alias mvim='open -a macvim'
 alias subl="/opt/homebrew-cask/Caskroom/sublime-text3/Build\ 3059/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
-alias xamp='cd /Applications/XAMPP/xamppfiles/'
 
