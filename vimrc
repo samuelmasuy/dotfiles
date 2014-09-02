@@ -6,15 +6,15 @@
 "call pathogen#infect()
 
 " fix tmux background color.
-if &term =~ '256color'
+"if &term =~ '256color'
   " disable Background Color Erase (BCE) so that color schemes
   " render properly when inside 256-color tmux and GNU screen.
   " see also http://snk.tuxfamily.org/log/vim-256color-bce.html
-  set t_ut=
-endif
+  "set t_ut=
+"endif
 
 " Remap for escape key.
-inoremap jj <ESC>
+"inoremap jj <ESC>
 
 " Automatic reloading of .vimrc
 autocmd! bufwritepost .vimrc source %
@@ -28,10 +28,10 @@ filetype off
 set clipboard=unnamed
 " See the commands typed in the right bottom corner.
 set showcmd
-" Make backspace behave like normal again.
+" Make backspace behave like normal.
 set bs=2
 
-" Vundle set up
+" Vundle set up.
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 Bundle 'gmarik/vundle'
