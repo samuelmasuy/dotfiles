@@ -1,0 +1,39 @@
+{
+	"default_module": "powerline.segments.common",
+	"segments": {
+		"right": [
+			{
+				"name": "date",
+				"args": {
+					"format": "%H:%M",
+					"istime": true
+				}
+			},
+            {
+                "name": "weather",
+                "priority": 50,
+                "args": {
+                    "unit": "C",
+                    "location_query": "montreal, canada"
+                }
+            },
+            {
+                "name": "now_playing",
+                "module": "powerline.segments.common",
+                "args": {
+                  "player": "itunes"
+                }
+            },
+            {
+                "name": "osx_battery",
+                "module": "osx_powerline_battery.segments",
+                "args": {
+                    "gamify": true
+                }
+            },
+			{
+				"name": "hostname"
+			}
+		]
+	}
+}
