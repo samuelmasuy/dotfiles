@@ -1,5 +1,5 @@
 # Set name of zsh theme to load.
-ZSH_THEME="my_theme"
+#ZSH_THEME="my_theme"
 source ~/.zsh/colors.zsh
 source ~/.zsh/exports.zsh
 source ~/.zsh/aliases.zsh
@@ -12,4 +12,6 @@ plugins=(git git-flow tmux brew github osx sublime virtualenvwrapper colorize pi
 # Initiate oh-my-zsh.
 source $ZSH/oh-my-zsh.sh
 
-source /Users/samuel/.iterm2_shell_integration.zsh
+. "/usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh"
+
+
