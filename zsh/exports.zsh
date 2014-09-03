@@ -1,6 +1,8 @@
 export PATH="$HOME/bin:/usr/local/bin:/usr/local/heroku/bin:/usr/local/bin/python:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
 export MANPATH="/usr/local/man:$MANPATH"
 
+export EDITOR="vim"
+
 #export TERM=xterm-256color
 # Path to oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
