@@ -2,7 +2,3 @@ virtualenvs
 .DS_Store
 instal_linux.sh
 install.sh
-/vim
-/oh-my-zsh
-/vim/*
-/oh-my-zsh/*
