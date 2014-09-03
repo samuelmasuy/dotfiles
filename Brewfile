@@ -1,7 +1,7 @@
 # Any more steps to take in order to support homebrew
-#doctor
+doctor
 # Make sure we’re using the latest Homebrew
-#update
+update
 # Upgrade any already-installed formulae
 upgrade
 
@@ -10,30 +10,28 @@ upgrade
 #install moreutils
 #install findutils
 
-#install bash
 install zsh
 
 install wget --enable-iri
 
 tap homebrew/dupes
-#install homebrew/dupes/vim --override-system-vi
+
+#VIM todo
+
 install homebrew/dupes/grep
 
 install git
 install bash-completion
+install zsh-completions
 
-#install gcc
-#install gfortran
-#install hub
+install gfortran
 
-# install pass
 install readline
-#install sqlite
 install gdbm
 install python --framework --universal
 install python3
-#install scipy
-#install numpy
+install scipy
+install numpy
 install tree
 
 
