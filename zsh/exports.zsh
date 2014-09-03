@@ -1,4 +1,4 @@
-export PATH="$HOME/bin:/usr/local/bin:/usr/local/heroku/bin:/usr/local/bin/python:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
+export PATH="/Applications/SWI-Prolog.app/Contents/MacOS:$HOME/bin:/usr/local/bin:/usr/local/heroku/bin:/usr/local/bin/python:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
 export MANPATH="/usr/local/man:$MANPATH"
 
 export EDITOR="vim"
