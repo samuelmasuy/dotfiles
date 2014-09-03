@@ -3,3 +3,4 @@ virtualenvs
 instal_linux.sh
 install.sh
 /vim
+/oh-my-zsh
