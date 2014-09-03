@@ -5,7 +5,7 @@ source ~/.zsh/exports.zsh
 source ~/.zsh/aliases.zsh
 source ~/.zsh/functions.zsh
 # Initiate z command.
-. ${HOME}/.oh-my-zsh/z/z.sh
+. ${HOME}/.oh-my-zsh/custom/plugins/z/z.sh
 # Plugins for zsh.
 plugins=(git git-flow tmux tmuxinator brew github osx sublime virtualenvwrapper colorize pip vi-mode zsh_reload zsh-syntax-highlighting)
 
