@@ -10,4 +10,4 @@ Thank you to the whole community to let me steal most of your stuff.
 
 ---
 
-![screen shot 2014-09-03 at 11 40 07 pm](https://cloud.githubusercontent.com/assets/1512309/4144635/4ac5f802-33e5-11e4-85b5-26ce2ecae66a.png)
+![screen shot 2014-09-03 at 11 55 05 pm](https://cloud.githubusercontent.com/assets/1512309/4144728/5f8e03ae-33e7-11e4-847a-590e7f5a0bbb.png)
