@@ -2,13 +2,13 @@
 	"default_module": "powerline.segments.common",
 	"segments": {
 		"right": [
-			{
-				"name": "date",
-				"args": {
-					"format": "%H:%M",
-					"istime": true
-				}
-			},
+            {
+                "name": "osx_battery",
+                "module": "osx_powerline_battery.segments",
+                "args": {
+                    "gamify": true
+                }
+            },
             {
                 "name": "weather",
                 "priority": 50,
@@ -24,13 +24,13 @@
                   "player": "itunes"
                 }
             },
-            {
-                "name": "osx_battery",
-                "module": "osx_powerline_battery.segments",
-                "args": {
-                    "gamify": true
-                }
-            },
+			{
+				"name": "date",
+				"args": {
+					"format": "%H:%M",
+					"istime": true
+				}
+			},
 			{
 				"name": "hostname"
 			}

@@ -50,7 +50,7 @@
 			"before": "⇑  "
 		},
 		"powerline.segments.common.date": {
-			"before": "⌚ "
+			"before": "⌚  "
 		},
 		"powerline.segments.common.email_imap_alert": {
 			"before": "✉ "

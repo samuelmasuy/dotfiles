@@ -16,7 +16,10 @@
 			},
 			{
 				"name": "cwd",
-				"priority": 10
+				"priority": 10,
+                "args": {
+                    "dir_limit_depth": 3
+                }
 			},
 			{
 				"module": "powerline.segments.shell",
