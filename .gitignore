@@ -1,3 +1,5 @@
 virtualenvs
 .DS_Store
 instal_linux.sh
+fish_history
+fishd.*
