@@ -196,7 +196,6 @@ nnoremap <leader>z :setlocal spell! spelllang=en_us<CR>
 vnoremap <Leader>s :sort<CR>
 
 
-
 " Easier moving between tabs.
 nnoremap <Leader>m <esc>:tabnext<CR>
 nnoremap <Leader>n <esc>:tabprevious<CR>
@@ -232,6 +231,7 @@ let g:jedi#popup_select_first = 0
 
 " Settings for UtilSnips
 let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsEditSplit="vertical"
 
 " Settings for super-tab
 let g:SuperTabDefaultCompletionType = "context"
