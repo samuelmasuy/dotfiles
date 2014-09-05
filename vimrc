@@ -194,8 +194,8 @@ noremap <Leader>s :w<CR>
 nnoremap <leader>z :setlocal spell! spelllang=en_us<CR>
 " Map sort function to a key
 vnoremap <Leader>s :sort<CR>
-
-
+" Force paste on next line
+nmap <leader>pu :pu<CR>
 " Easier moving between tabs.
 nnoremap <Leader>m <esc>:tabnext<CR>
 nnoremap <Leader>n <esc>:tabprevious<CR>
