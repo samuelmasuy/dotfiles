@@ -52,12 +52,13 @@ Bundle 'tpope/vim-repeat'
 Bundle 'StanAngeloff/php.vim'
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
-Bundle "garbas/vim-snipmate"
+Bundle 'SirVer/ultisnips'
 Bundle 'honza/vim-snippets'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Bundle 'alfredodeza/pytest.vim'
 Bundle 'terryma/vim-multiple-cursors'
+Bundle 'tommcdo/vim-exchange'
 
 filetype plugin indent on
 
@@ -228,6 +229,9 @@ let g:ctrlp_map = '<leader>t'
 
 " Settings for jedi-vim
 let g:jedi#popup_select_first = 0
+
+" Settings for UtilSnips
+let g:UltiSnipsExpandTrigger="<tab>"
 
 " Settings for super-tab
 let g:SuperTabDefaultCompletionType = "context"
