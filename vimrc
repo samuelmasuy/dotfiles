@@ -58,7 +58,6 @@ Bundle 'honza/vim-snippets'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Bundle 'alfredodeza/pytest.vim'
-Bundle 'terryma/vim-multiple-cursors'
 Bundle 'tommcdo/vim-exchange'
 
 filetype plugin indent on
