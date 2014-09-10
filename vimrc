@@ -5,17 +5,6 @@
 " Setup Pathogen to manage plugins.
 "call pathogen#infect()
 
-" fix tmux background color.
-"if &term =~ '256color'
-  " disable Background Color Erase (BCE) so that color schemes
-  " render properly when inside 256-color tmux and GNU screen.
-  " see also http://snk.tuxfamily.org/log/vim-256color-bce.html
-  "set t_ut=
-"endif
-
-" Remap for escape key.
-"inoremap jj <ESC>
-
 " Automatic reloading of .vimrc
 autocmd! bufwritepost .vimrc source %
 " Settings for wrap
