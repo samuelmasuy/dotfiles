@@ -251,6 +251,5 @@ let NERDTreeMapActivateNode='<space>'
 
 " Settings for hard mode.
 "autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
-nnoremap <leader>h <Esc>:call ToggleHardMode()<CR>
 " ------------------------------------------------------------------------ }}}
 
