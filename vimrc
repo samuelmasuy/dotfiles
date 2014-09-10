@@ -221,6 +221,7 @@ endif
 
 " Settings for syntastic
 let g:syntastic_python_checkers = ['pylint', 'flake8']
+let g:syntastic_aggregate_errors = 1
 
 " Settings for ctrlp
 let g:ctrlp_max_height = 20
