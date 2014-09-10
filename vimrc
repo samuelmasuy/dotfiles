@@ -18,6 +18,7 @@
 
 " Automatic reloading of .vimrc
 autocmd! bufwritepost .vimrc source %
+" Settings for wrap
 command! -nargs=* Wrap set wrap linebreak nolist
 
 set nocompatible
@@ -202,10 +203,10 @@ nnoremap <Leader>n <esc>:tabprevious<CR>
 
 " ------------------------------------------------------------------------ }}}
 " Plugins setup. --------------------------------------------------------- {{{
-source /usr/local/lib/python2.7/site-packages/powerline/bindings/vim/plugin/powerline.vim
 " Settings for vim-powerline
+source /usr/local/lib/python2.7/site-packages/powerline/bindings/vim/plugin/powerline.vim
 set laststatus=2
-" Hide the default mode text (e.g. -- INSERT -- below the statusline)
+" Hide the default mode text
 set noshowmode
 let g:Powerline_symbols = "fancy"
 set encoding=utf-8
@@ -217,6 +218,9 @@ if has("gui_running")
       set guifont=Monaco\ for\ Powerline
    endif
 endif
+
+" Settings for syntastic
+let g:syntastic_python_checkers = ['pylint', 'flake8']
 
 " Settings for ctrlp
 let g:ctrlp_max_height = 20
@@ -243,7 +247,7 @@ let NERDTreeShowHidden=1
 let NERDTreeMapActivateNode='<space>'
 
 " Setting for vim-css-colors
-let g:cssColorVimDoNotMessMyUpdatetime = 1
+"let g:cssColorVimDoNotMessMyUpdatetime = 1
 
 " Settings for hard mode.
 "autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
