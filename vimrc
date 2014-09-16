@@ -28,6 +28,7 @@ Bundle 'gmarik/vundle'
 Bundle 'vim-scripts/SQLComplete.vim'
 Bundle 'davidhalter/jedi-vim'
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'junegunn/seoul256.vim'
 Bundle 'morhetz/gruvbox'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'ervandew/supertab'
@@ -48,6 +49,7 @@ Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Bundle 'alfredodeza/pytest.vim'
 Bundle 'tommcdo/vim-exchange'
+Bundle 'sjl/gundo.vim'
 
 filetype plugin indent on
 
@@ -72,7 +74,8 @@ endif
 
 " Color scheme.
 colorscheme gruvbox
-"set background=dark
+"colorscheme seoul256
+set background=dark
 "colorscheme solarized
 
 " ------------------------------------------------------------------------ }}}
@@ -104,13 +107,13 @@ set expandtab
 " Showing line numbers and length.
 set relativenumber
 " Show current line numbers.
-set number 
+set number
 " Width of document.
-set tw=79   
+set tw=79
 " Don't automatically wrap on load.
-set nowrap  
+set nowrap
 " Don't automatically wrap text when typing.
-set fo-=t   
+set fo-=t
 
 " Useful settings.
 set history=700
@@ -152,12 +155,13 @@ nnoremap N Nzzzv
 vnoremap < <gv
 vnoremap > >gv
 
-" ------------------------------------------------------------------------ }}}
-" Leader Key Mapping  ---------------------------------------------------- {{{
-
 "basic, why not before
 nnoremap ; :
 nnoremap : ;
+
+
+" ------------------------------------------------------------------------ }}}
+" Leader Key Mapping  ---------------------------------------------------- {{{
 
 " Rebind <Leader> key.
 let mapleader = ","
@@ -174,7 +178,7 @@ nnoremap <leader>c :set list!<CR>
 " Open in a new tab .vimrc
 nnoremap <leader>e :tabedit $MYVIMRC<CR>
 " Pytest the current file.
-nnoremap <silent><Leader>f <Esc>:Pytest file<CR>
+"nnoremap <silent><Leader>f <Esc>:Pytest file<CR>
 " Remap visual block select.
 nnoremap <Leader>v <c-v>
 " Quicksave command.
