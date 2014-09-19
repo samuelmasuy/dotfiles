@@ -50,6 +50,12 @@ Plugin 'plasticboy/vim-markdown'
 Bundle 'alfredodeza/pytest.vim'
 Bundle 'tommcdo/vim-exchange'
 Bundle 'sjl/gundo.vim'
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'pangloss/vim-javascript'
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'Raimondi/delimitMate'
+Plugin 'marijnh/tern_for_vim'
+
 
 filetype plugin indent on
 
