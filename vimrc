@@ -50,7 +50,8 @@ Plugin 'plasticboy/vim-markdown'
 Bundle 'alfredodeza/pytest.vim'
 Bundle 'tommcdo/vim-exchange'
 Bundle 'sjl/gundo.vim'
-Plugin 'jelera/vim-javascript-syntax'
+"Plugin 'jelera/vim-javascript-syntax'
+Plugin 'othree/javascript-libraries-syntax.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'Raimondi/delimitMate'
@@ -247,6 +248,9 @@ let NERDTreeMapActivateNode='<space>'
 
 " Setting for vim-css-colors
 "let g:cssColorVimDoNotMessMyUpdatetime = 1
+
+" Settings for javascript-libraries-syntax.vim
+let g:used_javascript_libs = 'angularui'
 
 " Settings for hard mode.
 "autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
