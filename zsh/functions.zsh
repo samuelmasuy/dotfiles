@@ -39,6 +39,10 @@ function givedef() {
 function mcd() {
     mkdir -p "$1" && cd "$1";
 }
+# Higlight the matching pattern in a file.
+function highlight () {
+    grep --color -E "$1|$" "$@"
+}
 # Utilities to update, upgrade, clean and doctor homebrew.
 function brewery() {
     brew bundle ~/Dropbox/Github/dotfiles/brewery
