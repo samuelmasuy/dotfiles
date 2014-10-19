@@ -57,6 +57,7 @@ Plugin 'burnettk/vim-angular'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'Raimondi/delimitMate'
 Plugin 'marijnh/tern_for_vim'
+Plugin 'Valloric/MatchTagAlways'
 
 
 filetype plugin indent on
