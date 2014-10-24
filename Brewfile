@@ -6,9 +6,9 @@ update
 upgrade
 
 
-#install coreutils
-#install moreutils
-#install findutils
+install coreutils
+install moreutils
+install findutils
 
 install zsh
 
@@ -16,11 +16,12 @@ install wget --enable-iri
 
 tap homebrew/dupes
 
-#VIM todo
+install vim
 
 install homebrew/dupes/grep
 
 install git
+install git-flow
 install bash-completion
 install zsh-completions
 
@@ -33,6 +34,9 @@ install python3
 install scipy
 install numpy
 install tree
+install grep
+install tmux
+install httpie
 
 
 install phinze/cask/brew-cask
@@ -56,7 +60,9 @@ cask install iterm2
 cask install seil 
 cask install heroku-toolbelt
 cask install vlc
-#cask install utorrent
-#cask install paintbrush
+cask install utorrent
+cask install paintbrush
+cask install virtualbox
+cask install vagrant
 # cask install slate
 
