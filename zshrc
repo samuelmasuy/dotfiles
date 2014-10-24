@@ -1,13 +1,17 @@
 # Set name of zsh theme to load.
 ZSH_THEME="my_theme"
+
 source ~/.zsh/colors.zsh
 source ~/.zsh/exports.zsh
 source ~/.zsh/aliases.zsh
 source ~/.zsh/functions.zsh
 # Initiate z command.
-. ${HOME}/.oh-my-zsh/custom/plugins/z/z.sh
+. $ZSH/custom/plugins/z/z.sh
 # Plugins for zsh.
-plugins=(git git-flow tmux tmuxinator brew github osx sublime virtualenvwrapper colorize pip vi-mode zsh_reload z vagrant zsh-syntax-highlighting)
+plugins=(git git-flow tmux tmuxinator brew github osx sublime virtualenvwrapper colorize pip vi-mode zsh_reload z vagrant zsh-syntax-highlighting history-substring-search)
+
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
 
 # Initiate oh-my-zsh.
 source $ZSH/oh-my-zsh.sh
