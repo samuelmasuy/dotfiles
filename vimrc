@@ -58,6 +58,7 @@ Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'Raimondi/delimitMate'
 Plugin 'marijnh/tern_for_vim'
 Plugin 'Valloric/MatchTagAlways'
+Plugin 'vim-scripts/DirDiff.vim'
 
 
 filetype plugin indent on
