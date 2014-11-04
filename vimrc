@@ -25,15 +25,15 @@ set bs=2
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 Bundle 'gmarik/vundle'
-Bundle 'vim-scripts/SQLComplete.vim'
+"Bundle 'vim-scripts/SQLComplete.vim'
 Bundle 'davidhalter/jedi-vim'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'junegunn/seoul256.vim'
+"Bundle 'altercation/vim-colors-solarized'
+"Bundle 'junegunn/seoul256.vim'
 Bundle 'morhetz/gruvbox'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'ervandew/supertab'
 Bundle 'Lokaltog/vim-easymotion'
-Bundle 'kien/ctrlp.vim'
+"Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
 Bundle 'tpope/vim-git'
@@ -50,7 +50,7 @@ Plugin 'plasticboy/vim-markdown'
 Bundle 'alfredodeza/pytest.vim'
 Bundle 'tommcdo/vim-exchange'
 Bundle 'sjl/gundo.vim'
-"Plugin 'jelera/vim-javascript-syntax'
+Plugin 'jelera/vim-javascript-syntax'
 Plugin 'othree/javascript-libraries-syntax.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'burnettk/vim-angular'
@@ -206,19 +206,19 @@ nnoremap <Leader>n <esc>:tabprevious<CR>
 " ------------------------------------------------------------------------ }}}
 " Plugins setup. --------------------------------------------------------- {{{
 " Settings for vim-powerline
-source /usr/local/lib/python2.7/site-packages/powerline/bindings/vim/plugin/powerline.vim
-set laststatus=2
-" Hide the default mode text
-set noshowmode
-let g:Powerline_symbols = "fancy"
-set encoding=utf-8
-set fillchars+=stl:\ ,stlnc:\
-"set term=xterm-256color
-if has("gui_running")
-   let s:uname = system("uname")
-   if s:uname == "Darwin\n"
-      set guifont=Monaco\ for\ Powerline
-   endif
+let s:uname = system("uname")
+if s:uname == "Darwin\n"
+    source /usr/local/lib/python2.7/site-packages/powerline/bindings/vim/plugin/powerline.vim
+    set laststatus=2
+    " Hide the default mode text
+    set noshowmode
+    let g:Powerline_symbols = "fancy"
+    set encoding=utf-8
+    set fillchars+=stl:\ ,stlnc:\
+    set term=xterm-256color
+    if has("gui_running")
+          set guifont=Monaco\ for\ Powerline
+    endif
 endif
 
 " Settings for syntastic
@@ -248,9 +248,6 @@ nnoremap <Leader>x :NERDTreeToggle<CR>
 let NERDTreeIgnore=['.pyc$[[file]]']
 let NERDTreeShowHidden=1
 let NERDTreeMapActivateNode='<space>'
-
-" Setting for vim-css-colors
-"let g:cssColorVimDoNotMessMyUpdatetime = 1
 
 " Settings for javascript-libraries-syntax.vim
 let g:used_javascript_libs = 'angularui'
