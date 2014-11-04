@@ -1,0 +1,3 @@
+pane	testTmuxinator	0	:~	1	:*	0	:/Users/samuel	1	zsh	:
+window	testTmuxinator	0	1	:*	d1bd,158x39,0,0,0
+state	testTmuxinator	
