@@ -44,25 +44,27 @@ tap caskroom/versions
 # install browsers
 #cask install google-chrome
 #cask install google-chrome-canary
-#cask install firefox
+cask install firefox
 #cask install firefox-aurora
 # cask install tor-browser
 
 # intall editor
 cask install sublime-text3
 #cask install eclipse-ide
+#cask install intellij-idea
 
 #cask install skype
 cask install flux
-cask install iterm2
+cask install iterm2-beta
 #cask install android-file-transfer
 #cask install disk-inventory-x
-cask install seil 
+cask install seil
 cask install heroku-toolbelt
 cask install vlc
 cask install utorrent
 cask install paintbrush
 cask install virtualbox
 cask install vagrant
+cask install dash
 # cask install slate
 
