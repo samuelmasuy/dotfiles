@@ -1,3 +1,4 @@
+" vim:fdm=marker
 " Author: Samuel Masuy and the vim community.
 
 " Pre vim  --------------------------------------------------------------- {{{
@@ -50,7 +51,7 @@ Plugin 'plasticboy/vim-markdown'
 Bundle 'alfredodeza/pytest.vim'
 Bundle 'tommcdo/vim-exchange'
 Bundle 'sjl/gundo.vim'
-Plugin 'jelera/vim-javascript-syntax'
+"Plugin 'jelera/vim-javascript-syntax'
 Plugin 'othree/javascript-libraries-syntax.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'burnettk/vim-angular'
@@ -59,6 +60,7 @@ Plugin 'Raimondi/delimitMate'
 Plugin 'marijnh/tern_for_vim'
 Plugin 'Valloric/MatchTagAlways'
 Plugin 'vim-scripts/DirDiff.vim'
+Plugin 'mattn/emmet-vim'
 
 
 filetype plugin indent on
@@ -106,7 +108,6 @@ highlight ColorColumn ctermbg=magenta
 call matchadd('ColorColumn', '\%81v', 100)
 
 " Folding settings.
-set foldmethod=marker
 
 " Don't use TABs but spaces.
 set tabstop=4
@@ -226,12 +227,12 @@ let g:syntastic_python_checkers = ['pylint', 'flake8']
 let g:syntastic_aggregate_errors = 1
 
 " Settings for ctrlp
-let g:ctrlp_max_height = 20
-set wildignore+=*.pyc
-set wildignore+=*_build/*
-set wildignore+=*/coverage/*
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip
-let g:ctrlp_map = '<leader>t'
+"let g:ctrlp_max_height = 20
+"set wildignore+=*.pyc
+"set wildignore+=*_build/*
+"set wildignore+=*/coverage/*
+"set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+"let g:ctrlp_map = '<leader>t'
 
 " Settings for jedi-vim
 let g:jedi#popup_select_first = 0
