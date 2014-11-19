@@ -25,42 +25,55 @@ set bs=2
 " Vundle set up.
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
-Bundle 'gmarik/vundle'
-"Bundle 'vim-scripts/SQLComplete.vim'
-Bundle 'davidhalter/jedi-vim'
-"Bundle 'altercation/vim-colors-solarized'
-"Bundle 'junegunn/seoul256.vim'
-Bundle 'morhetz/gruvbox'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'ervandew/supertab'
-Bundle 'Lokaltog/vim-easymotion'
-"Bundle 'kien/ctrlp.vim'
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/syntastic'
-Bundle 'tpope/vim-git'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-repeat'
-Bundle 'StanAngeloff/php.vim'
-Bundle "MarcWeber/vim-addon-mw-utils"
-Bundle "tomtom/tlib_vim"
-Bundle 'SirVer/ultisnips'
-Bundle 'honza/vim-snippets'
+
+" Necessary
+Plugin 'gmarik/vundle'
+Plugin 'morhetz/gruvbox'
+Plugin 'davidhalter/jedi-vim'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'ervandew/supertab'
+Plugin 'scrooloose/syntastic'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-repeat'
+" To change surrounding quote: cs"' ;tag cst<th> ;to add quote ysW'
+Plugin 'tpope/vim-surround'
+Plugin 'scrooloose/nerdtree'
+Plugin 'SirVer/ultisnips'
+Plugin 'mattn/emmet-vim'
+" :DirDiff <A:Src Directory> <B:Src Directory>
+Plugin 'vim-scripts/DirDiff.vim'
+" Activate with <leader><leader>w (by word) <leader><leader>fo (character o)
+Plugin 'Lokaltog/vim-easymotion'
+" <leader>ig
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'Valloric/MatchTagAlways'
+" Provide automatic closing quotes, etc...
+Plugin 'Raimondi/delimitMate'
+
+" Not very necessary
+" visual mode :Tabularize/{Regex}
 Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
-Bundle 'alfredodeza/pytest.vim'
-Bundle 'tommcdo/vim-exchange'
-Bundle 'sjl/gundo.vim'
-"Plugin 'jelera/vim-javascript-syntax'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'sjl/gundo.vim'
+
+" Syntax helpers
+Plugin 'StanAngeloff/php.vim'
 Plugin 'othree/javascript-libraries-syntax.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'burnettk/vim-angular'
-Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'Raimondi/delimitMate'
-Plugin 'marijnh/tern_for_vim'
-Plugin 'Valloric/MatchTagAlways'
-Plugin 'vim-scripts/DirDiff.vim'
-Plugin 'mattn/emmet-vim'
+Plugin 'plasticboy/vim-markdown'
+
+" Dependencies
+Plugin 'honza/vim-snippets'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+
+" Plugin 'tommcdo/vim-exchange'
+" Plugin 'alfredodeza/pytest.vim'
+" Plugin 'vim-scripts/SQLComplete.vim'
+" Plugin 'marijnh/tern_for_vim'
+" Plugin 'altercation/vim-colors-solarized'
+" Plugin 'junegunn/seoul256.vim'
 
 
 filetype plugin indent on
@@ -157,6 +170,8 @@ vnoremap <space> zf
 " Go start and end of line.
 nnoremap H ^
 nnoremap L $
+vnoremap H ^
+vnoremap L $
 
 " Make sure to be in the middle of the screen when searching.
 nnoremap n nzzzv
@@ -199,7 +214,7 @@ nnoremap <leader>z :setlocal spell! spelllang=en_us<CR>
 " Map sort function to a key
 vnoremap <Leader>s :sort<CR>
 " Force paste on next line
-nmap <leader>pu :pu<CR>
+nnoremap <leader>pu :pu<CR>
 " Easier moving between tabs.
 nnoremap <Leader>m <esc>:tabnext<CR>
 nnoremap <Leader>n <esc>:tabprevious<CR>
@@ -226,13 +241,9 @@ endif
 let g:syntastic_python_checkers = ['pylint', 'flake8']
 let g:syntastic_aggregate_errors = 1
 
-" Settings for ctrlp
-"let g:ctrlp_max_height = 20
-"set wildignore+=*.pyc
-"set wildignore+=*_build/*
-"set wildignore+=*/coverage/*
-"set wildignore+=*/tmp/*,*.so,*.swp,*.zip
-"let g:ctrlp_map = '<leader>t'
+" Settings for vim-multiple-cursors
+let g:multi_cursor_exit_from_insert_mode = 0
+let g:multi_cursor_exit_from_visual_mode = 0
 
 " Settings for jedi-vim
 let g:jedi#popup_select_first = 0
@@ -240,6 +251,11 @@ let g:jedi#popup_select_first = 0
 " Settings for UtilSnips
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" Settings for emmet-vim
+let g:user_emmet_expandabbr_key='<Tab>'
 
 " Settings for super-tab
 let g:SuperTabDefaultCompletionType = "context"
@@ -249,6 +265,9 @@ nnoremap <Leader>x :NERDTreeToggle<CR>
 let NERDTreeIgnore=['.pyc$[[file]]']
 let NERDTreeShowHidden=1
 let NERDTreeMapActivateNode='<space>'
+
+" Settings for nerdCommenter
+let NERDSpaceDelims=1   
 
 " Settings for javascript-libraries-syntax.vim
 let g:used_javascript_libs = 'angularui'
