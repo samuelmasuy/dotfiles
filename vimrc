@@ -1,6 +1,10 @@
 " vim:fdm=marker
 " Author: Samuel Masuy and the vim community.
 
+" Tip Macros: important!!!
+" "ap: put (print) content of macro in register a.
+" "ayy: put back current line in register a (macro).
+
 " Pre vim  --------------------------------------------------------------- {{{
 
 " Setup Pathogen to manage plugins.
@@ -55,6 +59,7 @@ Plugin 'Raimondi/delimitMate'
 Plugin 'godlygeek/tabular'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'sjl/gundo.vim'
+Plugin 'dahu/vim-fanfingtastic'
 
 " Syntax helpers
 Plugin 'StanAngeloff/php.vim'
@@ -93,15 +98,13 @@ au InsertLeave * match ExtraWhitespace /\s\+$/
 " Font for macvim.
 if has("gui_running")
     set guifont=Monaco:h15
-else
-    let g:gruvbox_italicize_comments=0
 endif
 
 " Color scheme.
-colorscheme gruvbox
-"colorscheme seoul256
 set background=dark
-"colorscheme solarized
+colorscheme gruvbox
+" colorscheme solarized
+" colorscheme seoul256
 
 " ------------------------------------------------------------------------ }}}
 " Miscellaneous settings ------------------------------------------------- {{{
@@ -114,6 +117,11 @@ set diffopt+=vertical
 set ttimeoutlen=50
 " Always shows 5 lines above/below the cursor.
 set scrolloff=5
+
+" Horizontal split goes to the bottom.
+set splitbelow
+" Vertical split goes to the right.
+set splitright
 
 " Colorize the 80th column.
 "set colorcolumn=81
@@ -231,7 +239,6 @@ if s:uname == "Darwin\n"
     let g:Powerline_symbols = "fancy"
     set encoding=utf-8
     set fillchars+=stl:\ ,stlnc:\
-    set term=xterm-256color
     if has("gui_running")
           set guifont=Monaco\ for\ Powerline
     endif
@@ -251,6 +258,7 @@ let g:jedi#popup_select_first = 0
 " Settings for UtilSnips
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsListSnippets="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 

@@ -3,7 +3,6 @@ export MANPATH="/usr/local/man:$MANPATH"
 
 export EDITOR="vim"
 
-#export TERM=xterm-256color
 # Path to oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
@@ -20,3 +19,5 @@ source /usr/local/bin/virtualenvwrapper.sh
 VIRTUAL_ENV_DISABLE_PROMPT=1
 # pip cache.
 export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache
+# Tmux config.
+export DISABLE_AUTO_TITLE=true
