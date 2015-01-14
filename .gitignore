@@ -5,3 +5,5 @@ fish_history
 fishd.*
 tmuxinator/
 vim/bundle/
+vim/plugged/
+vim/autoload/
