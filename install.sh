@@ -50,5 +50,10 @@ pip install virtualenvwrapper
 easy_install ipython[all]
 easy_install ipython3[all]
 
+echo "Installing plug for vim"
+mkdir -p ~/.vim/autoload
+curl -fLo ~/.vim/autoload/plug.vim \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
 echo "Done!"
 
