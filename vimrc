@@ -29,7 +29,6 @@ set bs=2
 call plug#begin('~/.vim/plugged')
 
 " Necessary
-Plug 'gmarik/vundle'
 Plug 'morhetz/gruvbox'
 Plug 'davidhalter/jedi-vim'
 Plug 'scrooloose/nerdcommenter'
