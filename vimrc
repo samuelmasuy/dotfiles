@@ -39,6 +39,8 @@ Plugin 'ervandew/supertab'
 Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-repeat'
+Plugin 'mileszs/ack.vim'
+Plugin 'tpope/vim-unimpaired'
 " To change surrounding quote: cs"' ;tag cst<th> ;to add quote ysW'
 Plugin 'tpope/vim-surround'
 Plugin 'scrooloose/nerdtree'
@@ -198,7 +200,7 @@ nnoremap : ;
 " Leader Key Mapping  ---------------------------------------------------- {{{
 
 " Rebind <Leader> key.
-let mapleader = ","
+let g:mapleader = ','
 
 " Remap changing screen keys.
 map <leader>h <C-w>h
