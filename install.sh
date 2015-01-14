@@ -23,6 +23,7 @@ rm -r ~/.config/powerline
 rm -r ~/.config/fish
 rm -r ~/.oh-my-fish
 rm ~/.tmux.conf
+rm ~/.ackrc
 
 echo "Symlinking files"
 ln -s ~/Dropbox/Others/Pictures ~/Pictures
@@ -39,6 +40,7 @@ ln -s ~/Dropbox/Github/dotfiles/powerline ~/.config/powerline
 ln -s ~/Dropbox/Github/dotfiles/fish ~/.config/fish
 ln -s ~/Dropbox/Github/dotfiles/tmux.conf ~/.tmux.conf
 ln -s ~/Dropbox/Github/dotfiles/oh-my-fish ~/.oh-my-fish
+ln -s ~/Dropbox/Github/dotfiles/ackrc ~/.ackrc
 
 echo "Installing python"
 pip install --upgrade setuptools
