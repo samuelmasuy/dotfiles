@@ -26,62 +26,61 @@ set showcmd
 " Make backspace behave like normal.
 set bs=2
 
-" Vundle set up.
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+call plug#begin('~/.vim/plugged')
 
 " Necessary
-Plugin 'gmarik/vundle'
-Plugin 'morhetz/gruvbox'
-Plugin 'davidhalter/jedi-vim'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'ervandew/supertab'
-Plugin 'scrooloose/syntastic'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-repeat'
-Plugin 'mileszs/ack.vim'
-Plugin 'tpope/vim-unimpaired'
+Plug 'gmarik/vundle'
+Plug 'morhetz/gruvbox'
+Plug 'davidhalter/jedi-vim'
+Plug 'scrooloose/nerdcommenter'
+Plug 'ervandew/supertab'
+Plug 'scrooloose/syntastic'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
+Plug 'mileszs/ack.vim'
+Plug 'tpope/vim-unimpaired'
 " To change surrounding quote: cs"' ;tag cst<th> ;to add quote ysW'
-Plugin 'tpope/vim-surround'
-Plugin 'scrooloose/nerdtree'
-Plugin 'SirVer/ultisnips'
-Plugin 'mattn/emmet-vim'
+Plug 'tpope/vim-surround'
+Plug 'scrooloose/nerdtree'
+Plug 'SirVer/ultisnips'
+Plug 'mattn/emmet-vim'
 " :DirDiff <A:Src Directory> <B:Src Directory>
-Plugin 'vim-scripts/DirDiff.vim'
+Plug 'vim-scripts/DirDiff.vim'
 " Activate with <leader><leader>w (by word) <leader><leader>fo (character o)
-Plugin 'Lokaltog/vim-easymotion'
+Plug 'Lokaltog/vim-easymotion'
 " <leader>ig
-Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'Valloric/MatchTagAlways'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'Valloric/MatchTagAlways'
 " Provide automatic closing quotes, etc...
-Plugin 'Raimondi/delimitMate'
+Plug 'Raimondi/delimitMate'
 
 " Not very necessary
 " visual mode :Tabularize/{Regex}
-Plugin 'godlygeek/tabular'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'sjl/gundo.vim'
-Plugin 'dahu/vim-fanfingtastic'
+Plug 'godlygeek/tabular'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'sjl/gundo.vim'
+Plug 'dahu/vim-fanfingtastic'
 
 " Syntax helpers
-Plugin 'StanAngeloff/php.vim'
-Plugin 'othree/javascript-libraries-syntax.vim'
-Plugin 'pangloss/vim-javascript'
-Plugin 'burnettk/vim-angular'
-Plugin 'plasticboy/vim-markdown'
+Plug 'StanAngeloff/php.vim'
+Plug 'othree/javascript-libraries-syntax.vim'
+Plug 'pangloss/vim-javascript'
+Plug 'burnettk/vim-angular'
+Plug 'plasticboy/vim-markdown'
 
 " Dependencies
-Plugin 'honza/vim-snippets'
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
+Plug 'honza/vim-snippets'
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'tomtom/tlib_vim'
 
-" Plugin 'tommcdo/vim-exchange'
-" Plugin 'alfredodeza/pytest.vim'
-" Plugin 'vim-scripts/SQLComplete.vim'
-" Plugin 'marijnh/tern_for_vim'
-" Plugin 'altercation/vim-colors-solarized'
-" Plugin 'junegunn/seoul256.vim'
+" Plug 'tommcdo/vim-exchange'
+" Plug 'alfredodeza/pytest.vim'
+" Plug 'vim-scripts/SQLComplete.vim'
+" Plug 'marijnh/tern_for_vim'
+" Plug 'altercation/vim-colors-solarized'
+" Plug 'junegunn/seoul256.vim'
 
+call plug#end()
 
 filetype plugin indent on
 
