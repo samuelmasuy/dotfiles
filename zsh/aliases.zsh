@@ -10,7 +10,7 @@ alias f='open -a Finder ./'
 # Clear the terminal
 alias c='clear'
 # Beautiful Cat
-alias cat='colorize'
+# alias cat='colorize'
 # Correct mistyping.
 alias pyhton='python'
 alias ipyhton='ipython'
