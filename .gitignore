@@ -4,3 +4,4 @@ instal_linux.sh
 fish_history
 fishd.*
 tmuxinator/
+bundle/**
