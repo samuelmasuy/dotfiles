@@ -207,10 +207,6 @@ map <leader>h <C-w>h
 map <leader>j <C-w>j
 map <leader>k <C-w>k
 map <leader>l <C-w>l
-" Removes highlight of your last search.
-nnoremap <silent> <leader>/ :nohlsearch<CR>
-" Quickly toggle 'set list'
-nnoremap <leader>c :set list!<CR>
 " Open in a new tab .vimrc
 nnoremap <leader>e :tabedit $MYVIMRC<CR>
 " Pytest the current file.
@@ -219,15 +215,8 @@ nnoremap <leader>e :tabedit $MYVIMRC<CR>
 nnoremap <Leader>v <c-v>
 " Quicksave command.
 noremap <Leader>s :w<CR>
-" Toggle spell check.
-nnoremap <leader>z :setlocal spell! spelllang=en_us<CR>
 " Map sort function to a key
 vnoremap <Leader>s :sort<CR>
-" Force paste on next line
-nnoremap <leader>pu :pu<CR>
-" Easier moving between tabs.
-nnoremap <Leader>m <esc>:tabnext<CR>
-nnoremap <Leader>n <esc>:tabprevious<CR>
 
 " ------------------------------------------------------------------------ }}}
 " Plugins setup. --------------------------------------------------------- {{{
