@@ -37,6 +37,7 @@ install tree
 install grep
 install tmux
 install httpie
+install ack
 
 
 install phinze/cask/brew-cask
