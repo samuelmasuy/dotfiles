@@ -266,12 +266,16 @@ let NERDTreeShowHidden=1
 let NERDTreeMapActivateNode='<space>'
 
 " Settings for nerdCommenter
-let NERDSpaceDelims=1   
+let NERDSpaceDelims=1
 
 " Settings for javascript-libraries-syntax.vim
 let g:used_javascript_libs = 'angularui'
 
-" Settings for hard mode.
-"autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
+" Settings for Ack.vim
+let g:ackhighlight = 1
+let g:ack_autofold_results = 1
+let g:ackpreview = 1
+
+
 " ------------------------------------------------------------------------ }}}
 
