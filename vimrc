@@ -216,6 +216,29 @@ noremap <Leader>s :w<CR>
 " Map sort function to a key
 vnoremap <Leader>s :sort<CR>
 
+function! Underline(symbol, overline)
+    let lineNo = line('.')
+    let counter = strlen(getline('.'))
+    let newLine = ''
+    while counter > 0
+        let newLine  = newLine . a:symbol
+        let counter -= 1
+    endwhile
+    call append(lineNo, newLine)
+    if a:overline > 0
+        call append(lineNo-1, newLine)
+        let lineNo = lineNo + 1
+    endif
+    call append(lineNo + 1, "")
+    call cursor(lineNo+2,1)
+endfunction
+
+nnoremap <Leader>1 :call Underline('#',1)<cr>
+nnoremap <Leader>2 :call Underline('*',1)<cr>
+nnoremap <Leader>3 :call Underline('=',0)<cr>
+nnoremap <Leader>4 :call Underline('-',0)<cr>
+nnoremap <Leader>5 :call Underline('~',0)<cr>
+
 " ------------------------------------------------------------------------ }}}
 " Plugins setup. --------------------------------------------------------- {{{
 " Settings for vim-powerline
@@ -273,6 +296,7 @@ let g:used_javascript_libs = 'angularui'
 let g:ackhighlight = 1
 let g:ack_autofold_results = 1
 let g:ackpreview = 1
+let g:ackprg = 'ag --nogroup --nocolor --column'
 
 
 " ------------------------------------------------------------------------ }}}
