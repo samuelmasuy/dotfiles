@@ -7,9 +7,6 @@
 
 " Pre vim  --------------------------------------------------------------- {{{
 
-" Setup Pathogen to manage plugins.
-"call pathogen#infect()
-
 " Automatic reloading of .vimrc
 autocmd! bufwritepost .vimrc source %
 
