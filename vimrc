@@ -32,7 +32,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
 " Adds Unix commands to vim.
-Plug 'tpop/vim-eunuch'
+Plug 'tpope/vim-eunuch'
 " To change surrounding quote: cs"' ;tag cst<th> ;to add quote ysW'
 Plug 'tpope/vim-surround'
 Plug 'mileszs/ack.vim'
