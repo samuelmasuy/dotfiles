@@ -65,6 +65,8 @@ Plug 'plasticboy/vim-markdown'
 
 " Tmux
 Plug 'tmux-plugins/vim-tmux'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'benmills/vimux'
 
 " Dependencies
 Plug 'honza/vim-snippets'
@@ -305,6 +307,11 @@ let g:ack_autofold_results = 1
 let g:ackpreview = 1
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
+" Vimux settings
+ " Prompt for a command to run
+ nnoremap <Leader>cc :VimuxPromptCommand<CR>
+ " Run last command executed by VimuxRunCommand
+ nnoremap <Leader>cu :VimuxRunLastCommand<CR>
 
 " ------------------------------------------------------------------------ }}}
 
