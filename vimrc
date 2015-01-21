@@ -22,7 +22,7 @@ set bs=2
 
 call plug#begin('~/.vim/plugged')
 
-" Necessary
+" Essential
 Plug 'morhetz/gruvbox'
 Plug 'davidhalter/jedi-vim'
 Plug 'ervandew/supertab'
@@ -31,9 +31,11 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
-Plug 'mileszs/ack.vim'
+" Adds Unix commands to vim.
+Plug 'tpop/vim-eunuch'
 " To change surrounding quote: cs"' ;tag cst<th> ;to add quote ysW'
 Plug 'tpope/vim-surround'
+Plug 'mileszs/ack.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'SirVer/ultisnips'
 Plug 'mattn/emmet-vim'
