@@ -7,3 +7,4 @@ tmuxinator/
 vim/bundle/
 vim/plugged/
 vim/autoload/
+tmux/default.json
