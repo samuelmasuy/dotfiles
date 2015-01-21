@@ -16,6 +16,3 @@ bindkey '^[[B' history-substring-search-down
 # Initiate oh-my-zsh.
 source $ZSH/oh-my-zsh.sh
 
-#. "/usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh"
-
-
