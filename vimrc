@@ -12,12 +12,6 @@
 
 " Automatic reloading of .vimrc
 autocmd! bufwritepost .vimrc source %
-" Settings for wrap
-command! -nargs=* Wrap set wrap linebreak nolist
-
-set nocompatible
-set t_Co=256
-filetype off
 
 " Better copy & paste.
 set clipboard=unnamed
@@ -31,13 +25,13 @@ call plug#begin('~/.vim/plugged')
 " Necessary
 Plug 'morhetz/gruvbox'
 Plug 'davidhalter/jedi-vim'
-Plug 'scrooloose/nerdcommenter'
 Plug 'ervandew/supertab'
 Plug 'scrooloose/syntastic'
+Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
-Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-unimpaired'
+Plug 'mileszs/ack.vim'
 " To change surrounding quote: cs"' ;tag cst<th> ;to add quote ysW'
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdtree'
@@ -67,6 +61,9 @@ Plug 'pangloss/vim-javascript'
 Plug 'burnettk/vim-angular'
 Plug 'plasticboy/vim-markdown'
 
+" Tmux
+Plug 'tmux-plugins/vim-tmux'
+
 " Dependencies
 Plug 'honza/vim-snippets'
 Plug 'MarcWeber/vim-addon-mw-utils'
@@ -81,11 +78,14 @@ Plug 'tomtom/tlib_vim'
 
 call plug#end()
 
+set nocompatible
 filetype plugin indent on
 
 " ------------------------------------------------------------------------ }}}
 " Appearance  ------------------------------------------------------------ {{{
 
+" Beautiful
+set t_Co=256
 " Auto Indent
 set autoindent
 " Enable syntax highlighting.
@@ -117,7 +117,8 @@ set diffopt+=vertical
 set ttimeoutlen=50
 " Always shows 5 lines above/below the cursor.
 set scrolloff=5
-
+" Increment decimal not octal numbers.
+set nrformats=
 " Horizontal split goes to the bottom.
 set splitbelow
 " Vertical split goes to the right.
@@ -192,7 +193,8 @@ vnoremap > >gv
 "basic, why not before
 nnoremap ; :
 nnoremap : ;
-
+vnoremap ; :
+vnoremap : ;
 
 " ------------------------------------------------------------------------ }}}
 " Leader Key Mapping  ---------------------------------------------------- {{{
@@ -216,28 +218,31 @@ noremap <Leader>s :w<CR>
 " Map sort function to a key
 vnoremap <Leader>s :sort<CR>
 
-function! Underline(symbol, overline)
-    let lineNo = line('.')
-    let counter = strlen(getline('.'))
-    let newLine = ''
-    while counter > 0
-        let newLine  = newLine . a:symbol
-        let counter -= 1
-    endwhile
-    call append(lineNo, newLine)
-    if a:overline > 0
-        call append(lineNo-1, newLine)
-        let lineNo = lineNo + 1
-    endif
-    call append(lineNo + 1, "")
-    call cursor(lineNo+2,1)
-endfunction
+" Title helper with reStructuredText files.
+if (&ft=='rst')
+    function! Underline(symbol, overline)
+        let lineNo = line('.')
+        let counter = strlen(getline('.'))
+        let newLine = ''
+        while counter > 0
+            let newLine  = newLine . a:symbol
+            let counter -= 1
+        endwhile
+        call append(lineNo, newLine)
+        if a:overline > 0
+            call append(lineNo-1, newLine)
+            let lineNo = lineNo + 1
+        endif
+        call append(lineNo + 1, "")
+        call cursor(lineNo+2,1)
+    endfunction
 
-nnoremap <Leader>1 :call Underline('#',1)<cr>
-nnoremap <Leader>2 :call Underline('*',1)<cr>
-nnoremap <Leader>3 :call Underline('=',0)<cr>
-nnoremap <Leader>4 :call Underline('-',0)<cr>
-nnoremap <Leader>5 :call Underline('~',0)<cr>
+    nnoremap <Leader>1 :call Underline('#',1)<cr>
+    nnoremap <Leader>2 :call Underline('*',1)<cr>
+    nnoremap <Leader>3 :call Underline('=',0)<cr>
+    nnoremap <Leader>4 :call Underline('-',0)<cr>
+    nnoremap <Leader>5 :call Underline('~',0)<cr>
+endif
 
 " ------------------------------------------------------------------------ }}}
 " Plugins setup. --------------------------------------------------------- {{{
