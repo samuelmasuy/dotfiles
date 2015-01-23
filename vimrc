@@ -218,6 +218,10 @@ nnoremap <Leader>v <c-v>
 noremap <Leader>s :w<CR>
 " Map sort function to a key
 vnoremap <Leader>s :sort<CR>
+" Remove trailing whitespace on <leader>S
+nnoremap <leader>S :%s/\s\+$//<cr>:let @/=''<CR>
+" Ack on <leader>a
+nnoremap <leader>a :Ack<space>
 
 " Title helper with reStructuredText files.
 if (&ft=='rst')
