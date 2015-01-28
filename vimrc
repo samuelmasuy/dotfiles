@@ -197,6 +197,8 @@ nnoremap : ;
 vnoremap ; :
 vnoremap : ;
 
+nnoremap Y y$
+
 " ------------------------------------------------------------------------ }}}
 " Leader Key Mapping  ---------------------------------------------------- {{{
 
@@ -306,7 +308,7 @@ let g:used_javascript_libs = 'angularui'
 let g:ackhighlight = 1
 let g:ack_autofold_results = 1
 let g:ackpreview = 1
-let g:ackprg = 'ag --nogroup --nocolor --column'
+" let g:ackprg = 'ag'
 
 " Vimux settings
  " Prompt for a command to run
@@ -314,5 +316,7 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
  " Run last command executed by VimuxRunCommand
  nnoremap <Leader>cu :VimuxRunLastCommand<CR>
 
+" Settings for Gundo
+nnoremap <leader>g :GundoToggle<CR>
 " ------------------------------------------------------------------------ }}}
 
