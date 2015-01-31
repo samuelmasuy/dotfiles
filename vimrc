@@ -197,8 +197,6 @@ nnoremap : ;
 vnoremap ; :
 vnoremap : ;
 
-nnoremap Y y$
-
 " ------------------------------------------------------------------------ }}}
 " Leader Key Mapping  ---------------------------------------------------- {{{
 
@@ -270,6 +268,7 @@ endif
 
 " Settings for syntastic
 let g:syntastic_python_checkers = ['pylint', 'flake8']
+let g:syntastic_python_flake8_args='--ignore=E303,E301,E261,E721,E126 --max-line-length=84'
 let g:syntastic_aggregate_errors = 1
 
 " Settings for vim-multiple-cursors
@@ -308,7 +307,6 @@ let g:used_javascript_libs = 'angularui'
 let g:ackhighlight = 1
 let g:ack_autofold_results = 1
 let g:ackpreview = 1
-" let g:ackprg = 'ag'
 
 " Vimux settings
  " Prompt for a command to run
