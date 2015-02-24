@@ -30,25 +30,21 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
 " Adds Unix commands to vim.
 Plug 'tpope/vim-eunuch'
-" To change surrounding quote: cs"' ;tag cst<th> ;to add quote ysW'
-Plug 'tpope/vim-surround'
+Plug 'tpope/vim-surround' " To change surrounding quote: cs(' ;tag cst<th> ;to add quote ysW'
 Plug 'mileszs/ack.vim'
 Plug 'scrooloose/nerdtree'
-Plug 'SirVer/ultisnips'
-Plug 'mattn/emmet-vim'
-" :DirDiff <A:Src Directory> <B:Src Directory>
-Plug 'vim-scripts/DirDiff.vim'
-" Activate with <leader><leader>w (by word) <leader><leader>fo (character o)
-Plug 'Lokaltog/vim-easymotion'
+" Plug 'SirVer/ultisnips'
+" Plug 'mattn/emmet-vim'
+Plug 'vim-scripts/DirDiff.vim' " :DirDiff <A:Src Directory> <B:Src Directory>
+Plug 'Lokaltog/vim-easymotion' " Activate with <leader><leader>w (by word) <leader><leader>fo (character o)
 " <leader>ig
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'Valloric/MatchTagAlways'
-" Provide automatic closing quotes, etc...
-Plug 'Raimondi/delimitMate'
+Plug 'Raimondi/delimitMate' " Provide automatic closing quotes, etc...
+Plug 'kien/ctrlp.vim'
 
 " Not very necessary
-" visual mode :Tabularize/{Regex}
-Plug 'godlygeek/tabular'
+Plug 'godlygeek/tabular' " visual mode :Tabularize/{Regex}
 Plug 'terryma/vim-multiple-cursors'
 Plug 'sjl/gundo.vim'
 Plug 'dahu/vim-fanfingtastic'
@@ -104,8 +100,6 @@ endif
 " Color scheme.
 set background=dark
 colorscheme gruvbox
-" colorscheme solarized
-" colorscheme seoul256
 
 " ------------------------------------------------------------------------ }}}
 " Miscellaneous settings ------------------------------------------------- {{{
@@ -197,17 +191,16 @@ nnoremap : ;
 vnoremap ; :
 vnoremap : ;
 
+" Easy subsitute
+noremap :: :%s:::g<Left><Left><Left>
+noremap :' :%s:::cg<Left><Left><Left><Left>
+
 " ------------------------------------------------------------------------ }}}
 " Leader Key Mapping  ---------------------------------------------------- {{{
 
 " Rebind <Leader> key.
 let g:mapleader = ','
 
-" Remap changing screen keys.
-map <leader>h <C-w>h
-map <leader>j <C-w>j
-map <leader>k <C-w>k
-map <leader>l <C-w>l
 " Open in a new tab .vimrc
 nnoremap <leader>e :tabedit $MYVIMRC<CR>
 " Pytest the current file.
@@ -220,8 +213,11 @@ noremap <Leader>s :w<CR>
 vnoremap <Leader>s :sort<CR>
 " Remove trailing whitespace on <leader>S
 nnoremap <leader>S :%s/\s\+$//<cr>:let @/=''<CR>
-" Ack on <leader>a
-nnoremap <leader>a :Ack<space>
+" Reset space-tab
+nnoremap <leader>re :set tabstop=4 softtabstop=4 shiftwidth=4 expandtab<CR>:retab<CR>
+
+" swicth to last file edited
+nnoremap <leader><leader> <c-^>
 
 " Title helper with reStructuredText files.
 if (&ft=='rst')
@@ -304,6 +300,8 @@ let NERDSpaceDelims=1
 let g:used_javascript_libs = 'angularui'
 
 " Settings for Ack.vim
+" Ack on <leader>a
+nnoremap <leader>a :Ack<space>
 let g:ackhighlight = 1
 let g:ack_autofold_results = 1
 let g:ackpreview = 1
@@ -316,5 +314,9 @@ let g:ackpreview = 1
 
 " Settings for Gundo
 nnoremap <leader>g :GundoToggle<CR>
-" ------------------------------------------------------------------------ }}}
 
+"Settings for Ctrlp
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+
+" ------------------------------------------------------------------------ }}}
