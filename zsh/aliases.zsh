@@ -1,7 +1,7 @@
 # cd in the previous directory.
 alias cdp="cd ~-"
 # Display all files and directories including the hidden ones, with precision.
-alias la='ls -lA'
+alias la='ls -lAtShr'
 alias ls='ls -G'
 # Make the terminal say all the files and directories.
 alias lt="ls | say -vz"

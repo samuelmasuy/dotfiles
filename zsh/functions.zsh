@@ -39,6 +39,30 @@ function givedef() {
 function mcd() {
     mkdir -p "$1" && cd "$1";
 }
+# Copy files cd into the directory where the files where copied.
+function cpd() {
+    cp -- "$1" "$2" || return
+    if [[ -d "$2" ]]; then
+        cd -- "$2"
+    else
+        case $2 in
+              ?*/*) cd -- "${2%/*}" ;;
+              /*) cd / ;;
+        esac
+    fi
+}
+# Move files cd into the directory where the files where moved.
+function mvd() {
+    mv -- "$1" "$2" || return
+    if [[ -d "$2" ]]; then
+        cd -- "$2"
+    else
+        case $2 in
+              ?*/*) cd -- "${2%/*}" ;;
+              /*) cd / ;;
+        esac
+    fi
+}
 # Higlight the matching pattern in a file.
 function highlight () {
     grep --color -E "$1|$" "$@"
