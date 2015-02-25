@@ -28,41 +28,37 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
-" Adds Unix commands to vim.
-Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-eunuch' " Adds Unix commands to vim.
 Plug 'tpope/vim-surround' " To change surrounding quote: cs(' ;tag cst<th> ;to add quote ysW'
-Plug 'mileszs/ack.vim'
-Plug 'scrooloose/nerdtree'
-" Plug 'SirVer/ultisnips'
-" Plug 'mattn/emmet-vim'
-Plug 'vim-scripts/DirDiff.vim' " :DirDiff <A:Src Directory> <B:Src Directory>
-Plug 'Lokaltog/vim-easymotion' " Activate with <leader><leader>w (by word) <leader><leader>fo (character o)
-" <leader>ig
-Plug 'nathanaelkane/vim-indent-guides'
-Plug 'Valloric/MatchTagAlways'
-Plug 'Raimondi/delimitMate' " Provide automatic closing quotes, etc...
 Plug 'kien/ctrlp.vim'
-
-" Not very necessary
-Plug 'godlygeek/tabular' " visual mode :Tabularize/{Regex}
-Plug 'terryma/vim-multiple-cursors'
-Plug 'sjl/gundo.vim'
-Plug 'dahu/vim-fanfingtastic'
-
-" Syntax helpers
-Plug 'StanAngeloff/php.vim'
-Plug 'othree/javascript-libraries-syntax.vim'
-Plug 'pangloss/vim-javascript'
-Plug 'burnettk/vim-angular'
-Plug 'plasticboy/vim-markdown'
-
-" Tmux
 Plug 'tmux-plugins/vim-tmux'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'benmills/vimux'
+Plug 'mileszs/ack.vim'
+Plug 'Valloric/MatchTagAlways'
+Plug 'Raimondi/delimitMate' " Provide automatic closing quotes, etc...
+Plug 'dahu/vim-fanfingtastic'
+Plug 'vim-scripts/DirDiff.vim' " :DirDiff <A:Src Directory> <B:Src Directory>
+
+" Not very necessary
+Plug 'scrooloose/nerdtree'
+Plug 'godlygeek/tabular' " visual mode :Tabularize/{Regex}
+Plug 'sjl/gundo.vim'
+" Plug 'Lokaltog/vim-easymotion' " Activate with <leader><leader>w (by word) <leader><leader>fo (character o)
+" Plug 'nathanaelkane/vim-indent-guides' " <leader>ig
+" Plug 'terryma/vim-multiple-cursors'
+
+" Syntax helpers
+" Plug 'SirVer/ultisnips'
+" Plug 'mattn/emmet-vim'
+" Plug 'StanAngeloff/php.vim'
+" Plug 'othree/javascript-libraries-syntax.vim'
+" Plug 'pangloss/vim-javascript'
+" Plug 'burnettk/vim-angular'
+" Plug 'plasticboy/vim-markdown'
 
 " Dependencies
-Plug 'honza/vim-snippets'
+" Plug 'honza/vim-snippets'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
 
