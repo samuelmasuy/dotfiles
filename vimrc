@@ -1,6 +1,9 @@
 " vim:fdm=marker
 " Author: Samuel Masuy and the vim community.
 
+" To make a portable tar vim:
+" bash <(curl -L https://raw.githubusercontent.com/junegunn/myvim/master/myvim)
+
 " Tip Macros: important!!!
 " "ap: put (print) content of macro in register a.
 " "ayy: put back current line in register a (macro).
@@ -31,6 +34,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-eunuch' " Adds Unix commands to vim.
 Plug 'tpope/vim-surround' " To change surrounding quote: cs(' ;tag cst<th> ;to add quote ysW'
 Plug 'kien/ctrlp.vim'
+Plug 'FelikZ/ctrlp-py-matcher'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'benmills/vimux'
@@ -42,8 +46,8 @@ Plug 'vim-scripts/DirDiff.vim' " :DirDiff <A:Src Directory> <B:Src Directory>
 
 " Not very necessary
 Plug 'scrooloose/nerdtree'
-Plug 'godlygeek/tabular' " visual mode :Tabularize/{Regex}
 Plug 'sjl/gundo.vim'
+" Plug 'godlygeek/tabular' " visual mode :Tabularize/{Regex}
 " Plug 'Lokaltog/vim-easymotion' " Activate with <leader><leader>w (by word) <leader><leader>fo (character o)
 " Plug 'nathanaelkane/vim-indent-guides' " <leader>ig
 " Plug 'terryma/vim-multiple-cursors'
@@ -67,6 +71,7 @@ Plug 'tomtom/tlib_vim'
 " Plug 'vim-scripts/SQLComplete.vim'
 " Plug 'marijnh/tern_for_vim'
 " Plug 'altercation/vim-colors-solarized'
+" Plug 'chriskempson/vim-tomorrow-theme'
 " Plug 'junegunn/seoul256.vim'
 
 call plug#end()
@@ -149,6 +154,10 @@ set incsearch
 set ignorecase
 set smartcase
 
+" Wildmode aka tab-completion options.
+set wildmenu
+set wildmode=full
+
 " Disable backup and swap files.
 set nobackup
 set nowritebackup
@@ -162,6 +171,9 @@ map <up> <nop>
 map <down> <nop>
 map <left> <nop>
 map <right> <nop>
+" Avoid un-VI keys in ex mode
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
 
 " Quick Fold and Unfold.
 nnoremap <space> za
@@ -312,7 +324,10 @@ let g:ackpreview = 1
 nnoremap <leader>g :GundoToggle<CR>
 
 "Settings for Ctrlp
+set wildignore+=*.pyc
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 
 " ------------------------------------------------------------------------ }}}
