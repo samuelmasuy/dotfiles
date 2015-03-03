@@ -47,6 +47,7 @@ Plug 'vim-scripts/DirDiff.vim' " :DirDiff <A:Src Directory> <B:Src Directory>
 " Not very necessary
 Plug 'scrooloose/nerdtree'
 Plug 'sjl/gundo.vim'
+Plug 'dahu/vimple'
 " Plug 'godlygeek/tabular' " visual mode :Tabularize/{Regex}
 " Plug 'Lokaltog/vim-easymotion' " Activate with <leader><leader>w (by word) <leader><leader>fo (character o)
 " Plug 'nathanaelkane/vim-indent-guides' " <leader>ig
@@ -195,7 +196,10 @@ vnoremap > >gv
 
 "basic, why not before
 nnoremap ; :
-nnoremap : ;
+" nnoremap : ;
+nmap - <Plug>fanfingtastic_;
+xmap - <Plug>fanfingtastic_;
+omap - <Plug>fanfingtastic_;
 vnoremap ; :
 vnoremap : ;
 
