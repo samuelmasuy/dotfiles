@@ -39,9 +39,10 @@ Plug 'tmux-plugins/vim-tmux'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'benmills/vimux'
 Plug 'mileszs/ack.vim'
+
 Plug 'Valloric/MatchTagAlways'
 Plug 'Raimondi/delimitMate' " Provide automatic closing quotes, etc...
-Plug 'dahu/vim-fanfingtastic'
+" Plug 'dahu/vim-fanfingtastic'
 Plug 'vim-scripts/DirDiff.vim' " :DirDiff <A:Src Directory> <B:Src Directory>
 
 " Not very necessary
@@ -159,6 +160,9 @@ set smartcase
 set wildmenu
 set wildmode=full
 
+" for argdo and bufdo without a trailing bang.
+set hidden
+
 " Disable backup and swap files.
 set nobackup
 set nowritebackup
@@ -181,10 +185,10 @@ nnoremap <space> za
 vnoremap <space> zf
 
 " Go start and end of line.
-nnoremap H ^
-nnoremap L $
-vnoremap H ^
-vnoremap L $
+" nnoremap H ^
+" nnoremap L $
+" vnoremap H ^
+" vnoremap L $
 
 " Make sure to be in the middle of the screen when searching.
 nnoremap n nzzzv
@@ -196,22 +200,20 @@ vnoremap > >gv
 
 "basic, why not before
 nnoremap ; :
-" nnoremap : ;
-nmap - <Plug>fanfingtastic_;
-xmap - <Plug>fanfingtastic_;
-omap - <Plug>fanfingtastic_;
+nnoremap : ;
 vnoremap ; :
 vnoremap : ;
-
-" Easy subsitute
-noremap :: :%s:::g<Left><Left><Left>
-noremap :' :%s:::cg<Left><Left><Left><Left>
+" nmap : <Plug>fanfingtastic_;
+" xmap : <Plug>fanfingtastic_;
+" omap : <Plug>fanfingtastic_;
+" vmap : <Plug>fanfingtastic_;
 
 " ------------------------------------------------------------------------ }}}
 " Leader Key Mapping  ---------------------------------------------------- {{{
 
 " Rebind <Leader> key.
 let g:mapleader = ','
+noremap \ ,
 
 " Open in a new tab .vimrc
 nnoremap <leader>e :tabedit $MYVIMRC<CR>
@@ -230,6 +232,9 @@ nnoremap <leader>re :set tabstop=4 softtabstop=4 shiftwidth=4 expandtab<CR>:reta
 
 " swicth to last file edited
 nnoremap <leader><leader> <c-^>
+
+" Easy subsitute providing a previous pattern
+nnoremap <leader>; :%s:::cg<Left><Left><Left>
 
 " Title helper with reStructuredText files.
 if (&ft=='rst')
@@ -314,6 +319,7 @@ let g:used_javascript_libs = 'angularui'
 " Settings for Ack.vim
 " Ack on <leader>a
 nnoremap <leader>a :Ack<space>
+let g:ackprg = 'ag --nogroup --nocolor --column'
 let g:ackhighlight = 1
 let g:ack_autofold_results = 1
 let g:ackpreview = 1
@@ -332,6 +338,13 @@ set wildignore+=*.pyc
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
+      \ --ignore .git
+      \ --ignore .svn
+      \ --ignore .hg
+      \ --ignore .DS_Store
+      \ --ignore "**/*.pyc"
+      \ -g ""'
+" let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 
 " ------------------------------------------------------------------------ }}}
