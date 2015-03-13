@@ -46,7 +46,7 @@ Plug 'Valloric/MatchTagAlways'
 Plug 'Raimondi/delimitMate' " Provide automatic closing quotes, etc...
 " Plug 'dahu/vim-fanfingtastic'
 Plug 'vim-scripts/DirDiff.vim' " :DirDiff <A:Src Directory> <B:Src Directory>
-Plug 'vim-scripts/python.vim--Vasiliev'
+" Plug 'vim-scripts/python.vim--Vasiliev'
 Plug 'vim-scripts/py_jump.vim'
 Plug 'maksimr/vim-jsbeautify'
 
