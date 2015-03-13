@@ -205,6 +205,7 @@ nnoremap : ;
 vnoremap ; :
 vnoremap : ;
 
+" ------------------------------------------------------------------------ }}}
 " Syntax support  -------------------------------------------------------- {{{
 
 " python
@@ -288,8 +289,6 @@ let g:syntastic_javascript_jshint_args='--config ~/.vim/extern-cfg/jshint.json'
 " JSON
 " ----
 autocmd FileType json setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
-
-" ------------------------------------------------------------------------ }}}
 
 " ------------------------------------------------------------------------ }}}
 " Leader Key Mapping  ---------------------------------------------------- {{{
