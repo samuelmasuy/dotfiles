@@ -7,6 +7,8 @@
 " Tip Macros: important!!!
 " "ap: put (print) content of macro in register a.
 " "ayy: put back current line in register a (macro).
+" switch to last file edited
+" nnoremap <leader><leader> <c-^>
 
 " Pre vim  --------------------------------------------------------------- {{{
 
@@ -44,11 +46,16 @@ Plug 'Valloric/MatchTagAlways'
 Plug 'Raimondi/delimitMate' " Provide automatic closing quotes, etc...
 " Plug 'dahu/vim-fanfingtastic'
 Plug 'vim-scripts/DirDiff.vim' " :DirDiff <A:Src Directory> <B:Src Directory>
+Plug 'vim-scripts/python.vim--Vasiliev'
+Plug 'vim-scripts/py_jump.vim'
+Plug 'maksimr/vim-jsbeautify'
 
 " Not very necessary
 Plug 'scrooloose/nerdtree'
 Plug 'sjl/gundo.vim'
 Plug 'dahu/vimple'
+" Plug 'mitsuhiko/vim-rst'
+" Plug 'Rykka/riv.vim'
 " Plug 'godlygeek/tabular' " visual mode :Tabularize/{Regex}
 " Plug 'Lokaltog/vim-easymotion' " Activate with <leader><leader>w (by word) <leader><leader>fo (character o)
 " Plug 'nathanaelkane/vim-indent-guides' " <leader>ig
@@ -97,7 +104,7 @@ au InsertLeave * match ExtraWhitespace /\s\+$/
 
 " Font for macvim.
 if has("gui_running")
-    set guifont=Monaco:h15
+  set guifont=Monaco:h15
 endif
 
 " Color scheme.
@@ -184,12 +191,6 @@ cnoremap <C-n> <Down>
 nnoremap <space> za
 vnoremap <space> zf
 
-" Go start and end of line.
-" nnoremap H ^
-" nnoremap L $
-" vnoremap H ^
-" vnoremap L $
-
 " Make sure to be in the middle of the screen when searching.
 nnoremap n nzzzv
 nnoremap N Nzzzv
@@ -198,15 +199,97 @@ nnoremap N Nzzzv
 vnoremap < <gv
 vnoremap > >gv
 
-"basic, why not before
+" basic, why not before
 nnoremap ; :
 nnoremap : ;
 vnoremap ; :
 vnoremap : ;
-" nmap : <Plug>fanfingtastic_;
-" xmap : <Plug>fanfingtastic_;
-" omap : <Plug>fanfingtastic_;
-" vmap : <Plug>fanfingtastic_;
+
+" Syntax support  -------------------------------------------------------- {{{
+
+" python
+" ------
+autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=4 formatoptions=croqj softtabstop=4 comments=:#\:,:#
+let python_highlight_all=1
+let python_slow_sync=1
+
+let g:syntastic_python_checkers=['flake8', 'python']
+
+let g:syntastic_python_flake8_args='--ignore=E121,E124,E126,E261,E301,E303,E721 --max-line-length=104'
+" Don't warn on
+"   E121 continuation line indentation is not a multiple of four
+"   E124 closing bracket does not match visual indentation
+"   E126 continuation line over-indented for hanging indent
+"   E128 continuation line under-indented for visual indent
+"   E261 at least two spaces before inline comment
+"   E301 expected 1 blank line, found 0
+"   E303 expected 2 blank lines, found <n>
+"   E721 do not compare types, use 'isinstance()'
+
+" ruby
+" ----
+autocmd FileType ruby setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
+
+" php
+" ---
+autocmd FileType php setlocal shiftwidth=4 tabstop=8 softtabstop=4 expandtab
+
+" Template language (SGML / XML too)
+" ----------------------------------
+autocmd FileType xml,html,htmljinja,htmldjango setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType html setlocal commentstring=<!--\ %s\ -->
+autocmd FileType htmljinja setlocal commentstring={#\ %s\ #}
+let html_no_rendering=1
+let g:syntastic_html_checkers = []
+
+" CSS
+" ---
+autocmd FileType css setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
+autocmd FileType css setlocal commentstring=/*\ %s\ */
+autocmd FileType css noremap <buffer> <leader>r :call CSSBeautify()<cr>
+
+" Java
+" ----
+autocmd FileType java setlocal shiftwidth=2 tabstop=8 softtabstop=2 expandtab
+autocmd FileType java setlocal commentstring=//\ %s
+
+" rst
+" ---
+autocmd BufNewFile,BufRead *.txt setlocal ft=rst
+autocmd FileType rst setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 formatoptions+=nqt
+let g:syntastic_rst_checkers = ['rstcheck']
+
+" C/Obj-C/C++
+autocmd FileType c setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
+autocmd FileType cpp setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
+autocmd FileType objc setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
+autocmd FileType c setlocal commentstring=/*\ %s\ */
+autocmd FileType cpp,objc setlocal commentstring=//\ %s
+let c_no_curly_error=1
+let g:syntastic_cpp_include_dirs = ['include', '../include']
+let g:syntastic_cpp_compiler = 'clang++'
+let g:syntastic_c_include_dirs = ['include', '../include']
+let g:syntastic_c_compiler = 'clang'
+
+" vim
+" ---
+autocmd FileType vim setlocal expandtab shiftwidth=2 tabstop=8 softtabstop=2
+
+" Javascript
+" ----------
+autocmd FileType javascript setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType javascript setlocal commentstring=//\ %s
+autocmd FileType javascript noremap <buffer> <leader>r :call JsBeautify()<cr>
+autocmd FileType javascript let b:javascript_fold = 0
+let javascript_enable_domhtmlcss=1
+let g:syntastic_javascript_checkers = ['jshint'] 
+let g:syntastic_javascript_jshint_args='--config ~/.vim/extern-cfg/jshint.json'
+
+" JSON
+" ----
+autocmd FileType json setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
+
+" ------------------------------------------------------------------------ }}}
 
 " ------------------------------------------------------------------------ }}}
 " Leader Key Mapping  ---------------------------------------------------- {{{
@@ -228,7 +311,7 @@ vnoremap <Leader>s :sort<CR>
 " Remove trailing whitespace on <leader>S
 nnoremap <leader>S :%s/\s\+$//<cr>:let @/=''<CR>
 " Reset space-tab
-nnoremap <leader>re :set tabstop=4 softtabstop=4 shiftwidth=4 expandtab<CR>:retab<CR>
+nnoremap <leader>re :retab<CR>
 
 " swicth to last file edited
 nnoremap <leader><leader> <c-^>
@@ -237,51 +320,64 @@ nnoremap <leader><leader> <c-^>
 nnoremap <leader>; :%s:::cg<Left><Left><Left>
 
 " Title helper with reStructuredText files.
-if (&ft=='rst')
-    function! Underline(symbol, overline)
-        let lineNo = line('.')
-        let counter = strlen(getline('.'))
-        let newLine = ''
-        while counter > 0
-            let newLine  = newLine . a:symbol
-            let counter -= 1
-        endwhile
-        call append(lineNo, newLine)
-        if a:overline > 0
-            call append(lineNo-1, newLine)
-            let lineNo = lineNo + 1
-        endif
-        call append(lineNo + 1, "")
-        call cursor(lineNo+2,1)
-    endfunction
+" if (&ft=='rst')
+function! s:Underline(level)
+  if a:level == 1
+    let symbol = '#'
+    let overline = 1
+  elseif a:level == 2
+    let symbol = '*'
+    let overline = 1
+  elseif a:level == 3
+    let symbol = '='
+    let overline = 0
+  elseif a:level == 4
+    let symbol = '-'
+    let overline = 0
+  elseif a:level == 5
+    let symbol = '~'
+    let overline = 0
+  else
+    echom "Unknow level!"
+    return
+  endif
+  let lineNo = line('.')
+  let counter = strlen(getline('.'))
+  let newLine = ''
+  while counter > 0
+    let newLine  = newLine . symbol
+    let counter -= 1
+  endwhile
+  call append(lineNo, newLine)
+  if overline > 0
+    call append(lineNo-1, newLine)
+    let lineNo = lineNo + 1
+  endif
+  call append(lineNo + 1, "")
+  call cursor(lineNo+2,1)
+endfunction
 
-    nnoremap <Leader>1 :call Underline('#',1)<cr>
-    nnoremap <Leader>2 :call Underline('*',1)<cr>
-    nnoremap <Leader>3 :call Underline('=',0)<cr>
-    nnoremap <Leader>4 :call Underline('-',0)<cr>
-    nnoremap <Leader>5 :call Underline('~',0)<cr>
-endif
+command! -nargs=? Underline call s:Underline(<q-args>)
+" endif
 
 " ------------------------------------------------------------------------ }}}
 " Plugins setup. --------------------------------------------------------- {{{
 " Settings for vim-powerline
 let s:uname = system("uname")
 if s:uname == "Darwin\n"
-    source /usr/local/lib/python2.7/site-packages/powerline/bindings/vim/plugin/powerline.vim
-    set laststatus=2
-    " Hide the default mode text
-    set noshowmode
-    let g:Powerline_symbols = "fancy"
-    set encoding=utf-8
-    set fillchars+=stl:\ ,stlnc:\
-    if has("gui_running")
-          set guifont=Monaco\ for\ Powerline
-    endif
+  source /usr/local/lib/python2.7/site-packages/powerline/bindings/vim/plugin/powerline.vim
+  set laststatus=2
+  " Hide the default mode text
+  set noshowmode
+  let g:Powerline_symbols = "fancy"
+  set encoding=utf-8
+  set fillchars+=stl:\ ,stlnc:\
+  if has("gui_running")
+    set guifont=Monaco\ for\ Powerline
+  endif
 endif
 
 " Settings for syntastic
-let g:syntastic_python_checkers = ['pylint', 'flake8']
-let g:syntastic_python_flake8_args='--ignore=E303,E301,E261,E721,E126 --max-line-length=84'
 let g:syntastic_aggregate_errors = 1
 
 " Settings for vim-multiple-cursors
@@ -292,14 +388,14 @@ let g:multi_cursor_exit_from_visual_mode = 0
 let g:jedi#popup_select_first = 0
 
 " Settings for UtilSnips
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsEditSplit="vertical"
-let g:UltiSnipsListSnippets="<c-j>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+" let g:UltiSnipsExpandTrigger="<tab>"
+" let g:UltiSnipsEditSplit="vertical"
+" let g:UltiSnipsListSnippets="<c-j>"
+" let g:UltiSnipsJumpForwardTrigger="<tab>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " Settings for emmet-vim
-let g:user_emmet_expandabbr_key='<Tab>'
+" let g:user_emmet_expandabbr_key='<Tab>'
 
 " Settings for super-tab
 let g:SuperTabDefaultCompletionType = "context"
@@ -314,7 +410,7 @@ let NERDTreeMapActivateNode='<space>'
 let NERDSpaceDelims=1
 
 " Settings for javascript-libraries-syntax.vim
-let g:used_javascript_libs = 'angularui'
+" let g:used_javascript_libs = 'angularui'
 
 " Settings for Ack.vim
 " Ack on <leader>a
