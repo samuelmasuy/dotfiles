@@ -15,4 +15,3 @@ bindkey '^[[B' history-substring-search-down
 
 # Initiate oh-my-zsh.
 source $ZSH/oh-my-zsh.sh
-
