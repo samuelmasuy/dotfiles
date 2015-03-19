@@ -284,7 +284,6 @@ autocmd FileType javascript noremap <buffer> <leader>r :call JsBeautify()<cr>
 autocmd FileType javascript let b:javascript_fold = 0
 let javascript_enable_domhtmlcss=1
 let g:syntastic_javascript_checkers = ['jshint'] 
-let g:syntastic_javascript_jshint_args='--config ~/.vim/extern-cfg/jshint.json'
 
 " JSON
 " ----
