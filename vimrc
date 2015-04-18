@@ -75,6 +75,7 @@ Plug 'dahu/vimple'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
 
+" Plug '0x0dea/vim-molasses'
 " Plug 'tommcdo/vim-exchange'
 " Plug 'alfredodeza/pytest.vim'
 " Plug 'vim-scripts/SQLComplete.vim'
@@ -357,6 +358,15 @@ endfunction
 
 command! -nargs=? Underline call s:Underline(<q-args>)
 " endif
+
+" Google search word under cursor from http://www.vimbits.com/bits/551
+nnoremap <leader>is :let @p=@"<cr>yiw:!open "https://www.google.com/search?q=""<cr><cr>
+    \:let @"=@p<cr>
+" Google search the definition of the word under cursor
+nnoremap <leader>id :let @p=@"<cr>yiw:!open "https://www.google.com/search?q=define ""<cr><cr>
+    \:let @"=@p<cr>
+
+autocmd FileType python nnoremap <leader>y :0,$!yapf<Cr>
 
 " ------------------------------------------------------------------------ }}}
 " Plugins setup. --------------------------------------------------------- {{{
