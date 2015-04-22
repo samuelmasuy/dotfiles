@@ -8,7 +8,7 @@ source ~/.zsh/functions.zsh
 # Initiate z command.
 . $ZSH/custom/plugins/z/z.sh
 # Plugins for zsh.
-plugins=(git git-flow tmux tmuxinator brew github osx sublime virtualenvwrapper colorize pip vi-mode web-search zsh_reload z vagrant zsh-syntax-highlighting history-substring-search alias-tips)
+plugins=(git tmux tmuxinator brew github osx sublime virtualenvwrapper colorize pip vi-mode web-search zsh_reload z vagrant zsh-syntax-highlighting history-substring-search alias-tips)
 
 
 bindkey '^[[A' history-substring-search-up
