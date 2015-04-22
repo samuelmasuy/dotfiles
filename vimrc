@@ -48,11 +48,11 @@ Plug 'Raimondi/delimitMate' " Provide automatic closing quotes, etc...
 Plug 'vim-scripts/DirDiff.vim' " :DirDiff <A:Src Directory> <B:Src Directory>
 " Plug 'vim-scripts/python.vim--Vasiliev'
 Plug 'vim-scripts/py_jump.vim'
-Plug 'maksimr/vim-jsbeautify'
+" Plug 'maksimr/vim-jsbeautify'
 
 " Not very necessary
 Plug 'scrooloose/nerdtree'
-Plug 'sjl/gundo.vim'
+" Plug 'sjl/gundo.vim'
 Plug 'dahu/vimple'
 " Plug 'mitsuhiko/vim-rst'
 " Plug 'Rykka/riv.vim'
