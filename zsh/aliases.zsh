@@ -27,3 +27,6 @@ alias subl="/opt/homebrew-cask/Caskroom/sublime-text3/Build\ 3059/Sublime\ Text.
 alias tmux="TERM=screen-256color-bce tmux"
 # python source code
 alias codesource='cd /usr/local/Cellar/python/2.7.9/Frameworks/Python.framework/Versions/2.7/lib/python2.7'
+# thefuck plugin
+alias fuck='eval $(thefuck $(fc -ln -1))'
+
