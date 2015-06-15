@@ -67,7 +67,7 @@ Plug 'dahu/vimple'
 " Plug 'StanAngeloff/php.vim'
 " Plug 'othree/javascript-libraries-syntax.vim'
 " Plug 'pangloss/vim-javascript'
-" Plug 'burnettk/vim-angular'
+Plug 'burnettk/vim-angular'
 " Plug 'plasticboy/vim-markdown'
 
 " Dependencies
