@@ -1,3 +1,9 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =1
+let g:netrw_dirhist_cnt =7
 let g:netrw_dirhist_1='/Users/samuel/Dropbox/www/concordia_location'
+let g:netrw_dirhist_2='/Users/samuel/Dropbox/_Concordia/COMP 354/ninefoo'
+let g:netrw_dirhist_3='/Users/samuel/Dropbox/_Concordia/COMP 354/ninefoo/src'
+let g:netrw_dirhist_4='/Users/samuel/Dropbox/_Concordia/COMP 354/ninefoo/src/main'
+let g:netrw_dirhist_5='/Users/samuel/Dropbox/_Concordia/COMP 354/ninefoo/src/main/java'
+let g:netrw_dirhist_6='/Users/samuel/Dropbox/_Concordia/COMP 354/ninefoo/src/main/java/ninefoo'
+let g:netrw_dirhist_7='/Users/samuel/Dropbox/_Concordia/COMP 354/ninefoo/src/main/java/ninefoo/application'
