@@ -12,6 +12,7 @@ brew bundle ~/Dropbox/Github/dotfiles/Brewfile
 
 echo "Deleting the old files"
 rm ~/.vimrc
+rm ~/.ideavimrc
 rm -r ~/.vim
 rm ~/.bash_profile
 rm ~/.gitignore
@@ -29,6 +30,7 @@ echo "Symlinking files"
 ln -s ~/Dropbox/Others/Pictures ~/Pictures
 ln -s ~/Dropbox/www ~/www
 ln -s ~/Dropbox/Github/dotfiles/vimrc ~/.vimrc
+ln -s ~/Dropbox/Github/dotfiles/ideavimrc ~/.ideavimrc
 ln -s ~/Dropbox/Github/dotfiles/vim ~/.vim
 ln -s ~/Dropbox/Github/dotfiles/bash_profile ~/.bash_profile
 ln -s ~/Dropbox/Github/dotfiles/gitignore ~/.gitignore
