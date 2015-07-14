@@ -41,13 +41,15 @@ Plug 'tmux-plugins/vim-tmux'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'benmills/vimux'
 Plug 'mileszs/ack.vim'
+Plug 'vim-scripts/ReplaceWithRegister'
 
 Plug 'Valloric/MatchTagAlways'
 Plug 'Raimondi/delimitMate' " Provide automatic closing quotes, etc...
 " Plug 'dahu/vim-fanfingtastic'
 Plug 'vim-scripts/DirDiff.vim' " :DirDiff <A:Src Directory> <B:Src Directory>
 " Plug 'vim-scripts/python.vim--Vasiliev'
-Plug 'vim-scripts/py_jump.vim'
+" Plug 'vim-scripts/py_jump.vim'
+Plug 'EinfachToll/DidYouMean'
 " Plug 'maksimr/vim-jsbeautify'
 
 " Not very necessary
