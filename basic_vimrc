@@ -1,0 +1,75 @@
+" vim:fdm=marker
+" Author: Samuel Masuy and the vim community.
+
+" Better copy & paste.
+set clipboard=unnamed
+" See the commands typed in the right bottom corner.
+set showcmd
+" Make backspace behave like normal.
+set bs=2
+set nocompatible
+
+filetype plugin indent on
+
+" Enable syntax highlighting.
+syntax on
+" Gdiff vertical split
+set diffopt+=vertical
+" Make Esc work faster.
+set ttimeoutlen=50
+" Always shows 5 lines above/below the cursor.
+set scrolloff=5
+" Increment decimal not octal numbers.
+set nrformats=
+" Horizontal split goes to the bottom.
+set splitbelow
+" Vertical split goes to the right.
+set splitright
+" Don't use TABs but spaces.
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab
+" Show current line numbers.
+set number
+" Width of document.
+set tw=79
+" Don't automatically wrap on load.
+set nowrap
+" Don't automatically wrap text when typing.
+set fo-=t
+" Useful settings.
+set history=700
+set undolevels=700
+" Make search case insensitive.
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+" Wildmode aka tab-completion options.
+set wildmenu
+set wildmode=full
+" for argdo and bufdo without a trailing bang.
+set hidden
+" Disable backup and swap files.
+set nobackup
+set nowritebackup
+set noswapfile
+" Disable un-VI keys.
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
+" Make sure to be in the middle of the screen when searching.
+nnoremap n nzzzv
+nnoremap N Nzzzv
+" Easier indentation of code blocks.
+vnoremap < <gv
+vnoremap > >gv
+" basic, why not before
+nnoremap ; :
+nnoremap : ;
+vnoremap ; :
+vnoremap : ;
+" logical
+nnoremap Y y$
