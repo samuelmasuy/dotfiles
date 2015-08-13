@@ -16,7 +16,7 @@ install wget --enable-iri
 
 tap homebrew/dupes
 
-install vim
+install vim --with-features=huge --with-cscope --with-lua --enable-interp=lua,ruby,perl,python --HEAD
 
 install homebrew/dupes/grep
 
