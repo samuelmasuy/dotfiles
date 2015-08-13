@@ -43,6 +43,8 @@ Plug 'benmills/vimux'
 Plug 'mileszs/ack.vim'
 Plug 'vim-scripts/ReplaceWithRegister'
 
+Plug 'Shougo/neocomplete.vim'
+Plug 'Shougo/neosnippet.vim'
 Plug 'Valloric/MatchTagAlways'
 Plug 'Raimondi/delimitMate' " Provide automatic closing quotes, etc...
 " Plug 'dahu/vim-fanfingtastic'
@@ -51,9 +53,12 @@ Plug 'vim-scripts/DirDiff.vim' " :DirDiff <A:Src Directory> <B:Src Directory>
 " Plug 'vim-scripts/py_jump.vim'
 Plug 'EinfachToll/DidYouMean'
 " Plug 'maksimr/vim-jsbeautify'
+Plug 'mhinz/vim-startify'
+
 
 " Not very necessary
 Plug 'scrooloose/nerdtree'
+" Plug 'unblevable/quick-scope'
 " Plug 'sjl/gundo.vim'
 Plug 'dahu/vimple'
 " Plug 'mitsuhiko/vim-rst'
@@ -69,7 +74,7 @@ Plug 'dahu/vimple'
 " Plug 'StanAngeloff/php.vim'
 " Plug 'othree/javascript-libraries-syntax.vim'
 " Plug 'pangloss/vim-javascript'
-Plug 'burnettk/vim-angular'
+" Plug 'burnettk/vim-angular'
 Plug 'othree/html5.vim'
 " Plug 'plasticboy/vim-markdown'
 
@@ -214,10 +219,11 @@ nnoremap Y y$
 
 " ------------------------------------------------------------------------ }}}
 " Syntax support  -------------------------------------------------------- {{{
-
 " python
 " ------
 autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=4 formatoptions=croqj softtabstop=4 comments=:#\:,:#
+autocmd FileType python nnoremap <leader>y :0,$!yapf<Cr>
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 let python_highlight_all=1
 let python_slow_sync=1
 
@@ -234,6 +240,16 @@ let g:syntastic_python_flake8_args='--ignore=E121,E124,E126,E261,E301,E303,E721 
 "   E303 expected 2 blank lines, found <n>
 "   E721 do not compare types, use 'isinstance()'
 
+" Javascript
+" ----------
+autocmd FileType javascript setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType javascript setlocal commentstring=//\ %s
+autocmd FileType javascript noremap <buffer> <leader>r :call JsBeautify()<cr>
+autocmd FileType javascript let b:javascript_fold = 0
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+let javascript_enable_domhtmlcss=1
+let g:syntastic_javascript_checkers = ['jshint']
+
 " ruby
 " ----
 autocmd FileType ruby setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
@@ -247,6 +263,8 @@ autocmd FileType php setlocal shiftwidth=4 tabstop=8 softtabstop=4 expandtab
 autocmd FileType xml,html,htmljinja,htmldjango setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType html setlocal commentstring=<!--\ %s\ -->
 autocmd FileType htmljinja setlocal commentstring={#\ %s\ #}
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 let html_no_rendering=1
 let g:syntastic_html_checkers = []
 
@@ -255,6 +273,7 @@ let g:syntastic_html_checkers = []
 autocmd FileType css setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
 autocmd FileType css setlocal commentstring=/*\ %s\ */
 autocmd FileType css noremap <buffer> <leader>r :call CSSBeautify()<cr>
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 
 " Java
 " ----
@@ -283,15 +302,6 @@ let g:syntastic_c_compiler = 'clang'
 " ---
 autocmd FileType vim setlocal expandtab shiftwidth=2 tabstop=8 softtabstop=2
 
-" Javascript
-" ----------
-autocmd FileType javascript setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType javascript setlocal commentstring=//\ %s
-autocmd FileType javascript noremap <buffer> <leader>r :call JsBeautify()<cr>
-autocmd FileType javascript let b:javascript_fold = 0
-let javascript_enable_domhtmlcss=1
-let g:syntastic_javascript_checkers = ['jshint'] 
-
 " JSON
 " ----
 autocmd FileType json setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
@@ -299,20 +309,20 @@ autocmd FileType json setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 " ------------------------------------------------------------------------ }}}
 " Leader Key Mapping  ---------------------------------------------------- {{{
 
-" Rebind <Leader> key.
+" Rebind <leader> key.
 let g:mapleader = ','
 noremap \ ,
 
 " Open in a new tab .vimrc
 nnoremap <leader>e :tabedit $MYVIMRC<CR>
 " Pytest the current file.
-"nnoremap <silent><Leader>f <Esc>:Pytest file<CR>
+"nnoremap <silent><leader>f <Esc>:Pytest file<CR>
 " Remap visual block select.
-nnoremap <Leader>v <c-v>
+nnoremap <leader>v <c-v>
 " Quicksave command.
-noremap <Leader>s :w<CR>
+noremap <leader>s :w<CR>
 " Map sort function to a key
-vnoremap <Leader>s :sort<CR>
+vnoremap <leader>s :sort<CR>
 " Remove trailing whitespace on <leader>S
 nnoremap <leader>S :%s/\s\+$//<cr>:let @/=''<CR>
 " Reset space-tab
@@ -320,9 +330,6 @@ nnoremap <leader>re :retab<CR>
 
 " swicth to last file edited
 nnoremap <leader><leader> <c-^>
-
-" Easy subsitute providing a previous pattern
-nnoremap <leader>; :%s:::cg<Left><Left><Left>
 
 " Title helper with reStructuredText files.
 " if (&ft=='rst')
@@ -372,7 +379,9 @@ nnoremap <leader>is :let @p=@"<cr>yiw:!open "https://www.google.com/search?q=""
 nnoremap <leader>id :let @p=@"<cr>yiw:!open "https://www.google.com/search?q=define ""<cr><cr>
     \:let @"=@p<cr>
 
-autocmd FileType python nnoremap <leader>y :0,$!yapf<Cr>
+" Easy subsitute providing a previous pattern
+nnoremap <leader>; :%s::cg<Left><Left><Left>
+vnoremap <leader>; :s::g<Left><Left>
 
 " ------------------------------------------------------------------------ }}}
 " Plugins setup. --------------------------------------------------------- {{{
@@ -399,7 +408,7 @@ let g:multi_cursor_exit_from_insert_mode = 0
 let g:multi_cursor_exit_from_visual_mode = 0
 
 " Settings for jedi-vim
-let g:jedi#popup_select_first = 0
+" let g:jedi#popup_select_first = 0
 
 " Settings for UtilSnips
 " let g:UltiSnipsExpandTrigger="<tab>"
@@ -415,7 +424,7 @@ let g:jedi#popup_select_first = 0
 let g:SuperTabDefaultCompletionType = "context"
 
 " Settings for nerdTree
-nnoremap <Leader>x :NERDTreeToggle<CR>
+nnoremap <leader>x :NERDTreeToggle<CR>
 let NERDTreeIgnore=['.pyc$[[file]]']
 let NERDTreeShowHidden=1
 let NERDTreeMapActivateNode='<space>'
@@ -436,9 +445,9 @@ let g:ackpreview = 1
 
 " Vimux settings
  " Prompt for a command to run
- nnoremap <Leader>cc :VimuxPromptCommand<CR>
+ nnoremap <leader>cc :VimuxPromptCommand<CR>
  " Run last command executed by VimuxRunCommand
- nnoremap <Leader>cu :VimuxRunLastCommand<CR>
+ nnoremap <leader>cu :VimuxRunLastCommand<CR>
 
 " Settings for Gundo
 nnoremap <leader>g :GundoToggle<CR>
@@ -456,5 +465,10 @@ let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
       \ --ignore "**/*.pyc"
       \ -g ""'
 " let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+
+"" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
 
 " ------------------------------------------------------------------------ }}}
