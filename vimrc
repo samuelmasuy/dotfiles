@@ -229,7 +229,7 @@ let python_slow_sync=1
 
 let g:syntastic_python_checkers=['flake8', 'python']
 
-let g:syntastic_python_flake8_args='--ignore=E121,E124,E126,E261,E301,E303,E721 --max-line-length=104'
+let g:syntastic_python_flake8_args='--ignore=E121,E124,E126,E261,E301,E303,E501,E721 --max-line-length=104'
 " Don't warn on
 "   E121 continuation line indentation is not a multiple of four
 "   E124 closing bracket does not match visual indentation
