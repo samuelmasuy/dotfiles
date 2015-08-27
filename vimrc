@@ -35,6 +35,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-eunuch' " Adds Unix commands to vim.
 Plug 'tpope/vim-surround' " To change surrounding quote: cs(' ;tag cst<th> ;to add quote ysW'
+Plug 'tpope/vim-vinegar' " Enhance of netrw
 Plug 'kien/ctrlp.vim'
 Plug 'FelikZ/ctrlp-py-matcher'
 Plug 'tmux-plugins/vim-tmux'
@@ -57,7 +58,7 @@ Plug 'mhinz/vim-startify'
 
 
 " Not very necessary
-Plug 'scrooloose/nerdtree'
+" Plug 'scrooloose/nerdtree'
 " Plug 'unblevable/quick-scope'
 " Plug 'sjl/gundo.vim'
 Plug 'dahu/vimple'
@@ -424,10 +425,10 @@ let g:multi_cursor_exit_from_visual_mode = 0
 let g:SuperTabDefaultCompletionType = "context"
 
 " Settings for nerdTree
-nnoremap <leader>x :NERDTreeToggle<CR>
-let NERDTreeIgnore=['.pyc$[[file]]']
-let NERDTreeShowHidden=1
-let NERDTreeMapActivateNode='<space>'
+" nnoremap <leader>x :NERDTreeToggle<CR>
+" let NERDTreeIgnore=['.pyc$[[file]]']
+" let NERDTreeShowHidden=1
+" let NERDTreeMapActivateNode='<space>'
 
 " Settings for nerdCommenter
 let NERDSpaceDelims=1
