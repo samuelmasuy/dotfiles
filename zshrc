@@ -17,3 +17,7 @@ bindkey '^[[B' history-substring-search-down
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # Initiate oh-my-zsh.
 source $ZSH/oh-my-zsh.sh
+
+export NVM_DIR="/Users/samuel/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+nvm use stable
