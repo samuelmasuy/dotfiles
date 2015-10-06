@@ -26,7 +26,7 @@ call plug#begin('~/.vim/plugged')
 
 " Essential
 Plug 'morhetz/gruvbox'
-Plug 'davidhalter/jedi-vim'
+Plug 'fatih/vim-go'
 Plug 'ervandew/supertab'
 Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-commentary'
@@ -43,20 +43,18 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'benmills/vimux'
 Plug 'mileszs/ack.vim'
 Plug 'vim-scripts/ReplaceWithRegister'
-
-Plug 'fatih/vim-go'
 Plug 'Shougo/neocomplete.vim'
 Plug 'Shougo/neosnippet.vim'
-Plug 'Valloric/MatchTagAlways'
-Plug 'Raimondi/delimitMate' " Provide automatic closing quotes, etc...
-" Plug 'dahu/vim-fanfingtastic'
-Plug 'vim-scripts/DirDiff.vim' " :DirDiff <A:Src Directory> <B:Src Directory>
-" Plug 'vim-scripts/python.vim--Vasiliev'
-"Plug 'vim-scripts/py_jump.vim'
-Plug 'maksimr/vim-jsbeautify'
 Plug 'EinfachToll/DidYouMean'
 Plug 'mhinz/vim-startify'
-
+Plug 'Valloric/MatchTagAlways'
+Plug 'Raimondi/delimitMate' " Provide automatic closing quotes, etc...
+Plug 'maksimr/vim-jsbeautify' " Provide beatify for html, js, css
+" Plug 'davidhalter/jedi-vim' " !Important when using python
+" Plug 'vim-scripts/DirDiff.vim' " :DirDiff <A:Src Directory> <B:Src Directory>
+" Plug 'dahu/vim-fanfingtastic'
+" Plug 'vim-scripts/python.vim--Vasiliev'
+"Plug 'vim-scripts/py_jump.vim'
 
 " Not very necessary
 " Plug 'scrooloose/nerdtree'
@@ -71,7 +69,6 @@ Plug 'mhinz/vim-startify'
 " Plug 'terryma/vim-multiple-cursors'
 
 " Syntax helpers
-" Plug 'SirVer/ultisnips'
 " Plug 'mattn/emmet-vim'
 " Plug 'StanAngeloff/php.vim'
 " Plug 'othree/javascript-libraries-syntax.vim'
@@ -80,9 +77,8 @@ Plug 'mhinz/vim-startify'
 " Plug 'plasticboy/vim-markdown'
 
 " Dependencies
-" Plug 'honza/vim-snippets'
-Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'tomtom/tlib_vim'
+" Plug 'MarcWeber/vim-addon-mw-utils'
+" Plug 'tomtom/tlib_vim'
 
 " Plug '0x0dea/vim-molasses'
 " Plug 'tommcdo/vim-exchange'
@@ -259,6 +255,7 @@ let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
+let g:go_fmt_command = "goimports"
 
 " Javascript
 " ----------
@@ -438,6 +435,9 @@ let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#sources#syntax#min_keyword_length = 3
 let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 
+" Close popup by <Space>.
+" inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
+
 " Plugin key-mappings.
 inoremap <expr><C-g>     neocomplete#undo_completion()
 "inoremap <expr><C-l>     neocomplete#complete_common_string()
@@ -448,11 +448,15 @@ inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
 function! s:my_cr_function()
   return pumvisible() ? neocomplete#close_popup() : "\<CR>"
 endfunction
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " <C-h>, <BS>: close popup and delete backword char.
 inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><C-y>  neocomplete#close_popup()
 inoremap <expr><C-e>  neocomplete#cancel_popup()
+" Close popup by <Space>.
+"inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
 
 " AutoComplPop like behavior.
 let g:neocomplete#enable_auto_select = 1
@@ -462,10 +466,11 @@ if !exists('g:neocomplete#sources#omni#input_patterns')
   let g:neocomplete#sources#omni#input_patterns = {}
 endif
 
+
 " Settings for syntastic
 let g:syntastic_aggregate_errors = 1
 let g:syntastic_always_populate_loc_list = 0
-let g:syntastic_auto_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
