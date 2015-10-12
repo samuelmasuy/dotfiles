@@ -48,7 +48,7 @@ Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'EinfachToll/DidYouMean'
 Plug 'mhinz/vim-startify'
-Plug 'Valloric/MatchTagAlways'
+" Plug 'Valloric/MatchTagAlways'
 Plug 'Raimondi/delimitMate' " Provide automatic closing quotes, etc...
 Plug 'maksimr/vim-jsbeautify' " Provide beatify for html, js, css
 " Plug 'davidhalter/jedi-vim' " !Important when using python
