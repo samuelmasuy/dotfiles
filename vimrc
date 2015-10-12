@@ -27,7 +27,7 @@ call plug#begin('~/.vim/plugged')
 " Essential
 Plug 'morhetz/gruvbox'
 Plug 'fatih/vim-go'
-Plug 'ervandew/supertab'
+" Plug 'ervandew/supertab'
 Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
@@ -45,6 +45,7 @@ Plug 'mileszs/ack.vim'
 Plug 'vim-scripts/ReplaceWithRegister'
 Plug 'Shougo/neocomplete.vim'
 Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/neosnippet-snippets'
 Plug 'EinfachToll/DidYouMean'
 Plug 'mhinz/vim-startify'
 Plug 'Valloric/MatchTagAlways'
@@ -140,7 +141,7 @@ set splitright
 " Colorize the 80th column.
 "set colorcolumn=81
 highlight ColorColumn ctermbg=magenta
-call matchadd('ColorColumn', '\%81v', 100)
+call matchadd('ColorColumn', '\%101v', 100)
 
 " Folding settings.
 
@@ -256,6 +257,7 @@ let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 let g:go_fmt_command = "goimports"
+let g:go_snippet_engine = "neosnippet"
 
 " Javascript
 " ----------
@@ -422,51 +424,6 @@ if s:uname == "Darwin\n"
   endif
 endif
 
-" Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
-
-" Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
-
-" Use smartcase.
-let g:neocomplete#enable_smart_case = 1
-
-" Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-
-" Close popup by <Space>.
-" inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
-
-" Plugin key-mappings.
-inoremap <expr><C-g>     neocomplete#undo_completion()
-"inoremap <expr><C-l>     neocomplete#complete_common_string()
-
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  return pumvisible() ? neocomplete#close_popup() : "\<CR>"
-endfunction
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplete#close_popup()
-inoremap <expr><C-e>  neocomplete#cancel_popup()
-" Close popup by <Space>.
-"inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
-
-" AutoComplPop like behavior.
-let g:neocomplete#enable_auto_select = 1
-
-" Enable heavy omni completion.
-if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
-endif
-
-
 " Settings for syntastic
 let g:syntastic_aggregate_errors = 1
 let g:syntastic_always_populate_loc_list = 0
@@ -485,7 +442,7 @@ let g:syntastic_check_on_wq = 0
 " let g:user_emmet_expandabbr_key='<Tab>'
 
 " Settings for super-tab
-let g:SuperTabDefaultCompletionType = "context"
+" let g:SuperTabDefaultCompletionType = "context"
 
 " Settings for nerdTree
 " nnoremap <leader>x :NERDTreeToggle<CR>
@@ -534,5 +491,63 @@ let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
 nnoremap <leader>gdi :Gdiff<cr>
 nnoremap <leader>gst :Gstatus<cr>
 nnoremap <leader>dup :diffupdate<cr>
+
+" ------------------------------------------------------------------------ }}}
+" Settings for neocomplete and neosnippet --------------------------------- {{{
+" Neocomplete
+" Disable AutoComplPop.
+" let g:acp_enableAtStartup = 0
+
+" AutoComplPop like behavior.
+let g:neocomplete#enable_auto_select = 1
+
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+
+" Set minimum syntax keyword length.
+" let g:neocomplete#sources#syntax#min_keyword_length = 3
+" let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+
+" Enable heavy omni completion.
+" if !exists('g:neocomplete#sources#omni#input_patterns')
+"   let g:neocomplete#sources#omni#input_patterns = {}
+" endif
+
+" Close popup by <Space>.
+" inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
+
+" Plugin key-mappings.
+" inoremap <expr><C-g>     neocomplete#undo_completion()
+" inoremap <expr><C-l>     neocomplete#complete_common_string()
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+" inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+" function! s:my_cr_function()
+"   return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+" endfunction
+" <TAB>: completion.
+" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+" inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+" inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+" inoremap <expr><C-y>  neocomplete#close_popup()
+" inoremap <expr><C-e>  neocomplete#cancel_popup()
+" Close popup by <Space>.
+" inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
+
+" Neosnippet
+" SuperTab like snippets' behavior.
+imap <expr><CR> pumvisible() ?
+\(neosnippet#expandable() ? "\<Plug>(neosnippet_expand)" : neocomplete#close_popup())
+\: "\<CR>"
+imap <expr><TAB> neosnippet#jumpable() ?
+\ "\<Plug>(neosnippet_jump)"
+\: pumvisible() ? "\<C-n>" : "\<TAB>"
+
+let g:neosnippet#snippets_directory='~/.vim/plugged/vim-go/gosnippets/snippets'
 
 " ------------------------------------------------------------------------ }}}
