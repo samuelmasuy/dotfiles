@@ -7,8 +7,10 @@
 " Tip Macros: important!!!
 " "ap: put (print) content of macro in register a.
 " "ayy: put back current line in register a (macro).
-" switch to last file edited
-" nnoremap <leader><leader> <c-^>
+" switch to last file edited: <leader><leader> 
+" switch to last place edited: ''
+" open vinegar in current Directory!!!: -
+
 
 " Pre vim  --------------------------------------------------------------- {{{
 
@@ -42,20 +44,21 @@ Plug 'tmux-plugins/vim-tmux'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'benmills/vimux'
 Plug 'mileszs/ack.vim'
-Plug 'vim-scripts/ReplaceWithRegister'
+" Plug 'vim-scripts/ReplaceWithRegister'
 Plug 'Shougo/neocomplete.vim'
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'EinfachToll/DidYouMean'
 Plug 'mhinz/vim-startify'
-" Plug 'Valloric/MatchTagAlways'
-Plug 'Raimondi/delimitMate' " Provide automatic closing quotes, etc...
+Plug 'Valloric/MatchTagAlways'
+" Plug 'Raimondi/delimitMate' " Provide automatic closing quotes, etc...
 Plug 'maksimr/vim-jsbeautify' " Provide beatify for html, js, css
 " Plug 'davidhalter/jedi-vim' " !Important when using python
 " Plug 'vim-scripts/DirDiff.vim' " :DirDiff <A:Src Directory> <B:Src Directory>
 " Plug 'dahu/vim-fanfingtastic'
 " Plug 'vim-scripts/python.vim--Vasiliev'
 "Plug 'vim-scripts/py_jump.vim'
+Plug 'ekalinin/Dockerfile.vim', {'for' : 'Dockerfile'}
 
 " Not very necessary
 " Plug 'scrooloose/nerdtree'
@@ -247,15 +250,20 @@ let g:syntastic_python_flake8_args='--ignore=E121,E124,E126,E261,E301,E303,E501,
 " Go
 " ----------
 autocmd FileType go nmap <leader>r <Plug>(go-run)
+autocmd FileType go nmap <leader>i <Plug>(go-info)
+autocmd FileType go nmap <leader>re <Plug>(go-rename)
+autocmd FileType go nmap <leader>ref <Plug>(go-referrers)
 autocmd FileType go nmap <leader>b <Plug>(go-build)
 autocmd FileType go nmap <leader>t <Plug>(go-test)
 autocmd FileType go nmap <leader>c <Plug>(go-coverage)
+autocmd FileType go nmap <leader>d <Plug>(go-def)
+autocmd FileType go nmap <leader>de <Plug>(go-describe)
 autocmd FileType go nmap K <Plug>(go-doc)
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
+" let g:go_highlight_build_constraints = 1
 let g:go_fmt_command = "goimports"
 let g:go_snippet_engine = "neosnippet"
 
@@ -350,7 +358,7 @@ vnoremap <leader>s :sort<CR>
 " Remove trailing whitespace on <leader>S
 nnoremap <leader>S :%s/\s\+$//<cr>:let @/=''<CR>
 " Reset space-tab
-nnoremap <leader>re :retab<CR>
+" nnoremap <leader>re :retab<CR>
 
 " swicth to last file edited
 nnoremap <leader><leader> <c-^>
