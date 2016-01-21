@@ -28,7 +28,7 @@ call plug#begin('~/.vim/plugged')
 
 " Essential
 Plug 'morhetz/gruvbox'
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', { 'for': 'go'}
 " Plug 'ervandew/supertab'
 Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-commentary'
@@ -52,7 +52,7 @@ Plug 'EinfachToll/DidYouMean'
 Plug 'mhinz/vim-startify'
 Plug 'Valloric/MatchTagAlways'
 " Plug 'Raimondi/delimitMate' " Provide automatic closing quotes, etc...
-Plug 'maksimr/vim-jsbeautify' " Provide beatify for html, js, css
+Plug 'maksimr/vim-jsbeautify', {'for' : ['javascript', 'css', 'html']} " Provide beatify for html, js, css
 " Plug 'davidhalter/jedi-vim' " !Important when using python
 " Plug 'vim-scripts/DirDiff.vim' " :DirDiff <A:Src Directory> <B:Src Directory>
 " Plug 'dahu/vim-fanfingtastic'
@@ -246,6 +246,7 @@ let g:syntastic_python_flake8_args='--ignore=E121,E124,E126,E261,E301,E303,E501,
 "   E301 expected 1 blank line, found 0
 "   E303 expected 2 blank lines, found <n>
 "   E721 do not compare types, use 'isinstance()'
+autocmd BufLeave *.py               normal! mP
 
 " Go
 " ----------
@@ -266,6 +267,7 @@ let g:go_highlight_operators = 1
 " let g:go_highlight_build_constraints = 1
 let g:go_fmt_command = "goimports"
 let g:go_snippet_engine = "neosnippet"
+autocmd BufLeave *.go             normal! mG
 
 " Javascript
 " ----------
@@ -276,6 +278,7 @@ autocmd FileType javascript let b:javascript_fold = 0
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 let javascript_enable_domhtmlcss=1
 let g:syntastic_javascript_checkers = ['jshint']
+autocmd BufLeave *.js             normal! mJ
 
 " ruby
 " ----
@@ -297,6 +300,7 @@ let g:syntastic_html_checkers = []
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd FileType html noremap <buffer> <leader>r :call HtmlBeautify()<cr>
+autocmd BufLeave *.html             normal! mH
 
 " CSS
 " ---
@@ -304,6 +308,7 @@ autocmd FileType css setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
 autocmd FileType css setlocal commentstring=/*\ %s\ */
 autocmd FileType css noremap <buffer> <leader>r :call CSSBeautify()<cr>
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd BufLeave *.css,*.less,*scss normal! mC
 
 " Java
 " ----
@@ -450,7 +455,6 @@ let g:syntastic_check_on_wq = 0
 " let g:user_emmet_expandabbr_key='<Tab>'
 
 " Settings for super-tab
-" let g:SuperTabDefaultCompletionType = "context"
 
 " Settings for nerdTree
 " nnoremap <leader>x :NERDTreeToggle<CR>
