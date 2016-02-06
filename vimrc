@@ -455,6 +455,7 @@ let g:syntastic_check_on_wq = 0
 " let g:user_emmet_expandabbr_key='<Tab>'
 
 " Settings for super-tab
+" let g:SuperTabDefaultCompletionType = "context"
 
 " Settings for nerdTree
 " nnoremap <leader>x :NERDTreeToggle<CR>
