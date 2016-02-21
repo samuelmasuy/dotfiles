@@ -149,10 +149,10 @@ call matchadd('ColorColumn', '\%101v', 100)
 " Folding settings.
 
 " Don't use TABs but spaces.
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set expandtab
+" set tabstop=4
+" set softtabstop=4
+" set shiftwidth=4
+" set expandtab
 
 " Showing line numbers and length.
 set relativenumber
