@@ -1,8 +1,12 @@
+import argparse
 import os
-import requests
+import shutil
 import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta
 import tarfile
+from sys import platform as _platform
+
+import requests
 
 
 def make_tree(url):
@@ -40,10 +44,19 @@ def extract_file(filename, target_folder):
 
 
 if __name__ == '__main__':
-    # root_url = 'https://storage.googleapis.com/golang/'
-    # tree = make_tree(root_url)
-    # key = get_latest_go(tree)
-    # filename = download_file(root_url + key)
-    # extract_file(filename, '.')
-    os.remove('go1.6.linux-amd64.tar.gz')
-# sudo mv go /usr/local
+    parser = argparse.ArgumentParser(description='Get latest version of Go')
+    parser.add_argument('-t', '--type', dest='type', default='linux-amd64',
+                        help='Type (OS): [linux-amd64, linux-386, linux-armv6l, darwin-amd64, src]')
+    parser.add_argument('-i', '--install', dest='install', action='store_true',
+                        help='Install Go under /usr/local, must be runned as ROOT. (Only linux is supported)')
+    parser.set_defaults(install=False)
+    args = parser.parse_args()
+
+    root_url = 'https://storage.googleapis.com/golang/'
+    tree = make_tree(root_url)
+    key = get_latest_go(tree, args.type + '.tar.gz')
+    filename = download_file(root_url + key)
+    extract_file(filename, '.')
+    os.remove(filename)
+    if args.install and (_platform == "linux" or _platform == "linux2"):
+        shutil.copy(filename, '/usr/local' + filename)
