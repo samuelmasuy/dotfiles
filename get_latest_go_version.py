@@ -117,15 +117,15 @@ if __name__ == '__main__':
     else:
         print 'Latest version of go is', key
 
-    # print "Downloading the latest version of go"
-    # filename = download_file(root_url + key)
+    print "Downloading the latest version of go"
+    filename = download_file(root_url + key)
 
-    # extract_file(filename, '.')
-    # print "Extracted go, removed tar archive"
+    extract_file(filename, '.')
+    print "Extracted go, removed tar archive"
 
-    # os.remove(filename)
+    os.remove(filename)
 
-    # if args.install:
-    #     print "Installing go"
-    #     install_go()
-    # print "Done!"
+    if args.install:
+        print "Installing go"
+        install_go()
+    print "Done!"
