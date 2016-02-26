@@ -17,7 +17,6 @@ target_install_path = '/usr/local/'
 def make_tree(url):
     response = requests.get(url, verify=True).text
     tree = ET.fromstring(response)
-    print tree
     return tree
 
 
@@ -62,7 +61,7 @@ def install_go():
 
 def get_flags(options):
     parser = argparse.ArgumentParser(description='Get latest version of Go')
-    parser.add_argument('-t', '--type', dest='type', default='',
+    parser.add_argument('-t', '--type', dest='binary', default='',
                         help='Type (OS): [' + ', '.join(options) + ']')
     parser.add_argument('-i', '--install', dest='install', action='store_true',
                         help='Install Go under ' + target_install_path + ', must be runned as ROOT. (Only linux is supported)')
@@ -71,47 +70,52 @@ def get_flags(options):
 
 
 def dialog_types(options):
-    chosen = ""
-    while chosen == "":
-        print "Here is a list of the go version you can get, please select the one you want:"
+    chosen = ''
+    while chosen == '':
+        print 'Please select a binary release suitable for your system or the source.'
         for item in enumerate(options, 1):
-            print "[%d] %s" % item
+            print '[%d] %s' % item
 
         try:
-            idx = int(raw_input("Enter the file's number: "))
+            idx = int(raw_input('Enter the binary\'s number: '))
+            if idx > 0:
+                chosen = options[idx - 1]
         except ValueError:
-                print "You fail at typing numbers."
-
-        try:
-            chosen = options[idx - 1]
+                print 'You fail at typing numbers.'
         except IndexError:
-            print "Try a number in range next time."
+            print 'Try a number in range next time.'
+
     return chosen
 
 
 if __name__ == '__main__':
 
     args = get_flags(options)
+    if args.binary == '':
+        binary = dialog_types(options)
+    else:
+        binary = args.binary
+
     if args.install:
         if (_platform == "linux" or _platform == "linux2"):
             if os.geteuid() != 0:
-                exit("You need to have root privileges to install go.\nPlease try again, this time using 'sudo'. Exiting.")
+                exit('You need to have root privileges to install go.\nPlease try again, this time using "sudo". Exiting.')
+            elif binary == 'src':
+                print 'You will need to manually build go. Will not install Go.'
+                args.install = False
         else:
-            exit("You don't run under linux.\nExiting.")
-    if args.type == '':
-        type = dialog_types(options)
-    else:
-        type = args.type
+            print 'You don\'t run under linux.'
+            args.install = False
 
     # get list of all go versions
     tree = make_tree(root_url)
 
     # find latest version for the target os
-    key = get_latest_go(tree, get_namespace(tree), type + '.tar.gz')
-    if key == "":
-        exit("The type you selected is not found in the go repo.\nPlease try again, using one of the following type: [linux-amd64, linux-386, linux-armv6l, darwin-amd64, src].")
+    key = get_latest_go(tree, get_namespace(tree), binary + '.tar.gz')
+    if key == '':
+        exit('The type you selected is not found in the go repo.\nPlease try again, using one of the following type: [' + ', '.join(options) + ']')
     else:
-        print "Latest version of go is", key
+        print 'Latest version of go is', key
 
     # print "Downloading the latest version of go"
     # filename = download_file(root_url + key)
