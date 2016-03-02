@@ -58,7 +58,7 @@ Plug 'maksimr/vim-jsbeautify', {'for' : ['javascript', 'css', 'html']} " Provide
 " Plug 'dahu/vim-fanfingtastic'
 " Plug 'vim-scripts/python.vim--Vasiliev'
 "Plug 'vim-scripts/py_jump.vim'
-Plug 'ekalinin/Dockerfile.vim', {'for' : 'Dockerfile'}
+" Plug 'ekalinin/Dockerfile.vim', {'for' : 'Dockerfile'}
 
 " Not very necessary
 " Plug 'scrooloose/nerdtree'
@@ -272,7 +272,7 @@ autocmd BufLeave *.go             normal! mG
 
 " Javascript
 " ----------
-autocmd FileType javascript setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType javascript setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
 autocmd FileType javascript setlocal commentstring=//\ %s
 autocmd FileType javascript noremap <buffer> <leader>r :call JsBeautify()<cr>
 autocmd FileType javascript let b:javascript_fold = 0
@@ -342,7 +342,9 @@ autocmd FileType vim setlocal expandtab shiftwidth=2 tabstop=8 softtabstop=2
 
 " JSON
 " ----
-autocmd FileType json setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType json setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
+" autocmd FileType json noremap <buffer> <leader>r :%!js-beautify --type js -j -q -B -f -<CR>
+autocmd FileType json noremap <buffer> <leader>r :call JsonBeautify()<cr>
 
 " ------------------------------------------------------------------------ }}}
 " Leader Key Mapping  ---------------------------------------------------- {{{
@@ -433,9 +435,6 @@ if s:uname == "Darwin\n"
   let g:Powerline_symbols = "fancy"
   set encoding=utf-8
   set fillchars+=stl:\ ,stlnc:\
-  if has("gui_running")
-    set guifont=Monaco\ for\ Powerline
-  endif
 endif
 
 " Settings for syntastic
