@@ -260,6 +260,7 @@ autocmd FileType go nmap <leader>c <Plug>(go-coverage)
 autocmd FileType go nmap <leader>d <Plug>(go-def)
 autocmd FileType go nmap <leader>de <Plug>(go-describe)
 autocmd FileType go nmap K <Plug>(go-doc)
+autocmd FileType go setlocal noexpandtab shiftwidth=4 tabstop=4 softtabstop=4
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
