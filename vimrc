@@ -528,7 +528,7 @@ let g:neocomplete#sources#syntax#min_keyword_length = 2
 " endif
 
 " Close popup by <Space>.
-inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
+inoremap <expr><C-x> pumvisible() ? neocomplete#close_popup() : "\<Space>"
 
 " Plugin key-mappings.
 " inoremap <expr><C-g>     neocomplete#undo_completion()
