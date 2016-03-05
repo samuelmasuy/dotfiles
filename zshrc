@@ -8,7 +8,7 @@ source ~/.zsh/functions.zsh
 # Initiate z command.
 . $ZSH/custom/plugins/z/z.sh
 # Plugins for zsh.
-plugins=(git tmux tmuxinator brew github osx sublime virtualenvwrapper colorize gradle go vi-mode web-search zsh_reload z vagrant zsh-syntax-highlighting history-substring-search alias-tips)
+plugins=(git tmux nvm tmuxinator brew github osx sublime virtualenvwrapper colorize gradle go vi-mode web-search zsh_reload z vagrant zsh-syntax-highlighting history-substring-search alias-tips)
 
 alias emacs="/usr/local/Cellar/emacs/24.x/Emacs.app/Contents/MacOS/Emacs -nw"
 bindkey '^[[A' history-substring-search-up
