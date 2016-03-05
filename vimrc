@@ -119,7 +119,7 @@ endif
 
 " Color scheme.
 set background=dark
-colorscheme gruvbox
+silent! colorscheme gruvbox
 
 " ------------------------------------------------------------------------ }}}
 " Miscellaneous settings ------------------------------------------------- {{{
