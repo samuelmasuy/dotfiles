@@ -21,8 +21,6 @@ rm ~/.zshrc
 rm -r ~/.zsh
 rm -r ~/.oh-my-zsh
 rm -r ~/.config/powerline
-rm -r ~/.config/fish
-rm -r ~/.oh-my-fish
 rm ~/.tmux.conf
 rm ~/.ackrc
 
@@ -39,9 +37,7 @@ ln -s ~/Dropbox/Github/dotfiles/zshrc ~/.zshrc
 ln -s ~/Dropbox/Github/dotfiles/zsh ~/.zsh
 ln -s ~/Dropbox/Github/dotfiles/oh-my-zsh ~/.oh-my-zsh
 ln -s ~/Dropbox/Github/dotfiles/powerline ~/.config/powerline
-ln -s ~/Dropbox/Github/dotfiles/fish ~/.config/fish
 ln -s ~/Dropbox/Github/dotfiles/tmux.conf ~/.tmux.conf
-ln -s ~/Dropbox/Github/dotfiles/oh-my-fish ~/.oh-my-fish
 ln -s ~/Dropbox/Github/dotfiles/ackrc ~/.ackrc
 
 echo "Installing python"
