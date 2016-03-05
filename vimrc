@@ -268,6 +268,8 @@ let g:go_highlight_operators = 1
 " let g:go_highlight_build_constraints = 1
 let g:go_fmt_command = "goimports"
 let g:go_snippet_engine = "neosnippet"
+" let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+" let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 autocmd BufLeave *.go             normal! mG
 
 " Javascript
@@ -512,7 +514,7 @@ nnoremap <leader>dup :diffupdate<cr>
 " let g:acp_enableAtStartup = 0
 
 " AutoComplPop like behavior.
-let g:neocomplete#enable_auto_select = 1
+" let g:neocomplete#enable_auto_select = 1
 
 " Use neocomplete.
 let g:neocomplete#enable_at_startup = 1
