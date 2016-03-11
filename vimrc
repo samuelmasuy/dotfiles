@@ -7,7 +7,7 @@
 " Tip Macros: important!!!
 " "ap: put (print) content of macro in register a.
 " "ayy: put back current line in register a (macro).
-" switch to last file edited: <leader><leader> 
+" switch to last file edited: <leader><leader>
 " switch to last place edited: ''
 " open vinegar in current Directory!!!: -
 
@@ -59,6 +59,8 @@ Plug 'maksimr/vim-jsbeautify', {'for' : ['javascript', 'css', 'html']} " Provide
 " Plug 'vim-scripts/python.vim--Vasiliev'
 "Plug 'vim-scripts/py_jump.vim'
 " Plug 'ekalinin/Dockerfile.vim', {'for' : 'Dockerfile'}
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 " Not very necessary
 " Plug 'scrooloose/nerdtree'
@@ -114,7 +116,7 @@ au InsertLeave * match ExtraWhitespace /\s\+$/
 
 " Font for macvim.
 if has("gui_running")
-  set guifont=Monaco:h15
+   set guifont=Monaco:h15
 endif
 
 " Color scheme.
@@ -427,17 +429,23 @@ vnoremap <leader>; :s::g<Left><Left>
 
 " ------------------------------------------------------------------------ }}}
 " Plugins setup. --------------------------------------------------------- {{{
-" Settings for vim-powerline
-let s:uname = system("uname")
-if s:uname == "Darwin\n"
-  source /usr/local/lib/python2.7/site-packages/powerline/bindings/vim/plugin/powerline.vim
-  set laststatus=2
-  " Hide the default mode text
-  set noshowmode
-  let g:Powerline_symbols = "fancy"
-  set encoding=utf-8
-  set fillchars+=stl:\ ,stlnc:\
-endif
+" " Settings for vim-powerline
+" let s:uname = system("uname")
+" if s:uname == "Darwin\n"
+"   source /usr/local/lib/python2.7/site-packages/powerline/bindings/vim/plugin/powerline.vim
+"   set laststatus=2
+"   " Hide the default mode text
+"   set noshowmode
+"   let g:Powerline_symbols = "fancy"
+"   set encoding=utf-8
+"   set fillchars+=stl:\ ,stlnc:\
+" endif
+"
+" Settings for vim-airline
+let g:airline_powerline_fonts = 1
+let g:airline_theme = 'powerlineish'
+set laststatus=2
+let g:airline#extensions#whitespace#checks = []
 
 " Settings for syntastic
 let g:syntastic_aggregate_errors = 1
