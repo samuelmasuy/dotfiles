@@ -63,7 +63,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 " Not very necessary
-" Plug 'scrooloose/nerdtree'
 " Plug 'unblevable/quick-scope'
 " Plug 'sjl/gundo.vim'
 " Plug 'dahu/vimple'
@@ -86,7 +85,6 @@ Plug 'vim-airline/vim-airline-themes'
 " Plug 'MarcWeber/vim-addon-mw-utils'
 " Plug 'tomtom/tlib_vim'
 
-" Plug '0x0dea/vim-molasses'
 " Plug 'tommcdo/vim-exchange'
 " Plug 'alfredodeza/pytest.vim'
 " Plug 'vim-scripts/SQLComplete.vim'
@@ -114,10 +112,8 @@ syntax on
 autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red
 au InsertLeave * match ExtraWhitespace /\s\+$/
 
-" Font for macvim.
-if has("gui_running")
-   set guifont=Monaco:h15
-endif
+" Settings for Gruvbox
+let g:gruvbox_italicize_comments=0
 
 " Color scheme.
 set background=dark
@@ -429,18 +425,6 @@ vnoremap <leader>; :s::g<Left><Left>
 
 " ------------------------------------------------------------------------ }}}
 " Plugins setup. --------------------------------------------------------- {{{
-" " Settings for vim-powerline
-" let s:uname = system("uname")
-" if s:uname == "Darwin\n"
-"   source /usr/local/lib/python2.7/site-packages/powerline/bindings/vim/plugin/powerline.vim
-"   set laststatus=2
-"   " Hide the default mode text
-"   set noshowmode
-"   let g:Powerline_symbols = "fancy"
-"   set encoding=utf-8
-"   set fillchars+=stl:\ ,stlnc:\
-" endif
-"
 " Settings for vim-airline
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'powerlineish'
@@ -454,10 +438,6 @@ let g:syntastic_always_populate_loc_list = 0
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
-" Settings for vim-multiple-cursors
-" let g:multi_cursor_exit_from_insert_mode = 0
-" let g:multi_cursor_exit_from_visual_mode = 0
-
 " Settings for jedi-vim
 " let g:jedi#popup_select_first = 0
 
@@ -466,18 +446,6 @@ let g:syntastic_check_on_wq = 0
 
 " Settings for super-tab
 " let g:SuperTabDefaultCompletionType = "context"
-
-" Settings for nerdTree
-" nnoremap <leader>x :NERDTreeToggle<CR>
-" let NERDTreeIgnore=['.pyc$[[file]]']
-" let NERDTreeShowHidden=1
-" let NERDTreeMapActivateNode='<space>'
-
-" Settings for nerdCommenter
-let NERDSpaceDelims=1
-
-" Settings for javascript-libraries-syntax.vim
-" let g:used_javascript_libs = 'angularui'
 
 " Settings for Ack.vim
 " Ack on <leader>a
