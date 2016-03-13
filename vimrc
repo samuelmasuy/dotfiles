@@ -12,25 +12,25 @@
 " switch to last place edited: ''
 " open vinegar in current Directory!!!: -
 
-
 " Pre vim  --------------------------------------------------------------- {{{
 
 " Automatic reloading of .vimrc
-autocmd! bufwritepost .vimrc source %
+if !has('nvim')
+  autocmd! bufwritepost .vimrc source %
+endif
 
-" Better copy & paste.
-set clipboard=unnamed
-" See the commands typed in the right bottom corner.
-set showcmd
-" Make backspace behave like normal.
-set bs=2
-
-call plug#begin('~/.vim/plugged')
+if has('nvim')
+  call plug#begin('~/.config/nvim/plugged')
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'zchee/deoplete-go', { 'do': 'make'}
+else
+  call plug#begin('~/.vim/plugged')
+  Plug 'Shougo/neocomplete.vim'
+endif
 
 " Essential
 Plug 'morhetz/gruvbox'
 Plug 'fatih/vim-go', { 'for': 'go'}
-" Plug 'ervandew/supertab'
 Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
@@ -39,67 +39,53 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-eunuch' " Adds Unix commands to vim.
 Plug 'tpope/vim-surround' " To change surrounding quote: cs(' ;tag cst<th> ;to add quote ysW'
 Plug 'tpope/vim-vinegar' " Enhance of netrw
+
 Plug 'kien/ctrlp.vim'
 Plug 'FelikZ/ctrlp-py-matcher'
+Plug 'mileszs/ack.vim'
+
 Plug 'tmux-plugins/vim-tmux'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'benmills/vimux'
-Plug 'mileszs/ack.vim'
-" Plug 'vim-scripts/ReplaceWithRegister'
-Plug 'Shougo/neocomplete.vim'
+
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
+
 Plug 'EinfachToll/DidYouMean'
 Plug 'mhinz/vim-startify'
 Plug 'Valloric/MatchTagAlways'
-" Plug 'Raimondi/delimitMate' " Provide automatic closing quotes, etc...
+
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+" Plug 'ervandew/supertab'
+" Plug 'vim-scripts/ReplaceWithRegister'
 " Plug 'maksimr/vim-jsbeautify', {'for': ['javascript', 'css', 'html']} " Provide beatify for html, js, css
 " npm -g install js-beautify instead
 "
 " Plug 'davidhalter/jedi-vim' " !Important when using python
 " Plug 'vim-scripts/DirDiff.vim' " :DirDiff <A:Src Directory> <B:Src Directory>
-" Plug 'dahu/vim-fanfingtastic'
-" Plug 'vim-scripts/python.vim--Vasiliev'
-"Plug 'vim-scripts/py_jump.vim'
 " Plug 'ekalinin/Dockerfile.vim', {'for' : 'Dockerfile'}
 " Plug 'vim-scripts/vis'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 
-" Not very necessary
-" Plug 'unblevable/quick-scope'
-" Plug 'sjl/gundo.vim'
-" Plug 'dahu/vimple'
-" Plug 'mitsuhiko/vim-rst'
-" Plug 'Rykka/riv.vim'
-" Plug 'godlygeek/tabular' " visual mode :Tabularize/{Regex}
-" Plug 'Lokaltog/vim-easymotion' " Activate with <leader><leader>w (by word) <leader><leader>fo (character o)
-" Plug 'nathanaelkane/vim-indent-guides' " <leader>ig
-" Plug 'terryma/vim-multiple-cursors'
-
-" Syntax helpers
-" Plug 'mattn/emmet-vim'
-" Plug 'StanAngeloff/php.vim'
-" Plug 'othree/javascript-libraries-syntax.vim'
-" Plug 'pangloss/vim-javascript'
-" Plug 'burnettk/vim-angular'
-" Plug 'plasticboy/vim-markdown'
-
-" Dependencies
-" Plug 'MarcWeber/vim-addon-mw-utils'
-" Plug 'tomtom/tlib_vim'
-
-" Plug 'tommcdo/vim-exchange'
-" Plug 'alfredodeza/pytest.vim'
-" Plug 'vim-scripts/SQLComplete.vim'
-" Plug 'marijnh/tern_for_vim'
-" Plug 'altercation/vim-colors-solarized'
-" Plug 'chriskempson/vim-tomorrow-theme'
-" Plug 'junegunn/seoul256.vim'
 
 call plug#end()
 
-set nocompatible
+" Better copy & paste.
+if has('mac')
+  set clipboard=unnamed
+elseif has('unix') && (executable('pbcopy') || executable('xclip') || executable('xsel')) && has('clipboard')
+    set clipboard+=unnamedplus
+endif
+" See the commands typed in the right bottom corner.
+set showcmd
+if !has('nvim')
+  set nocompatible
+  " Make backspace behave like normal.
+  set bs=2
+  " Auto Indent
+  set autoindent
+endif
+
 filetype plugin indent on
 
 " ------------------------------------------------------------------------ }}}
@@ -107,8 +93,6 @@ filetype plugin indent on
 
 " Beautiful
 set t_Co=256
-" Auto Indent
-set autoindent
 " Enable syntax highlighting.
 syntax on
 
@@ -116,12 +100,12 @@ syntax on
 autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red
 au InsertLeave * match ExtraWhitespace /\s\+$/
 
-" Settings for Gruvbox
-let g:gruvbox_italicize_comments=0
-
 " Color scheme.
 set background=dark
 silent! colorscheme gruvbox
+
+" Settings for Gruvbox
+let g:gruvbox_italicize_comments=0
 
 " ------------------------------------------------------------------------ }}}
 " Miscellaneous settings ------------------------------------------------- {{{
@@ -148,14 +132,6 @@ set splitright
 highlight ColorColumn ctermbg=magenta
 call matchadd('ColorColumn', '\%101v', 100)
 
-" Folding settings.
-
-" Don't use TABs but spaces.
-" set tabstop=4
-" set softtabstop=4
-" set shiftwidth=4
-" set expandtab
-
 " Showing line numbers and length.
 set relativenumber
 " Show current line numbers.
@@ -167,18 +143,23 @@ set nowrap
 " Don't automatically wrap text when typing.
 set fo-=t
 
+if !has('nvim')
 " Useful settings.
-set history=700
+  set history=700
+  " Make search case insensitive.
+  set hlsearch
+  set incsearch
+  " Tab-completion options.
+  set wildmenu
+endif
+
+" How many undos
 set undolevels=700
 
-" Make search case insensitive.
-set hlsearch
-set incsearch
 set ignorecase
 set smartcase
 
 " Wildmode aka tab-completion options.
-set wildmenu
 set wildmode=full
 
 " for argdo and bufdo without a trailing bang.
@@ -226,6 +207,14 @@ nnoremap Y y$
 nnoremap ' `
 nnoremap ` '
 
+if has('nvim')
+  " Terminal mode
+  tnoremap <Esc> <C-\><C-n>
+  tnoremap <C-h> <C-\><C-n><C-w>h
+  tnoremap <C-j> <C-\><C-n><C-w>j
+  tnoremap <C-k> <C-\><C-n><C-w>k
+  tnoremap <C-l> <C-\><C-n><C-w>l
+endif
 " ------------------------------------------------------------------------ }}}
 " Syntax support  -------------------------------------------------------- {{{
 " python
@@ -444,15 +433,11 @@ let g:airline#extensions#whitespace#checks = []
 " Settings for syntastic
 let g:syntastic_aggregate_errors = 1
 let g:syntastic_always_populate_loc_list = 0
-" let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
 " Settings for jedi-vim
 " let g:jedi#popup_select_first = 0
-
-" Settings for emmet-vim
-" let g:user_emmet_expandabbr_key='<Tab>'
 
 " Settings for super-tab
 " let g:SuperTabDefaultCompletionType = "context"
@@ -470,9 +455,6 @@ let g:ackpreview = 1
  nnoremap <leader>cc :VimuxPromptCommand<CR>
  " Run last command executed by VimuxRunCommand
  nnoremap <leader>cu :VimuxRunLastCommand<CR>
-
-" Settings for Gundo
-" nnoremap <leader>g :GundoToggle<CR>
 
 "Settings for Ctrlp
 set wildignore+=*.pyc
@@ -494,41 +476,58 @@ nnoremap <leader>gst :Gstatus<cr>
 nnoremap <leader>dup :diffupdate<cr>
 
 " ------------------------------------------------------------------------ }}}
-" Settings for neocomplete and neosnippet --------------------------------- {{{
-" Neocomplete
+" Settings for (neocomplete and deoplete) and neosnippet ---------------------------- {{{
+if has('nvim')
+  " Deoplete
+  let g:deoplete#enable_at_startup = 1
+  " Use neocomplete.
+  " let g:neocomplete#enable_at_startup = 1
 
-" Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
+  " Use smartcase.
+  let g:deoplete#enable_smart_case = 1
 
-" Use smartcase.
-let g:neocomplete#enable_smart_case = 1
+  " Set minimum syntax keyword length.
+  let g:deoplete#auto_completion_start_length = 1
+  let g:deoplete#sources#syntax#min_keyword_length = 2
 
-" Set minimum syntax keyword length.
-let g:neocomplete#auto_completion_start_length = 1
-let g:neocomplete#sources#syntax#min_keyword_length = 2
-" let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+  " Close popup by <Space>.
+  inoremap <expr><C-x> pumvisible() ? deoplete#mappings#close_popup() : "\<Space>"
 
-" Enable heavy omni completion.
-" if !exists('g:neocomplete#sources#omni#input_patterns')
-"   let g:neocomplete#sources#omni#input_patterns = {}
-" endif
+  " Neosnippet
+  " SuperTab like snippets' behavior.
+  imap <expr><CR> pumvisible() ?
+  \(neosnippet#expandable() ? "\<Plug>(neosnippet_expand)" : deoplete#mappings#close_popup())
+  \: "\<CR>"
+  imap <expr><TAB> neosnippet#jumpable() ?
+  \ "\<Plug>(neosnippet_jump)"
+  \: pumvisible() ? "\<C-n>" : "\<TAB>"
+  let g:neosnippet#snippets_directory='~/.config/nvim/plugged/vim-go/gosnippets/snippets'
+else
+  " Neocomplete
 
-" Close popup by <Space>.
-inoremap <expr><C-x> pumvisible() ? neocomplete#close_popup() : "\<Space>"
+  " Use neocomplete.
+  let g:neocomplete#enable_at_startup = 1
 
-" Plugin key-mappings.
-" inoremap <expr><C-g>     neocomplete#undo_completion()
-" inoremap <expr><C-l>     neocomplete#complete_common_string()
+  " Use smartcase.
+  let g:neocomplete#enable_smart_case = 1
 
-" Neosnippet
-" SuperTab like snippets' behavior.
-imap <expr><CR> pumvisible() ?
-\(neosnippet#expandable() ? "\<Plug>(neosnippet_expand)" : neocomplete#close_popup())
-\: "\<CR>"
-imap <expr><TAB> neosnippet#jumpable() ?
-\ "\<Plug>(neosnippet_jump)"
-\: pumvisible() ? "\<C-n>" : "\<TAB>"
+  " Set minimum syntax keyword length.
+  let g:neocomplete#auto_completion_start_length = 1
+  let g:neocomplete#sources#syntax#min_keyword_length = 2
 
-let g:neosnippet#snippets_directory='~/.vim/plugged/vim-go/gosnippets/snippets'
+  " Close popup by <Space>.
+  inoremap <expr><C-x> pumvisible() ? neocomplete#close_popup() : "\<Space>"
+
+  " Neosnippet
+  " SuperTab like snippets' behavior.
+  imap <expr><CR> pumvisible() ?
+  \(neosnippet#expandable() ? "\<Plug>(neosnippet_expand)" : neocomplete#close_popup())
+  \: "\<CR>"
+
+  imap <expr><TAB> neosnippet#jumpable() ?
+  \ "\<Plug>(neosnippet_jump)"
+  \: pumvisible() ? "\<C-n>" : "\<TAB>"
+  let g:neosnippet#snippets_directory='~/.vim/plugged/vim-go/gosnippets/snippets'
+endif
 
 " ------------------------------------------------------------------------ }}}
