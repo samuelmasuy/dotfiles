@@ -1,5 +1,0 @@
-pane	coop	0	:..thub/dotfiles	1	:*	0	:/Users/samuel/Dropbox/Github/dotfiles	1	zsh	:
-pane	scheduletogcal	0	:vim	1	:*	0	:/Users/samuel/Dropbox/www/github/scheduletogcal/tests	1	vim	:vim
-window	coop	0	1	:*	cb7d,102x29,0,0,0
-window	scheduletogcal	0	1	:*	d1be,158x39,0,0,1
-state	scheduletogcal	
