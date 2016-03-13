@@ -293,17 +293,14 @@ let html_no_rendering=1
 let g:syntastic_html_checkers = []
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-" autocmd FileType html noremap <buffer> <leader>r :call HtmlBeautify()<cr>
 autocmd FileType html noremap <buffer> <leader>r :%!js-beautify --type html -j -q -B -f -<CR>
 autocmd BufLeave *.html             normal! mH
 
 " CSS
 " ---
-autocmd FileType css setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
-autocmd FileType css setlocal commentstring=/*\ %s\ */
-" autocmd FileType css noremap <buffer> <leader>r :call CSSBeautify()<cr>
-autocmd FileType css noremap <buffer> <leader>r :%!js-beautify --type css -j -q -B -f -<CR>
-autocmd FileType scss noremap <buffer> <leader>r :%!js-beautify --type css -j -q -B -f -<CR>
+autocmd FileType css,scss setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
+autocmd FileType css,scss setlocal commentstring=/*\ %s\ */
+autocmd FileType css,scss noremap <buffer> <leader>r :%!js-beautify --type css -j -q -B -f -<CR>
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd BufLeave *.css,*.less,*scss normal! mC
 
