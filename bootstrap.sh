@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# install xcode
+install xcode
 command -v gcc >/dev/null 2>&1 || { echo >&2 "I require gcc, i.e. XCode, but it's not installed.  Aborting."; exit 1; }
 xcode-select --install
 
@@ -32,7 +32,7 @@ echo "**************************************************************************
 [ -f "$HOME/.basic_vimrc" ] && rm -f $HOME/.basic_vimrc
 [ -f "$HOME/.ideavimrc" ] && rm -f $HOME/.ideavimrc
 [ -f "$HOME/.zshrc" ] && rm -f $HOME/.zshrc
-[ -f "$HOME/.zsh" ] && rm -f $HOME/.zsh
+[ -d "$HOME/.zsh" ] && rm -f $HOME/.zsh
 [ -f "$HOME/.oh-my-zsh/themes/my_theme.zsh-theme" ] && rm -f $HOME/.oh-my-zsh/themes/my_theme.zsh-theme
 [ -f "$HOME/.ackrc" ] && rm -f $HOME/.ackrc
 
@@ -43,6 +43,7 @@ ln -s $HOME/Dropbox/Others/Pictures $HOME/Pictures
 ln -s $HOME/Dropbox/www $HOME/www
 ln -s $HOME/Dropbox/Github/go/ $HOME/go
 
+mkdir $HOME/.config
 ln -s $HOME/Dropbox/Github/dotfiles/bash_profile $HOME/.bash_profile
 ln -s $HOME/Dropbox/Github/dotfiles/powerline $HOME/.config/powerline
 ln -s $HOME/Dropbox/Github/dotfiles/gitconfig $HOME/.gitconfig
@@ -75,7 +76,7 @@ echo "************************Install Plug for nvim...**************************
 echo "**************************************************************************"
 curl -fLo $HOME/.config/nvim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-ln -s $HOME/Dropbox/Github/dotfiles/nvimrc $HOME/.config/nvim/init.vim
+ln -s $HOME/Dropbox/Github/dotfiles/vimrc $HOME/.config/nvim/init.vim
 
 echo "**************************************************************************"
 echo "***********************Install nVim plugins...**************************"
