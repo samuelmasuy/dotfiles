@@ -20,13 +20,14 @@ noremap Y y$
 nnoremap ,v <C-v>
 
 " change font size
-noremap + :action EditorIncreaseFontSize<CR>
-noremap - :action EditorDecreaseFontSize<CR>
+nnoremap + :action EditorIncreaseFontSize<CR>
+nnoremap - :action EditorDecreaseFontSize<CR>
 
 " code navigation
 nnoremap gt :action NextTab<CR>
 nnoremap gT :action PreviousTab<CR>
 nnoremap <C-p> :action GotoFile<CR>
+nnoremap ,t :action GotoTest<CR>
 nnoremap <C-o> :action Back<CR>
 nnoremap <C-i> :action Forward<CR>
 
@@ -39,7 +40,9 @@ nnoremap ,U :action FindUsages<CR>
 nnoremap ,r :action RenameElement<CR>
 nnoremap ,o :action OptimizeImports<CR>
 nnoremap ,g :action Generate<CR>
+" nnoremap <silent> gr :action ReformatCode<CR>
 
+nnoremap coh :nohlsearch<cr>
 nnoremap ,<space> :action Run<CR>
 nnoremap gcc :action CommentByLineComment<CR>
 vnoremap gcc :action CommentByLineComment<CR>

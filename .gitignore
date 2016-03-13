@@ -1,11 +1,1 @@
-virtualenvs
 .DS_Store
-instal_linux.sh
-fish_history
-fishd.*
-tmuxinator/
-vim/bundle/
-vim/plugged/
-vim/autoload/
-vim/.netrwhist
-powerline/themes/tmux/default.json

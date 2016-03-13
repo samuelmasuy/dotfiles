@@ -8,50 +8,91 @@ echo "Homebrew install"
 ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
 
 echo "Application and tool installation"
-brew bundle ~/Dropbox/Github/dotfiles/Brewfile
+brew tap Homebrew/bundle
+brew bundle $HOME/Dropbox/Github/dotfiles/Brewfile
 
-echo "Deleting the old files"
-rm ~/.vimrc
-rm ~/.ideavimrc
-rm -r ~/.vim
-rm ~/.bash_profile
-rm ~/.gitignore
-rm ~/.gitconfig
-rm ~/.zshrc
-rm -r ~/.zsh
-rm -r ~/.oh-my-zsh
-rm -r ~/.config/powerline
-rm ~/.tmux.conf
-rm ~/.ackrc
+echo "**************************************************************************"
+echo "*********************Install oh-my-zsh...*********************************"
+echo "**************************************************************************"
+git clone git://github.com/robbyrussell/oh-my-zsh.git $HOME/.oh-my-zsh
+cd $HOME/.oh-my-zsh/custom/plugins
+git clone git://github.com/zsh-users/zsh-syntax-highlighting.git
+cd $HOME
 
-echo "Symlinking files"
-ln -s ~/Dropbox/Others/Pictures ~/Pictures
-ln -s ~/Dropbox/www ~/www
-ln -s ~/Dropbox/Github/dotfiles/vimrc ~/.vimrc
-ln -s ~/Dropbox/Github/dotfiles/ideavimrc ~/.ideavimrc
-ln -s ~/Dropbox/Github/dotfiles/vim ~/.vim
-ln -s ~/Dropbox/Github/dotfiles/bash_profile ~/.bash_profile
-ln -s ~/Dropbox/Github/dotfiles/gitignore ~/.gitignore
-ln -s ~/Dropbox/Github/dotfiles/gitconfig ~/.gitconfig
-ln -s ~/Dropbox/Github/dotfiles/zshrc ~/.zshrc
-ln -s ~/Dropbox/Github/dotfiles/zsh ~/.zsh
-ln -s ~/Dropbox/Github/dotfiles/oh-my-zsh ~/.oh-my-zsh
-ln -s ~/Dropbox/Github/dotfiles/powerline ~/.config/powerline
-ln -s ~/Dropbox/Github/dotfiles/tmux.conf ~/.tmux.conf
-ln -s ~/Dropbox/Github/dotfiles/ackrc ~/.ackrc
+echo "**************************************************************************"
+echo "*********************Removing dotfiles...*********************************"
+echo "**************************************************************************"
+[ -f "$HOME/.bash_profile" ] && rm -f $HOME/.bash_profile
+[ -d "$HOME/.config" ] && rm -rf $HOME/.config
+[ -f "$HOME/.gitconfig" ] && rm -f $HOME/.gitconfig
+[ -f "$HOME/.githelpers" ] && rm -f $HOME/.githelpers
+[ -f "$HOME/.gitignore" ] && rm -f $HOME/.gitignore
+[ -f "$HOME/.tmux.conf" ] && rm -f $HOME/.tmux.conf
+[ -f "$HOME/.vimrc" ] && rm -f $HOME/.vimrc
+[ -f "$HOME/.basic_vimrc" ] && rm -f $HOME/.basic_vimrc
+[ -f "$HOME/.ideavimrc" ] && rm -f $HOME/.ideavimrc
+[ -f "$HOME/.zshrc" ] && rm -f $HOME/.zshrc
+[ -f "$HOME/.zsh" ] && rm -f $HOME/.zsh
+[ -f "$HOME/.oh-my-zsh/themes/my_theme.zsh-theme" ] && rm -f $HOME/.oh-my-zsh/themes/my_theme.zsh-theme
+[ -f "$HOME/.ackrc" ] && rm -f $HOME/.ackrc
 
-echo "Installing python"
-pip install --upgrade setuptools
-pip install --upgrade pip
-pip install virtualenv
-pip install virtualenvwrapper
-easy_install ipython[all]
-easy_install ipython3[all]
+echo "**************************************************************************"
+echo "*********************Symlinking dotfiles...*******************************"
+echo "**************************************************************************"
+ln -s $HOME/Dropbox/Others/Pictures $HOME/Pictures
+ln -s $HOME/Dropbox/www $HOME/www
+ln -s $HOME/Dropbox/Github/go/ $HOME/go
 
-echo "Installing plug for vim"
-mkdir -p ~/.vim/autoload
-curl -fLo ~/.vim/autoload/plug.vim \
+ln -s $HOME/Dropbox/Github/dotfiles/bash_profile $HOME/.bash_profile
+ln -s $HOME/Dropbox/Github/dotfiles/powerline $HOME/.config/powerline
+ln -s $HOME/Dropbox/Github/dotfiles/gitconfig $HOME/.gitconfig
+ln -s $HOME/Dropbox/Github/dotfiles/githelpers $HOME/.githelpers
+ln -s $HOME/Dropbox/Github/dotfiles/gitignore $HOME/.gitignore
+ln -s $HOME/Dropbox/Github/dotfiles/tmux.conf $HOME/.tmux.conf
+ln -s $HOME/Dropbox/Github/dotfiles/vimrc $HOME/.vimrc
+ln -s $HOME/Dropbox/Github/dotfiles/basic_vimrc $HOME/.basic_vimrc
+ln -s $HOME/Dropbox/Github/dotfiles/ideavimrc $HOME/.ideavimrc
+ln -s $HOME/Dropbox/Github/dotfiles/zshrc $HOME/.zshrc
+ln -s $HOME/Dropbox/Github/dotfiles/zsh $HOME/.zsh
+ln -s $HOME/Dropbox/Github/dotfiles/my_theme.zsh-theme $HOME/.oh-my-zsh/themes/my_theme.zsh-theme
+ln -s $HOME/Dropbox/Github/dotfiles/ackrc $HOME/.ackrc
+
+echo "**************************************************************************"
+echo "************************Install Plug for vim...***************************"
+echo "**************************************************************************"
+mkdir -p $HOME/.vim/autoload
+curl -fLo $HOME/.vim/autoload/plug.vim \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+cd $HOME
+
+echo "**************************************************************************"
+echo "***********************Install Vim plugins...**************************"
+echo "**************************************************************************"
+vim -c "PlugInstall" -c q -c q
+
+echo "**************************************************************************"
+echo "************************Install Plug for nvim...***************************"
+echo "**************************************************************************"
+curl -fLo $HOME/.config/nvim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+ln -s $HOME/Dropbox/Github/dotfiles/nvimrc $HOME/.config/nvim/init.vim
+
+echo "**************************************************************************"
+echo "***********************Install nVim plugins...**************************"
+echo "**************************************************************************"
+nvim -c "PlugInstall" -c q -c q
+nvim -c "UpdateRemotePlugins" -c q
+
+echo "**************************************************************************"
+echo "************************Install NVM***************************************"
+echo "**************************************************************************"
+git clone https://github.com/creationix/nvm.git $HOME/.nvm && cd $HOME/.nvm && git checkout `git describe --abbrev=0 --tags`
+cd $HOME
+
+echo "**************************************************************************"
+echo "************************Install Node**************************************"
+echo "**************************************************************************"
+source $HOME/.zshrc
+nvm install node
 
 echo "Done!"
-

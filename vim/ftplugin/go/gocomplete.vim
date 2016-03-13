@@ -1,1 +1,0 @@
-/Users/samuel/.vim/plugged/gocode/vim/ftplugin/go/gocomplete.vim

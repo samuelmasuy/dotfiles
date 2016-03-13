@@ -1,14 +1,16 @@
+# Path to your oh-my-zsh installation.
+export ZSH=$HOME/.oh-my-zsh
+
 # Set name of zsh theme to load.
 ZSH_THEME="my_theme"
+
+# Plugins for zsh.
+plugins=(git tmux nvm tmuxinator brew osx sublime virtualenvwrapper colorize gradle go vi-mode web-search zsh_reload z vagrant zsh-syntax-highlighting history-substring-search)
 
 source ~/.zsh/colors.zsh
 source ~/.zsh/exports.zsh
 source ~/.zsh/aliases.zsh
 source ~/.zsh/functions.zsh
-# Initiate z command.
-. $ZSH/custom/plugins/z/z.sh
-# Plugins for zsh.
-plugins=(git tmux nvm tmuxinator brew osx sublime virtualenvwrapper colorize gradle go vi-mode web-search zsh_reload z vagrant zsh-syntax-highlighting history-substring-search alias-tips)
 
 alias emacs="/usr/local/Cellar/emacs/24.x/Emacs.app/Contents/MacOS/Emacs -nw"
 bindkey '^[[A' history-substring-search-up
