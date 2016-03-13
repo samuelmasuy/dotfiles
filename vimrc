@@ -1,6 +1,7 @@
 " vim:fdm=marker
 " Author: Samuel Masuy and the vim community.
 
+ " set noro
 " To make a portable tar vim:
 " bash <(curl -L https://raw.githubusercontent.com/junegunn/myvim/master/myvim)
 
@@ -52,13 +53,16 @@ Plug 'EinfachToll/DidYouMean'
 Plug 'mhinz/vim-startify'
 Plug 'Valloric/MatchTagAlways'
 " Plug 'Raimondi/delimitMate' " Provide automatic closing quotes, etc...
-Plug 'maksimr/vim-jsbeautify', {'for' : ['javascript', 'css', 'html']} " Provide beatify for html, js, css
+" Plug 'maksimr/vim-jsbeautify', {'for': ['javascript', 'css', 'html']} " Provide beatify for html, js, css
+" npm -g install js-beautify instead
+"
 " Plug 'davidhalter/jedi-vim' " !Important when using python
 " Plug 'vim-scripts/DirDiff.vim' " :DirDiff <A:Src Directory> <B:Src Directory>
 " Plug 'dahu/vim-fanfingtastic'
 " Plug 'vim-scripts/python.vim--Vasiliev'
 "Plug 'vim-scripts/py_jump.vim'
 " Plug 'ekalinin/Dockerfile.vim', {'for' : 'Dockerfile'}
+" Plug 'vim-scripts/vis'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
@@ -274,7 +278,7 @@ autocmd BufLeave *.go             normal! mG
 " ----------
 autocmd FileType javascript setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
 autocmd FileType javascript setlocal commentstring=//\ %s
-autocmd FileType javascript noremap <buffer> <leader>r :call JsBeautify()<cr>
+autocmd FileType javascript noremap <buffer> <leader>r :%!js-beautify --type js -j -q -B -f -<CR>
 autocmd FileType javascript let b:javascript_fold = 0
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 let javascript_enable_domhtmlcss=1
@@ -300,14 +304,17 @@ let html_no_rendering=1
 let g:syntastic_html_checkers = []
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-autocmd FileType html noremap <buffer> <leader>r :call HtmlBeautify()<cr>
+" autocmd FileType html noremap <buffer> <leader>r :call HtmlBeautify()<cr>
+autocmd FileType html noremap <buffer> <leader>r :%!js-beautify --type html -j -q -B -f -<CR>
 autocmd BufLeave *.html             normal! mH
 
 " CSS
 " ---
 autocmd FileType css setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
 autocmd FileType css setlocal commentstring=/*\ %s\ */
-autocmd FileType css noremap <buffer> <leader>r :call CSSBeautify()<cr>
+" autocmd FileType css noremap <buffer> <leader>r :call CSSBeautify()<cr>
+autocmd FileType css noremap <buffer> <leader>r :%!js-beautify --type css -j -q -B -f -<CR>
+autocmd FileType scss noremap <buffer> <leader>r :%!js-beautify --type css -j -q -B -f -<CR>
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd BufLeave *.css,*.less,*scss normal! mC
 
@@ -323,6 +330,10 @@ let g:loaded_syntastic_java_javac_checker = 1
 autocmd BufNewFile,BufRead *.txt setlocal ft=rst
 autocmd FileType rst setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 formatoptions+=nqt
 let g:syntastic_rst_checkers = ['rstcheck']
+" md
+" ---
+autocmd FileType md setlocal noexpandtab shiftwidth=4 tabstop=4 softtabstop=4
+autocmd FileType markdown setlocal noexpandtab shiftwidth=4 tabstop=4 softtabstop=4
 
 " C/Obj-C/C++
 autocmd FileType c setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
@@ -343,8 +354,7 @@ autocmd FileType vim setlocal expandtab shiftwidth=2 tabstop=8 softtabstop=2
 " JSON
 " ----
 autocmd FileType json setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
-" autocmd FileType json noremap <buffer> <leader>r :%!js-beautify --type js -j -q -B -f -<CR>
-autocmd FileType json noremap <buffer> <leader>r :call JsonBeautify()<cr>
+autocmd FileType json noremap <buffer> <leader>r :%!js-beautify --type js -j -q -B -f -<CR>
 
 " ------------------------------------------------------------------------ }}}
 " Leader Key Mapping  ---------------------------------------------------- {{{
