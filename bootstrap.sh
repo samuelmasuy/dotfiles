@@ -1,15 +1,33 @@
 #!/usr/bin/env bash
+set -e
 
-# install xcode
+if [[ ! -d "$HOME/Dropbox" ]]; then
+    echo "Need to manually install Dropbox First and sync it."
+    echo "Install XCode at the same time."
+    exit 1
+fi
+
+echo "**************************************************************************"
+echo "******************XCode tool Install...***********************************"
+echo "**************************************************************************"
 command -v gcc >/dev/null 2>&1 || { echo >&2 "I require gcc, i.e. XCode, but it's not installed.  Aborting."; exit 1; }
 xcode-select --install
 
-echo "Homebrew install"
-ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
+echo "**************************************************************************"
+echo "******************Homebrew Install...*************************************"
+echo "**************************************************************************"
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-echo "Application and tool installation"
+echo "**************************************************************************"
+echo "******************Application and tool installation...********************"
+echo "**************************************************************************"
 brew tap Homebrew/bundle
-brew bundle $HOME/Dropbox/Github/dotfiles/Brewfile
+brew bundle --file=$HOME/Dropbox/Github/dotfiles/Brewfile
+
+echo "**************************************************************************"
+echo "*********************Change shell to zsh...*******************************"
+echo "**************************************************************************"
+chsh -s $(which zsh)
 
 echo "**************************************************************************"
 echo "*********************Install oh-my-zsh...*********************************"
@@ -37,12 +55,15 @@ echo "**************************************************************************
 [ -f "$HOME/.ackrc" ] && rm -f $HOME/.ackrc
 
 echo "**************************************************************************"
-echo "*********************Symlinking dotfiles...*******************************"
+echo "*********************Symlinking personal folders...***********************"
 echo "**************************************************************************"
-ln -s $HOME/Dropbox/Others/Pictures $HOME/Pictures
+ln -s $HOME/Dropbox/Others/Pictures $HOME/Pictures/Pictures
 ln -s $HOME/Dropbox/www $HOME/www
 ln -s $HOME/Dropbox/Github/go/ $HOME/go
 
+echo "**************************************************************************"
+echo "*********************Symlinking dotfiles...*******************************"
+echo "**************************************************************************"
 mkdir $HOME/.config
 ln -s $HOME/Dropbox/Github/dotfiles/bash_profile $HOME/.bash_profile
 ln -s $HOME/Dropbox/Github/dotfiles/powerline $HOME/.config/powerline
