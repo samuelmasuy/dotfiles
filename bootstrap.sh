@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-install xcode
+# install xcode
 command -v gcc >/dev/null 2>&1 || { echo >&2 "I require gcc, i.e. XCode, but it's not installed.  Aborting."; exit 1; }
 xcode-select --install
 
