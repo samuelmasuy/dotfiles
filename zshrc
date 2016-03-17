@@ -13,6 +13,7 @@ source ~/.zsh/aliases.zsh
 source ~/.zsh/functions.zsh
 
 alias emacs="/usr/local/Cellar/emacs/24.x/Emacs.app/Contents/MacOS/Emacs -nw"
+alias vim="nvim"
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
