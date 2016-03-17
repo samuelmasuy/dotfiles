@@ -11,6 +11,7 @@
 " switch to last file edited: <leader><leader>
 " switch to last place edited: ''
 " open vinegar in current Directory!!!: -
+" <C-o> in insert mode is awesome
 
 " Pre vim  --------------------------------------------------------------- {{{
 
@@ -18,12 +19,12 @@
 autocmd! bufwritepost $MYVIMRC source $MYVIMRC
 
 if has('nvim')
-  call plug#begin('~/.config/nvim/plugged')
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'zchee/deoplete-go', { 'do': 'make'}
+	call plug#begin('~/.config/nvim/plugged')
+	Plug 'Shougo/deoplete.nvim'
+	Plug 'zchee/deoplete-go', { 'do': 'make'}
 else
-  call plug#begin('~/.vim/plugged')
-  Plug 'Shougo/neocomplete.vim'
+	call plug#begin('~/.vim/plugged')
+	Plug 'Shougo/neocomplete.vim'
 endif
 
 " Essential
@@ -70,18 +71,18 @@ call plug#end()
 
 " Better copy & paste.
 if has('mac')
-  set clipboard=unnamed
+	set clipboard=unnamed
 elseif has('unix') && (executable('pbcopy') || executable('xclip') || executable('xsel')) && has('clipboard')
-    set clipboard+=unnamedplus
+	set clipboard+=unnamedplus
 endif
 " See the commands typed in the right bottom corner.
 set showcmd
 if !has('nvim')
-  set nocompatible
-  " Make backspace behave like normal.
-  set bs=2
-  " Auto Indent
-  set autoindent
+	set nocompatible
+	" Make backspace behave like normal.
+	set bs=2
+	" Auto Indent
+	set autoindent
 endif
 
 filetype plugin indent on
@@ -130,8 +131,7 @@ set autoread
 set nocursorcolumn
 set nocursorline
 
-" Colorize the 80th column.
-"set colorcolumn=81
+" Colorize the 100th column if goes over.
 highlight ColorColumn ctermbg=magenta
 call matchadd('ColorColumn', '\%101v', 100)
 
@@ -147,13 +147,13 @@ set nowrap
 set fo-=t
 
 if !has('nvim')
-" Useful settings.
-  set history=700
-  " Make search case insensitive.
-  set hlsearch
-  set incsearch
-  " Tab-completion options.
-  set wildmenu
+	" Useful settings.
+	set history=700
+	" Make search case insensitive.
+	set hlsearch
+	set incsearch
+	" Tab-completion options.
+	set wildmenu
 endif
 
 " How many undos
@@ -172,9 +172,6 @@ set hidden
 set nobackup
 set nowritebackup
 set noswapfile
-
-" Don't move on *
-nnoremap <silent> * :let stay_star_view = winsaveview()<cr>*:call winrestview(stay_star_view)<cr>
 
 " ------------------------------------------------------------------------ }}}
 " General Mapping  ------------------------------------------------------- {{{
@@ -213,14 +210,18 @@ nnoremap Y y$
 nnoremap ' `
 nnoremap ` '
 
+" Don't move on *
+nnoremap <silent> * :let stay_star_view = winsaveview()<cr>*:call winrestview(stay_star_view)<cr>
+
 if has('nvim')
-  " Terminal mode
-  tnoremap <Esc> <C-\><C-n>
-  tnoremap <C-h> <C-\><C-n><C-w>h
-  tnoremap <C-j> <C-\><C-n><C-w>j
-  tnoremap <C-k> <C-\><C-n><C-w>k
-  tnoremap <C-l> <C-\><C-n><C-w>l
+	" Terminal mode
+	tnoremap <Esc> <C-\><C-n>
+	tnoremap <C-h> <C-\><C-n><C-w>h
+	tnoremap <C-j> <C-\><C-n><C-w>j
+	tnoremap <C-k> <C-\><C-n><C-w>k
+	tnoremap <C-l> <C-\><C-n><C-w>l
 endif
+
 " ------------------------------------------------------------------------ }}}
 " Syntax support  -------------------------------------------------------- {{{
 " python
@@ -249,11 +250,10 @@ autocmd BufLeave *.py               normal! mP
 " ----------
 autocmd FileType go nmap <leader>r <Plug>(go-run)
 autocmd FileType go nmap <leader>i <Plug>(go-info)
+autocmd FileType go nmap <leader>ii <Plug>(go-implements)
 autocmd FileType go nmap <leader>re <Plug>(go-rename)
 autocmd FileType go nmap <leader>ref <Plug>(go-referrers)
-autocmd FileType go nmap <leader>b <Plug>(go-build)
 autocmd FileType go nmap <leader>t <Plug>(go-test)
-autocmd FileType go nmap <leader>c <Plug>(go-coverage)
 autocmd FileType go nmap <leader>d <Plug>(go-def)
 autocmd FileType go nmap <leader>de <Plug>(go-describe)
 autocmd FileType go nmap K <Plug>(go-doc)
@@ -378,9 +378,12 @@ vnoremap <leader>s :sort<CR>
 " Remove trailing whitespace on <leader>S
 nnoremap <leader>S :%s/\s\+$//<cr>:let @/=''<CR>
 " Reset space-tab
-" nnoremap <leader>re :retab<CR>
+nnoremap <leader>reta :retab<CR>
 
-" swicth to last file edited
+" cd to where the file is currently located
+nnoremap <leader>. :lcd %:p:h<CR>
+
+" switch to last file edited
 nnoremap <leader><leader> <c-^>
 
 " Title helper with reStructuredText files.
@@ -422,7 +425,6 @@ function! s:Underline(level)
 endfunction
 
 command! -nargs=? Underline call s:Underline(<q-args>)
-" endif
 
 " Google search word under cursor from http://www.vimbits.com/bits/551
 nnoremap <leader>is :let @p=@"<cr>yiw:!open "https://www.google.com/search?q=""<cr><cr>
@@ -431,7 +433,7 @@ nnoremap <leader>is :let @p=@"<cr>yiw:!open "https://www.google.com/search?q=""
 nnoremap <leader>id :let @p=@"<cr>yiw:!open "https://www.google.com/search?q=define ""<cr><cr>
     \:let @"=@p<cr>
 
-" Easy subsitute providing a previous pattern
+" Easy substitute providing a previous pattern
 nnoremap <leader>; :%s::cg<Left><Left><Left>
 vnoremap <leader>; :s::g<Left><Left>
 
@@ -469,7 +471,7 @@ let g:ackpreview = 1
  " Run last command executed by VimuxRunCommand
  nnoremap <leader>cu :VimuxRunLastCommand<CR>
 
-"Settings for Ctrlp
+"Settings for CtrlP
 set wildignore+=*.pyc
 set wildignore+=*.spl " compiled spelling word lists
 set wildignore+=*.DS_Store " OSX stuff
