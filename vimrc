@@ -490,8 +490,10 @@ let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
 " let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 
 " Settings for fugitive
+nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gp :Gpush<CR>
+vnoremap <leader>gb :Gblame<CR>
 nnoremap <leader>gdi :Gdiff<cr>
-nnoremap <leader>gst :Gstatus<cr>
 nnoremap <leader>dup :diffupdate<cr>
 
 " ------------------------------------------------------------------------ }}}
