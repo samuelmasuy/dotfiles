@@ -14,10 +14,8 @@
 
 " Pre vim  --------------------------------------------------------------- {{{
 
-" Automatic reloading of .vimrc
-if !has('nvim')
-  autocmd! bufwritepost .vimrc source %
-endif
+" Automatic reloading of vimrc
+autocmd! bufwritepost $MYVIMRC source $MYVIMRC
 
 if has('nvim')
   call plug#begin('~/.config/nvim/plugged')
@@ -40,7 +38,7 @@ Plug 'tpope/vim-eunuch' " Adds Unix commands to vim.
 Plug 'tpope/vim-surround' " To change surrounding quote: cs(' ;tag cst<th> ;to add quote ysW'
 Plug 'tpope/vim-vinegar' " Enhance of netrw
 
-Plug 'kien/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'FelikZ/ctrlp-py-matcher'
 Plug 'mileszs/ack.vim'
 
@@ -126,6 +124,11 @@ set nrformats=
 set splitbelow
 " Vertical split goes to the right.
 set splitright
+" Automatically reread changed files without asking me anything
+set autoread
+" speed up syntax highlighting
+set nocursorcolumn
+set nocursorline
 
 " Colorize the 80th column.
 "set colorcolumn=81
@@ -169,6 +172,9 @@ set hidden
 set nobackup
 set nowritebackup
 set noswapfile
+
+" Don't move on *
+nnoremap <silent> * :let stay_star_view = winsaveview()<cr>*:call winrestview(stay_star_view)<cr>
 
 " ------------------------------------------------------------------------ }}}
 " General Mapping  ------------------------------------------------------- {{{
@@ -335,7 +341,7 @@ let g:syntastic_c_compiler = 'clang'
 
 " vim
 " ---
-autocmd FileType vim setlocal expandtab shiftwidth=2 tabstop=8 softtabstop=2
+autocmd FileType vim setlocal noexpandtab shiftwidth=4 tabstop=4 softtabstop=4
 
 " JSON
 " ----
@@ -355,6 +361,8 @@ nnoremap <leader>e :tabedit $MYVIMRC<CR>
 "nnoremap <silent><leader>f <Esc>:Pytest file<CR>
 " Remap visual block select.
 nnoremap <leader>v <c-v>
+"Open new vertical split
+nnoremap <leader>vs :vsplit<CR>
 " Quicksave command.
 noremap <leader>s :w<CR>
 " Map sort function to a key
@@ -455,9 +463,23 @@ let g:ackpreview = 1
 
 "Settings for Ctrlp
 set wildignore+=*.pyc
+set wildignore+=*.spl " compiled spelling word lists
+set wildignore+=*.DS_Store " OSX stuff
+set wildignore+=go/pkg
+set wildignore+=go/bin
+set wildignore+=*.orig
+set wildignore+=*.sw?
+set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
+set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
+set wildignore+=.hg,.git,.svn                    " Version control
+
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+let g:ctrlp_max_height = 10             " maxiumum height of match window
+let g:ctrlp_switch_buffer = 'et'        " jump to a file if it's open already
+let g:ctrlp_mruf_max=450                " number of recently opened files
+let g:ctrlp_max_files=0 
 let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
       \ --ignore .git
       \ --ignore .svn
