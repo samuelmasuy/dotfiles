@@ -6,7 +6,7 @@ alias ls='ls -G'
 # Make the terminal say all the files and directories.
 alias lt="ls | say -vz"
 # Open the given directory in finder.
-alias f='open -a Finder ./'
+alias f='open .'
 # Clear the terminal
 alias c='clear'
 # Beautiful Cat
@@ -29,5 +29,10 @@ alias tmux="TERM=screen-256color-bce tmux"
 alias codesource='cd /usr/local/Cellar/python/2.7.9/Frameworks/Python.framework/Versions/2.7/lib/python2.7'
 # thefuck plugin
 alias fuck='eval $(thefuck $(fc -ln -1))'
+# Using neo vim
+alias vim="nvim"
 # load vim with very basic settings (way faster)
 alias vi="vim -u ~/.basic_vimrc"
+# dotfiles
+alias cdg="cd $HOME/Dropbox/Github/dotfiles"
+alias cdb="cd $HOME/Dropbox/Bitbucket/dotfiles"
