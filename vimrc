@@ -78,7 +78,6 @@ endif
 " See the commands typed in the right bottom corner.
 set showcmd
 if !has('nvim')
-	set nocompatible
 	" Make backspace behave like normal.
 	set bs=2
 	" Auto Indent
