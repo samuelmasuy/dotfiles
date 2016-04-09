@@ -383,46 +383,6 @@ nnoremap <leader>. :lcd %:p:h<CR>
 " switch to last file edited
 nnoremap <leader><leader> <c-^>
 
-" Title helper with reStructuredText files.
-" if (&ft=='rst')
-function! s:Underline(level)
-  if a:level == 1
-    let symbol = '#'
-    let overline = 1
-  elseif a:level == 2
-    let symbol = '*'
-    let overline = 1
-  elseif a:level == 3
-    let symbol = '='
-    let overline = 0
-  elseif a:level == 4
-    let symbol = '-'
-    let overline = 0
-  elseif a:level == 5
-    let symbol = '~'
-    let overline = 0
-  else
-    echom "Unknow level!"
-    return
-  endif
-  let lineNo = line('.')
-  let counter = strlen(getline('.'))
-  let newLine = ''
-  while counter > 0
-    let newLine  = newLine . symbol
-    let counter -= 1
-  endwhile
-  call append(lineNo, newLine)
-  if overline > 0
-    call append(lineNo-1, newLine)
-    let lineNo = lineNo + 1
-  endif
-  call append(lineNo + 1, "")
-  call cursor(lineNo+2,1)
-endfunction
-
-command! -nargs=? Underline call s:Underline(<q-args>)
-
 " Google search word under cursor from http://www.vimbits.com/bits/551
 nnoremap <leader>is :let @p=@"<cr>yiw:!open "https://www.google.com/search?q=""<cr><cr>
     \:let @"=@p<cr>
