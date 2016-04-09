@@ -30,7 +30,7 @@ endif
 " Essential
 Plug 'morhetz/gruvbox'
 Plug 'fatih/vim-go'
-Plug 'scrooloose/syntastic'
+Plug 'benekastah/neomake'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
@@ -53,6 +53,7 @@ Plug 'Shougo/neosnippet-snippets'
 Plug 'EinfachToll/DidYouMean'
 Plug 'mhinz/vim-startify'
 Plug 'Valloric/MatchTagAlways'
+Plug 'Valloric/ListToggle'
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -156,7 +157,10 @@ if !has('nvim')
 endif
 
 " How many undos
-set undolevels=700
+set undolevels=1000
+" Undo file
+set undodir=~/.config/nvim/undos
+set undofile
 
 set ignorecase
 set smartcase
@@ -231,9 +235,12 @@ autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 let python_highlight_all=1
 let python_slow_sync=1
 
-let g:syntastic_python_checkers=['flake8', 'python']
-
-let g:syntastic_python_flake8_args='--ignore=E121,E124,E126,E261,E301,E303,E501,E721 --max-line-length=104'
+ let g:neomake_python_flake8_maker = {
+        \ 'args': [
+            \ '--ignore=E121,E124,E126,E261,E301,E303,E501,E721',
+            \ '--max-line-length=104']
+		\ }
+let g:neomake_python_enabled_makers = ['flake8', 'python']
 " Don't warn on
 "   E121 continuation line indentation is not a multiple of four
 "   E124 closing bracket does not match visual indentation
@@ -272,8 +279,7 @@ let g:go_autodetect_gopath = 1
 let g:go_fmt_fail_silently = 0
 let g:go_fmt_command = "goimports"
 let g:go_snippet_engine = "neosnippet"
-" let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
-" let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+let g:neomake_go_enabled_makers = ['go', 'govet']
 autocmd BufLeave *.go             normal! mG
 
 " Javascript
@@ -284,7 +290,7 @@ autocmd FileType javascript noremap <buffer> <leader>r :%!js-beautify --type js 
 autocmd FileType javascript let b:javascript_fold = 0
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 let javascript_enable_domhtmlcss=1
-let g:syntastic_javascript_checkers = ['jshint']
+let g:neomake_javascript_enabled_makers = ['jshint']
 autocmd BufLeave *.js             normal! mJ
 
 " ruby
@@ -303,7 +309,6 @@ autocmd FileType htmljinja setlocal commentstring={#\ %s\ #}
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 let html_no_rendering=1
-let g:syntastic_html_checkers = []
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd FileType html noremap <buffer> <leader>r :%!js-beautify --type html -j -q -B -f -<CR>
@@ -321,14 +326,11 @@ autocmd BufLeave *.css,*.less,*scss normal! mC
 " ----
 autocmd FileType java setlocal shiftwidth=2 tabstop=8 softtabstop=2 expandtab
 autocmd FileType java setlocal commentstring=//\ %s
-" disable java checker
-let g:loaded_syntastic_java_javac_checker = 1
 
 " rst
 " ---
 autocmd BufNewFile,BufRead *.txt setlocal ft=rst
 autocmd FileType rst setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 formatoptions+=nqt
-let g:syntastic_rst_checkers = ['rstcheck']
 " md
 " ---
 autocmd FileType md setlocal noexpandtab shiftwidth=4 tabstop=4 softtabstop=4
@@ -341,10 +343,6 @@ autocmd FileType objc setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 autocmd FileType c setlocal commentstring=/*\ %s\ */
 autocmd FileType cpp,objc setlocal commentstring=//\ %s
 let c_no_curly_error=1
-let g:syntastic_cpp_include_dirs = ['include', '../include']
-let g:syntastic_cpp_compiler = 'clang++'
-let g:syntastic_c_include_dirs = ['include', '../include']
-let g:syntastic_c_compiler = 'clang'
 
 " vim
 " ---
@@ -444,11 +442,13 @@ let g:airline_theme = 'powerlineish'
 set laststatus=2
 let g:airline#extensions#whitespace#checks = []
 
-" Settings for syntastic
-let g:syntastic_aggregate_errors = 1
-let g:syntastic_always_populate_loc_list = 0
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
+" Settings for neomake
+autocmd! BufWritePost * Neomake " run neomake on file write
+hi NeoErrorMsg ctermfg=52
+let g:neomake_error_sign = {'text': '✘', 'texthl': 'NeoErrorMsg'}
+
+hi NeoWarningMsg ctermfg=94
+let g:neomake_warning_sign = {'text': '❕', 'texthl': 'NeoWarningMsg'}
 
 " Settings for jedi-vim
 " let g:jedi#popup_select_first = 0
@@ -488,7 +488,7 @@ let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 let g:ctrlp_max_height = 10             " maxiumum height of match window
 let g:ctrlp_switch_buffer = 'et'        " jump to a file if it's open already
 let g:ctrlp_mruf_max=450                " number of recently opened files
-let g:ctrlp_max_files=0 
+let g:ctrlp_max_files=0
 let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
       \ --ignore .git
       \ --ignore .svn
