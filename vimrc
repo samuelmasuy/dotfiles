@@ -50,6 +50,7 @@ Plug 'benmills/vimux'
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
 
+Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
 Plug 'EinfachToll/DidYouMean'
 Plug 'mhinz/vim-startify'
 Plug 'Valloric/MatchTagAlways'
@@ -464,6 +465,12 @@ nnoremap <leader>gp :Gpush<CR>
 vnoremap <leader>gb :Gblame<CR>
 nnoremap <leader>gdi :Gdiff<cr>
 nnoremap <leader>dup :diffupdate<cr>
+
+" Settings for sayonara
+nnoremap <silent> <leader>q :Sayonara<CR>
+
+" Settings for ListToggle
+let g:lt_quickfix_list_toggle_map = '<leader>fix'
 
 " ------------------------------------------------------------------------ }}}
 " Settings for (neocomplete and deoplete) and neosnippet ---------------------------- {{{
