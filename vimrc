@@ -405,11 +405,11 @@ let g:airline#extensions#whitespace#checks = []
 
 " Settings for neomake
 autocmd! BufWritePost * Neomake " run neomake on file write
-hi NeoErrorMsg ctermfg=52
+hi NeoErrorMsg ctermfg=88
 let g:neomake_error_sign = {'text': '✘', 'texthl': 'NeoErrorMsg'}
 
-hi NeoWarningMsg ctermfg=94
-let g:neomake_warning_sign = {'text': '⚑', 'texthl': 'NeoWarningMsg'}
+hi NeoWarningMsg ctermfg=136
+let g:neomake_warning_sign = {'text': '⚠', 'texthl': 'NeoWarningMsg'}
 
 " Settings for jedi-vim
 " let g:jedi#popup_select_first = 0
