@@ -405,9 +405,9 @@ let g:airline#extensions#whitespace#checks = []
 
 " Settings for neomake
 autocmd! BufWritePost * Neomake " run neomake on file write
+let g:neomake_verbose = 0
 hi NeoErrorMsg ctermfg=88
 let g:neomake_error_sign = {'text': '✘', 'texthl': 'NeoErrorMsg'}
-
 hi NeoWarningMsg ctermfg=136
 let g:neomake_warning_sign = {'text': '⚠', 'texthl': 'NeoWarningMsg'}
 
