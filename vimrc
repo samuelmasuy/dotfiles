@@ -472,6 +472,7 @@ nnoremap <leader>dup :diffupdate<cr>
 
 " Settings for sayonara
 nnoremap <silent> <leader>q :Sayonara<CR>
+nnoremap <silent> <leader>Q :Sayonara!<cr>
 
 " Settings for ListToggle
 let g:lt_quickfix_list_toggle_map = '<leader>fix'
