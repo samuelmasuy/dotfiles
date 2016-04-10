@@ -110,6 +110,10 @@ let g:gruvbox_italicize_comments=0
 " ------------------------------------------------------------------------ }}}
 " Miscellaneous settings ------------------------------------------------- {{{
 
+if has('nvim')
+	" let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+	let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+endif
 " Show the line that have been wrapped.
 let &showbreak='↪ '
 " Gdiff vertical split
