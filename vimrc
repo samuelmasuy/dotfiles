@@ -58,6 +58,11 @@ Plug 'Valloric/ListToggle'
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+
+Plug 'leafgarland/typescript-vim'
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+Plug 'quramy/tsuquyomi'
+Plug 'magarcia/vim-angular2-snippets'
 " Plug 'ervandew/supertab'
 " Plug 'vim-scripts/ReplaceWithRegister'
 " Plug 'maksimr/vim-jsbeautify', {'for': ['javascript', 'css', 'html']} " Provide beatify for html, js, css
@@ -297,6 +302,16 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 let javascript_enable_domhtmlcss=1
 let g:neomake_javascript_enabled_makers = ['jshint']
 autocmd BufLeave *.js             normal! mJ
+
+" Typescript
+" ----------
+autocmd FileType typescript setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
+autocmd FileType typescript nmap <leader>d <Plug>(TsuquyomiDefinition)
+autocmd FileType typescript nmap <leader>ref <Plug>(TsuquyomiReferences)
+autocmd FileType typescript nmap <leader>re <Plug>(TsuquyomiRenameSymbolC)
+autocmd FileType typescript nmap <leader>im <Plug>(TsuquyomiImport)
+autocmd FileType typescript noremap <buffer> <leader>r :%!js-beautify --type typescript -j -q -B -f -<CR>
+autocmd BufLeave *.js             normal! mT
 
 " ruby
 " ----
