@@ -22,8 +22,10 @@ if has('nvim')
 	call plug#begin('~/.config/nvim/plugged')
 	Plug 'Shougo/deoplete.nvim'
 	Plug 'zchee/deoplete-go', { 'do': 'make'}
-	Plug 'mhartington/deoplete-typescript'
-	Plug 'carlitux/deoplete-ternjs'
+	Plug 'mhartington/deoplete-typescript', {'for': ['typescript']}
+	Plug 'carlitux/deoplete-ternjs', {'for': ['javascript']}
+	Plug 'zchee/deoplete-jedi', {'for': ['python']}
+	Plug 'mhartington/oceanic-next'
 else
 	call plug#begin('~/.vim/plugged')
 	Plug 'Shougo/neocomplete.vim'
@@ -31,7 +33,7 @@ endif
 
 " Essential
 Plug 'morhetz/gruvbox'
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', {'for': ['go']}
 Plug 'benekastah/neomake'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
@@ -41,8 +43,8 @@ Plug 'tpope/vim-eunuch' " Adds Unix commands to vim.
 Plug 'tpope/vim-surround' " To change surrounding quote: cs(' ;tag cst<th> ;to add quote ysW'
 Plug 'tpope/vim-vinegar' " Enhance of netrw
 
-" Plug 'ctrlpvim/ctrlp.vim'
-" Plug 'FelikZ/ctrlp-py-matcher'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'mileszs/ack.vim'
 
 Plug 'tmux-plugins/vim-tmux'
@@ -61,7 +63,8 @@ Plug 'Valloric/ListToggle'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-Plug 'leafgarland/typescript-vim'
+" Plug 'leafgarland/typescript-vim'
+Plug 'HerringtonDarkholme/yats.vim', {'for': ['typescript']}
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'quramy/tsuquyomi'
 Plug 'magarcia/vim-angular2-snippets'
@@ -73,16 +76,12 @@ Plug 'Shougo/neoyank.vim'
 Plug 'Shougo/unite-outline'
 Plug 'Shougo/unite-help'
 Plug 'mackee/unite-httpstatus'
-" Plug 'ervandew/supertab'
-" Plug 'vim-scripts/ReplaceWithRegister'
 " Plug 'maksimr/vim-jsbeautify', {'for': ['javascript', 'css', 'html']} " Provide beatify for html, js, css
 " npm -g install js-beautify instead
 "
-" Plug 'davidhalter/jedi-vim' " !Important when using python
-" Plug 'vim-scripts/DirDiff.vim' " :DirDiff <A:Src Directory> <B:Src Directory>
-" Plug 'ekalinin/Dockerfile.vim', {'for' : 'Dockerfile'}
-" Plug 'vim-scripts/vis'
-
+Plug 'davidhalter/jedi-vim', {'for': ['python']} " !Important when using python
+Plug 'vim-scripts/DirDiff.vim' " :DirDiff <A:Src Directory> <B:Src Directory>
+Plug 'ekalinin/Dockerfile.vim', {'for' : 'Dockerfile'}
 
 call plug#end()
 
@@ -118,6 +117,7 @@ au InsertLeave * match ExtraWhitespace /\s\+$/
 " Color scheme.
 set background=dark
 silent! colorscheme gruvbox
+" silent! colorscheme OceanicNext
 
 " Settings for Gruvbox
 let g:gruvbox_italicize_comments=0
@@ -126,7 +126,6 @@ let g:gruvbox_italicize_comments=0
 " Miscellaneous settings ------------------------------------------------- {{{
 
 if has('nvim')
-	" let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 	let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 endif
 " Show the line that have been wrapped.
@@ -199,6 +198,8 @@ set noswapfile
 " ------------------------------------------------------------------------ }}}
 " General Mapping  ------------------------------------------------------- {{{
 
+cnoremap wq :echo 'Use ZZ'<CR>
+
 " Disable un-VI keys.
 map <up> <nop>
 map <down> <nop>
@@ -232,6 +233,8 @@ nnoremap Y y$
 " Switch marks
 nnoremap ' `
 nnoremap ` '
+
+nnoremap <leader>dup :diffupdate<CR>
 
 " Don't move on *
 nnoremap <silent> * :let stay_star_view = winsaveview()<cr>*:call winrestview(stay_star_view)<cr>
@@ -393,14 +396,10 @@ noremap \ ,
 
 " Open in a new tab .vimrc
 nnoremap <leader>e :tabedit $MYVIMRC<CR>
-" Pytest the current file.
-"nnoremap <silent><leader>f <Esc>:Pytest file<CR>
 " Remap visual block select.
 nnoremap <leader>v <c-v>
 "Open new vertical split
 nnoremap <leader>vs :vsplit<CR>
-" Quicksave command.
-noremap <leader>s :w<CR>
 " Map sort function to a key
 vnoremap <leader>s :sort<CR>
 " Remove trailing whitespace on <leader>S
@@ -444,9 +443,6 @@ let g:neomake_warning_sign = {'text': '⚠', 'texthl': 'NeoWarningMsg'}
 " Settings for jedi-vim
 " let g:jedi#popup_select_first = 0
 
-" Settings for super-tab
-" let g:SuperTabDefaultCompletionType = "context"
-
 " Settings for Ack.vim
 " Ack on <leader>a
 nnoremap <leader>a :Ack<space>
@@ -461,45 +457,10 @@ let g:ackpreview = 1
  " Run last command executed by VimuxRunCommand
  nnoremap <leader>cu :VimuxRunLastCommand<CR>
 
-" "Settings for CtrlP
-" set wildignore+=*.pyc
-" set wildignore+=*.spl " compiled spelling word lists
-" set wildignore+=*.DS_Store " OSX stuff
-" set wildignore+=go/pkg
-" set wildignore+=go/bin
-" set wildignore+=*.orig
-" set wildignore+=*.sw?
-" set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
-" set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
-" set wildignore+=.hg,.git,.svn                    " Version control
-
-" let g:ctrlp_map = '<c-p>'
-" let g:ctrlp_cmd = 'CtrlP'
-" let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
-" let g:ctrlp_max_height = 10             " maxiumum height of match window
-" let g:ctrlp_switch_buffer = 'et'        " jump to a file if it's open already
-" let g:ctrlp_mruf_max=450                " number of recently opened files
-" let g:ctrlp_max_files=0
-" let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
-"       \ --ignore .git
-"       \ --ignore .svn
-"       \ --ignore .hg
-"       \ --ignore .DS_Store
-"       \ --ignore "**/*.pyc"
-"       \ -g ""'
-
-" let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-
-" Settings for fugitive
-nnoremap <leader>gs :Gstatus<CR>
-nnoremap <leader>gp :Gpush<CR>
-vnoremap <leader>gb :Gblame<CR>
-nnoremap <leader>gdi :Gdiff<CR>
-nnoremap <leader>dup :diffupdate<CR>
 
 " Settings for sayonara
-nnoremap <silent> <leader>q :Sayonara<CR>
-nnoremap <silent> <leader>Q :Sayonara!<CR>
+nnoremap <silent> gs :Sayonara<CR>
+nnoremap <silent> gS :Sayonara!<CR>
 
 " Settings for ListToggle
 let g:lt_quickfix_list_toggle_map = '<leader>fix'
@@ -513,6 +474,8 @@ if has('nvim')
 	nnoremap <silent> <C-p> :Unite -start-insert -vertical -direction=botright buffer file_mru file_rec/neovim<CR>
 	" nnoremap <C-p> :Unite buffer file_mru file_rec -no-split -start-insert<CR>
 	nnoremap <silent> <leader>c :Unite -auto-resize -start-insert -direction=botright colorscheme<CR>
+
+	nnoremap <silent> <leader>st :Unite -winwidth=45 -vertical -direction=botright httpstatus<CR>
 
 	nnoremap <silent> <leader>o :Unite -winwidth=45 -vertical -direction=botright outline<CR>
 	" Custom mappings for the unite buffer
@@ -559,13 +522,29 @@ else
   nnoremap <C-p> :Unite buffer file_mru file_rec -no-split -start-insert<CR>
 endif
 
+if has('nvim')
+  let $FZF_DEFAULT_OPTS .= ' --inline-info'
+endif
+
+" File preview using CodeRay (http://coderay.rubychan.de/)
+let g:fzf_files_options =
+  \ '--preview "(coderay {} || cat {}) 2> /dev/null | head -'.&lines.'"'
+
+nnoremap <silent> <expr> <Leader><Leader> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
+nnoremap <silent> <Leader>C        :Colors<CR>
+nnoremap <silent> <Leader><Enter>  :Buffers<CR>
+nnoremap <silent> <Leader>ag       :Ag
+nnoremap <silent> <Leader>`        :Marks<CR>
+
+nmap <leader><tab> <plug>(fzf-maps-n)
+xmap <leader><tab> <plug>(fzf-maps-x)
+omap <leader><tab> <plug>(fzf-maps-o)
+
 " ------------------------------------------------------------------------ }}}
 " Settings for (neocomplete and deoplete) and neosnippet ---------------------------- {{{
 if has('nvim')
   " Deoplete
   let g:deoplete#enable_at_startup = 1
-  " Use neocomplete.
-  " let g:neocomplete#enable_at_startup = 1
 
   " Use smartcase.
   let g:deoplete#enable_smart_case = 1
@@ -593,16 +572,12 @@ if has('nvim')
   \ "\<Plug>(neosnippet_jump)"
   \: pumvisible() ? "\<C-n>" : "\<TAB>"
   let g:neosnippet#snippets_directory='~/.config/nvim/plugged/vim-go/gosnippets/snippets, ~/.config/nvim/plugged/neosnippet-snippets/neosnippets, ~/.config/nvim/plugged/vim-angular2-snippets/snippets'
+let g:neomake_python_enabled_makers = ['flake8', 'python']
 
   " let g:tern_request_timeout = 1
   if !exists('g:deoplete#omni#input_patterns')
     let g:deoplete#omni#input_patterns = {}
   endif
-  " let g:deoplete#disable_auto_complete = 1
-  " autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
-  " let g:tern_show_argument_hints = 'on_hold'
-  " let g:tern_show_signature_in_pum = 1
-  " autocmd FileType javascript setlocal omnifunc=tern#Complete
 
   let g:tern_request_timeout = 1
   " let g:tern_show_signature_in_pum = 0  " This do disable full signature type on autocomplete
@@ -640,7 +615,7 @@ else
   imap <expr><TAB> neosnippet#jumpable() ?
   \ "\<Plug>(neosnippet_jump)"
   \: pumvisible() ? "\<C-n>" : "\<TAB>"
-  let g:neosnippet#snippets_directory='~/.vim/plugged/vim-go/gosnippets/snippets'
+  let g:neosnippet#snippets_directory='~/.vim/plugged/vim-go/gosnippets/snippets, ~/.vim/plugged/neosnippet-snippets/neosnippets'
 endif
 
 " ------------------------------------------------------------------------ }}}
