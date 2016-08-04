@@ -254,13 +254,11 @@ autocmd FileType python nnoremap <leader>y :0,$!yapf<Cr>
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 let python_highlight_all=1
 let python_slow_sync=1
-
- let g:neomake_python_flake8_maker = {
-        \ 'args': [
-            \ '--ignore=E121,E124,E126,E261,E301,E303,E501,E721',
-            \ '--max-line-length=104']
+let g:neomake_python_flake8_maker = {
+			\ 'args': [
+					\ '--ignore=E121,E124,E126,E261,E301,E303,E501,E721',
+					\ '--max-line-length=104']
 		\ }
-let g:neomake_python_enabled_makers = ['flake8', 'python']
 " Don't warn on
 "   E121 continuation line indentation is not a multiple of four
 "   E124 closing bracket does not match visual indentation
@@ -270,6 +268,7 @@ let g:neomake_python_enabled_makers = ['flake8', 'python']
 "   E301 expected 1 blank line, found 0
 "   E303 expected 2 blank lines, found <n>
 "   E721 do not compare types, use 'isinstance()'
+let g:neomake_python_enabled_makers = ['flake8', 'python']
 autocmd BufLeave *.py               normal! mP
 
 " Go
@@ -378,7 +377,7 @@ let c_no_curly_error=1
 
 " vim
 " ---
-autocmd FileType vim setlocal noexpandtab shiftwidth=4 tabstop=4 softtabstop=4
+autocmd FileType vim setlocal noexpandtab shiftwidth=2 tabstop=2 softtabstop=2
 
 " JSON
 " ----
@@ -511,18 +510,18 @@ let g:unite_source_history_yank_enable=1
 let g:unite_prompt='❯ '
 let g:unite_source_rec_async_command =['ag', '--follow', '--nocolor', '--nogroup','--hidden', '-g', '', '--ignore', '.git', '--ignore', '*.png', '--ignore', 'lib']
 if has('nvim')
-  nnoremap <silent> <C-p> :Unite -start-insert -vertical -direction=botright buffer file_mru file_rec/neovim<CR>
-  " nnoremap <C-p> :Unite buffer file_mru file_rec -no-split -start-insert<CR>
-  nnoremap <silent> <leader>c :Unite -auto-resize -start-insert -direction=botright colorscheme<CR>
+	nnoremap <silent> <C-p> :Unite -start-insert -vertical -direction=botright buffer file_mru file_rec/neovim<CR>
+	" nnoremap <C-p> :Unite buffer file_mru file_rec -no-split -start-insert<CR>
+	nnoremap <silent> <leader>c :Unite -auto-resize -start-insert -direction=botright colorscheme<CR>
 
-  nnoremap <silent> <leader>o :Unite -winwidth=45 -vertical -direction=botright outline<CR>
-  " Custom mappings for the unite buffer
-  autocmd FileType unite call s:unite_settings()
-  function! s:unite_settings()
-    " Enable navigation with control-j and control-k in insert mode
-    imap <buffer> <C-j>   <Plug>(unite_select_next_line)
-    imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
-  endfunction
+	nnoremap <silent> <leader>o :Unite -winwidth=45 -vertical -direction=botright outline<CR>
+	" Custom mappings for the unite buffer
+	autocmd FileType unite call s:unite_settings()
+	function! s:unite_settings()
+		" Enable navigation with control-j and control-k in insert mode
+		imap <buffer> <C-j>   <Plug>(unite_select_next_line)
+		imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
+	endfunction
 
   let g:unite_source_menu_menus = {} " Useful when building interfaces at appropriate places
   let g:unite_source_menu_menus.git = {'description' : 'Fugitive interface',}
