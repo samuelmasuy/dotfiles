@@ -1,7 +1,7 @@
 " vim:fdm=marker
 " Author: Samuel Masuy and the vim community.
 
- " set noro
+" set noro
 " To make a portable tar vim:
 " bash <(curl -L https://raw.githubusercontent.com/junegunn/myvim/master/myvim)
 
@@ -22,6 +22,7 @@ if has('nvim')
 	call plug#begin('~/.config/nvim/plugged')
 	Plug 'Shougo/deoplete.nvim'
 	Plug 'zchee/deoplete-go', { 'do': 'make'}
+	Plug 'mhartington/deoplete-typescript'
 else
 	call plug#begin('~/.vim/plugged')
 	Plug 'Shougo/neocomplete.vim'
@@ -39,8 +40,8 @@ Plug 'tpope/vim-eunuch' " Adds Unix commands to vim.
 Plug 'tpope/vim-surround' " To change surrounding quote: cs(' ;tag cst<th> ;to add quote ysW'
 Plug 'tpope/vim-vinegar' " Enhance of netrw
 
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'FelikZ/ctrlp-py-matcher'
+" Plug 'ctrlpvim/ctrlp.vim'
+" Plug 'FelikZ/ctrlp-py-matcher'
 Plug 'mileszs/ack.vim'
 
 Plug 'tmux-plugins/vim-tmux'
@@ -63,6 +64,14 @@ Plug 'leafgarland/typescript-vim'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'quramy/tsuquyomi'
 Plug 'magarcia/vim-angular2-snippets'
+
+Plug 'Shougo/unite.vim'
+Plug 'Shougo/neomru.vim'
+Plug 'ujihisa/unite-colorscheme'
+Plug 'Shougo/neoyank.vim'
+Plug 'Shougo/unite-outline'
+Plug 'Shougo/unite-help'
+Plug 'mackee/unite-httpstatus'
 " Plug 'ervandew/supertab'
 " Plug 'vim-scripts/ReplaceWithRegister'
 " Plug 'maksimr/vim-jsbeautify', {'for': ['javascript', 'css', 'html']} " Provide beatify for html, js, css
@@ -305,13 +314,15 @@ autocmd BufLeave *.js             normal! mJ
 
 " Typescript
 " ----------
+autocmd FileType typescript setlocal completeopt+=menu,preview
 autocmd FileType typescript setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
 autocmd FileType typescript nmap <leader>d <Plug>(TsuquyomiDefinition)
 autocmd FileType typescript nmap <leader>ref <Plug>(TsuquyomiReferences)
 autocmd FileType typescript nmap <leader>re <Plug>(TsuquyomiRenameSymbolC)
 autocmd FileType typescript nmap <leader>im <Plug>(TsuquyomiImport)
 autocmd FileType typescript noremap <buffer> <leader>r :%!js-beautify --type typescript -j -q -B -f -<CR>
-autocmd BufLeave *.js             normal! mT
+autocmd FileType typescript nmap <buffer> <Leader>T : <C-u>echo tsuquyomi#hint()<CR>
+autocmd BufLeave *.ts             normal! mT
 
 " ruby
 " ----
@@ -450,47 +461,103 @@ let g:ackpreview = 1
  " Run last command executed by VimuxRunCommand
  nnoremap <leader>cu :VimuxRunLastCommand<CR>
 
-"Settings for CtrlP
-set wildignore+=*.pyc
-set wildignore+=*.spl " compiled spelling word lists
-set wildignore+=*.DS_Store " OSX stuff
-set wildignore+=go/pkg
-set wildignore+=go/bin
-set wildignore+=*.orig
-set wildignore+=*.sw?
-set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
-set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
-set wildignore+=.hg,.git,.svn                    " Version control
+" "Settings for CtrlP
+" set wildignore+=*.pyc
+" set wildignore+=*.spl " compiled spelling word lists
+" set wildignore+=*.DS_Store " OSX stuff
+" set wildignore+=go/pkg
+" set wildignore+=go/bin
+" set wildignore+=*.orig
+" set wildignore+=*.sw?
+" set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
+" set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
+" set wildignore+=.hg,.git,.svn                    " Version control
 
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
-let g:ctrlp_max_height = 10             " maxiumum height of match window
-let g:ctrlp_switch_buffer = 'et'        " jump to a file if it's open already
-let g:ctrlp_mruf_max=450                " number of recently opened files
-let g:ctrlp_max_files=0
-let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
-      \ --ignore .git
-      \ --ignore .svn
-      \ --ignore .hg
-      \ --ignore .DS_Store
-      \ --ignore "**/*.pyc"
-      \ -g ""'
+" let g:ctrlp_map = '<c-p>'
+" let g:ctrlp_cmd = 'CtrlP'
+" let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+" let g:ctrlp_max_height = 10             " maxiumum height of match window
+" let g:ctrlp_switch_buffer = 'et'        " jump to a file if it's open already
+" let g:ctrlp_mruf_max=450                " number of recently opened files
+" let g:ctrlp_max_files=0
+" let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
+"       \ --ignore .git
+"       \ --ignore .svn
+"       \ --ignore .hg
+"       \ --ignore .DS_Store
+"       \ --ignore "**/*.pyc"
+"       \ -g ""'
+
 " let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 
 " Settings for fugitive
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gp :Gpush<CR>
 vnoremap <leader>gb :Gblame<CR>
-nnoremap <leader>gdi :Gdiff<cr>
-nnoremap <leader>dup :diffupdate<cr>
+nnoremap <leader>gdi :Gdiff<CR>
+nnoremap <leader>dup :diffupdate<CR>
 
 " Settings for sayonara
 nnoremap <silent> <leader>q :Sayonara<CR>
-nnoremap <silent> <leader>Q :Sayonara!<cr>
+nnoremap <silent> <leader>Q :Sayonara!<CR>
 
 " Settings for ListToggle
 let g:lt_quickfix_list_toggle_map = '<leader>fix'
+
+" Unite settings
+" nnoremap <C-i> :Unite file_rec/async<cr>
+let g:unite_source_history_yank_enable=1
+let g:unite_prompt='❯ '
+let g:unite_source_rec_async_command =['ag', '--follow', '--nocolor', '--nogroup','--hidden', '-g', '', '--ignore', '.git', '--ignore', '*.png', '--ignore', 'lib']
+if has('nvim')
+  nnoremap <silent> <C-p> :Unite -start-insert -vertical -direction=botright buffer file_mru file_rec/neovim<CR>
+  " nnoremap <C-p> :Unite buffer file_mru file_rec -no-split -start-insert<CR>
+  nnoremap <silent> <leader>c :Unite -auto-resize -start-insert -direction=botright colorscheme<CR>
+
+  nnoremap <silent> <leader>o :Unite -winwidth=45 -vertical -direction=botright outline<CR>
+  " Custom mappings for the unite buffer
+  autocmd FileType unite call s:unite_settings()
+  function! s:unite_settings()
+    " Enable navigation with control-j and control-k in insert mode
+    imap <buffer> <C-j>   <Plug>(unite_select_next_line)
+    imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
+  endfunction
+
+  let g:unite_source_menu_menus = {} " Useful when building interfaces at appropriate places
+  let g:unite_source_menu_menus.git = {'description' : 'Fugitive interface',}
+  let g:unite_source_menu_menus.git.command_candidates = [
+    \[' git status', 'Gstatus'],
+    \[' git diff', 'Gvdiff'],
+    \[' git commit', 'Gcommit'],
+    \[' git stage/add', 'Gwrite'],
+    \[' git checkout', 'Gread'],
+    \[' git rm', 'Gremove'],
+    \[' git cd', 'Gcd'],
+    \[' git push', 'exe "Git! push " input("remote/branch: ")'],
+    \[' git pull', 'exe "Git! pull " input("remote/branch: ")'],
+    \[' git pull rebase', 'exe "Git! pull --rebase " input("branch: ")'],
+    \[' git checkout branch', 'exe "Git! checkout " input("branch: ")'],
+    \[' git fetch', 'Gfetch'],
+    \[' git merge', 'Gmerge'],
+    \[' git browse', 'Gbrowse'],
+    \[' git head', 'Gedit HEAD^'],
+    \[' git parent', 'edit %:h'],
+    \[' git log commit buffers', 'Glog --'],
+    \[' git log current file', 'Glog -- %'],
+    \[' git log last n commits', 'exe "Glog -" input("num: ")'],
+    \[' git log first n commits', 'exe "Glog --reverse -" input("num: ")'],
+    \[' git log until date', 'exe "Glog --until=" input("day: ")'],
+    \[' git log grep commits',  'exe "Glog --grep= " input("string: ")'],
+    \[' git log pickaxe',  'exe "Glog -S" input("string: ")'],
+    \[' git index', 'exe "Gedit " input("branchname\:filename: ")'],
+    \[' git mv', 'exe "Gmove " input("destination: ")'],
+    \[' git grep',  'exe "Ggrep " input("string: ")'],
+    \[' git prompt', 'exe "Git! " input("command: ")'],
+    \] " Append ' --' after log to get commit info commit buffers
+  nnoremap <silent> <Leader>g :Unite -direction=botright -silent -buffer-name=git -start-insert menu:git<CR>
+else
+  nnoremap <C-p> :Unite buffer file_mru file_rec -no-split -start-insert<CR>
+endif
 
 " ------------------------------------------------------------------------ }}}
 " Settings for (neocomplete and deoplete) and neosnippet ---------------------------- {{{
@@ -507,6 +574,13 @@ if has('nvim')
   let g:deoplete#auto_completion_start_length = 1
   let g:deoplete#sources#syntax#min_keyword_length = 2
 
+  if !exists('g:deoplete#force_omni_input_patterns')
+    let g:deoplete#force_omni_input_patterns = {}
+  endif
+  let g:deoplete#force_omni_input_patterns.typescript = '[^. \t]\.\%(\h\w*\)\?' " Same as JavaScript
+
+  let g:deoplete#sources#tss#javascript_support = 1
+
   " Close popup by <Space>.
   inoremap <expr><C-x> pumvisible() ? deoplete#mappings#close_popup() : "\<Space>"
 
@@ -518,7 +592,7 @@ if has('nvim')
   imap <expr><TAB> neosnippet#jumpable() ?
   \ "\<Plug>(neosnippet_jump)"
   \: pumvisible() ? "\<C-n>" : "\<TAB>"
-  let g:neosnippet#snippets_directory='~/.config/nvim/plugged/vim-go/gosnippets/snippets'
+  let g:neosnippet#snippets_directory='~/.config/nvim/plugged/vim-go/gosnippets/snippets, ~/.config/nvim/plugged/neosnippet-snippets/neosnippets, ~/.config/nvim/plugged/vim-angular2-snippets/snippets'
 else
   " Neocomplete
 
@@ -531,6 +605,12 @@ else
   " Set minimum syntax keyword length.
   let g:neocomplete#auto_completion_start_length = 1
   let g:neocomplete#sources#syntax#min_keyword_length = 2
+
+  if !exists('g:neocomplete#force_omni_input_patterns')
+    let g:neocomplete#force_omni_input_patterns = {}
+  endif
+  " let g:neocomplete#force_omni_input_patterns.typescript = '[^. *\t]\.\w*\|\h\w*::'
+  let g:neocomplete#force_omni_input_patterns.typescript = '[^. \t]\.\%(\h\w*\)\?' " Same as JavaScript
 
   " Close popup by <Space>.
   inoremap <expr><C-x> pumvisible() ? neocomplete#close_popup() : "\<Space>"
