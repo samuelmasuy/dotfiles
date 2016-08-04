@@ -30,7 +30,7 @@ alias codesource='cd /usr/local/Cellar/python/2.7.9/Frameworks/Python.framework/
 # thefuck plugin
 alias fuck='eval $(thefuck $(fc -ln -1))'
 # Using neo vim
-alias vim="nvim"
+alias v="nvim"
 # load vim with very basic settings (way faster)
 alias vi="vim -u ~/.basic_vimrc"
 # dotfiles
