@@ -106,7 +106,13 @@ filetype plugin indent on
 " Appearance  ------------------------------------------------------------ {{{
 
 " Beautiful
-set t_Co=256
+if has('nvim')
+	if has('termguicolors')
+		set termguicolors
+	endif
+else
+	set t_Co=256
+endif
 " Enable syntax highlighting.
 syntax on
 
