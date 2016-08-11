@@ -24,6 +24,7 @@ if has('nvim')
 	Plug 'zchee/deoplete-go', { 'do': 'make'}
 	Plug 'mhartington/deoplete-typescript', {'for': ['typescript']}
 	Plug 'carlitux/deoplete-ternjs', {'for': ['javascript']}
+	Plug 'ternjs/tern_for_vim', { 'do': 'npm install', 'for': ['javascript']}
 	Plug 'zchee/deoplete-jedi', {'for': ['python']}
 	Plug 'mhartington/oceanic-next'
 else
@@ -107,7 +108,7 @@ filetype plugin indent on
 
 " Beautiful
 if has('nvim')
-	if has('termguicolors')
+	if (has("termguicolors"))
 		set termguicolors
 	endif
 else
@@ -122,8 +123,8 @@ au InsertLeave * match ExtraWhitespace /\s\+$/
 
 " Color scheme.
 set background=dark
-silent! colorscheme gruvbox
-" silent! colorscheme OceanicNext
+" silent! colorscheme gruvbox
+silent! colorscheme OceanicNext
 
 " Settings for Gruvbox
 let g:gruvbox_italicize_comments=0
@@ -317,6 +318,11 @@ autocmd FileType javascript setlocal commentstring=//\ %s
 autocmd FileType javascript noremap <buffer> <leader>r :%!js-beautify --type js -j -q -B -f -<CR>
 autocmd FileType javascript let b:javascript_fold = 0
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+let g:tern_map_keys = 0
+autocmd FileType javascript nmap <leader>d :TernDef<CR>
+autocmd FileType javascript nmap <leader>ref :TernRefs<CR>
+autocmd FileType javascript nmap <leader>re :TernRename<CR>
+autocmd FileType javascript nmap <leader>td :TernDoc<CR>
 let javascript_enable_domhtmlcss=1
 let g:neomake_javascript_enabled_makers = ['jshint']
 autocmd BufLeave *.js             normal! mJ
@@ -532,7 +538,7 @@ if has('nvim')
   let $FZF_DEFAULT_OPTS .= ' --inline-info'
 endif
 
-" File preview using CodeRay (http://coderay.rubychan.de/)
+" File preview using CodeRay (http://coderay.rubychan.de/) sudo gem install coderay
 let g:fzf_files_options =
   \ '--preview "(coderay {} || cat {}) 2> /dev/null | head -'.&lines.'"'
 
@@ -559,9 +565,9 @@ if has('nvim')
   let g:deoplete#auto_completion_start_length = 1
   let g:deoplete#sources#syntax#min_keyword_length = 2
 
-  if !exists('g:deoplete#force_omni_input_patterns')
-    let g:deoplete#force_omni_input_patterns = {}
-  endif
+	if !exists('g:deoplete#force_omni_input_patterns')
+		let g:deoplete#force_omni_input_patterns = {}
+	endif
   let g:deoplete#force_omni_input_patterns.typescript = '[^. \t]\.\%(\h\w*\)\?' " Same as JavaScript
 
   let g:deoplete#sources#tss#javascript_support = 1
@@ -578,7 +584,7 @@ if has('nvim')
   \ "\<Plug>(neosnippet_jump)"
   \: pumvisible() ? "\<C-n>" : "\<TAB>"
   let g:neosnippet#snippets_directory='~/.config/nvim/plugged/vim-go/gosnippets/snippets, ~/.config/nvim/plugged/neosnippet-snippets/neosnippets, ~/.config/nvim/plugged/vim-angular2-snippets/snippets'
-let g:neomake_python_enabled_makers = ['flake8', 'python']
+	let g:neomake_python_enabled_makers = ['flake8', 'python']
 
   " let g:tern_request_timeout = 1
   if !exists('g:deoplete#omni#input_patterns')
