@@ -105,29 +105,24 @@ filetype plugin indent on
 
 " ------------------------------------------------------------------------ }}}
 " Appearance  ------------------------------------------------------------ {{{
-
-" Beautiful
-if has('nvim')
-	if (has("termguicolors"))
-		set termguicolors
-	endif
-else
-	set t_Co=256
-endif
 " Enable syntax highlighting.
 syntax on
+
+" Beautiful
+if has('nvim') && has("termguicolors")
+		silent! colorscheme OceanicNext
+		set termguicolors
+else
+	set t_Co=256
+	silent! colorscheme gruvbox
+	let g:gruvbox_italicize_comments=0
+endif
+
+set background=dark
 
 " Show whitespace.
 autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red
 au InsertLeave * match ExtraWhitespace /\s\+$/
-
-" Color scheme.
-set background=dark
-" silent! colorscheme gruvbox
-silent! colorscheme OceanicNext
-
-" Settings for Gruvbox
-let g:gruvbox_italicize_comments=0
 
 " ------------------------------------------------------------------------ }}}
 " Miscellaneous settings ------------------------------------------------- {{{
@@ -441,6 +436,7 @@ vnoremap <leader>; :s::g<Left><Left>
 " Settings for vim-airline
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'powerlineish'
+" let g:airline_theme = 'oceanicnext'
 set laststatus=2
 let g:airline#extensions#whitespace#checks = []
 
