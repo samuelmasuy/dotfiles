@@ -93,7 +93,7 @@ brew 'scons'
 brew 'the_platinum_searcher'
 brew 'the_silver_searcher'
 brew 'tig'
-brew 'tmux'
+brew 'tmux', args: ['HEAD']
 brew 'tree'
 brew 'unixodbc'
 brew 'vim', args: ['HEAD', 'with-lua', 'with-python3']
