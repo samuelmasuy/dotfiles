@@ -66,7 +66,7 @@ echo "*********************Symlinking dotfiles...*******************************
 echo "**************************************************************************"
 mkdir $HOME/.config
 ln -s $HOME/Dropbox/Github/dotfiles/bash_profile $HOME/.bash_profile
-ln -s $HOME/Dropbox/Github/dotfiles/powerline $HOME/.config/powerline
+ln -s $HOME/Dropbox/Github/dotfiles/tmux $HOME/.tmux
 ln -s $HOME/Dropbox/Github/dotfiles/gitconfig $HOME/.gitconfig
 ln -s $HOME/Dropbox/Github/dotfiles/githelpers $HOME/.githelpers
 ln -s $HOME/Dropbox/Github/dotfiles/gitignore $HOME/.gitignore
