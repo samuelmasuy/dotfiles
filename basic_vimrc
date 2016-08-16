@@ -55,21 +55,11 @@ set hidden
 set nobackup
 set nowritebackup
 set noswapfile
-" Disable un-VI keys.
-map <up> <nop>
-map <down> <nop>
-map <left> <nop>
-map <right> <nop>
 " Make sure to be in the middle of the screen when searching.
 nnoremap n nzzzv
 nnoremap N Nzzzv
 " Easier indentation of code blocks.
 vnoremap < <gv
 vnoremap > >gv
-" basic, why not before
-nnoremap ; :
-nnoremap : ;
-vnoremap ; :
-vnoremap : ;
 " logical
 nnoremap Y y$
