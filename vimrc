@@ -83,6 +83,7 @@ Plug 'mackee/unite-httpstatus'
 Plug 'davidhalter/jedi-vim', {'for': ['python']} " !Important when using python
 Plug 'vim-scripts/DirDiff.vim' " :DirDiff <A:Src Directory> <B:Src Directory>
 Plug 'ekalinin/Dockerfile.vim', {'for' : 'Dockerfile'}
+Plug 'bronson/vim-trailing-whitespace'
 
 call plug#end()
 
@@ -119,10 +120,6 @@ else
 endif
 
 set background=dark
-
-" Show whitespace.
-autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red
-au InsertLeave * match ExtraWhitespace /\s\+$/
 
 " ------------------------------------------------------------------------ }}}
 " Miscellaneous settings ------------------------------------------------- {{{
