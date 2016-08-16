@@ -3,7 +3,7 @@ set -e
 
 if [[ ! -d "$HOME/Dropbox" ]]; then
     echo "Need to manually install Dropbox First and sync it."
-    echo "Install XCode at the same time."
+    echo "Install XCode as well."
     exit 1
 fi
 
@@ -62,24 +62,6 @@ ln -s $HOME/Dropbox/www $HOME/www
 ln -s $HOME/Dropbox/Github/go/ $HOME/go
 
 echo "**************************************************************************"
-echo "*********************Symlinking dotfiles...*******************************"
-echo "**************************************************************************"
-mkdir $HOME/.config
-ln -s $HOME/Dropbox/Github/dotfiles/bash_profile $HOME/.bash_profile
-ln -s $HOME/Dropbox/Github/dotfiles/tmux $HOME/.tmux
-ln -s $HOME/Dropbox/Github/dotfiles/gitconfig $HOME/.gitconfig
-ln -s $HOME/Dropbox/Github/dotfiles/githelpers $HOME/.githelpers
-ln -s $HOME/Dropbox/Github/dotfiles/gitignore $HOME/.gitignore
-ln -s $HOME/Dropbox/Github/dotfiles/tmux.conf $HOME/.tmux.conf
-ln -s $HOME/Dropbox/Github/dotfiles/vimrc $HOME/.vimrc
-ln -s $HOME/Dropbox/Github/dotfiles/basic_vimrc $HOME/.basic_vimrc
-ln -s $HOME/Dropbox/Github/dotfiles/ideavimrc $HOME/.ideavimrc
-ln -s $HOME/Dropbox/Github/dotfiles/zshrc $HOME/.zshrc
-ln -s $HOME/Dropbox/Github/dotfiles/zsh $HOME/.zsh
-ln -s $HOME/Dropbox/Github/dotfiles/my_theme.zsh-theme $HOME/.oh-my-zsh/themes/my_theme.zsh-theme
-ln -s $HOME/Dropbox/Github/dotfiles/ackrc $HOME/.ackrc
-
-echo "**************************************************************************"
 echo "************************Install Plug for vim...***************************"
 echo "**************************************************************************"
 mkdir -p $HOME/.vim/autoload
@@ -104,6 +86,25 @@ echo "***********************Install nVim plugins...**************************"
 echo "**************************************************************************"
 nvim -c "PlugInstall" -c q -c q
 nvim -c "UpdateRemotePlugins" -c q
+
+echo "**************************************************************************"
+echo "*********************Symlinking dotfiles...*******************************"
+echo "**************************************************************************"
+mkdir $HOME/.config
+ln -s $HOME/Dropbox/Github/dotfiles/bash_profile $HOME/.bash_profile
+ln -s $HOME/Dropbox/Github/dotfiles/tmux $HOME/.tmux
+ln -s $HOME/Dropbox/Github/dotfiles/gitconfig $HOME/.gitconfig
+ln -s $HOME/Dropbox/Github/dotfiles/githelpers $HOME/.githelpers
+ln -s $HOME/Dropbox/Github/dotfiles/gitignore $HOME/.gitignore
+ln -s $HOME/Dropbox/Github/dotfiles/tmux.conf $HOME/.tmux.conf
+ln -s $HOME/Dropbox/Github/dotfiles/vimrc $HOME/.vimrc
+ln -s $HOME/Dropbox/Github/dotfiles/vimrc $HOME/.config/nvim/init.vim
+ln -s $HOME/Dropbox/Github/dotfiles/basic_vimrc $HOME/.basic_vimrc
+ln -s $HOME/Dropbox/Github/dotfiles/ideavimrc $HOME/.ideavimrc
+ln -s $HOME/Dropbox/Github/dotfiles/zshrc $HOME/.zshrc
+ln -s $HOME/Dropbox/Github/dotfiles/zsh $HOME/.zsh
+ln -s $HOME/Dropbox/Github/dotfiles/my_theme.zsh-theme $HOME/.oh-my-zsh/themes/my_theme.zsh-theme
+ln -s $HOME/Dropbox/Github/dotfiles/ackrc $HOME/.ackrc
 
 echo "**************************************************************************"
 echo "************************Install NVM***************************************"
