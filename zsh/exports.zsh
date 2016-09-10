@@ -9,7 +9,7 @@ export PATH="$PATH:/usr/local/bin:$HOME/bin:/usr/bin:/bin:/usr/sbin:/sbin:$GOPAT
 export PATH="$PATH:$JAVA_HOME/bin:/opt/apache-maven-3.1.1/bin"
 export MANPATH="/usr/local/man:$MANPATH"
 
-export EDITOR="vim"
+export EDITOR="nvim"
 
 # Path to oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
