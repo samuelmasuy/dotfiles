@@ -28,10 +28,6 @@ if has('nvim')
 	Plug 'zchee/deoplete-jedi', {'for': ['python']}
 	Plug 'mhartington/oceanic-next'
 	Plug 'rakr/vim-two-firewatch'
-	" set background=dark " or light if you prefer the light version
-	" let g:two_firewatch_italics=1
-	" colo two-firewatch
-	" let g:airline_theme='twofirewatch'
 else
 	call plug#begin('~/.vim/plugged')
 	Plug 'Shougo/neocomplete.vim'
@@ -116,6 +112,8 @@ filetype plugin indent on
 " Enable syntax highlighting.
 syntax on
 
+set background=dark
+
 " Beautiful
 if has('nvim') && has("termguicolors")
 		silent! colorscheme OceanicNext
@@ -125,8 +123,6 @@ else
 	silent! colorscheme gruvbox
 	let g:gruvbox_italicize_comments=0
 endif
-
-set background=dark
 
 " ------------------------------------------------------------------------ }}}
 " Miscellaneous settings ------------------------------------------------- {{{
@@ -439,8 +435,9 @@ vnoremap <leader>; :s::g<Left><Left>
 " Plugins setup. --------------------------------------------------------- {{{
 " Settings for vim-airline
 let g:airline_powerline_fonts = 1
-let g:airline_theme = 'powerlineish'
-" let g:airline_theme = 'oceanicnext'
+" let g:airline_theme = 'powerlineish'
+let g:airline_theme = 'oceanicnext'
+" let g:airline_theme='twofirewatch'
 set laststatus=2
 let g:airline#extensions#whitespace#checks = []
 
