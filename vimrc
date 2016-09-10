@@ -27,6 +27,11 @@ if has('nvim')
 	Plug 'ternjs/tern_for_vim', { 'do': 'npm install', 'for': ['javascript']}
 	Plug 'zchee/deoplete-jedi', {'for': ['python']}
 	Plug 'mhartington/oceanic-next'
+	Plug 'rakr/vim-two-firewatch'
+	" set background=dark " or light if you prefer the light version
+	" let g:two_firewatch_italics=1
+	" colo two-firewatch
+	" let g:airline_theme='twofirewatch'
 else
 	call plug#begin('~/.vim/plugged')
 	Plug 'Shougo/neocomplete.vim'
@@ -84,6 +89,8 @@ Plug 'davidhalter/jedi-vim', {'for': ['python']} " !Important when using python
 Plug 'vim-scripts/DirDiff.vim' " :DirDiff <A:Src Directory> <B:Src Directory>
 Plug 'ekalinin/Dockerfile.vim', {'for' : 'Dockerfile'}
 Plug 'bronson/vim-trailing-whitespace'
+
+Plug 'junegunn/vim-peekaboo'
 
 call plug#end()
 
