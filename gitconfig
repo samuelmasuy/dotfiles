@@ -2,41 +2,42 @@
 	name = Samuel Masuy
 	email = samuel.masuy@gmail.com
 [core]
-    editor = vim
+	editor = vim
 	excludesfile = /Users/samuelmasuy/.gitignore
-    whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 [web]
-    browser = google-chrome
+	browser = google-chrome
 [color]
- 	ui = auto
-[color "branch"]
-    current = yellow bold
-    local = green bold
-    remote = cyan bold
+	ui = auto
+	[color "branch"]
+	current = yellow bold
+	local = green bold
+	remote = cyan bold
 [color "diff"]
-    meta = yellow bold
-    frag = magenta bold
-    old = red bold
-    new = green bold
-    whitespace = red reverse
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
 [color "status"]
-    added = green
-    changed = yellow
-    untracked = red
+	added = green
+	changed = yellow
+	untracked = red
 [alias]
-    st = status
+	st = status
 	co = checkout
-    l = "!source ~/.githelpers && pretty_git_log"
-    r = "!git l -30"
-    head = !git r -1
-    h = !git head
-    hp = "!. ~/.githelpers && show_git_head"
+	l = "!source ~/.githelpers && pretty_git_log"
+	r = "!git l -30"
+	head = !git r -1
+	h = !git head
+	hp = "!. ~/.githelpers && show_git_head"
+	up = pull --rebase --autostash
 [push]
-    default = simple
-[filter "media"]
+	default = simple
+	[filter "media"]
 	clean = git-media-clean %f
 	smudge = git-media-smudge %f
 [merge]
-    tool = vimdiff
+	tool = vimdiff
 [credential]
 	helper = osxkeychain

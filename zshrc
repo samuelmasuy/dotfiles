@@ -5,12 +5,13 @@ export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="my_theme"
 
 # Plugins for zsh.
-plugins=(git tmux nvm tmuxinator brew osx sublime virtualenvwrapper colorize gradle go vi-mode web-search zsh_reload z vagrant zsh-syntax-highlighting history-substring-search)
+plugins=(git tmux nvm mvn tmuxinator brew osx sublime colorize gradle go vi-mode web-search zsh_reload z vagrant zsh-syntax-highlighting history-substring-search)
 
 source ~/.zsh/colors.zsh
 source ~/.zsh/exports.zsh
 source ~/.zsh/aliases.zsh
 source ~/.zsh/functions.zsh
+source ~/.zsh/secrets.zsh
 
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
@@ -19,6 +20,8 @@ bindkey '^[[B' history-substring-search-down
 # Initiate oh-my-zsh.
 source $ZSH/oh-my-zsh.sh
 
-export NVM_DIR="/Users/samuel/.nvm"
+export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-nvm use default
+nvm use --delete-prefix v6.5.0
+
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
