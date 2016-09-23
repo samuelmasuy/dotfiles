@@ -13,8 +13,8 @@ source ~/.zsh/aliases.zsh
 source ~/.zsh/functions.zsh
 source ~/.zsh/secrets.zsh
 
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
+# bindkey '^[[A' history-substring-search-up
+# bindkey '^[[B' history-substring-search-down
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # Initiate oh-my-zsh.

@@ -20,18 +20,18 @@ autocmd! bufwritepost $MYVIMRC source $MYVIMRC
 
 if has('nvim')
 	call plug#begin('~/.config/nvim/plugged')
-	Plug 'Shougo/deoplete.nvim'
+	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 	Plug 'zchee/deoplete-go', { 'do': 'make'}
+	Plug 'zchee/deoplete-clang', {'for': ['cpp']}
 	Plug 'mhartington/deoplete-typescript', {'for': ['typescript']}
+	Plug 'zchee/deoplete-jedi', {'for': ['python']}
+
 	Plug 'carlitux/deoplete-ternjs', {'for': ['javascript']}
 	Plug 'ternjs/tern_for_vim', { 'do': 'npm install', 'for': ['javascript']}
-	Plug 'zchee/deoplete-jedi', {'for': ['python']}
+	Plug 'othree/jspc.vim', { 'for': ['javascript'] }
+
 	Plug 'mhartington/oceanic-next'
 	Plug 'rakr/vim-two-firewatch'
-	" set background=dark " or light if you prefer the light version
-	" let g:two_firewatch_italics=1
-	" colo two-firewatch
-	" let g:airline_theme='twofirewatch'
 else
 	call plug#begin('~/.vim/plugged')
 	Plug 'Shougo/neocomplete.vim'
@@ -116,17 +116,22 @@ filetype plugin indent on
 " Enable syntax highlighting.
 syntax on
 
+set background=dark
+
 " Beautiful
 if has('nvim') && has("termguicolors")
-		silent! colorscheme OceanicNext
-		set termguicolors
+	silent! colorscheme OceanicNext
+	set termguicolors
+	let g:airline_theme = 'oceanicnext'
+	" let g:airline_theme='twofirewatch'
 else
 	set t_Co=256
 	silent! colorscheme gruvbox
 	let g:gruvbox_italicize_comments=0
+	let g:airline_theme = 'powerlineish'
 endif
 
-set background=dark
+set guifont:Hack:h15
 
 " ------------------------------------------------------------------------ }}}
 " Miscellaneous settings ------------------------------------------------- {{{
@@ -318,12 +323,12 @@ autocmd FileType javascript noremap <buffer> <leader>r :%!js-beautify --type js 
 autocmd FileType javascript let b:javascript_fold = 0
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 let g:tern_map_keys = 0
-autocmd FileType javascript nmap <leader>d :TernDef<CR>
-autocmd FileType javascript nmap <leader>ref :TernRefs<CR>
-autocmd FileType javascript nmap <leader>re :TernRename<CR>
-autocmd FileType javascript nmap <leader>td :TernDoc<CR>
+autocmd FileType javascript noremap <leader>d :TernDef<CR>
+autocmd FileType javascript noremap <leader>ref :TernRefs<CR>
+autocmd FileType javascript noremap <leader>re :TernRename<CR>
+autocmd FileType javascript noremap <leader>td :TernDoc<CR>
 let javascript_enable_domhtmlcss=1
-let g:neomake_javascript_enabled_makers = ['jshint']
+let g:neomake_javascript_enabled_makers = ['eslint']
 autocmd BufLeave *.js             normal! mJ
 
 " Typescript
@@ -382,8 +387,8 @@ autocmd FileType md setlocal noexpandtab shiftwidth=4 tabstop=4 softtabstop=4
 autocmd FileType markdown setlocal noexpandtab shiftwidth=4 tabstop=4 softtabstop=4
 
 " C/Obj-C/C++
-autocmd FileType c setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
-autocmd FileType cpp setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
+autocmd FileType c setlocal tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
+autocmd FileType cpp setlocal tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
 autocmd FileType objc setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 autocmd FileType c setlocal commentstring=/*\ %s\ */
 autocmd FileType cpp,objc setlocal commentstring=//\ %s
@@ -439,8 +444,6 @@ vnoremap <leader>; :s::g<Left><Left>
 " Plugins setup. --------------------------------------------------------- {{{
 " Settings for vim-airline
 let g:airline_powerline_fonts = 1
-let g:airline_theme = 'powerlineish'
-" let g:airline_theme = 'oceanicnext'
 set laststatus=2
 let g:airline#extensions#whitespace#checks = []
 
@@ -564,6 +567,12 @@ if has('nvim')
   " Set minimum syntax keyword length.
   let g:deoplete#auto_completion_start_length = 1
   let g:deoplete#sources#syntax#min_keyword_length = 2
+
+	let g:deoplete#omni#functions = {}
+	let g:deoplete#omni#functions.javascript = [
+		\ 'tern#Complete',
+		\ 'jspc#omni'
+	\]
 
 	if !exists('g:deoplete#force_omni_input_patterns')
 		let g:deoplete#force_omni_input_patterns = {}

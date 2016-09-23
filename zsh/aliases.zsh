@@ -17,22 +17,25 @@ alias ipyhton='ipython'
 # Prevent the system from sleeping for one hour.
 alias cafe='caffeinate -t 3600 &'
 # Convert markdown to html
-alias toHtml='markdown_py'
+#alias toHtml='markdown_py'
 # Display a clock on the upper right hand side of the terminal.
 alias clock='while sleep 1;do tput sc;tput cup 0 $(($(tput cols)-29));date;tput rc;done &'
 # Open mac vim
 alias mvim='open -a macvim'
-alias subl="/opt/homebrew-cask/Caskroom/sublime-text3/Build\ 3059/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
+#alias subl="/opt/homebrew-cask/Caskroom/sublime-text3/Build\ 3059/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
 # Open tmux with 356 colors
-alias tmux="TERM=screen-256color-bce tmux"
+#alias tmux="TERM=screen-256color-bce tmux"
 # python source code
-alias codesource='cd /usr/local/Cellar/python/2.7.9/Frameworks/Python.framework/Versions/2.7/lib/python2.7'
+#alias codesource='cd /usr/local/Cellar/python/2.7.9/Frameworks/Python.framework/Versions/2.7/lib/python2.7'
 # thefuck plugin
-alias fuck='eval $(thefuck $(fc -ln -1))'
-# Using neo vim
-alias v="nvim"
+# alias fuck='eval $(thefuck $(fc -ln -1))'
+alias mux="tmuxinator"
+# Using neovim
+alias vim="nvim"
+alias vimdiff="nvim -d"
 # load vim with very basic settings (way faster)
-alias vi="vim -u ~/.basic_vimrc"
+alias vi="vi -u ~/.basic_vimrc"
 # dotfiles
+alias cdd="cd $HOME/.dotfiles"
 alias cdg="cd $HOME/Dropbox/Github/dotfiles"
 alias cdb="cd $HOME/Dropbox/Bitbucket/dotfiles"
