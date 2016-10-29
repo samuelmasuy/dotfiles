@@ -108,6 +108,8 @@ export PS1="\[\033[01;33m\]\$(date +%H:%M:%S) \[\e[0;35m\]\u\[\e[0;37m\]@\[\e[0;
 # Don't let virtualenv show prompts by itself.
 VIRTUAL_ENV_DISABLE_PROMPT=1
 export PATH=/usr/local/bin:$PATH
+export PATH=/usr/local/lib:$PATH
+export PATH=/usr/local/include:$PATH
 export PATH=/usr/local/share/python:$PATH
 export WORKON_HOME=~/Envs
 source /usr/local/bin/virtualenvwrapper.sh

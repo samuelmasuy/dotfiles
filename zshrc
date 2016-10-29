@@ -22,6 +22,11 @@ source $ZSH/oh-my-zsh.sh
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-nvm use --delete-prefix v6.5.0
+# nvm use --delete-prefix v6.4
 
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+alias -s md=nvim # suffix alias
+zstyle ':completion:*:cd:*' ignore-parents parent pwd # cd will never select the parent directory
+# ternjs settings to load file eagerly
+ulimit -n 2048

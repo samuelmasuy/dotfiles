@@ -1,12 +1,12 @@
 export GOPATH=$HOME/go
-export GOROOT=/usr/local/opt/go/libexec
 export MAVEN_OPTS="-Xmx1024m -Xms512m"
 export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
 #export IDEA_JDK="/Library/Java/JavaVirtualMachines/jdk1.8.0_72.jdk/Contents/Home
 
 export PATH="$PATH:/usr/local/sbin:/usr/local/bin/python:/Applications/VirtualBox.app/Contents/MacOS"
-export PATH="$PATH:/usr/local/bin:$HOME/bin:/usr/bin:/bin:/usr/sbin:/sbin:$GOPATH/bin:$GOROOT/bin"
-export PATH="$PATH:$JAVA_HOME/bin:/opt/apache-maven-3.1.1/bin"
+export PATH="$PATH:/usr/local/bin:$HOME/bin:/usr/bin:/bin:/usr/sbin:/sbin:$GOPATH/bin"
+export PATH="$PATH:$JAVA_HOME/bin:/opt/apache-maven-3.3.9/bin"
+export PATH="$PATH:$HOME/.yarn/bin"
 export MANPATH="/usr/local/man:$MANPATH"
 
 export EDITOR="nvim"
