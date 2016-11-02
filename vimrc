@@ -19,21 +19,21 @@
 autocmd! bufwritepost $MYVIMRC source $MYVIMRC
 
 if has('nvim')
-	call plug#begin('~/.config/nvim/plugged')
-	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-	Plug 'zchee/deoplete-go', { 'do': 'make', 'for': ['go']}
-	Plug 'zchee/deoplete-clang', {'for': ['cpp']}
-	Plug 'mhartington/deoplete-typescript', {'for': ['typescript']}
-	Plug 'zchee/deoplete-jedi', {'for': ['python']}
+  call plug#begin('~/.config/nvim/plugged')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'zchee/deoplete-go', { 'do': 'make', 'for': ['go']}
+  Plug 'zchee/deoplete-clang', {'for': ['cpp']}
+  Plug 'mhartington/deoplete-typescript', {'for': ['typescript']}
+  Plug 'zchee/deoplete-jedi', {'for': ['python']}
 
-	Plug 'carlitux/deoplete-ternjs', {'for': ['javascript']}
-	Plug 'ternjs/tern_for_vim', { 'do': 'npm install', 'for': ['javascript']}
-	Plug 'othree/jspc.vim', { 'for': ['javascript'] }
+  Plug 'carlitux/deoplete-ternjs', {'for': ['javascript']}
+  Plug 'ternjs/tern_for_vim', { 'do': 'npm install', 'for': ['javascript']}
+  Plug 'othree/jspc.vim', { 'for': ['javascript'] }
 
-	Plug 'rakr/vim-two-firewatch'
+  Plug 'rakr/vim-two-firewatch'
 else
-	call plug#begin('~/.vim/plugged')
-	Plug 'Shougo/neocomplete.vim'
+  call plug#begin('~/.vim/plugged')
+  Plug 'Shougo/neocomplete.vim'
 endif
 
 " Essential
@@ -92,17 +92,17 @@ call plug#end()
 
 " Better copy & paste.
 if has('mac')
-	set clipboard=unnamed
+  set clipboard=unnamed
 elseif has('unix') && (executable('pbcopy') || executable('xclip') || executable('xsel')) && has('clipboard')
-	set clipboard+=unnamedplus
+  set clipboard+=unnamedplus
 endif
 " See the commands typed in the right bottom corner.
 set showcmd
 if !has('nvim')
-	" Make backspace behave like normal.
-	set bs=2
-	" Auto Indent
-	set autoindent
+  " Make backspace behave like normal.
+  set bs=2
+  " Auto Indent
+  set autoindent
 endif
 
 filetype plugin indent on
@@ -116,16 +116,16 @@ set background=dark
 
 " Beautiful
 if has('nvim') && has("termguicolors")
-	set termguicolors
-	silent! colorscheme OceanicNext
-	" silent! colorscheme gruvbox
-	let g:airline_theme = 'oceanicnext'
-	" let g:airline_theme='twofirewatch'
+  set termguicolors
+  silent! colorscheme OceanicNext
+  " silent! colorscheme gruvbox
+  let g:airline_theme = 'oceanicnext'
+  " let g:airline_theme='twofirewatch'
 else
-	set t_Co=256
-	silent! colorscheme gruvbox
-	let g:gruvbox_italicize_comments=0
-	let g:airline_theme = 'powerlineish'
+  set t_Co=256
+  silent! colorscheme gruvbox
+  let g:gruvbox_italicize_comments=0
+  let g:airline_theme = 'powerlineish'
 endif
 
 set guifont:Hack:h15
@@ -134,7 +134,7 @@ set guifont:Hack:h15
 " Miscellaneous settings ------------------------------------------------- {{{
 
 if has('nvim')
-	let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+  let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 endif
 " Show the line that have been wrapped.
 let &showbreak='↪ '
@@ -174,13 +174,13 @@ set nowrap
 set fo-=t
 
 if !has('nvim')
-	" Useful settings.
-	set history=700
-	" Make search case insensitive.
-	set hlsearch
-	set incsearch
-	" Tab-completion options.
-	set wildmenu
+  " Useful settings.
+  set history=700
+  " Make search case insensitive.
+  set hlsearch
+  set incsearch
+  " Tab-completion options.
+  set wildmenu
 endif
 
 " How many undos
@@ -248,12 +248,12 @@ nnoremap <leader>dup :diffupdate<CR>
 nnoremap <silent> * :let stay_star_view = winsaveview()<cr>*:call winrestview(stay_star_view)<cr>
 
 if has('nvim')
-	" Terminal mode
-	tnoremap <Esc> <C-\><C-n>
-	tnoremap <C-h> <C-\><C-n><C-w>h
-	tnoremap <C-j> <C-\><C-n><C-w>j
-	tnoremap <C-k> <C-\><C-n><C-w>k
-	tnoremap <C-l> <C-\><C-n><C-w>l
+  " Terminal mode
+  tnoremap <Esc> <C-\><C-n>
+  tnoremap <C-h> <C-\><C-n><C-w>h
+  tnoremap <C-j> <C-\><C-n><C-w>j
+  tnoremap <C-k> <C-\><C-n><C-w>k
+  tnoremap <C-l> <C-\><C-n><C-w>l
 endif
 
 " ------------------------------------------------------------------------ }}}
@@ -266,10 +266,10 @@ autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 let python_highlight_all=1
 let python_slow_sync=1
 let g:neomake_python_flake8_maker = {
-			\ 'args': [
-					\ '--ignore=E121,E124,E126,E261,E301,E303,E501,E721',
-					\ '--max-line-length=104']
-		\ }
+      \ 'args': [
+      \ '--ignore=E121,E124,E126,E261,E301,E303,E501,E721',
+      \ '--max-line-length=104']
+      \ }
 " Don't warn on
 "   E121 continuation line indentation is not a multiple of four
 "   E124 closing bracket does not match visual indentation
@@ -389,14 +389,14 @@ autocmd FileType c setlocal commentstring=/*\ %s\ */
 autocmd FileType cpp,objc setlocal commentstring=//\ %s
 autocmd FileType c,cpp noremap <buffer> <leader>r :%!astyle --mode=c --style=google -n -s2<CR>
 let g:neomake_cpp_cpplint_maker = {
-            \ 'exe': 'cpplint'
-            \ }
+      \ 'exe': 'cpplint'
+      \ }
 let g:neomake_cpp_enabled_makers = ['cpplint']
 let c_no_curly_error=1
 
 " vim
 " ---
-autocmd FileType vim setlocal noexpandtab shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType vim setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 
 " JSON
 " ----
@@ -467,10 +467,10 @@ let g:ack_autofold_results = 1
 let g:ackpreview = 1
 
 " Vimux settings
- " Prompt for a command to run
- nnoremap <leader>cc :VimuxPromptCommand<CR>
- " Run last command executed by VimuxRunCommand
- nnoremap <leader>cu :VimuxRunLastCommand<CR>
+" Prompt for a command to run
+nnoremap <leader>cc :VimuxPromptCommand<CR>
+" Run last command executed by VimuxRunCommand
+nnoremap <leader>cu :VimuxRunLastCommand<CR>
 
 
 " Settings for sayonara
@@ -486,7 +486,7 @@ endif
 
 " File preview using CodeRay (http://coderay.rubychan.de/) sudo gem install coderay
 let g:fzf_files_options =
-  \ '--preview "(coderay {} || cat {}) 2> /dev/null | head -'.&lines.'"'
+      \ '--preview "(coderay {} || cat {}) 2> /dev/null | head -'.&lines.'"'
 
 nnoremap <silent> <expr> <Leader><Leader> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
 nnoremap <silent> <Leader>c        :Colors<CR>
@@ -515,15 +515,15 @@ if has('nvim')
   let g:deoplete#auto_completion_start_length = 1
   let g:deoplete#sources#syntax#min_keyword_length = 2
 
-	let g:deoplete#omni#functions = {}
-	let g:deoplete#omni#functions.javascript = [
-		\ 'tern#Complete',
-		\ 'jspc#omni'
-	\]
+  let g:deoplete#omni#functions = {}
+  let g:deoplete#omni#functions.javascript = [
+        \ 'tern#Complete',
+        \ 'jspc#omni'
+        \]
 
-	if !exists('g:deoplete#force_omni_input_patterns')
-		let g:deoplete#force_omni_input_patterns = {}
-	endif
+  if !exists('g:deoplete#force_omni_input_patterns')
+    let g:deoplete#force_omni_input_patterns = {}
+  endif
   let g:deoplete#force_omni_input_patterns.typescript = '[^. \t]\.\%(\h\w*\)\?' " Same as JavaScript
 
   let g:deoplete#sources#tss#javascript_support = 1
@@ -534,13 +534,13 @@ if has('nvim')
   " Neosnippet
   " SuperTab like snippets' behavior.
   imap <expr><CR> pumvisible() ?
-  \(neosnippet#expandable() ? "\<Plug>(neosnippet_expand)" : deoplete#mappings#close_popup())
-  \: "\<CR>"
+        \(neosnippet#expandable() ? "\<Plug>(neosnippet_expand)" : deoplete#mappings#close_popup())
+        \: "\<CR>"
   imap <expr><TAB> neosnippet#jumpable() ?
-  \ "\<Plug>(neosnippet_jump)"
-  \: pumvisible() ? "\<C-n>" : "\<TAB>"
+        \ "\<Plug>(neosnippet_jump)"
+        \: pumvisible() ? "\<C-n>" : "\<TAB>"
   let g:neosnippet#snippets_directory='~/.config/nvim/plugged/vim-go/gosnippets/snippets, ~/.config/nvim/plugged/neosnippet-snippets/neosnippets, ~/.config/nvim/plugged/vim-angular2-snippets/snippets'
-	let g:neomake_python_enabled_makers = ['flake8', 'python']
+  let g:neomake_python_enabled_makers = ['flake8', 'python']
 
   " let g:tern_request_timeout = 1
   if !exists('g:deoplete#omni#input_patterns')
@@ -553,7 +553,7 @@ if has('nvim')
   let g:tern#command = ['tern']
   let g:tern#arguments = ['--persistent', '--no-port-file']
 
-	let g:deoplete#sources#clang#libclang_path = '/usr/local/Cellar/llvm/3.8.1/lib/libclang.dylib' " mdfind -name libclang.dylib
+  let g:deoplete#sources#clang#libclang_path = '/usr/local/Cellar/llvm/3.8.1/lib/libclang.dylib' " mdfind -name libclang.dylib
 else
   " Neocomplete
 
@@ -579,12 +579,12 @@ else
   " Neosnippet
   " SuperTab like snippets' behavior.
   imap <expr><CR> pumvisible() ?
-  \(neosnippet#expandable() ? "\<Plug>(neosnippet_expand)" : neocomplete#close_popup())
-  \: "\<CR>"
+        \(neosnippet#expandable() ? "\<Plug>(neosnippet_expand)" : neocomplete#close_popup())
+        \: "\<CR>"
 
   imap <expr><TAB> neosnippet#jumpable() ?
-  \ "\<Plug>(neosnippet_jump)"
-  \: pumvisible() ? "\<C-n>" : "\<TAB>"
+        \ "\<Plug>(neosnippet_jump)"
+        \: pumvisible() ? "\<C-n>" : "\<TAB>"
   let g:neosnippet#snippets_directory='~/.vim/plugged/vim-go/gosnippets/snippets, ~/.vim/plugged/neosnippet-snippets/neosnippets'
 endif
 
