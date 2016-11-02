@@ -21,7 +21,7 @@ autocmd! bufwritepost $MYVIMRC source $MYVIMRC
 if has('nvim')
 	call plug#begin('~/.config/nvim/plugged')
 	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-	Plug 'zchee/deoplete-go', { 'do': 'make'}
+	Plug 'zchee/deoplete-go', { 'do': 'make', 'for': ['go']}
 	Plug 'zchee/deoplete-clang', {'for': ['cpp']}
 	Plug 'mhartington/deoplete-typescript', {'for': ['typescript']}
 	Plug 'zchee/deoplete-jedi', {'for': ['python']}
@@ -41,6 +41,7 @@ Plug 'morhetz/gruvbox'
 Plug 'mhartington/oceanic-next'
 Plug 'fatih/vim-go', {'for': ['go']}
 Plug 'benekastah/neomake'
+Plug 'junegunn/vim-peekaboo'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
@@ -73,21 +74,14 @@ Plug 'vim-airline/vim-airline-themes'
 " Plug 'leafgarland/typescript-vim'
 Plug 'HerringtonDarkholme/yats.vim', {'for': ['typescript']}
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-Plug 'quramy/tsuquyomi'
+Plug 'quramy/tsuquyomi', {'for': ['typescript']}
 Plug 'magarcia/vim-angular2-snippets'
 
-Plug 'Shougo/unite.vim'
-Plug 'ujihisa/unite-colorscheme'
-Plug 'mackee/unite-httpstatus'
-" Plug 'maksimr/vim-jsbeautify', {'for': ['javascript', 'css', 'html']} " Provide beatify for html, js, css
-" npm -g install js-beautify instead
-"
 Plug 'davidhalter/jedi-vim', {'for': ['python']} " Important when using python
+
 Plug 'vim-scripts/DirDiff.vim' " :DirDiff <A:Src Directory> <B:Src Directory>
 Plug 'ekalinin/Dockerfile.vim', {'for' : 'Dockerfile'}
 Plug 'bronson/vim-trailing-whitespace'
-
-Plug 'junegunn/vim-peekaboo'
 
 Plug 'JamshedVesuna/vim-markdown-preview'
 Plug 'godlygeek/tabular'
@@ -485,28 +479,6 @@ nnoremap <silent> gS :Sayonara!<CR>
 
 " Settings for ListToggle
 let g:lt_quickfix_list_toggle_map = '<leader>fix'
-
-" Unite settings
-" nnoremap <C-i> :Unite file_rec/async<cr>
-let g:unite_source_history_yank_enable=1
-let g:unite_prompt='❯ '
-let g:unite_source_rec_async_command =['ag', '--follow', '--nocolor', '--nogroup','--hidden', '-g', '', '--ignore', '.git', '--ignore', '*.png', '--ignore', 'lib']
-if has('nvim')
-	nnoremap <silent> <C-p> :Unite -start-insert -vertical -direction=botright buffer file_mru file_rec/neovim<CR>
-	" nnoremap <C-p> :Unite buffer file_mru file_rec -no-split -start-insert<CR>
-	nnoremap <silent> <leader>st :Unite -winwidth=45 -vertical -direction=botright httpstatus<CR>
-
-	" nnoremap <silent> <leader>o :Unite -winwidth=45 -vertical -direction=botright outline<CR>
-	" Custom mappings for the unite buffer
-	autocmd FileType unite call s:unite_settings()
-	function! s:unite_settings()
-		" Enable navigation with control-j and control-k in insert mode
-		imap <buffer> <C-j>   <Plug>(unite_select_next_line)
-		imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
-	endfunction
-else
-  nnoremap <C-p> :Unite buffer file_mru file_rec -no-split -start-insert<CR>
-endif
 
 if has('nvim')
   let $FZF_DEFAULT_OPTS .= ' --inline-info'
