@@ -1,4 +1,4 @@
-" vim:fdm=marker
+"ConferenceInformation vim:fdm=marker
 " Author: Samuel Masuy and the vim community.
 
 " set noro
@@ -23,6 +23,7 @@ if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'zchee/deoplete-go', { 'do': 'make', 'for': ['go']}
   Plug 'zchee/deoplete-clang', {'for': ['cpp']}
+  Plug 'Rip-Rip/clang_complete', {'for': ['cpp']}
   Plug 'mhartington/deoplete-typescript', {'for': ['typescript']}
   Plug 'zchee/deoplete-jedi', {'for': ['python']}
 
@@ -77,12 +78,15 @@ Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'quramy/tsuquyomi', {'for': ['typescript']}
 Plug 'magarcia/vim-angular2-snippets'
 
+" Plug 'flowtype/vim-flow', { 'for': ['javascript']}
+
 Plug 'davidhalter/jedi-vim', {'for': ['python']} " Important when using python
 
 Plug 'vim-scripts/DirDiff.vim' " :DirDiff <A:Src Directory> <B:Src Directory>
 Plug 'ekalinin/Dockerfile.vim', {'for' : 'Dockerfile'}
 Plug 'bronson/vim-trailing-whitespace'
 
+Plug 'tpope/vim-markdown'
 Plug 'JamshedVesuna/vim-markdown-preview'
 Plug 'godlygeek/tabular'
 
@@ -203,6 +207,9 @@ set nobackup
 set nowritebackup
 set noswapfile
 
+" Disable mouse click to go to position
+set mouse-=a
+
 " ------------------------------------------------------------------------ }}}
 " General Mapping  ------------------------------------------------------- {{{
 
@@ -317,7 +324,7 @@ autocmd BufLeave *.go             normal! mG
 autocmd FileType javascript setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType javascript setlocal commentstring=//\ %s
 " autocmd FileType javascript noremap <buffer> <leader>r :%!js-beautify --type js -j -q -B -f -<CR>
-autocmd FileType javascript noremap <buffer> <leader>r :!standard-format -w %<CR><CR>
+autocmd FileType javascript noremap <buffer> <leader>r :!standard --fix %<CR><CR>
 autocmd FileType javascript let b:javascript_fold = 0
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 let g:tern_map_keys = 0
@@ -375,12 +382,14 @@ autocmd FileType java setlocal commentstring=//\ %s
 
 " rst
 " ---
-autocmd BufNewFile,BufRead *.txt setlocal ft=rst
+autocmd BufEnter *.txt setlocal spell
 autocmd FileType rst setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 formatoptions+=nqt
 " md
 " ---
 autocmd FileType md,markdown setlocal noexpandtab shiftwidth=4 tabstop=4 softtabstop=4
 autocmd FileType md,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd BufNewFile,BufRead *.txt setlocal ft=markdown
+autocmd FileType md,markdown setlocal spell
 
 " C/Obj-C/C++
 autocmd FileType c,cpp setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab textwidth=80
@@ -453,7 +462,8 @@ let g:neomake_verbose = 0
 hi NeoErrorMsg ctermfg=88
 let g:neomake_error_sign = {'text': '✘', 'texthl': 'NeoErrorMsg'}
 hi NeoWarningMsg ctermfg=136
-let g:neomake_warning_sign = {'text': '⚠', 'texthl': 'NeoWarningMsg'}
+let g:neomake_warning_sign = {'text': '☂', 'texthl': 'NeoWarningMsg'}
+
 
 " Settings for jedi-vim
 " let g:jedi#popup_select_first = 0
@@ -553,7 +563,16 @@ if has('nvim')
   let g:tern#command = ['tern']
   let g:tern#arguments = ['--persistent', '--no-port-file']
 
-  let g:deoplete#sources#clang#libclang_path = '/usr/local/Cellar/llvm/3.8.1/lib/libclang.dylib' " mdfind -name libclang.dylib
+  let g:deoplete#sources#clang#clang_header = '/Library/Developer/CommandLineTools/usr/lib/llvm-gcc'
+  let g:deoplete#sources#clang#libclang_path = '/Library/Developer/CommandLineTools/usr/lib/libclang.dylib' " mdfind -name libclang.dylib
+
+  let g:clang_library_path='/Library/Developer/CommandLineTools/usr/lib'
+  let g:clang_complete_auto = 0
+  let g:clang_auto_select = 0
+  let g:clang_omnicppcomplete_compliance = 0
+  let g:clang_make_default_keymappings = 0
+  let g:clang_use_library = 1
+  let g:clang_jumpto_declaration_key = '<leader>d'
 else
   " Neocomplete
 
