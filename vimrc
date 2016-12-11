@@ -213,8 +213,7 @@ set mouse-=a
 " ------------------------------------------------------------------------ }}}
 " General Mapping  ------------------------------------------------------- {{{
 
-cnoremap wq :echo 'Use ZZ'<CR>
-
+" cnoremap wq :echo 'Use ZZ'<CR>
 " Disable un-VI keys.
 map <up> <nop>
 map <down> <nop>
