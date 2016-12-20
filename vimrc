@@ -1,17 +1,15 @@
-"ConferenceInformation vim:fdm=marker
+" vim:fdm=marker
 " Author: Samuel Masuy and the vim community.
 
 " set noro
-" To make a portable tar vim:
-" bash <(curl -L https://raw.githubusercontent.com/junegunn/myvim/master/myvim)
 
-" Tip Macros: important!!!
+" Tip:
 " "ap: put (print) content of macro in register a.
 " "ayy: put back current line in register a (macro).
-" switch to last file edited: <leader><leader>
 " switch to last place edited: ''
-" open vinegar in current Directory!!!: -
 " <C-o> in insert mode is awesome
+" To make a portable tar vim:
+" bash <(curl -L https://raw.githubusercontent.com/junegunn/myvim/master/myvim)
 
 " Pre vim  --------------------------------------------------------------- {{{
 
@@ -22,16 +20,15 @@ if has('nvim')
   call plug#begin('~/.config/nvim/plugged')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'zchee/deoplete-go', { 'do': 'make', 'for': ['go']}
-  Plug 'zchee/deoplete-clang', {'for': ['cpp']}
-  Plug 'Rip-Rip/clang_complete', {'for': ['cpp']}
-  Plug 'mhartington/deoplete-typescript', {'for': ['typescript']}
+  " Plug 'zchee/deoplete-clang', {'for': ['cpp']}
+  " Plug 'Rip-Rip/clang_complete', {'for': ['cpp']}
+  " Plug 'mhartington/deoplete-typescript', {'for': ['typescript']}
   Plug 'zchee/deoplete-jedi', {'for': ['python']}
 
+  Plug 'ternjs/tern_for_vim'
   Plug 'carlitux/deoplete-ternjs', {'for': ['javascript']}
-  Plug 'ternjs/tern_for_vim', { 'do': 'npm install', 'for': ['javascript']}
   Plug 'othree/jspc.vim', { 'for': ['javascript'] }
-
-  Plug 'rakr/vim-two-firewatch'
+  " Plug 'rakr/vim-two-firewatch'
 else
   call plug#begin('~/.vim/plugged')
   Plug 'Shougo/neocomplete.vim'
@@ -40,21 +37,25 @@ endif
 " Essential
 Plug 'morhetz/gruvbox'
 Plug 'mhartington/oceanic-next'
-Plug 'fatih/vim-go', {'for': ['go']}
-Plug 'benekastah/neomake'
-Plug 'junegunn/vim-peekaboo'
+
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-eunuch' " Adds Unix commands to vim.
 Plug 'tpope/vim-surround' " To change surrounding quote: cs(' ;tag cst<th> ;to add quote ysW'
-Plug 'tpope/vim-vinegar' " Enhance of netrw
+Plug 'tpope/vim-vinegar' " Enhance netrw
 Plug 'tpope/vim-abolish' " Camel case, snake crc
+Plug 'tpope/vim-markdown'
+
+Plug 'benekastah/neomake'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/vim-peekaboo'
 Plug 'mileszs/ack.vim'
+
+Plug 'fatih/vim-go', {'for': ['go']}
 
 Plug 'tmux-plugins/vim-tmux'
 Plug 'christoomey/vim-tmux-navigator'
@@ -62,35 +63,30 @@ Plug 'benmills/vimux'
 
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
+" Plug 'magarcia/vim-angular2-snippets'
 
-Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
 Plug 'EinfachToll/DidYouMean'
 Plug 'mhinz/vim-startify'
+
+Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
 Plug 'Valloric/MatchTagAlways'
 Plug 'Valloric/ListToggle'
+Plug 'vim-scripts/DirDiff.vim' " :DirDiff <A:Src Directory> <B:Src Directory>
+Plug 'bronson/vim-trailing-whitespace'
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-" Plug 'leafgarland/typescript-vim'
-Plug 'HerringtonDarkholme/yats.vim', {'for': ['typescript']}
-Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-Plug 'quramy/tsuquyomi', {'for': ['typescript']}
-Plug 'magarcia/vim-angular2-snippets'
-
-" Plug 'flowtype/vim-flow', { 'for': ['javascript']}
+" Plug 'HerringtonDarkholme/yats.vim', {'for': ['typescript']}
+" Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+" Plug 'quramy/tsuquyomi', {'for': ['typescript']}
 
 Plug 'davidhalter/jedi-vim', {'for': ['python']} " Important when using python
 
-Plug 'vim-scripts/DirDiff.vim' " :DirDiff <A:Src Directory> <B:Src Directory>
-Plug 'ekalinin/Dockerfile.vim', {'for' : 'Dockerfile'}
-Plug 'bronson/vim-trailing-whitespace'
+" Plug 'ekalinin/Dockerfile.vim', {'for' : 'Dockerfile'}
 
-Plug 'tpope/vim-markdown'
 Plug 'JamshedVesuna/vim-markdown-preview'
 Plug 'godlygeek/tabular'
-
-Plug 'vim-scripts/DoxygenToolkit.vim'
 
 call plug#end()
 
@@ -100,8 +96,10 @@ if has('mac')
 elseif has('unix') && (executable('pbcopy') || executable('xclip') || executable('xsel')) && has('clipboard')
   set clipboard+=unnamedplus
 endif
+
 " See the commands typed in the right bottom corner.
 set showcmd
+
 if !has('nvim')
   " Make backspace behave like normal.
   set bs=2
@@ -122,7 +120,6 @@ set background=dark
 if has('nvim') && has("termguicolors")
   set termguicolors
   silent! colorscheme OceanicNext
-  " silent! colorscheme gruvbox
   let g:airline_theme = 'oceanicnext'
   " let g:airline_theme='twofirewatch'
 else
@@ -147,7 +144,7 @@ set diffopt+=vertical
 " Completion options (select longest + show menu even if a single match is found)
 set completeopt=longest,menuone
 " Make Esc work faster.
-set ttimeoutlen=50
+set ttimeoutlen=40
 " Always shows 5 lines above/below the cursor.
 set scrolloff=5
 " Increment decimal not octal numbers.
@@ -219,9 +216,6 @@ map <up> <nop>
 map <down> <nop>
 map <left> <nop>
 map <right> <nop>
-" Avoid un-VI keys in ex mode
-cnoremap <C-p> <Up>
-cnoremap <C-n> <Down>
 
 " Quick Fold and Unfold.
 nnoremap <space> za
@@ -444,7 +438,7 @@ nnoremap <leader>is :let @p=@"<cr>yiw:!open "https://www.google.com/search?q=""
 nnoremap <leader>id :let @p=@"<cr>yiw:!open "https://www.google.com/search?q=define ""<cr><cr>
     \:let @"=@p<cr>
 
-" Easy substitute providing a previous pattern
+" Easy substitution
 nnoremap <leader>; :%s::cg<Left><Left><Left>
 vnoremap <leader>; :s::g<Left><Left>
 
@@ -462,7 +456,6 @@ hi NeoErrorMsg ctermfg=88
 let g:neomake_error_sign = {'text': '✘', 'texthl': 'NeoErrorMsg'}
 hi NeoWarningMsg ctermfg=136
 let g:neomake_warning_sign = {'text': '☂', 'texthl': 'NeoWarningMsg'}
-
 
 " Settings for jedi-vim
 " let g:jedi#popup_select_first = 0
@@ -488,6 +481,7 @@ nnoremap <silent> gS :Sayonara!<CR>
 
 " Settings for ListToggle
 let g:lt_quickfix_list_toggle_map = '<leader>fix'
+" let g:lt_location_list_toggle_map = '<leader>l' " <- default
 
 if has('nvim')
   let $FZF_DEFAULT_OPTS .= ' --inline-info'
@@ -549,29 +543,28 @@ if has('nvim')
         \ "\<Plug>(neosnippet_jump)"
         \: pumvisible() ? "\<C-n>" : "\<TAB>"
   let g:neosnippet#snippets_directory='~/.config/nvim/plugged/vim-go/gosnippets/snippets, ~/.config/nvim/plugged/neosnippet-snippets/neosnippets, ~/.config/nvim/plugged/vim-angular2-snippets/snippets'
-  let g:neomake_python_enabled_makers = ['flake8', 'python']
 
   " let g:tern_request_timeout = 1
   if !exists('g:deoplete#omni#input_patterns')
     let g:deoplete#omni#input_patterns = {}
   endif
 
-  let g:tern_request_timeout = 1
+  let g:tern_request_timeout = 2
   " let g:tern_show_signature_in_pum = 0  " This do disable full signature type on autocomplete
 
   let g:tern#command = ['tern']
   let g:tern#arguments = ['--persistent', '--no-port-file']
 
-  let g:deoplete#sources#clang#clang_header = '/Library/Developer/CommandLineTools/usr/lib/llvm-gcc'
-  let g:deoplete#sources#clang#libclang_path = '/Library/Developer/CommandLineTools/usr/lib/libclang.dylib' " mdfind -name libclang.dylib
+  " let g:deoplete#sources#clang#clang_header = '/Library/Developer/CommandLineTools/usr/lib/llvm-gcc'
+  " let g:deoplete#sources#clang#libclang_path = '/Library/Developer/CommandLineTools/usr/lib/libclang.dylib' " mdfind -name libclang.dylib
 
-  let g:clang_library_path='/Library/Developer/CommandLineTools/usr/lib'
-  let g:clang_complete_auto = 0
-  let g:clang_auto_select = 0
-  let g:clang_omnicppcomplete_compliance = 0
-  let g:clang_make_default_keymappings = 0
-  let g:clang_use_library = 1
-  let g:clang_jumpto_declaration_key = '<leader>d'
+  " let g:clang_library_path='/Library/Developer/CommandLineTools/usr/lib'
+  " let g:clang_complete_auto = 0
+  " let g:clang_auto_select = 0
+  " let g:clang_omnicppcomplete_compliance = 0
+  " let g:clang_make_default_keymappings = 0
+  " let g:clang_use_library = 1
+  " let g:clang_jumpto_declaration_key = '<leader>d'
 else
   " Neocomplete
 
