@@ -11,6 +11,8 @@ export MANPATH="/usr/local/man:$MANPATH"
 
 export EDITOR="nvim"
 
+export NODE_PATH='/usr/local/lib/node_modules'
+
 # Path to oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 

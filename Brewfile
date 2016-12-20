@@ -37,6 +37,7 @@ brew 'lame'
 brew 'ffmpeg'
 brew 'go'
 brew 'fzf', args: ['HEAD']
+brew 'node'
 brew 'giflib'
 brew 'mysql'
 brew 'python3'

@@ -5,7 +5,7 @@ export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="my_theme"
 
 # Plugins for zsh.
-plugins=(git tmux nvm mvn tmuxinator brew osx sublime colorize gradle go vi-mode web-search zsh_reload z vagrant zsh-syntax-highlighting history-substring-search)
+plugins=(git tmux mvn tmuxinator brew osx sublime colorize gradle go vi-mode web-search zsh_reload z vagrant zsh-syntax-highlighting history-substring-search)
 
 source ~/.zsh/colors.zsh
 source ~/.zsh/exports.zsh
@@ -19,10 +19,6 @@ source ~/.zsh/secrets.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # Initiate oh-my-zsh.
 source $ZSH/oh-my-zsh.sh
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-# nvm use --delete-prefix v6.4
 
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
