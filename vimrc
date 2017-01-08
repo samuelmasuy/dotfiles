@@ -34,6 +34,8 @@ else
   Plug 'Shougo/neocomplete.vim'
 endif
 
+Plug 'samuelmasuy/vim-toggle-js-test'
+
 " Essential
 Plug 'morhetz/gruvbox'
 Plug 'mhartington/oceanic-next'
@@ -83,6 +85,8 @@ Plug 'vim-airline/vim-airline-themes'
 
 Plug 'davidhalter/jedi-vim', {'for': ['python']} " Important when using python
 
+Plug 'heavenshell/vim-jsdoc', {'for': ['javascript']}
+
 " Plug 'ekalinin/Dockerfile.vim', {'for' : 'Dockerfile'}
 
 Plug 'JamshedVesuna/vim-markdown-preview'
@@ -129,7 +133,10 @@ else
   let g:airline_theme = 'powerlineish'
 endif
 
-set guifont:Hack:h15
+if has('gui_running')
+  set macligatures
+  set guifont=Fira\ Code:h15
+endif
 
 " ------------------------------------------------------------------------ }}}
 " Miscellaneous settings ------------------------------------------------- {{{
@@ -328,6 +335,8 @@ autocmd FileType javascript noremap <leader>td :TernDoc<CR>
 let javascript_enable_domhtmlcss=1
 let g:neomake_javascript_enabled_makers = ['standard']
 autocmd BufLeave *.js             normal! mJ
+autocmd FileType javascript nmap <leader>t <Plug>(test-toggle)
+autocmd FileType javascript noremap <leader>o :JsDoc<CR>
 
 " Typescript
 " ----------
@@ -442,6 +451,8 @@ nnoremap <leader>id :let @p=@"<cr>yiw:!open "https://www.google.com/search?q=def
 nnoremap <leader>; :%s::cg<Left><Left><Left>
 vnoremap <leader>; :s::g<Left><Left>
 
+" redraw screen
+nnoremap <leader>1 :redraw!<CR>
 " ------------------------------------------------------------------------ }}}
 " Plugins setup. --------------------------------------------------------- {{{
 " Settings for vim-airline
@@ -505,6 +516,11 @@ let vim_markdown_preview_hotkey='<C-m>'
 let vim_markdown_preview_github=1
 let vim_markdown_preview_toggle=3
 " let vim_markdown_preview_browser='Google Chrome'
+
+let g:jsdoc_underscore_private = 1
+let g:jsdoc_enable_es6 = 1
+let g:jsdoc_allow_input_prompt = 1
+let g:jsdoc_input_description = 1
 " ------------------------------------------------------------------------ }}}
 " Settings for (neocomplete and deoplete) and neosnippet ---------------------------- {{{
 if has('nvim')
