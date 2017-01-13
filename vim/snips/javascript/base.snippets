@@ -1,0 +1,41 @@
+snippet cd "console.dir (js)" !b
+console.dir(${1:obj})
+endsnippet
+
+snippet ce "console.error (js)" !b
+console.error(${1:err})
+endsnippet
+
+snippet cl "console.log (js)" !b
+console.log(${1:'value'})
+endsnippet
+
+snippet fa "anonymous function (js)" !
+function(${1:parameters}) {
+	${2:// body...}
+}
+endsnippet
+
+snippet f "named function (js)" !b
+function ${1:functionName} (${2:parameters}) {
+	${0:// body...}
+}
+endsnippet
+
+snippet okfe "Object.keys and forEach (js)" !b
+Object.keys(${1:obj}).forEach(function(key) {
+	${0:// body...}
+})
+endsnippet
+
+snippet sto "setTimeout (js)" !
+setTimeout(() => {
+	${0:// body...}
+}, ${1:millis});
+endsnippet
+
+snippet sti "setInterval (js)" !
+setInterval(() => {
+	${0:// body...}
+}, ${1:millis});
+endsnippet

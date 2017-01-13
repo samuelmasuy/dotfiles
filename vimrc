@@ -19,15 +19,18 @@ autocmd! bufwritepost $MYVIMRC source $MYVIMRC
 if has('nvim')
   call plug#begin('~/.config/nvim/plugged')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  Plug 'zchee/deoplete-go', { 'do': 'make', 'for': ['go']}
+  Plug 'ervandew/supertab'
+  " Plug 'zchee/deoplete-go', { 'do': 'make', 'for': ['go']}
   " Plug 'zchee/deoplete-clang', {'for': ['cpp']}
   " Plug 'Rip-Rip/clang_complete', {'for': ['cpp']}
   " Plug 'mhartington/deoplete-typescript', {'for': ['typescript']}
-  Plug 'zchee/deoplete-jedi', {'for': ['python']}
-
-  Plug 'ternjs/tern_for_vim'
-  Plug 'carlitux/deoplete-ternjs', {'for': ['javascript']}
+  " Plug 'zchee/deoplete-jedi', {'for': ['python']}
+  Plug 'SirVer/ultisnips'
+  Plug 'honza/vim-snippets'
+  Plug 'ternjs/tern_for_vim', { 'for': ['javascript'] }
+  Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript'] }
   Plug 'othree/jspc.vim', { 'for': ['javascript'] }
+  Plug 'isRuslan/vim-es6'
   " Plug 'rakr/vim-two-firewatch'
 else
   call plug#begin('~/.vim/plugged')
@@ -39,6 +42,7 @@ Plug 'samuelmasuy/vim-toggle-js-test'
 " Essential
 Plug 'morhetz/gruvbox'
 Plug 'mhartington/oceanic-next'
+Plug 'lifepillar/vim-wwdc16-theme'
 
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
@@ -63,9 +67,12 @@ Plug 'tmux-plugins/vim-tmux'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'benmills/vimux'
 
-Plug 'Shougo/neosnippet.vim'
-Plug 'Shougo/neosnippet-snippets'
+" Plug 'Shougo/neosnippet.vim'
+" Plug 'Shougo/neosnippet-snippets'
 " Plug 'magarcia/vim-angular2-snippets'
+" Plug 'pangloss/vim-javascript'
+" Plug 'honza/vim-snippets'
+
 
 Plug 'EinfachToll/DidYouMean'
 Plug 'mhinz/vim-startify'
@@ -76,8 +83,8 @@ Plug 'Valloric/ListToggle'
 Plug 'vim-scripts/DirDiff.vim' " :DirDiff <A:Src Directory> <B:Src Directory>
 Plug 'bronson/vim-trailing-whitespace'
 
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
 
 " Plug 'HerringtonDarkholme/yats.vim', {'for': ['typescript']}
 " Plug 'Shougo/vimproc.vim', {'do' : 'make'}
@@ -88,7 +95,6 @@ Plug 'davidhalter/jedi-vim', {'for': ['python']} " Important when using python
 Plug 'heavenshell/vim-jsdoc', {'for': ['javascript']}
 
 " Plug 'ekalinin/Dockerfile.vim', {'for' : 'Dockerfile'}
-
 Plug 'JamshedVesuna/vim-markdown-preview'
 Plug 'godlygeek/tabular'
 
@@ -123,9 +129,16 @@ set background=dark
 " Beautiful
 if has('nvim') && has("termguicolors")
   set termguicolors
+  let g:wwdc16_term_italics=1
+  " silent! colorscheme wwdc16
   silent! colorscheme OceanicNext
   let g:airline_theme = 'oceanicnext'
   " let g:airline_theme='twofirewatch'
+elseif has('gui_running')
+  set macligatures
+  set guifont=Fira\ Code:h15
+  silent! colorscheme OceanicNext
+  let g:airline_theme = 'oceanicnext'
 else
   set t_Co=256
   silent! colorscheme gruvbox
@@ -326,8 +339,7 @@ autocmd FileType javascript setlocal commentstring=//\ %s
 " autocmd FileType javascript noremap <buffer> <leader>r :%!js-beautify --type js -j -q -B -f -<CR>
 autocmd FileType javascript noremap <buffer> <leader>r :!standard --fix %<CR><CR>
 autocmd FileType javascript let b:javascript_fold = 0
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-let g:tern_map_keys = 0
+" autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType javascript noremap <leader>d :TernDef<CR>
 autocmd FileType javascript noremap <leader>ref :TernRefs<CR>
 autocmd FileType javascript noremap <leader>re :TernRename<CR>
@@ -524,52 +536,81 @@ let g:jsdoc_input_description = 1
 " ------------------------------------------------------------------------ }}}
 " Settings for (neocomplete and deoplete) and neosnippet ---------------------------- {{{
 if has('nvim')
-  " Deoplete
+  " " Deoplete
   let g:deoplete#enable_at_startup = 1
-
-  " Use smartcase.
+  " " Use smartcase.
   let g:deoplete#enable_smart_case = 1
 
-  " Set minimum syntax keyword length.
-  let g:deoplete#auto_completion_start_length = 1
-  let g:deoplete#sources#syntax#min_keyword_length = 2
 
   let g:deoplete#omni#functions = {}
   let g:deoplete#omni#functions.javascript = [
-        \ 'tern#Complete',
-        \ 'jspc#omni'
-        \]
+    \ 'tern#Complete',
+    \ 'jspc#omni'
+  \]
 
-  if !exists('g:deoplete#force_omni_input_patterns')
-    let g:deoplete#force_omni_input_patterns = {}
-  endif
-  let g:deoplete#force_omni_input_patterns.typescript = '[^. \t]\.\%(\h\w*\)\?' " Same as JavaScript
-
-  let g:deoplete#sources#tss#javascript_support = 1
-
-  " Close popup by <Space>.
-  inoremap <expr><C-x> pumvisible() ? deoplete#mappings#close_popup() : "\<Space>"
-
-  " Neosnippet
-  " SuperTab like snippets' behavior.
-  imap <expr><CR> pumvisible() ?
-        \(neosnippet#expandable() ? "\<Plug>(neosnippet_expand)" : deoplete#mappings#close_popup())
-        \: "\<CR>"
-  imap <expr><TAB> neosnippet#jumpable() ?
-        \ "\<Plug>(neosnippet_jump)"
-        \: pumvisible() ? "\<C-n>" : "\<TAB>"
-  let g:neosnippet#snippets_directory='~/.config/nvim/plugged/vim-go/gosnippets/snippets, ~/.config/nvim/plugged/neosnippet-snippets/neosnippets, ~/.config/nvim/plugged/vim-angular2-snippets/snippets'
-
-  " let g:tern_request_timeout = 1
-  if !exists('g:deoplete#omni#input_patterns')
-    let g:deoplete#omni#input_patterns = {}
-  endif
-
-  let g:tern_request_timeout = 2
-  " let g:tern_show_signature_in_pum = 0  " This do disable full signature type on autocomplete
-
+  let g:deoplete#sources = {}
+  " let g:deoplete#sources._ = ['buffer', 'ultisnips'] " could add buffer
+  let g:deoplete#sources.javascript = ['ultisnips', 'ternjs', 'file']
+  let g:tern_map_keys = 0
   let g:tern#command = ['tern']
   let g:tern#arguments = ['--persistent', '--no-port-file']
+  " let g:tern_request_timeout = 1
+
+  inoremap <silent><expr><C-@> deoplete#mappings#manual_complete()
+  " autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+  " let g:UltiSnipsExpandTrigger="<C-j>"
+  inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
+  " " Set minimum syntax keyword length.
+  let g:deoplete#auto_completion_start_length = 2
+  let g:deoplete#sources#syntax#min_keyword_length = 2
+
+  " UltiSnips settings
+  let g:UltiSnipsEditSplit = 'vertical'
+  let g:UltiSnipsSnippetsDir = '~/.config/nvim/snips'
+  let g:UltiSnipsSnippetDirectories = ['snips']
+  let g:UltiSnipsExpandTrigger="<C-@>"
+  let g:UltiSnipsJumpForwardTrigger="<C-@>"
+  autocmd FileType javascript let g:UltiSnipsEnableSnipMate = 0
+  " let g:UltiSnipsListSnippets='<c-l>'
+
+  " call deoplete#custom#set('ultisnips', 'matchers', ['matcher_fuzzy'])
+
+  " if !exists('g:deoplete#force_omni_input_patterns')
+  "   let g:deoplete#force_omni_input_patterns = {}
+  " endif
+  " let g:deoplete#force_omni_input_patterns.typescript = '[^. \t]\.\%(\h\w*\)\?' " Same as JavaScript
+
+  " let g:deoplete#sources#tss#javascript_support = 1
+
+  " " Close popup by <Space>.
+  " inoremap <expr><C-x> pumvisible() ? deoplete#mappings#close_popup() : "\<Space>"
+
+  " " Neosnippet
+  " " SuperTab like snippets' behavior.
+  " imap <expr><CR> pumvisible() ?
+  "       \(neosnippet#expandable() ? "\<Plug>(neosnippet_expand)" : deoplete#mappings#close_popup())
+  "       \: "\<CR>"
+  " imap <expr><TAB> neosnippet#jumpable() ?
+  "       \ "\<Plug>(neosnippet_jump)"
+  "       \: pumvisible() ? "\<C-n>" : "\<TAB>"
+
+  " let g:neosnippet#enable_snipmate_compatibility = 1
+  " let g:neosnippet#disable_runtime_snippets = {
+  " \   '_' : 1,
+  " \ }
+  " " let g:neosnippet#snippets_directory='~/.config/nvim/plugged/vim-snippets/snippets, ~/.config/nvim/plugged/vim-go/gosnippets/snippets, ~/.config/nvim/plugged/neosnippet-snippets/neosnippets, ~/.config/nvim/plugged/vim-angular2-snippets/snippets'
+  " let g:neosnippet#snippets_directory='~/.config/nvim/plugged/vim-snippets/snippets'
+
+  " if !exists('g:deoplete#omni#input_patterns')
+  "   let g:deoplete#omni#input_patterns = {}
+  " endif
+
+  " let g:tern_request_timeout = 2
+  " " let g:tern_show_signature_in_pum = 0  " This do disable full signature type on autocomplete
+
+  " let g:tern#command = ['tern']
+  " let g:tern#arguments = ['--persistent', '--no-port-file']
 
   " let g:deoplete#sources#clang#clang_header = '/Library/Developer/CommandLineTools/usr/lib/llvm-gcc'
   " let g:deoplete#sources#clang#libclang_path = '/Library/Developer/CommandLineTools/usr/lib/libclang.dylib' " mdfind -name libclang.dylib
