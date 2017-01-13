@@ -10,6 +10,10 @@ snippet cl "console.log (js)" !b
 console.log(${1:'value'})
 endsnippet
 
+snippet clv "console.log a value" !b
+console.log('$1: ', ${1})
+endsnippet
+
 snippet fa "anonymous function (js)" !
 function(${1:parameters}) {
 	${2:// body...}
