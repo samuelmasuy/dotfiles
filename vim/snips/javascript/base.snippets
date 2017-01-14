@@ -1,3 +1,24 @@
+snippet if
+if (${1:condition}) {
+	${VISUAL}$0
+}
+endsnippet
+
+snippet switch
+switch (${1:expression}) {
+	case '${3:case}':
+		${4}
+		break
+	${0}
+	default:
+		${2}
+}
+endsnippet
+
+snippet terr "throw error"
+throw new Error('${1:error message}')
+endsnippet
+
 snippet cd "console.dir (js)" !b
 console.dir(${1:obj})
 endsnippet
@@ -43,3 +64,14 @@ setInterval(() => {
 	${0:// body...}
 }, ${1:millis});
 endsnippet
+
+# JSON.parse
+snippet jsonp "json parse"
+JSON.parse(${0:jstr})
+endsnippet
+
+# JSON.stringify
+snippet jsons "json stringify"
+JSON.stringify(${0:object})
+endsnippet
+

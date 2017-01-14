@@ -30,7 +30,7 @@ if has('nvim')
   Plug 'ternjs/tern_for_vim', { 'for': ['javascript'] }
   Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript'] }
   Plug 'othree/jspc.vim', { 'for': ['javascript'] }
-  Plug 'isRuslan/vim-es6'
+  " Plug 'isRuslan/vim-es6'
   " Plug 'rakr/vim-two-firewatch'
 else
   call plug#begin('~/.vim/plugged')
@@ -43,6 +43,10 @@ Plug 'samuelmasuy/vim-toggle-js-test'
 Plug 'morhetz/gruvbox'
 Plug 'mhartington/oceanic-next'
 Plug 'lifepillar/vim-wwdc16-theme'
+Plug 'junegunn/seoul256.vim'
+Plug 'joshdick/onedark.vim'
+" Plug 'sheerun/vim-polyglot'
+Plug 'pangloss/vim-javascript'
 
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
@@ -83,6 +87,7 @@ Plug 'Valloric/ListToggle'
 Plug 'vim-scripts/DirDiff.vim' " :DirDiff <A:Src Directory> <B:Src Directory>
 Plug 'bronson/vim-trailing-whitespace'
 
+Plug 'itchyny/lightline.vim'
 " Plug 'vim-airline/vim-airline'
 " Plug 'vim-airline/vim-airline-themes'
 
@@ -129,11 +134,20 @@ set background=dark
 " Beautiful
 if has('nvim') && has("termguicolors")
   set termguicolors
-  let g:wwdc16_term_italics=1
+  " let g:wwdc16_term_italics=1
   " silent! colorscheme wwdc16
-  silent! colorscheme OceanicNext
-  let g:airline_theme = 'oceanicnext'
+  silent! colorscheme onedark
+  " silent! colorscheme OceanicNext
+  " let g:seoul256_background = 234
+  " silent! colorscheme seoul256
+  " let g:airline_theme = 'oceanicnext'
   " let g:airline_theme='twofirewatch'
+  " let g:airline_theme='onedark'
+  let g:lightline = {
+    \ 'colorscheme': 'onedark',
+    \ 'separator': { 'left': '', 'right': '' },
+    \ 'subseparator': { 'left': '', 'right': '' }
+    \ }
 elseif has('gui_running')
   set macligatures
   set guifont=Fira\ Code:h15
@@ -162,7 +176,7 @@ let &showbreak='↪ '
 " Gdiff vertical split
 set diffopt+=vertical
 " Completion options (select longest + show menu even if a single match is found)
-set completeopt=longest,menuone
+set completeopt=menuone
 " Make Esc work faster.
 set ttimeoutlen=40
 " Always shows 5 lines above/below the cursor.
@@ -465,6 +479,12 @@ vnoremap <leader>; :s::g<Left><Left>
 
 " redraw screen
 nnoremap <leader>1 :redraw!<CR>
+
+" use <Leader>H,J,K,L to swap windows
+map <silent> <Leader>H :vertical :resize +5<CR>
+map <silent> <Leader>J :resize -5<CR>
+map <silent> <Leader>K :resize +5<CR>
+map <silent> <Leader>L :vertical :resize -5<CR>
 " ------------------------------------------------------------------------ }}}
 " Plugins setup. --------------------------------------------------------- {{{
 " Settings for vim-airline
@@ -533,6 +553,9 @@ let g:jsdoc_underscore_private = 1
 let g:jsdoc_enable_es6 = 1
 let g:jsdoc_allow_input_prompt = 1
 let g:jsdoc_input_description = 1
+
+let g:javascript_plugin_jsdoc = 1
+
 " ------------------------------------------------------------------------ }}}
 " Settings for (neocomplete and deoplete) and neosnippet ---------------------------- {{{
 if has('nvim')
@@ -549,28 +572,30 @@ if has('nvim')
   \]
 
   let g:deoplete#sources = {}
-  " let g:deoplete#sources._ = ['buffer', 'ultisnips'] " could add buffer
+  " let g:deoplete#sources._ = ['ultisnips', 'buffer'] " could add buffer
   let g:deoplete#sources.javascript = ['ultisnips', 'ternjs', 'file']
   let g:tern_map_keys = 0
   let g:tern#command = ['tern']
   let g:tern#arguments = ['--persistent', '--no-port-file']
   " let g:tern_request_timeout = 1
 
-  inoremap <silent><expr><C-@> deoplete#mappings#manual_complete()
-  " autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
-  " let g:UltiSnipsExpandTrigger="<C-j>"
-  inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+  " inoremap <silent><expr><C-j> deoplete#mappings#manual_complete()
+  autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+  " inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
+  " inoremap <expr> <TAB> pumvisible() ? '<C-n>' : '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+  " inoremap <expr><TAB> pumvisible() ? '<C-n>' : '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
 
   " " Set minimum syntax keyword length.
   let g:deoplete#auto_completion_start_length = 2
-  let g:deoplete#sources#syntax#min_keyword_length = 2
+  let g:deoplete#sources#syntax#min_keyword_length = 1
 
   " UltiSnips settings
   let g:UltiSnipsEditSplit = 'vertical'
   let g:UltiSnipsSnippetsDir = '~/.config/nvim/snips'
   let g:UltiSnipsSnippetDirectories = ['snips']
-  let g:UltiSnipsExpandTrigger="<C-@>"
-  let g:UltiSnipsJumpForwardTrigger="<C-@>"
+  let g:UltiSnipsExpandTrigger="<C-j>"
+  let g:UltiSnipsJumpForwardTrigger="<C-j>"
   autocmd FileType javascript let g:UltiSnipsEnableSnipMate = 0
   " let g:UltiSnipsListSnippets='<c-l>'
 

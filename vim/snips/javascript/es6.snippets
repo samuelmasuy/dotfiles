@@ -1,3 +1,12 @@
+snippet const "const"
+const ${1:name} = ${2:value}
+$0
+endsnippet
+
+snippet let "let"
+let ${1:name} = ${2:value}$0
+endsnippet
+
 snippet af "arrow function (js)"
 (${1:parameters}) => {
 	${2:// body...}
@@ -26,22 +35,49 @@ class ${1:name} {
 	}
 	${4}
 }
+$0
 endsnippet
 
-# For of loop
-snippet forof
+snippet "class extends"
+class ${1:name} extends ${2:extension} {
+	${VISUAL}$0
+}
+endsnippet
+
+snippet forof "for of loop"
 for (let ${1:s} of ${2:sequence}) {
 	${3}
 }
 endsnippet
 
-# Import
-snippet im
+snippet im "import"
 import ${1:foo} from '${2:bar}'
 endsnippet
 
-# Export
+snippet ex "export"
+export ${1:default} ${2:bar}
+endsnippet
+
 snippet ex
 export ${1:default} ${2:bar}
 endsnippet
 
+snippet setter "setter method"
+set ${1:name} ($1) {
+	this._$1 = $1
+}
+$0
+endsnippet
+
+snippet getter "getter method"
+get ${1:name} () {
+	return this._$1
+}
+$0
+endsnippet
+
+snippet method "class method"
+${1:methodName} (${2:parameters}) {
+	${0:// body...}
+}
+endsnippet
