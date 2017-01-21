@@ -1,85 +1,82 @@
 #!/usr/bin/env bash
 set -e
 
-if [[ ! -d "$HOME/Dropbox" ]]; then
-    echo "Need to manually install Dropbox First and sync it."
-    echo "Install XCode as well."
-    exit 1
-fi
+DOTFILES_HOME=$HOME/.dotfiles
 
 echo "**************************************************************************"
-echo "******************XCode tool Install...***********************************"
+echo "******************Command line tooling install...***********************************"
 echo "**************************************************************************"
+# TODO find how to install tooling without having to install XCode
 command -v gcc >/dev/null 2>&1 || { echo >&2 "I require gcc, i.e. XCode, but it's not installed.  Aborting."; exit 1; }
-xcode-select --install
+command -v gcc >/dev/null 2>&1 && xcode-select --install || true
 
 echo "**************************************************************************"
 echo "******************Homebrew Install...*************************************"
 echo "**************************************************************************"
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+command -v brew >/dev/null 2>&1 || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+echo "**************************************************************************"
+echo "******************Git Install...******************************************"
+echo "**************************************************************************"
+command -v git >/dev/null 2>&1 || brew install git
+
+echo "**************************************************************************"
+echo "******************Dotfiles Install...*************************************"
+echo "**************************************************************************"
+# TODO dotfiles clone
+# [ ! -d "$DOTFILES_HOME" ] && git clone --recursive https://github.com/samuelmasuy
 
 echo "**************************************************************************"
 echo "******************Application and tool installation...********************"
 echo "**************************************************************************"
 brew tap Homebrew/bundle
-brew bundle --file=$HOME/Dropbox/Github/dotfiles/Brewfile
+brew bundle --file=$DOTFILES_HOME/Brewfile
 
 echo "**************************************************************************"
-echo "*********************Change shell to zsh...*******************************"
+echo "*********************Removing dotfiles...*********************************"
 echo "**************************************************************************"
-chsh -s $(which zsh)
+[ -d "$HOME/.config" ] && rm -rf $HOME/.config
+[ -d "$HOME/.oh-my-zsh" ] && rm -f $HOME/.oh-my-zsh
+[ -d "$HOME/.tmux" ] && rm -f $HOME/.tmux.conf
+[ -d "$HOME/.zsh" ] && rm -f $HOME/.zsh
+[ -f "$HOME/.ackrc" ] && rm -f $HOME/.ackrc
+[ -f "$HOME/.bash_profile" ] && rm -f $HOME/.bash_profile
+[ -f "$HOME/.gitconfig" ] && rm -f $HOME/.gitconfig
+[ -f "$HOME/.gitignore" ] && rm -f $HOME/.gitignore
+[ -f "$HOME/.ideavimrc" ] && rm -f $HOME/.ideavimrc
+[ -f "$HOME/.tmux.conf" ] && rm -f $HOME/.tmux.conf
+[ -f "$HOME/.vimrc" ] && rm -f $HOME/.vimrc
+[ -f "$HOME/.zshrc" ] && rm -f $HOME/.zshrc
+[ -f "$HOME/Documents/mysolarized.itermcolors" ] && rm -f $HOME/mysolarized.itermcolors
 
 echo "**************************************************************************"
 echo "*********************Install oh-my-zsh...*********************************"
 echo "**************************************************************************"
 git clone git://github.com/robbyrussell/oh-my-zsh.git $HOME/.oh-my-zsh
-cd $HOME/.oh-my-zsh/custom/plugins
-git clone git://github.com/zsh-users/zsh-syntax-highlighting.git
-cd $HOME
-
-echo "**************************************************************************"
-echo "*********************Removing dotfiles...*********************************"
-echo "**************************************************************************"
-[ -f "$HOME/.bash_profile" ] && rm -f $HOME/.bash_profile
-[ -d "$HOME/.config" ] && rm -rf $HOME/.config
-[ -f "$HOME/.gitconfig" ] && rm -f $HOME/.gitconfig
-[ -f "$HOME/.githelpers" ] && rm -f $HOME/.githelpers
-[ -f "$HOME/.gitignore" ] && rm -f $HOME/.gitignore
-[ -f "$HOME/.tmux.conf" ] && rm -f $HOME/.tmux.conf
-[ -f "$HOME/.vimrc" ] && rm -f $HOME/.vimrc
-[ -f "$HOME/.basic_vimrc" ] && rm -f $HOME/.basic_vimrc
-[ -f "$HOME/.ideavimrc" ] && rm -f $HOME/.ideavimrc
-[ -f "$HOME/.zshrc" ] && rm -f $HOME/.zshrc
-[ -d "$HOME/.zsh" ] && rm -f $HOME/.zsh
-[ -f "$HOME/.oh-my-zsh/themes/my_theme.zsh-theme" ] && rm -f $HOME/.oh-my-zsh/themes/my_theme.zsh-theme
-[ -f "$HOME/.ackrc" ] && rm -f $HOME/.ackrc
-
-echo "**************************************************************************"
-echo "*********************Symlinking personal folders...***********************"
-echo "**************************************************************************"
-ln -s $HOME/Dropbox/Others/Pictures $HOME/Pictures/Pictures
-ln -s $HOME/Dropbox/www $HOME/www
-ln -s $HOME/Dropbox/Github/go/ $HOME/go
-
-echo "**************************************************************************"
-echo "************************Install Plug for vim...***************************"
-echo "**************************************************************************"
-mkdir -p $HOME/.vim/autoload
-curl -fLo $HOME/.vim/autoload/plug.vim \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-cd $HOME
-
-echo "**************************************************************************"
-echo "***********************Install Vim plugins...**************************"
-echo "**************************************************************************"
-vim -c "PlugInstall" -c q -c q
+git clone git://github.com/zsh-users/zsh-syntax-highlighting.git $HOME/.oh-my-zsh/custom/plugins
 
 echo "**************************************************************************"
 echo "************************Install Plug for nvim...***************************"
 echo "**************************************************************************"
 curl -fLo $HOME/.config/nvim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-ln -s $HOME/Dropbox/Github/dotfiles/vimrc $HOME/.config/nvim/init.vim
+
+echo "**************************************************************************"
+echo "*********************Symlinking dotfiles...*******************************"
+echo "**************************************************************************"
+ln -s $DOTFILES_HOME/ackrc $HOME/.ackrc
+ln -s $DOTFILES_HOME/bash_profile $HOME/.bash_profile
+ln -s $DOTFILES_HOME/basic_vimrc $HOME/.vimrc
+ln -s $DOTFILES_HOME/gitignore $HOME/.gitignore
+ln -s $DOTFILES_HOME/ideavimrc $HOME/.ideavimrc
+ln -s $DOTFILES_HOME/my_theme.zsh-theme $HOME/.oh-my-zsh/themes/my_theme.zsh-theme
+ln -s $DOTFILES_HOME/mysolarized.itermcolors $HOME/Documents/mysolarized.itermcolors
+ln -s $DOTFILES_HOME/tmux $HOME/.tmux
+ln -s $DOTFILES_HOME/tmux.conf $HOME/.tmux.conf
+ln -s $DOTFILES_HOME/vim/snips $HOME/.config/nvim/snips
+ln -s $DOTFILES_HOME/vimrc $HOME/.config/nvim/init.vim
+ln -s $DOTFILES_HOME/zsh $HOME/.zsh
+ln -s $DOTFILES_HOME/zshrc $HOME/.zshrc
 
 echo "**************************************************************************"
 echo "***********************Install nVim plugins...**************************"
@@ -88,34 +85,36 @@ nvim -c "PlugInstall" -c q -c q
 nvim -c "UpdateRemotePlugins" -c q
 
 echo "**************************************************************************"
-echo "*********************Symlinking dotfiles...*******************************"
+echo "******************Dropbox Install...**************************************"
 echo "**************************************************************************"
-mkdir $HOME/.config
-ln -s $HOME/Dropbox/Github/dotfiles/bash_profile $HOME/.bash_profile
-ln -s $HOME/Dropbox/Github/dotfiles/tmux $HOME/.tmux
-ln -s $HOME/Dropbox/Github/dotfiles/gitconfig $HOME/.gitconfig
-ln -s $HOME/Dropbox/Github/dotfiles/githelpers $HOME/.githelpers
-ln -s $HOME/Dropbox/Github/dotfiles/gitignore $HOME/.gitignore
-ln -s $HOME/Dropbox/Github/dotfiles/tmux.conf $HOME/.tmux.conf
-ln -s $HOME/Dropbox/Github/dotfiles/vimrc $HOME/.vimrc
-ln -s $HOME/Dropbox/Github/dotfiles/vimrc $HOME/.config/nvim/init.vim
-ln -s $HOME/Dropbox/Github/dotfiles/basic_vimrc $HOME/.basic_vimrc
-ln -s $HOME/Dropbox/Github/dotfiles/ideavimrc $HOME/.ideavimrc
-ln -s $HOME/Dropbox/Github/dotfiles/zshrc $HOME/.zshrc
-ln -s $HOME/Dropbox/Github/dotfiles/zsh $HOME/.zsh
-ln -s $HOME/Dropbox/Github/dotfiles/my_theme.zsh-theme $HOME/.oh-my-zsh/themes/my_theme.zsh-theme
-ln -s $HOME/Dropbox/Github/dotfiles/ackrc $HOME/.ackrc
+if [[ ! -d "$HOME/Dropbox" ]]; then
+    echo "Need to sync Dropbox"
+    exit 1
+fi
 
 echo "**************************************************************************"
-echo "************************Install NVM***************************************"
+echo "*********************Symlinking personal folders...***********************"
 echo "**************************************************************************"
-git clone https://github.com/creationix/nvm.git $HOME/.nvm && cd $HOME/.nvm && git checkout `git describe --abbrev=0 --tags`
-cd $HOME
+# ln -s $HOME/Dropbox/Github/go/ $HOME/go
+# TODO Symlink concordia folder
+# ln -s $HOME/Dropbox/... $HOME/concordia/
 
 echo "**************************************************************************"
-echo "************************Install Node**************************************"
+echo "*********************Change shell to zsh...*******************************"
 echo "**************************************************************************"
-source $HOME/.zshrc
-nvm install node
+chsh -s $(which zsh)
+
+echo "**************************************************************************"
+echo "*********************Gems install...**************************************"
+echo "**************************************************************************"
+# TODO find if the tools below can be installed with brew
+sudo gem install coderay
+sudo gem install tmuxinator
+
+echo "**************************************************************************"
+echo "*********************Global node packages...******************************"
+echo "**************************************************************************"
+npm install -g tern
+npm install -g standard
 
 echo "Done!"
