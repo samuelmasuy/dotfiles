@@ -67,10 +67,7 @@ function mvd() {
 function highlight () {
     grep --color -E "$1|$" "$@"
 }
-# Utilities to update, upgrade, clean and doctor homebrew.
-function brewery() {
-    brew bundle ~/Dropbox/Github/dotfiles/brewery
-}
+
 # Search chrome history with fzf.
 function chist() {
   local cols sep
@@ -99,5 +96,3 @@ fzf_cd() {
 };
 zle -N fzf_cd;
 bindkey '^E' fzf_cd
-
-
