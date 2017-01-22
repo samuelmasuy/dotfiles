@@ -2,7 +2,7 @@
 # HISTORY
 # ctl-R allows to search backward for any previous command tip:put comments with reminder words to be able to easely find it
 # history | grep;  Ctrl+R;  !23; !-3; !-3:1; # Get history.
-export EDITOR='vim'
+export EDITOR='nvim'
 export HISTFILESIZE=10000
 export HISTSIZE=10000
 shopt -s histappend

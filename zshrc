@@ -1,4 +1,4 @@
-# Path to your oh-my-zsh installation.
+# Path to oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
 # Set name of zsh theme to load.
@@ -19,8 +19,6 @@ source ~/.zsh/secrets.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # Initiate oh-my-zsh.
 source $ZSH/oh-my-zsh.sh
-
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 alias -s md=nvim # suffix alias
 zstyle ':completion:*:cd:*' ignore-parents parent pwd # cd will never select the parent directory

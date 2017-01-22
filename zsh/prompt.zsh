@@ -19,7 +19,6 @@ function git_prompt_info() {
 #$reset_color$(prompt_char) '
 PROMPT='%{magenta}$(date +%H:%M:%S)'
 
-
 ZSH_THEME_GIT_PROMPT_PREFIX="[git:"
 ZSH_THEME_GIT_PROMPT_SUFFIX="]$reset_color"
 ZSH_THEME_GIT_PROMPT_DIRTY="$fg[red]+"
