@@ -35,9 +35,9 @@ echo "**************************************************************************
 echo "*********************Removing dotfiles...*********************************"
 echo "**************************************************************************"
 [ -d "$HOME/.config" ] && rm -rf $HOME/.config
-[ -d "$HOME/.oh-my-zsh" ] && rm -f $HOME/.oh-my-zsh
-[ -d "$HOME/.tmux" ] && rm -f $HOME/.tmux.conf
-[ -d "$HOME/.zsh" ] && rm -f $HOME/.zsh
+[ -d "$HOME/.oh-my-zsh" ] && rm -rf $HOME/.oh-my-zsh
+[ -d "$HOME/.tmux" ] && rm -rf $HOME/.tmux
+[ -d "$HOME/.zsh" ] && rm -rf $HOME/.zsh
 [ -f "$HOME/.ackrc" ] && rm -f $HOME/.ackrc
 [ -f "$HOME/.bash_profile" ] && rm -f $HOME/.bash_profile
 [ -f "$HOME/.gitconfig" ] && rm -f $HOME/.gitconfig
@@ -46,13 +46,12 @@ echo "**************************************************************************
 [ -f "$HOME/.tmux.conf" ] && rm -f $HOME/.tmux.conf
 [ -f "$HOME/.vimrc" ] && rm -f $HOME/.vimrc
 [ -f "$HOME/.zshrc" ] && rm -f $HOME/.zshrc
-[ -f "$HOME/Documents/mysolarized.itermcolors" ] && rm -f $HOME/mysolarized.itermcolors
+[ -f "$HOME/Documents/mysolarized.itermcolors" ] && rm -f $HOME/Documents/mysolarized.itermcolors
 
 echo "**************************************************************************"
 echo "*********************Install oh-my-zsh...*********************************"
 echo "**************************************************************************"
-git clone git://github.com/robbyrussell/oh-my-zsh.git $HOME/.oh-my-zsh
-git clone git://github.com/zsh-users/zsh-syntax-highlighting.git $HOME/.oh-my-zsh/custom/plugins
+git clone git://github.com/robbyrussell/oh-my-zsh.git $HOME/.oh-my-zsh && git clone git://github.com/zsh-users/zsh-syntax-highlighting.git $HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 
 echo "**************************************************************************"
 echo "************************Install Plug for nvim...***************************"
@@ -99,7 +98,8 @@ ln -s $HOME/Dropbox/_Concordia $HOME/concordia
 echo "**************************************************************************"
 echo "*********************Change shell to zsh...*******************************"
 echo "**************************************************************************"
-chsh -s $(which zsh)
+command -v zsh | sudo tee -a /etc/shells
+sudo chsh -s "$(command -v zsh)" "${USER}"
 
 echo "**************************************************************************"
 echo "*********************Gems install...**************************************"
