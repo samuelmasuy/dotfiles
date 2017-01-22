@@ -7,8 +7,8 @@ echo "**************************************************************************
 echo "******************Command line tooling install...***********************************"
 echo "**************************************************************************"
 # TODO find how to install tooling without having to install XCode
-command -v gcc >/dev/null 2>&1 || { echo >&2 "I require gcc, i.e. XCode, but it's not installed.  Aborting."; exit 1; }
 command -v gcc >/dev/null 2>&1 && xcode-select --install || true
+command -v gcc >/dev/null 2>&1 || { echo >&2 "I require gcc, i.e. XCode, but it's not installed.  Aborting."; exit 1; }
 
 echo "**************************************************************************"
 echo "******************Homebrew Install...*************************************"
@@ -23,8 +23,7 @@ command -v git >/dev/null 2>&1 || brew install git
 echo "**************************************************************************"
 echo "******************Dotfiles Install...*************************************"
 echo "**************************************************************************"
-# TODO dotfiles clone
-# [ ! -d "$DOTFILES_HOME" ] && git clone --recursive https://github.com/samuelmasuy
+[ ! -d "$DOTFILES_HOME" ] && git clone --recursive git@github.com:samuelmasuy/dotfiles.git $DOTFILES_HOME
 
 echo "**************************************************************************"
 echo "******************Application and tool installation...********************"
@@ -95,9 +94,7 @@ fi
 echo "**************************************************************************"
 echo "*********************Symlinking personal folders...***********************"
 echo "**************************************************************************"
-# ln -s $HOME/Dropbox/Github/go/ $HOME/go
-# TODO Symlink concordia folder
-# ln -s $HOME/Dropbox/... $HOME/concordia/
+ln -s $HOME/Dropbox/_Concordia $HOME/concordia
 
 echo "**************************************************************************"
 echo "*********************Change shell to zsh...*******************************"
@@ -107,7 +104,6 @@ chsh -s $(which zsh)
 echo "**************************************************************************"
 echo "*********************Gems install...**************************************"
 echo "**************************************************************************"
-# TODO find if the tools below can be installed with brew
 sudo gem install coderay
 sudo gem install tmuxinator
 
