@@ -2,7 +2,7 @@
 	name = Samuel Masuy
 	email = samuel.masuy@gmail.com
 [core]
-	editor = vim
+	editor = nvim
 	excludesfile = /Users/samuelmasuy/.gitignore
 	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 [web]
