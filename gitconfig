@@ -26,11 +26,9 @@
 [alias]
 	st = status
 	co = checkout
-	l = "!source ~/.githelpers && pretty_git_log"
 	r = "!git l -30"
 	head = !git r -1
 	h = !git head
-	hp = "!. ~/.githelpers && show_git_head"
 	up = pull --rebase --autostash
 [push]
 	default = simple
