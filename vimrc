@@ -87,8 +87,8 @@ Plug 'Valloric/ListToggle'
 Plug 'vim-scripts/DirDiff.vim' " :DirDiff <A:Src Directory> <B:Src Directory>
 Plug 'bronson/vim-trailing-whitespace'
 
-Plug 'itchyny/lightline.vim'
-" Plug 'vim-airline/vim-airline'
+" Plug 'itchyny/lightline.vim'
+Plug 'vim-airline/vim-airline'
 " Plug 'vim-airline/vim-airline-themes'
 
 " Plug 'HerringtonDarkholme/yats.vim', {'for': ['typescript']}
@@ -142,12 +142,12 @@ if has('nvim') && has("termguicolors")
   " silent! colorscheme seoul256
   " let g:airline_theme = 'oceanicnext'
   " let g:airline_theme='twofirewatch'
-  " let g:airline_theme='onedark'
-  let g:lightline = {
-    \ 'colorscheme': 'onedark',
-    \ 'separator': { 'left': '', 'right': '' },
-    \ 'subseparator': { 'left': '', 'right': '' }
-    \ }
+  let g:airline_theme='onedark'
+  " let g:lightline = {
+  "   \ 'colorscheme': 'onedark',
+  "   \ 'separator': { 'left': '', 'right': '' },
+  "   \ 'subseparator': { 'left': '', 'right': '' }
+  "   \ }
 elseif has('gui_running')
   set macligatures
   set guifont=Fira\ Code:h15
