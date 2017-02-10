@@ -19,8 +19,8 @@ autocmd! bufwritepost $MYVIMRC source $MYVIMRC
 if has('nvim')
   call plug#begin('~/.config/nvim/plugged')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  Plug 'ervandew/supertab'
-  " Plug 'zchee/deoplete-go', { 'do': 'make', 'for': ['go']}
+  " Plug 'ervandew/supertab'
+  Plug 'zchee/deoplete-go', { 'do': 'make', 'for': ['go']}
   " Plug 'zchee/deoplete-clang', {'for': ['cpp']}
   " Plug 'Rip-Rip/clang_complete', {'for': ['cpp']}
   " Plug 'mhartington/deoplete-typescript', {'for': ['typescript']}
@@ -30,6 +30,9 @@ if has('nvim')
   Plug 'ternjs/tern_for_vim', { 'for': ['javascript'] }
   Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript'] }
   Plug 'othree/jspc.vim', { 'for': ['javascript'] }
+
+  Plug 'rhysd/vim-grammarous', { 'for': ['text', 'markdown']}
+  Plug 'ron89/thesaurus_query.vim', { 'for': ['text', 'markdown']}
   " Plug 'isRuslan/vim-es6'
   " Plug 'rakr/vim-two-firewatch'
 else
@@ -176,7 +179,7 @@ let &showbreak='↪ '
 " Gdiff vertical split
 set diffopt+=vertical
 " Completion options (select longest + show menu even if a single match is found)
-set completeopt=menuone
+set completeopt=longest,menuone
 " Make Esc work faster.
 set ttimeoutlen=40
 " Always shows 5 lines above/below the cursor.
@@ -350,7 +353,7 @@ autocmd BufLeave *.go             normal! mG
 " ----------
 autocmd FileType javascript setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType javascript setlocal commentstring=//\ %s
-" autocmd FileType javascript noremap <buffer> <leader>r :%!js-beautify --type js -j -q -B -f -<CR>
+autocmd FileType javascript noremap <buffer> <leader>fmt :%!js-beautify --type js -j -q -B -f -<CR>
 autocmd FileType javascript noremap <buffer> <leader>r :!standard --fix %<CR><CR>
 autocmd FileType javascript let b:javascript_fold = 0
 " autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
@@ -558,12 +561,44 @@ let g:javascript_plugin_jsdoc = 1
 
 " ------------------------------------------------------------------------ }}}
 " Settings for (neocomplete and deoplete) and neosnippet ---------------------------- {{{
+"
+function! TabComplete() abort
+  let l:col = col('.') - 1
+
+  if pumvisible()
+    return "\<C-n>"
+  else
+    if !l:col || getline('.')[l:col - 1] !~# '\k'
+      return "\<TAB>"
+    else
+      return "\<C-n>"
+    endif
+  endif
+endfunction
+
 if has('nvim')
   " " Deoplete
   let g:deoplete#enable_at_startup = 1
-  " " Use smartcase.
-  let g:deoplete#enable_smart_case = 1
+  let g:deoplete#auto_completion_start_length = 2
+  let g:deoplete#sources#syntax#min_keyword_length = 1
 
+  let g:tern_map_keys = 0
+  let g:tern_show_signature_in_pum=1
+  let g:tern#command = ['tern']
+  let g:tern#arguments = ['--persistent', '--no-port-file']
+
+  if !exists('g:deoplete#sources#omni#input_patterns')
+    let g:deoplete#sources#omni#input_patterns = {}
+  endif
+  let g:deoplete#sources#omni#input_patterns.javascript = '\h\w*\|[^. \t]\.\w*'
+
+  let g:deoplete#sources={}
+  let g:deoplete#sources._    = ['buffer', 'file', 'ultisnips']
+  let g:deoplete#sources.vim  = ['buffer', 'member', 'file', 'ultisnips']
+  let g:deoplete#sources.javascript = ['ultisnips', 'ternjs', 'buffer']
+  let g:deoplete#sources.css  = ['buffer', 'member', 'file', 'omni', 'ultisnips']
+  let g:deoplete#sources.scss = ['buffer', 'member', 'file', 'omni', 'ultisnips']
+  let g:deoplete#sources.html = ['buffer', 'member', 'file', 'omni', 'ultisnips']
 
   let g:deoplete#omni#functions = {}
   let g:deoplete#omni#functions.javascript = [
@@ -571,24 +606,12 @@ if has('nvim')
     \ 'jspc#omni'
   \]
 
-  let g:deoplete#sources = {}
-  " let g:deoplete#sources._ = ['ultisnips', 'buffer'] " could add buffer
-  let g:deoplete#sources.javascript = ['ultisnips', 'ternjs', 'file']
-  let g:tern_map_keys = 0
-  let g:tern#command = ['tern']
-  let g:tern#arguments = ['--persistent', '--no-port-file']
-  " let g:tern_request_timeout = 1
+  " Insert <TAB> or select next match
+  inoremap <silent> <expr> <Tab> TabComplete()
 
-  " inoremap <silent><expr><C-j> deoplete#mappings#manual_complete()
-  autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
-  " inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-
-  " inoremap <expr> <TAB> pumvisible() ? '<C-n>' : '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
-  " inoremap <expr><TAB> pumvisible() ? '<C-n>' : '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
-
-  " " Set minimum syntax keyword length.
-  let g:deoplete#auto_completion_start_length = 2
-  let g:deoplete#sources#syntax#min_keyword_length = 1
+  " <C-h>, <BS>: close popup and delete backword char
+  inoremap <expr><C-h> deoplete#mappings#smart_close_popup()."\<C-h>"
+  inoremap <expr><BS> deoplete#mappings#smart_close_popup()."\<C-h>"
 
   " UltiSnips settings
   let g:UltiSnipsEditSplit = 'vertical'
@@ -601,41 +624,12 @@ if has('nvim')
 
   " call deoplete#custom#set('ultisnips', 'matchers', ['matcher_fuzzy'])
 
-  " if !exists('g:deoplete#force_omni_input_patterns')
-  "   let g:deoplete#force_omni_input_patterns = {}
-  " endif
   " let g:deoplete#force_omni_input_patterns.typescript = '[^. \t]\.\%(\h\w*\)\?' " Same as JavaScript
 
   " let g:deoplete#sources#tss#javascript_support = 1
 
   " " Close popup by <Space>.
   " inoremap <expr><C-x> pumvisible() ? deoplete#mappings#close_popup() : "\<Space>"
-
-  " " Neosnippet
-  " " SuperTab like snippets' behavior.
-  " imap <expr><CR> pumvisible() ?
-  "       \(neosnippet#expandable() ? "\<Plug>(neosnippet_expand)" : deoplete#mappings#close_popup())
-  "       \: "\<CR>"
-  " imap <expr><TAB> neosnippet#jumpable() ?
-  "       \ "\<Plug>(neosnippet_jump)"
-  "       \: pumvisible() ? "\<C-n>" : "\<TAB>"
-
-  " let g:neosnippet#enable_snipmate_compatibility = 1
-  " let g:neosnippet#disable_runtime_snippets = {
-  " \   '_' : 1,
-  " \ }
-  " " let g:neosnippet#snippets_directory='~/.config/nvim/plugged/vim-snippets/snippets, ~/.config/nvim/plugged/vim-go/gosnippets/snippets, ~/.config/nvim/plugged/neosnippet-snippets/neosnippets, ~/.config/nvim/plugged/vim-angular2-snippets/snippets'
-  " let g:neosnippet#snippets_directory='~/.config/nvim/plugged/vim-snippets/snippets'
-
-  " if !exists('g:deoplete#omni#input_patterns')
-  "   let g:deoplete#omni#input_patterns = {}
-  " endif
-
-  " let g:tern_request_timeout = 2
-  " " let g:tern_show_signature_in_pum = 0  " This do disable full signature type on autocomplete
-
-  " let g:tern#command = ['tern']
-  " let g:tern#arguments = ['--persistent', '--no-port-file']
 
   " let g:deoplete#sources#clang#clang_header = '/Library/Developer/CommandLineTools/usr/lib/llvm-gcc'
   " let g:deoplete#sources#clang#libclang_path = '/Library/Developer/CommandLineTools/usr/lib/libclang.dylib' " mdfind -name libclang.dylib
@@ -647,38 +641,6 @@ if has('nvim')
   " let g:clang_make_default_keymappings = 0
   " let g:clang_use_library = 1
   " let g:clang_jumpto_declaration_key = '<leader>d'
-else
-  " Neocomplete
-
-  " Use neocomplete.
-  let g:neocomplete#enable_at_startup = 1
-
-  " Use smartcase.
-  let g:neocomplete#enable_smart_case = 1
-
-  " Set minimum syntax keyword length.
-  let g:neocomplete#auto_completion_start_length = 1
-  let g:neocomplete#sources#syntax#min_keyword_length = 2
-
-  if !exists('g:neocomplete#force_omni_input_patterns')
-    let g:neocomplete#force_omni_input_patterns = {}
-  endif
-  " let g:neocomplete#force_omni_input_patterns.typescript = '[^. *\t]\.\w*\|\h\w*::'
-  let g:neocomplete#force_omni_input_patterns.typescript = '[^. \t]\.\%(\h\w*\)\?' " Same as JavaScript
-
-  " Close popup by <Space>.
-  inoremap <expr><C-x> pumvisible() ? neocomplete#close_popup() : "\<Space>"
-
-  " Neosnippet
-  " SuperTab like snippets' behavior.
-  imap <expr><CR> pumvisible() ?
-        \(neosnippet#expandable() ? "\<Plug>(neosnippet_expand)" : neocomplete#close_popup())
-        \: "\<CR>"
-
-  imap <expr><TAB> neosnippet#jumpable() ?
-        \ "\<Plug>(neosnippet_jump)"
-        \: pumvisible() ? "\<C-n>" : "\<TAB>"
-  let g:neosnippet#snippets_directory='~/.vim/plugged/vim-go/gosnippets/snippets, ~/.vim/plugged/neosnippet-snippets/neosnippets'
 endif
 
 " ------------------------------------------------------------------------ }}}
