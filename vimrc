@@ -472,6 +472,9 @@ nnoremap <leader><leader> <c-^>
 " Google search word under cursor from http://www.vimbits.com/bits/551
 nnoremap <leader>is :let @p=@"<cr>yiw:!open "https://www.google.com/search?q=""<cr><cr>
     \:let @"=@p<cr>
+
+vnoremap <leader>is y:!open "https://www.google.com/search?q=""<cr><cr>
+
 " Google search the definition of the word under cursor
 nnoremap <leader>id :let @p=@"<cr>yiw:!open "https://www.google.com/search?q=define ""<cr><cr>
     \:let @"=@p<cr>
