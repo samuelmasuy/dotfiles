@@ -4,7 +4,7 @@ alias cdp="cd ~-"
 alias la='ls -larth'
 alias ls='ls -G'
 # Make the terminal say all the files and directories.
-alias lt="ls | say -vz"
+alias lt="ls | say -va"
 # Open the given directory in finder.
 alias f='open .'
 # Clear the terminal

@@ -33,6 +33,7 @@ if has('nvim')
 
   Plug 'rhysd/vim-grammarous', { 'for': ['text', 'markdown']}
   Plug 'ron89/thesaurus_query.vim', { 'for': ['text', 'markdown']}
+  Plug 'chrisbra/unicode.vim', { 'for': ['text', 'markdown']}
   " Plug 'isRuslan/vim-es6'
   " Plug 'rakr/vim-two-firewatch'
 else
@@ -95,8 +96,12 @@ Plug 'vim-airline/vim-airline'
 " Plug 'vim-airline/vim-airline-themes'
 
 " Plug 'HerringtonDarkholme/yats.vim', {'for': ['typescript']}
+Plug 'leafgarland/typescript-vim', {'for': ['typescript']}
 " Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 " Plug 'quramy/tsuquyomi', {'for': ['typescript']}
+Plug 'mhartington/nvim-typescript', {'for': ['typescript']}
+Plug 'Chiel92/vim-autoformat'
+Plug 'Shougo/echodoc.vim', {'for': ['typescript']}
 
 Plug 'davidhalter/jedi-vim', {'for': ['python']} " Important when using python
 
@@ -105,6 +110,7 @@ Plug 'heavenshell/vim-jsdoc', {'for': ['javascript']}
 " Plug 'ekalinin/Dockerfile.vim', {'for' : 'Dockerfile'}
 Plug 'JamshedVesuna/vim-markdown-preview'
 Plug 'godlygeek/tabular'
+Plug 'vim-scripts/visSum.vim'
 
 call plug#end()
 
@@ -142,6 +148,7 @@ if has('nvim') && has("termguicolors")
   silent! colorscheme onedark
   " silent! colorscheme OceanicNext
   " let g:seoul256_background = 234
+  " silent! colorscheme gruvbox
   " silent! colorscheme seoul256
   " let g:airline_theme = 'oceanicnext'
   " let g:airline_theme='twofirewatch'
@@ -179,7 +186,9 @@ let &showbreak='↪ '
 " Gdiff vertical split
 set diffopt+=vertical
 " Completion options (select longest + show menu even if a single match is found)
-set completeopt=longest,menuone
+" set completeopt=menuone,noselect
+" set completeopt+=noselect
+autocmd CompleteDone * pclose
 " Make Esc work faster.
 set ttimeoutlen=40
 " Always shows 5 lines above/below the cursor.
@@ -243,6 +252,8 @@ set noswapfile
 
 " Disable mouse click to go to position
 set mouse-=a
+
+set noshowmode
 
 " ------------------------------------------------------------------------ }}}
 " General Mapping  ------------------------------------------------------- {{{
@@ -354,7 +365,7 @@ autocmd BufLeave *.go             normal! mG
 autocmd FileType javascript setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType javascript setlocal commentstring=//\ %s
 autocmd FileType javascript noremap <buffer> <leader>fmt :%!js-beautify --type js -j -q -B -f -<CR>
-autocmd FileType javascript noremap <buffer> <leader>r :!standard --fix %<CR><CR>
+autocmd FileType javascript noremap <leader>r :Autoformat<CR>
 autocmd FileType javascript let b:javascript_fold = 0
 " autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType javascript noremap <leader>d :TernDef<CR>
@@ -369,15 +380,33 @@ autocmd FileType javascript noremap <leader>o :JsDoc<CR>
 
 " Typescript
 " ----------
-autocmd FileType typescript setlocal completeopt+=menu,preview
-autocmd FileType typescript setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
-autocmd FileType typescript nmap <leader>d <Plug>(TsuquyomiDefinition)
-autocmd FileType typescript nmap <leader>ref <Plug>(TsuquyomiReferences)
-autocmd FileType typescript nmap <leader>re <Plug>(TsuquyomiRenameSymbolC)
-autocmd FileType typescript nmap <leader>im <Plug>(TsuquyomiImport)
-autocmd FileType typescript noremap <buffer> <leader>r :%!js-beautify --type typescript -j -q -B -f -<CR>
-autocmd FileType typescript nmap <buffer> <Leader>T : <C-u>echo tsuquyomi#hint()<CR>
+" autocmd FileType typescript setlocal completeopt+=menu,preview
+autocmd FileType typescript setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType typescript noremap <leader>D :TSDoc<CR>
+autocmd FileType typescript noremap <leader>d :TSDef<CR>
+autocmd FileType typescript noremap <leader>ref :TSRefs<CR>
+autocmd FileType typescript noremap <leader>t :TSType<CR>
+" autocmd FileType typescript nmap <leader>d <Plug>(TsuquyomiDefinition)
+" autocmd FileType typescript nmap <leader>ref <Plug>(TsuquyomiReferences)
+" autocmd FileType typescript nmap <leader>re <Plug>(TsuquyomiRenameSymbolC)
+" autocmd FileType typescript nmap <leader>im <Plug>(TsuquyomiImport)
+" autocmd FileType typescript nmap <buffer> <Leader>T : <C-u>echo tsuquyomi#hint()<CR>
+autocmd FileType typescript noremap <leader>r :Autoformat<CR>
+let g:nvim_typescript#max_completion_detail=100
 autocmd BufLeave *.ts             normal! mT
+let g:neomake_typescript_tslint_maker = {
+    \ 'args': ['%:p'],
+    \ 'errorformat': 'ERROR: %f[%l\, %c]: %m',
+    \ }
+let g:neomake_typescript_tsc_maker = {
+          \ 'args': ['--project', getcwd() . '/tsconfig.json', '--noEmit'],
+          \ 'append_file': 0,
+          \ 'errorformat':
+          \   '%E%f %#(%l\,%c): error %m,' .
+          \   '%E%f %#(%l\,%c): %m,' .
+          \   '%Eerror %m,' .
+          \   '%C%\s%\+%m'
+        \ }
 
 " ruby
 " ----
@@ -582,8 +611,7 @@ endfunction
 if has('nvim')
   " " Deoplete
   let g:deoplete#enable_at_startup = 1
-  let g:deoplete#auto_completion_start_length = 2
-  let g:deoplete#sources#syntax#min_keyword_length = 1
+  let g:echodoc_enable_at_startup=1
 
   let g:tern_map_keys = 0
   let g:tern_show_signature_in_pum=1
@@ -596,11 +624,8 @@ if has('nvim')
   let g:deoplete#sources#omni#input_patterns.javascript = '\h\w*\|[^. \t]\.\w*'
 
   let g:deoplete#sources={}
-  let g:deoplete#sources._    = ['buffer', 'file', 'ultisnips']
   let g:deoplete#sources.vim  = ['buffer', 'member', 'file', 'ultisnips']
   let g:deoplete#sources.javascript = ['ultisnips', 'ternjs', 'buffer']
-  let g:deoplete#sources.css  = ['buffer', 'member', 'file', 'omni', 'ultisnips']
-  let g:deoplete#sources.scss = ['buffer', 'member', 'file', 'omni', 'ultisnips']
   let g:deoplete#sources.html = ['buffer', 'member', 'file', 'omni', 'ultisnips']
 
   let g:deoplete#omni#functions = {}
@@ -626,10 +651,6 @@ if has('nvim')
   " let g:UltiSnipsListSnippets='<c-l>'
 
   " call deoplete#custom#set('ultisnips', 'matchers', ['matcher_fuzzy'])
-
-  " let g:deoplete#force_omni_input_patterns.typescript = '[^. \t]\.\%(\h\w*\)\?' " Same as JavaScript
-
-  " let g:deoplete#sources#tss#javascript_support = 1
 
   " " Close popup by <Space>.
   " inoremap <expr><C-x> pumvisible() ? deoplete#mappings#close_popup() : "\<Space>"
