@@ -25,3 +25,9 @@ zstyle ':completion:*:cd:*' ignore-parents parent pwd # cd will never select the
 # ternjs settings to load file eagerly
 ulimit -n 2048
 [[ -s "$HOME/.tug/scripts/tug" ]] && source "$HOME/.tug/scripts/tug"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/smasuy/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/smasuy/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/smasuy/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/smasuy/google-cloud-sdk/completion.zsh.inc'; fi
