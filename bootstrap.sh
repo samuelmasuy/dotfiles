@@ -111,6 +111,15 @@ sudo gem install coderay
 sudo gem install tmuxinator
 
 echo "**************************************************************************"
+echo "*********************Hammerspoon install...*******************************"
+echo "**************************************************************************"
+mkdir -p $HOME/.hammerspoon/Spoons
+git clone https://github.com/jasonrudolph/ControlEscape.spoon.git $HOME/.hammerspoon/Spoons/ControlEscape.spoon
+cd $HOME/.hammerspoon/Spoons/ControlEscape.spoon
+script/setup
+script/remap-caps-lock-to-control
+
+echo "**************************************************************************"
 echo "*********************Global node packages...******************************"
 echo "**************************************************************************"
 npm install -g tern

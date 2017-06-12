@@ -27,3 +27,5 @@ alias vimdiff="nvim -d"
 alias vi="vi -u ~/.vimrc"
 # dotfiles
 alias cdd="cd $HOME/.dotfiles"
+# weather
+alias weather="curl wttr.in/montreal"
