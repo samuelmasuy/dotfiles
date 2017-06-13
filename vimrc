@@ -375,7 +375,7 @@ autocmd FileType javascript noremap <leader>td :TernDoc<CR>
 let javascript_enable_domhtmlcss=1
 let g:neomake_javascript_enabled_makers = ['standard']
 autocmd BufLeave *.js             normal! mJ
-autocmd FileType javascript nmap <leader>t <Plug>(test-toggle)
+autocmd FileType javascript nmap <leader>t <Plug>(test-toggle-js)
 autocmd FileType javascript noremap <leader>o :JsDoc<CR>
 
 " Typescript
@@ -386,6 +386,8 @@ autocmd FileType typescript noremap <leader>D :TSDoc<CR>
 autocmd FileType typescript noremap <leader>d :TSDef<CR>
 autocmd FileType typescript noremap <leader>ref :TSRefs<CR>
 autocmd FileType typescript noremap <leader>t :TSType<CR>
+autocmd FileType typescript noremap <leader>err :TSGetErr<CR>
+autocmd FileType typescript nmap <leader>f <Plug>(test-toggle-ts)
 " autocmd FileType typescript nmap <leader>d <Plug>(TsuquyomiDefinition)
 " autocmd FileType typescript nmap <leader>ref <Plug>(TsuquyomiReferences)
 " autocmd FileType typescript nmap <leader>re <Plug>(TsuquyomiRenameSymbolC)
