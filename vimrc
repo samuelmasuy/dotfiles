@@ -75,6 +75,7 @@ Plug 'tmux-plugins/vim-tmux'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'benmills/vimux'
 
+Plug 'bdauria/angular-cli.vim'
 " Plug 'Shougo/neosnippet.vim'
 " Plug 'Shougo/neosnippet-snippets'
 " Plug 'magarcia/vim-angular2-snippets'
@@ -105,12 +106,14 @@ Plug 'Shougo/echodoc.vim', {'for': ['typescript']}
 
 Plug 'davidhalter/jedi-vim', {'for': ['python']} " Important when using python
 
-Plug 'heavenshell/vim-jsdoc', {'for': ['javascript']}
+Plug 'heavenshell/vim-jsdoc', {'for': ['javascript', 'typescript']}
 
 " Plug 'ekalinin/Dockerfile.vim', {'for' : 'Dockerfile'}
 Plug 'JamshedVesuna/vim-markdown-preview'
 Plug 'godlygeek/tabular'
 Plug 'vim-scripts/visSum.vim'
+
+Plug 'mbbill/undotree'
 
 call plug#end()
 
@@ -394,6 +397,7 @@ autocmd FileType typescript nmap <leader>f <Plug>(test-toggle-ts)
 " autocmd FileType typescript nmap <leader>im <Plug>(TsuquyomiImport)
 " autocmd FileType typescript nmap <buffer> <Leader>T : <C-u>echo tsuquyomi#hint()<CR>
 autocmd FileType typescript noremap <leader>r :Autoformat<CR>
+autocmd FileType typescript noremap <leader>o :JsDoc<CR>
 let g:nvim_typescript#max_completion_detail=100
 autocmd BufLeave *.ts             normal! mT
 let g:neomake_typescript_tslint_maker = {
@@ -401,7 +405,7 @@ let g:neomake_typescript_tslint_maker = {
     \ 'errorformat': 'ERROR: %f[%l\, %c]: %m',
     \ }
 let g:neomake_typescript_tsc_maker = {
-          \ 'args': ['--project', getcwd() . '/tsconfig.json', '--noEmit'],
+          \ 'args': ['--project', getcwd() . '/tsconfig.test.json', '--noEmit'],
           \ 'append_file': 0,
           \ 'errorformat':
           \   '%E%f %#(%l\,%c): error %m,' .
@@ -409,6 +413,8 @@ let g:neomake_typescript_tsc_maker = {
           \   '%Eerror %m,' .
           \   '%C%\s%\+%m'
         \ }
+
+autocmd VimEnter * if globpath('.,..','node_modules/@angular') != '' | call angular_cli#init() | endif
 
 " ruby
 " ----
@@ -587,7 +593,7 @@ let vim_markdown_preview_toggle=3
 " let vim_markdown_preview_browser='Google Chrome'
 
 let g:jsdoc_underscore_private = 1
-let g:jsdoc_enable_es6 = 1
+" let g:jsdoc_enable_es6 = 1
 let g:jsdoc_allow_input_prompt = 1
 let g:jsdoc_input_description = 1
 
