@@ -18,104 +18,92 @@ autocmd! bufwritepost $MYVIMRC source $MYVIMRC
 
 if has('nvim')
   call plug#begin('~/.config/nvim/plugged')
+
+  Plug 'samuelmasuy/vim-toggle-js-test'
+
+  " Essential
+  Plug 'tpope/vim-commentary'
+  Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-repeat'
+  Plug 'tpope/vim-unimpaired'
+  Plug 'tpope/vim-eunuch' " Adds Unix commands to vim.
+  Plug 'tpope/vim-surround' " To change surrounding quote: cs(' ;tag cst<th> ;to add quote ysW'
+  Plug 'tpope/vim-vinegar' " Enhance netrw
+  Plug 'tpope/vim-abolish' " Camel case, snake crc
+  Plug 'tpope/vim-markdown'
+
+  Plug 'benekastah/neomake'
+
+  Plug 'fatih/vim-go', {'for': ['go']}
+
+  " auto completion
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  " Plug 'ervandew/supertab'
   Plug 'zchee/deoplete-go', { 'do': 'make', 'for': ['go']}
-  " Plug 'zchee/deoplete-clang', {'for': ['cpp']}
-  " Plug 'Rip-Rip/clang_complete', {'for': ['cpp']}
-  " Plug 'mhartington/deoplete-typescript', {'for': ['typescript']}
+  Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript'] }
   " Plug 'zchee/deoplete-jedi', {'for': ['python']}
+  " Plug 'zchee/deoplete-clang', {'for': ['cpp']}
+
+  " snippets
   Plug 'SirVer/ultisnips'
   Plug 'honza/vim-snippets'
-  Plug 'ternjs/tern_for_vim', { 'for': ['javascript'] }
-  Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript'] }
-  Plug 'othree/jspc.vim', { 'for': ['javascript'] }
 
+  " js
+  Plug 'ternjs/tern_for_vim', { 'for': ['javascript'] }
+  Plug 'othree/jspc.vim', { 'for': ['javascript'] }
+  Plug 'pangloss/vim-javascript'
+  Plug 'heavenshell/vim-jsdoc', {'for': ['javascript', 'typescript']}
+
+  " ts
+  Plug 'leafgarland/typescript-vim', {'for': ['typescript']}
+  Plug 'bdauria/angular-cli.vim', { 'for': ['typescript'] }
+  Plug 'mhartington/nvim-typescript', {'for': ['typescript']}
+  Plug 'Shougo/echodoc.vim', {'for': ['typescript']}
+
+  " markdown
   Plug 'rhysd/vim-grammarous', { 'for': ['text', 'markdown']}
   Plug 'ron89/thesaurus_query.vim', { 'for': ['text', 'markdown']}
   Plug 'chrisbra/unicode.vim', { 'for': ['text', 'markdown']}
-  " Plug 'isRuslan/vim-es6'
-  " Plug 'rakr/vim-two-firewatch'
-else
-  call plug#begin('~/.vim/plugged')
-  Plug 'Shougo/neocomplete.vim'
+  Plug 'JamshedVesuna/vim-markdown-preview'
+
+  " python
+  Plug 'davidhalter/jedi-vim', {'for': ['python']}
+
+  " colorscheme
+  Plug 'morhetz/gruvbox'
+  Plug 'mhartington/oceanic-next'
+  Plug 'lifepillar/vim-wwdc16-theme'
+  Plug 'junegunn/seoul256.vim'
+  Plug 'joshdick/onedark.vim'
+
+  Plug 'vim-airline/vim-airline'
+
+  " search
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+  Plug 'junegunn/fzf.vim'
+  Plug 'mileszs/ack.vim'
+  Plug 'junegunn/vim-peekaboo'
+
+  " tmux
+  Plug 'tmux-plugins/vim-tmux'
+  Plug 'christoomey/vim-tmux-navigator'
+  Plug 'benmills/vimux'
+
+  " utils
+  Plug 'EinfachToll/DidYouMean'
+  Plug 'mhinz/vim-startify'
+  Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
+  Plug 'Valloric/MatchTagAlways'
+  Plug 'Valloric/ListToggle'
+  Plug 'vim-scripts/DirDiff.vim' " :DirDiff <A:Src Directory> <B:Src Directory>
+  Plug 'bronson/vim-trailing-whitespace'
+  Plug 'godlygeek/tabular'
+  Plug 'vim-scripts/visSum.vim'
+  Plug 'mbbill/undotree'
+
+  Plug 'Chiel92/vim-autoformat'
+
+  call plug#end()
 endif
-
-Plug 'samuelmasuy/vim-toggle-js-test'
-
-" Essential
-Plug 'morhetz/gruvbox'
-Plug 'mhartington/oceanic-next'
-Plug 'lifepillar/vim-wwdc16-theme'
-Plug 'junegunn/seoul256.vim'
-Plug 'joshdick/onedark.vim'
-" Plug 'sheerun/vim-polyglot'
-Plug 'pangloss/vim-javascript'
-
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-eunuch' " Adds Unix commands to vim.
-Plug 'tpope/vim-surround' " To change surrounding quote: cs(' ;tag cst<th> ;to add quote ysW'
-Plug 'tpope/vim-vinegar' " Enhance netrw
-Plug 'tpope/vim-abolish' " Camel case, snake crc
-Plug 'tpope/vim-markdown'
-
-Plug 'benekastah/neomake'
-
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-Plug 'junegunn/vim-peekaboo'
-Plug 'mileszs/ack.vim'
-
-Plug 'fatih/vim-go', {'for': ['go']}
-
-Plug 'tmux-plugins/vim-tmux'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'benmills/vimux'
-
-Plug 'bdauria/angular-cli.vim'
-" Plug 'Shougo/neosnippet.vim'
-" Plug 'Shougo/neosnippet-snippets'
-" Plug 'magarcia/vim-angular2-snippets'
-" Plug 'pangloss/vim-javascript'
-" Plug 'honza/vim-snippets'
-
-
-Plug 'EinfachToll/DidYouMean'
-Plug 'mhinz/vim-startify'
-
-Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
-Plug 'Valloric/MatchTagAlways'
-Plug 'Valloric/ListToggle'
-Plug 'vim-scripts/DirDiff.vim' " :DirDiff <A:Src Directory> <B:Src Directory>
-Plug 'bronson/vim-trailing-whitespace'
-
-" Plug 'itchyny/lightline.vim'
-Plug 'vim-airline/vim-airline'
-" Plug 'vim-airline/vim-airline-themes'
-
-" Plug 'HerringtonDarkholme/yats.vim', {'for': ['typescript']}
-Plug 'leafgarland/typescript-vim', {'for': ['typescript']}
-" Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-" Plug 'quramy/tsuquyomi', {'for': ['typescript']}
-Plug 'mhartington/nvim-typescript', {'for': ['typescript']}
-Plug 'Chiel92/vim-autoformat'
-Plug 'Shougo/echodoc.vim', {'for': ['typescript']}
-
-Plug 'davidhalter/jedi-vim', {'for': ['python']} " Important when using python
-
-Plug 'heavenshell/vim-jsdoc', {'for': ['javascript', 'typescript']}
-
-" Plug 'ekalinin/Dockerfile.vim', {'for' : 'Dockerfile'}
-Plug 'JamshedVesuna/vim-markdown-preview'
-Plug 'godlygeek/tabular'
-Plug 'vim-scripts/visSum.vim'
-
-Plug 'mbbill/undotree'
-
-call plug#end()
 
 " Better copy & paste.
 if has('mac')
@@ -146,21 +134,8 @@ set background=dark
 " Beautiful
 if has('nvim') && has("termguicolors")
   set termguicolors
-  " let g:wwdc16_term_italics=1
-  " silent! colorscheme wwdc16
   silent! colorscheme onedark
-  " silent! colorscheme OceanicNext
-  " let g:seoul256_background = 234
-  " silent! colorscheme gruvbox
-  " silent! colorscheme seoul256
-  " let g:airline_theme = 'oceanicnext'
-  " let g:airline_theme='twofirewatch'
-  let g:airline_theme='onedark'
-  " let g:lightline = {
-  "   \ 'colorscheme': 'onedark',
-  "   \ 'separator': { 'left': '', 'right': '' },
-  "   \ 'subseparator': { 'left': '', 'right': '' }
-  "   \ }
+  let g:airline_theme = 'onedark'
 elseif has('gui_running')
   set macligatures
   set guifont=Fira\ Code:h15
@@ -171,11 +146,6 @@ else
   silent! colorscheme gruvbox
   let g:gruvbox_italicize_comments=0
   let g:airline_theme = 'powerlineish'
-endif
-
-if has('gui_running')
-  set macligatures
-  set guifont=Fira\ Code:h15
 endif
 
 " ------------------------------------------------------------------------ }}}
@@ -391,11 +361,6 @@ autocmd FileType typescript noremap <leader>ref :TSRefs<CR>
 autocmd FileType typescript noremap <leader>t :TSType<CR>
 autocmd FileType typescript noremap <leader>err :TSGetErr<CR>
 autocmd FileType typescript nmap <leader>f <Plug>(test-toggle-ts)
-" autocmd FileType typescript nmap <leader>d <Plug>(TsuquyomiDefinition)
-" autocmd FileType typescript nmap <leader>ref <Plug>(TsuquyomiReferences)
-" autocmd FileType typescript nmap <leader>re <Plug>(TsuquyomiRenameSymbolC)
-" autocmd FileType typescript nmap <leader>im <Plug>(TsuquyomiImport)
-" autocmd FileType typescript nmap <buffer> <Leader>T : <C-u>echo tsuquyomi#hint()<CR>
 autocmd FileType typescript noremap <leader>r :Autoformat<CR>
 autocmd FileType typescript noremap <leader>o :JsDoc<CR>
 let g:nvim_typescript#max_completion_detail=100
@@ -544,7 +509,7 @@ hi NeoWarningMsg ctermfg=136
 let g:neomake_warning_sign = {'text': '☂', 'texthl': 'NeoWarningMsg'}
 
 " Settings for jedi-vim
-" let g:jedi#popup_select_first = 0
+let g:jedi#popup_select_first = 0
 
 " Settings for Ack.vim
 " Ack on <leader>a
@@ -559,7 +524,6 @@ let g:ackpreview = 1
 nnoremap <leader>cc :VimuxPromptCommand<CR>
 " Run last command executed by VimuxRunCommand
 nnoremap <leader>cu :VimuxRunLastCommand<CR>
-
 
 " Settings for sayonara
 nnoremap <silent> gs :Sayonara<CR>
@@ -656,23 +620,6 @@ if has('nvim')
   let g:UltiSnipsExpandTrigger="<C-j>"
   let g:UltiSnipsJumpForwardTrigger="<C-j>"
   autocmd FileType javascript let g:UltiSnipsEnableSnipMate = 0
-  " let g:UltiSnipsListSnippets='<c-l>'
-
-  " call deoplete#custom#set('ultisnips', 'matchers', ['matcher_fuzzy'])
-
-  " " Close popup by <Space>.
-  " inoremap <expr><C-x> pumvisible() ? deoplete#mappings#close_popup() : "\<Space>"
-
-  " let g:deoplete#sources#clang#clang_header = '/Library/Developer/CommandLineTools/usr/lib/llvm-gcc'
-  " let g:deoplete#sources#clang#libclang_path = '/Library/Developer/CommandLineTools/usr/lib/libclang.dylib' " mdfind -name libclang.dylib
-
-  " let g:clang_library_path='/Library/Developer/CommandLineTools/usr/lib'
-  " let g:clang_complete_auto = 0
-  " let g:clang_auto_select = 0
-  " let g:clang_omnicppcomplete_compliance = 0
-  " let g:clang_make_default_keymappings = 0
-  " let g:clang_use_library = 1
-  " let g:clang_jumpto_declaration_key = '<leader>d'
 endif
 
 " ------------------------------------------------------------------------ }}}

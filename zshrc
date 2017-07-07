@@ -16,7 +16,6 @@ source ~/.zsh/secrets.zsh
 # bindkey '^[[A' history-substring-search-up
 # bindkey '^[[B' history-substring-search-down
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # Initiate oh-my-zsh.
 source $ZSH/oh-my-zsh.sh
 
@@ -31,3 +30,5 @@ if [ -f '/Users/smasuy/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/sma
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/smasuy/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/smasuy/google-cloud-sdk/completion.zsh.inc'; fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
