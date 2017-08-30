@@ -32,7 +32,9 @@ if has('nvim')
   Plug 'tpope/vim-abolish' " Camel case, snake crc
   Plug 'tpope/vim-markdown'
 
-  Plug 'benekastah/neomake'
+  " Plug 'benekastah/neomake'
+  Plug 'w0rp/ale'
+
 
   Plug 'fatih/vim-go', {'for': ['go']}
 
@@ -286,11 +288,11 @@ autocmd FileType python nnoremap <leader>y :0,$!yapf<Cr>
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 let python_highlight_all=1
 let python_slow_sync=1
-let g:neomake_python_flake8_maker = {
-      \ 'args': [
-      \ '--ignore=E121,E124,E126,E261,E301,E303,E501,E721',
-      \ '--max-line-length=104']
-      \ }
+" let g:neomake_python_flake8_maker = {
+"       \ 'args': [
+"       \ '--ignore=E121,E124,E126,E261,E301,E303,E501,E721',
+"       \ '--max-line-length=104']
+"       \ }
 " Don't warn on
 "   E121 continuation line indentation is not a multiple of four
 "   E124 closing bracket does not match visual indentation
@@ -300,7 +302,7 @@ let g:neomake_python_flake8_maker = {
 "   E301 expected 1 blank line, found 0
 "   E303 expected 2 blank lines, found <n>
 "   E721 do not compare types, use 'isinstance()'
-let g:neomake_python_enabled_makers = ['flake8', 'python']
+" let g:neomake_python_enabled_makers = ['flake8', 'python']
 autocmd BufLeave *.py               normal! mP
 
 " Go
@@ -330,7 +332,7 @@ let g:go_autodetect_gopath = 1
 let g:go_fmt_fail_silently = 0
 let g:go_fmt_command = "goimports"
 let g:go_snippet_engine = "neosnippet"
-let g:neomake_go_enabled_makers = ['go', 'govet']
+" let g:neomake_go_enabled_makers = ['go', 'govet']
 autocmd BufLeave *.go             normal! mG
 
 " Javascript
@@ -346,7 +348,7 @@ autocmd FileType javascript noremap <leader>ref :TernRefs<CR>
 autocmd FileType javascript noremap <leader>re :TernRename<CR>
 autocmd FileType javascript noremap <leader>td :TernDoc<CR>
 let javascript_enable_domhtmlcss=1
-let g:neomake_javascript_enabled_makers = ['standard']
+" let g:neomake_javascript_enabled_makers = ['standard']
 autocmd BufLeave *.js             normal! mJ
 autocmd FileType javascript nmap <leader>t <Plug>(test-toggle-js)
 autocmd FileType javascript noremap <leader>o :JsDoc<CR>
@@ -365,19 +367,19 @@ autocmd FileType typescript noremap <leader>r :Autoformat<CR>
 autocmd FileType typescript noremap <leader>o :JsDoc<CR>
 let g:nvim_typescript#max_completion_detail=100
 autocmd BufLeave *.ts             normal! mT
-let g:neomake_typescript_tslint_maker = {
-    \ 'args': ['%:p'],
-    \ 'errorformat': 'ERROR: %f[%l\, %c]: %m',
-    \ }
-let g:neomake_typescript_tsc_maker = {
-          \ 'args': ['--project', getcwd() . '/tsconfig.test.json', '--noEmit'],
-          \ 'append_file': 0,
-          \ 'errorformat':
-          \   '%E%f %#(%l\,%c): error %m,' .
-          \   '%E%f %#(%l\,%c): %m,' .
-          \   '%Eerror %m,' .
-          \   '%C%\s%\+%m'
-        \ }
+" let g:neomake_typescript_tslint_maker = {
+"     \ 'args': ['%:p'],
+"     \ 'errorformat': 'ERROR: %f[%l\, %c]: %m',
+"     \ }
+" let g:neomake_typescript_tsc_maker = {
+"           \ 'args': ['--project', getcwd() . '/tsconfig.test.json', '--noEmit'],
+"           \ 'append_file': 0,
+"           \ 'errorformat':
+"           \   '%E%f %#(%l\,%c): error %m,' .
+"           \   '%E%f %#(%l\,%c): %m,' .
+"           \   '%Eerror %m,' .
+"           \   '%C%\s%\+%m'
+"         \ }
 
 autocmd VimEnter * if globpath('.,..','node_modules/@angular') != '' | call angular_cli#init() | endif
 
@@ -430,10 +432,10 @@ autocmd FileType objc setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab te
 autocmd FileType c setlocal commentstring=/*\ %s\ */
 autocmd FileType cpp,objc setlocal commentstring=//\ %s
 autocmd FileType c,cpp noremap <buffer> <leader>r :%!astyle --mode=c --style=google -n -s2<CR>
-let g:neomake_cpp_cpplint_maker = {
-      \ 'exe': 'cpplint'
-      \ }
-let g:neomake_cpp_enabled_makers = ['cpplint']
+" let g:neomake_cpp_cpplint_maker = {
+"       \ 'exe': 'cpplint'
+"       \ }
+" let g:neomake_cpp_enabled_makers = ['cpplint']
 let c_no_curly_error=1
 
 " vim
@@ -501,12 +503,17 @@ set laststatus=2
 let g:airline#extensions#whitespace#checks = []
 
 " Settings for neomake
-autocmd! BufWritePost * Neomake " run neomake on file write
-let g:neomake_verbose = 0
-hi NeoErrorMsg ctermfg=88
-let g:neomake_error_sign = {'text': '✘', 'texthl': 'NeoErrorMsg'}
-hi NeoWarningMsg ctermfg=136
-let g:neomake_warning_sign = {'text': '☂', 'texthl': 'NeoWarningMsg'}
+" autocmd! BufWritePost * Neomake " run neomake on file write
+" let g:neomake_verbose = 0
+" hi NeoErrorMsg ctermfg=88
+" let g:neomake_error_sign = {'text': '✘', 'texthl': 'NeoErrorMsg'}
+" hi NeoWarningMsg ctermfg=136
+" let g:neomake_warning_sign = {'text': '☂', 'texthl': 'NeoWarningMsg'}
+
+" Setting for ale
+let g:airline#extensions#ale#enabled = 1
+let g:ale_echo_msg_error_str = '✘'
+let g:ale_echo_msg_warning_str = '☂'
 
 " Settings for jedi-vim
 let g:jedi#popup_select_first = 0
