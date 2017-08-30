@@ -512,8 +512,8 @@ let g:airline#extensions#whitespace#checks = []
 
 " Setting for ale
 let g:airline#extensions#ale#enabled = 1
-let g:ale_echo_msg_error_str = '✘'
-let g:ale_echo_msg_warning_str = '☂'
+let g:ale_sign_error = '✘'
+let g:ale_sign_warning = '☂'
 
 " Settings for jedi-vim
 let g:jedi#popup_select_first = 0
