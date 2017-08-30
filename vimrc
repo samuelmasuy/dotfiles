@@ -57,25 +57,28 @@ if has('nvim')
 
   " ts
   Plug 'leafgarland/typescript-vim', {'for': ['typescript']}
-  Plug 'bdauria/angular-cli.vim', { 'for': ['typescript'] }
+  " Plug 'bdauria/angular-cli.vim', { 'for': ['typescript'] }
   Plug 'mhartington/nvim-typescript', {'for': ['typescript']}
   Plug 'Shougo/echodoc.vim', {'for': ['typescript']}
+  " Plug 'Quramy/tsuquyomi'
 
   " markdown
   Plug 'rhysd/vim-grammarous', { 'for': ['text', 'markdown']}
   Plug 'ron89/thesaurus_query.vim', { 'for': ['text', 'markdown']}
   Plug 'chrisbra/unicode.vim', { 'for': ['text', 'markdown']}
-  Plug 'JamshedVesuna/vim-markdown-preview'
 
   " python
   Plug 'davidhalter/jedi-vim', {'for': ['python']}
 
   " colorscheme
+  Plug 'joshdick/onedark.vim'
   Plug 'morhetz/gruvbox'
   Plug 'mhartington/oceanic-next'
   Plug 'lifepillar/vim-wwdc16-theme'
   Plug 'junegunn/seoul256.vim'
-  Plug 'joshdick/onedark.vim'
+  Plug 'tomasiser/vim-code-dark'
+  Plug 'cocopon/iceberg.vim'
+  Plug 'rakr/vim-one'
 
   Plug 'vim-airline/vim-airline'
 
@@ -281,8 +284,7 @@ endif
 
 " ------------------------------------------------------------------------ }}}
 " Syntax support  -------------------------------------------------------- {{{
-" python
-" ------
+" python ----------------------------------------------------------------- {{{
 autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=4 formatoptions=croqj softtabstop=4 comments=:#\:,:#
 autocmd FileType python nnoremap <leader>y :0,$!yapf<Cr>
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
@@ -305,8 +307,8 @@ let python_slow_sync=1
 " let g:neomake_python_enabled_makers = ['flake8', 'python']
 autocmd BufLeave *.py               normal! mP
 
-" Go
-" ----------
+" ------------------------------------------------------------------------ }}}
+" Go --------------------------------------------------------------------- {{{
 autocmd FileType go nmap <leader>r <Plug>(go-run)
 autocmd FileType go nmap <leader>i <Plug>(go-info)
 autocmd FileType go nmap <leader>ii <Plug>(go-implements)
@@ -335,8 +337,8 @@ let g:go_snippet_engine = "neosnippet"
 " let g:neomake_go_enabled_makers = ['go', 'govet']
 autocmd BufLeave *.go             normal! mG
 
-" Javascript
-" ----------
+" ------------------------------------------------------------------------ }}}
+" Javascript ------------------------------------------------------------- {{{
 autocmd FileType javascript setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType javascript setlocal commentstring=//\ %s
 autocmd FileType javascript noremap <buffer> <leader>fmt :%!js-beautify --type js -j -q -B -f -<CR>
@@ -353,8 +355,8 @@ autocmd BufLeave *.js             normal! mJ
 autocmd FileType javascript nmap <leader>t <Plug>(test-toggle-js)
 autocmd FileType javascript noremap <leader>o :JsDoc<CR>
 
-" Typescript
-" ----------
+" ------------------------------------------------------------------------ }}}
+" Typescript ------------------------------------------------------------- {{{
 " autocmd FileType typescript setlocal completeopt+=menu,preview
 autocmd FileType typescript setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType typescript noremap <leader>D :TSDoc<CR>
@@ -362,17 +364,21 @@ autocmd FileType typescript noremap <leader>d :TSDef<CR>
 autocmd FileType typescript noremap <leader>ref :TSRefs<CR>
 autocmd FileType typescript noremap <leader>t :TSType<CR>
 autocmd FileType typescript noremap <leader>err :TSGetErr<CR>
+autocmd FileType typescript noremap <leader>imp :TSImport<CR>
+
 autocmd FileType typescript nmap <leader>f <Plug>(test-toggle-ts)
 autocmd FileType typescript noremap <leader>r :Autoformat<CR>
 autocmd FileType typescript noremap <leader>o :JsDoc<CR>
+
+let g:nvim_typescript#tsimport#template='import { %s } from ''%s'''
 let g:nvim_typescript#max_completion_detail=100
 autocmd BufLeave *.ts             normal! mT
 " let g:neomake_typescript_tslint_maker = {
 "     \ 'args': ['%:p'],
-"     \ 'errorformat': 'ERROR: %f[%l\, %c]: %m',
+"     \ 'errorformat': '%EERROR: %f[%l\, %c]: %m,%E%f[%l\, %c]: %m'
 "     \ }
 " let g:neomake_typescript_tsc_maker = {
-"           \ 'args': ['--project', getcwd() . '/tsconfig.test.json', '--noEmit'],
+"           \ 'args': ['--project', getcwd() . '/tsconfig.json', '--noEmit'],
 "           \ 'append_file': 0,
 "           \ 'errorformat':
 "           \   '%E%f %#(%l\,%c): error %m,' .
@@ -380,19 +386,20 @@ autocmd BufLeave *.ts             normal! mT
 "           \   '%Eerror %m,' .
 "           \   '%C%\s%\+%m'
 "         \ }
+" let g:neomake_typescript_enabled_makers = ['tsc', 'tslint']
 
-autocmd VimEnter * if globpath('.,..','node_modules/@angular') != '' | call angular_cli#init() | endif
+" autocmd VimEnter * if globpath('.,..','node_modules/@angular') != '' | call angular_cli#init() | endif
 
-" ruby
-" ----
+" ------------------------------------------------------------------------ }}}
+" ruby ------------------------------------------------------------------- {{{
 autocmd FileType ruby setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 
-" php
-" ---
+" ------------------------------------------------------------------------ }}}
+" php -------------------------------------------------------------------- {{{
 autocmd FileType php setlocal shiftwidth=4 tabstop=8 softtabstop=4 expandtab
 
-" Template language (SGML / XML too)
-" ----------------------------------
+" ------------------------------------------------------------------------ }}}
+" Template language (SGML / XML too) ------------------------------------- {{{
 autocmd FileType xml,html,htmljinja,htmldjango setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType html setlocal commentstring=<!--\ %s\ -->
 autocmd FileType htmljinja setlocal commentstring={#\ %s\ #}
@@ -402,31 +409,38 @@ let html_no_rendering=1
 autocmd FileType html noremap <buffer> <leader>r :%!js-beautify --type html -j -q -B -f -<CR>
 autocmd BufLeave *.html             normal! mH
 
-" CSS
-" ---
+" ------------------------------------------------------------------------ }}}
+" CSS -------------------------------------------------------------------- {{{
 autocmd FileType css,scss setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
 autocmd FileType css,scss setlocal commentstring=/*\ %s\ */
 autocmd FileType css,scss noremap <buffer> <leader>r :%!js-beautify --type css -j -q -B -f -<CR>
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd BufLeave *.css,*.less,*scss normal! mC
 
-" Java
-" ----
+" ------------------------------------------------------------------------ }}}
+" Java ------------------------------------------------------------------- {{{
 autocmd FileType java setlocal shiftwidth=2 tabstop=8 softtabstop=2 expandtab
 autocmd FileType java setlocal commentstring=//\ %s
 
-" rst
-" ---
+" ------------------------------------------------------------------------ }}}
+" rst -------------------------------------------------------------------- {{{
 autocmd BufEnter *.txt setlocal spell
 autocmd FileType rst setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 formatoptions+=nqt
-" md
-" ---
+
+" ------------------------------------------------------------------------ }}}
+" md --------------------------------------------------------------------- {{{
 autocmd FileType md,markdown setlocal noexpandtab shiftwidth=4 tabstop=4 softtabstop=4
 autocmd FileType md,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd BufNewFile,BufRead *.txt setlocal ft=markdown
 autocmd FileType md,markdown setlocal spell
 
-" C/Obj-C/C++
+" ------------------------------------------------------------------------ }}}
+" shell ------------------------------------------------------------------ {{{
+autocmd FileType sh,bash,zsh setlocal noexpandtab shiftwidth=4 tabstop=4 softtabstop=4
+autocmd FileType sh,bash,zsh noremap <leader>r :Autoformat<CR>
+
+" ------------------------------------------------------------------------ }}}
+" C/Obj-C/C++ ------------------------------------------------------------ {{{
 autocmd FileType c,cpp setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab textwidth=80
 autocmd FileType objc setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab textwidth=80
 autocmd FileType c setlocal commentstring=/*\ %s\ */
@@ -438,15 +452,16 @@ autocmd FileType c,cpp noremap <buffer> <leader>r :%!astyle --mode=c --style=goo
 " let g:neomake_cpp_enabled_makers = ['cpplint']
 let c_no_curly_error=1
 
-" vim
-" ---
+" ------------------------------------------------------------------------ }}}
+" vim -------------------------------------------------------------------- {{{
 autocmd FileType vim setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 
-" JSON
-" ----
+" ------------------------------------------------------------------------ }}}
+" JSON ------------------------------------------------------------------- {{{
 autocmd FileType json setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
 autocmd FileType json noremap <buffer> <leader>r :%!js-beautify --type js -j -q -B -f -<CR>
 
+" ------------------------------------------------------------------------ }}}
 " ------------------------------------------------------------------------ }}}
 " Leader Key Mapping  ---------------------------------------------------- {{{
 
@@ -503,12 +518,12 @@ set laststatus=2
 let g:airline#extensions#whitespace#checks = []
 
 " Settings for neomake
-" autocmd! BufWritePost * Neomake " run neomake on file write
 " let g:neomake_verbose = 0
 " hi NeoErrorMsg ctermfg=88
-" let g:neomake_error_sign = {'text': '✘', 'texthl': 'NeoErrorMsg'}
 " hi NeoWarningMsg ctermfg=136
-" let g:neomake_warning_sign = {'text': '☂', 'texthl': 'NeoWarningMsg'}
+" let g:neomake_error_sign = {'text': '✘', 'texthl': 'NeomakeErrorSign'}
+" let g:neomake_warning_sign = {'text': '☂', 'texthl': 'NeomakeWarningSign' }
+" autocmd! BufWritePost * Neomake " run neomake on file write
 
 " Setting for ale
 let g:airline#extensions#ale#enabled = 1

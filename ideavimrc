@@ -40,7 +40,7 @@ nnoremap ,U :action FindUsages<CR>
 nnoremap ,r :action RenameElement<CR>
 nnoremap ,o :action OptimizeImports<CR>
 nnoremap ,g :action Generate<CR>
-" nnoremap <silent> gr :action ReformatCode<CR>
+nnoremap ,f :action ReformatCode<CR>
 
 nnoremap coh :nohlsearch<cr>
 nnoremap ,<space> :action Run<CR>

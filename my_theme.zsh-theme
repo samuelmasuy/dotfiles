@@ -29,9 +29,11 @@ CRUNCH_TIME_="$CRUNCH_BRACKET_COLOR{$CRUNCH_TIME_COLOR%T$CRUNCH_BRACKET_COLOR}%{
 CRUNCH_USER="$CRUNCH_DIR_COLOR%n$CRUNCH_BRACKET_COLOR at $CRUNCH_HOST%m:"
 CRUNCH_DIR_="$CRUNCH_DIR_COLOR%~\$(git_prompt_info) "
 
+local ret_status="%(?:$CRUNCH_GIT_CLEAN_COLOR:$CRUNCH_GIT_DIRTY_COLOR)❯"
+
 # Put it all together!
 PROMPT="$CRUNCH_TIME_ $CRUNCH_USER $CRUNCH_DIR_
-$(_prompt_char)%{$reset_color%} "
+${ret_status}%{$reset_color%} "
 
 
 

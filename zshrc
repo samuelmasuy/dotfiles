@@ -5,7 +5,7 @@ export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="my_theme"
 
 # Plugins for zsh.
-plugins=(git tmux mvn tmuxinator brew osx kubectl sublime colorize gradle go vi-mode web-search zsh_reload z vagrant zsh-syntax-highlighting history-substring-search)
+plugins=(git tmux mvn tmuxinator docker brew osx kubectl sublime colorize gradle go vi-mode web-search zsh_reload z vagrant zsh-syntax-highlighting history-substring-search)
 
 source ~/.zsh/colors.zsh
 source ~/.zsh/exports.zsh
@@ -32,3 +32,5 @@ if [ -f '/Users/smasuy/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/sma
 if [ -f '/Users/smasuy/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/smasuy/google-cloud-sdk/completion.zsh.inc'; fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# export PATH="/usr/local/opt/node@4/bin:$PATH"
