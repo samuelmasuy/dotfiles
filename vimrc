@@ -373,22 +373,6 @@ autocmd FileType typescript noremap <leader>o :JsDoc<CR>
 let g:nvim_typescript#tsimport#template='import { %s } from ''%s'''
 let g:nvim_typescript#max_completion_detail=100
 autocmd BufLeave *.ts             normal! mT
-" let g:neomake_typescript_tslint_maker = {
-"     \ 'args': ['%:p'],
-"     \ 'errorformat': '%EERROR: %f[%l\, %c]: %m,%E%f[%l\, %c]: %m'
-"     \ }
-" let g:neomake_typescript_tsc_maker = {
-"           \ 'args': ['--project', getcwd() . '/tsconfig.json', '--noEmit'],
-"           \ 'append_file': 0,
-"           \ 'errorformat':
-"           \   '%E%f %#(%l\,%c): error %m,' .
-"           \   '%E%f %#(%l\,%c): %m,' .
-"           \   '%Eerror %m,' .
-"           \   '%C%\s%\+%m'
-"         \ }
-" let g:neomake_typescript_enabled_makers = ['tsc', 'tslint']
-
-" autocmd VimEnter * if globpath('.,..','node_modules/@angular') != '' | call angular_cli#init() | endif
 
 " ------------------------------------------------------------------------ }}}
 " ruby ------------------------------------------------------------------- {{{
@@ -529,6 +513,9 @@ let g:airline#extensions#whitespace#checks = []
 let g:airline#extensions#ale#enabled = 1
 let g:ale_sign_error = '✘'
 let g:ale_sign_warning = '☂'
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_enter = 0
+" let g:ale_echo_msg_format = '[%linter%] %s'
 
 " Settings for jedi-vim
 let g:jedi#popup_select_first = 0
