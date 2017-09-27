@@ -30,11 +30,10 @@ if has('nvim')
   Plug 'tpope/vim-surround' " To change surrounding quote: cs(' ;tag cst<th> ;to add quote ysW'
   Plug 'tpope/vim-vinegar' " Enhance netrw
   Plug 'tpope/vim-abolish' " Camel case, snake crc
-  Plug 'tpope/vim-markdown'
+  Plug 'tpope/vim-markdown', {'for': ['markdown', 'md']}
 
-  " Plug 'benekastah/neomake'
+  " Plug 'benekastah/neomake', {'for': ['python']}
   Plug 'w0rp/ale'
-
 
   Plug 'fatih/vim-go', {'for': ['go']}
 
@@ -52,7 +51,7 @@ if has('nvim')
   " js
   Plug 'ternjs/tern_for_vim', { 'for': ['javascript'] }
   Plug 'othree/jspc.vim', { 'for': ['javascript'] }
-  Plug 'pangloss/vim-javascript'
+  Plug 'pangloss/vim-javascript', {'for': ['javascript', 'typescript']}
   Plug 'heavenshell/vim-jsdoc', {'for': ['javascript', 'typescript']}
 
   " ts
@@ -85,8 +84,8 @@ if has('nvim')
   " search
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
-  Plug 'mileszs/ack.vim'
   Plug 'junegunn/vim-peekaboo'
+  Plug 'mileszs/ack.vim'
 
   " tmux
   Plug 'tmux-plugins/vim-tmux'
@@ -304,42 +303,43 @@ let python_slow_sync=1
 "   E301 expected 1 blank line, found 0
 "   E303 expected 2 blank lines, found <n>
 "   E721 do not compare types, use 'isinstance()'
-" let g:neomake_python_enabled_makers = ['flake8', 'python']
 autocmd BufLeave *.py               normal! mP
 
 " ------------------------------------------------------------------------ }}}
 " Go --------------------------------------------------------------------- {{{
 autocmd FileType go nmap <leader>r <Plug>(go-run)
-autocmd FileType go nmap <leader>i <Plug>(go-info)
+autocmd FileType go nmap <leader>t <Plug>(go-info)
 autocmd FileType go nmap <leader>ii <Plug>(go-implements)
 autocmd FileType go nmap <leader>re <Plug>(go-rename)
 autocmd FileType go nmap <leader>ref <Plug>(go-referrers)
-autocmd FileType go nmap <leader>t <Plug>(go-test)
+autocmd FileType go nmap <leader>f <Plug>(go-test)
 autocmd FileType go nmap <leader>d <Plug>(go-def)
 autocmd FileType go nmap <leader>de <Plug>(go-describe)
 autocmd FileType go nmap K <Plug>(go-doc)
 autocmd FileType go setlocal noexpandtab shiftwidth=4 tabstop=4 softtabstop=4
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_fields = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
-let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_build_constraints = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_types = 1
 
 let g:go_highlight_space_tab_error = 0
 let g:go_highlight_array_whitespace_error = 0
 let g:go_highlight_trailing_whitespace_error = 0
-let g:go_auto_type_info = 1
+" let g:go_auto_type_info = 1
 " let g:go_auto_sameids = 1
 
 let g:go_addtags_transform = "snakecase"
-
 let g:go_autodetect_gopath = 1
 let g:go_fmt_fail_silently = 0
 let g:go_fmt_command = "goimports"
-let g:go_snippet_engine = "neosnippet"
-" let g:neomake_go_enabled_makers = ['go', 'govet']
+let g:go_snippet_engine = "ultisnips"
 autocmd BufLeave *.go             normal! mG
+ " --concurrency=3
+let g:ale_go_gometalinter_options = "--tests --enable-gc --fast -D aligncheck -D dupl -D gocyclo -D gotype -D gas -E errcheck -E misspell -E unused --severity=unused:error --severity=errcheck:error"
 
 " ------------------------------------------------------------------------ }}}
 " Javascript ------------------------------------------------------------- {{{
@@ -354,7 +354,6 @@ autocmd FileType javascript noremap <leader>ref :TernRefs<CR>
 autocmd FileType javascript noremap <leader>re :TernRename<CR>
 autocmd FileType javascript noremap <leader>td :TernDoc<CR>
 let javascript_enable_domhtmlcss=1
-" let g:neomake_javascript_enabled_makers = ['standard']
 autocmd BufLeave *.js             normal! mJ
 autocmd FileType javascript nmap <leader>t <Plug>(test-toggle-js)
 autocmd FileType javascript noremap <leader>o :JsDoc<CR>
@@ -434,10 +433,6 @@ autocmd FileType objc setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab te
 autocmd FileType c setlocal commentstring=/*\ %s\ */
 autocmd FileType cpp,objc setlocal commentstring=//\ %s
 autocmd FileType c,cpp noremap <buffer> <leader>r :%!astyle --mode=c --style=google -n -s2<CR>
-" let g:neomake_cpp_cpplint_maker = {
-"       \ 'exe': 'cpplint'
-"       \ }
-" let g:neomake_cpp_enabled_makers = ['cpplint']
 let c_no_curly_error=1
 
 " ------------------------------------------------------------------------ }}}
@@ -511,7 +506,7 @@ let g:airline#extensions#whitespace#checks = []
 " hi NeoWarningMsg ctermfg=136
 " let g:neomake_error_sign = {'text': '✘', 'texthl': 'NeomakeErrorSign'}
 " let g:neomake_warning_sign = {'text': '☂', 'texthl': 'NeomakeWarningSign' }
-" autocmd! BufWritePost * Neomake " run neomake on file write
+" autocmd FileType python call neomake#configure#automake('w')
 
 " Setting for ale
 let g:airline#extensions#ale#enabled = 1
@@ -519,7 +514,8 @@ let g:ale_sign_error = '✘'
 let g:ale_sign_warning = '☂'
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_enter = 0
-" let g:ale_echo_msg_format = '[%linter%] %s'
+let g:ale_echo_msg_format = '[%linter%] %s'
+let g:ale_linters = {'go': ['gometalinter']}
 
 " Settings for jedi-vim
 let g:jedi#popup_select_first = 0
