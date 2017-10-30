@@ -29,3 +29,14 @@ alias vi="vi -u ~/.vimrc"
 alias cdd="cd $HOME/.dotfiles"
 # weather
 alias weather="curl wttr.in/montreal"
+# suffix alias
+alias -s md=nvim
+#docker
+# List all exited containers
+alias dpsa="docker ps -aq -f status=exited"
+# Remove stopped containers
+alias drms="docker ps -aq --no-trunc | xargs docker rm"
+# Remove dangling/untagged images
+alias drmd="docker images -q --filter dangling=true | xargs docker rmi"
+# hub alias
+eval "$(hub alias -s)"

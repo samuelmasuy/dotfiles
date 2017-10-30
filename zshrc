@@ -19,11 +19,9 @@ source ~/.zsh/secrets.zsh
 # Initiate oh-my-zsh.
 source $ZSH/oh-my-zsh.sh
 
-alias -s md=nvim # suffix alias
 zstyle ':completion:*:cd:*' ignore-parents parent pwd # cd will never select the parent directory
 # ternjs settings to load file eagerly
 ulimit -n 2048
-[[ -s "$HOME/.tug/scripts/tug" ]] && source "$HOME/.tug/scripts/tug"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/smasuy/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/smasuy/google-cloud-sdk/path.zsh.inc'; fi

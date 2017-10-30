@@ -104,6 +104,8 @@ if has('nvim')
   Plug 'vim-scripts/visSum.vim'
   Plug 'mbbill/undotree'
 
+  Plug 'jamessan/vim-gnupg'
+
   Plug 'Chiel92/vim-autoformat'
 
   call plug#end()
@@ -420,6 +422,7 @@ autocmd FileType md,markdown setlocal noexpandtab shiftwidth=4 tabstop=4 softtab
 autocmd FileType md,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd BufNewFile,BufRead *.txt setlocal ft=markdown
 autocmd FileType md,markdown setlocal spell
+autocmd FileType gitcommit setlocal spell
 
 " ------------------------------------------------------------------------ }}}
 " shell ------------------------------------------------------------------ {{{
@@ -515,7 +518,7 @@ let g:ale_sign_warning = '☂'
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_enter = 0
 let g:ale_echo_msg_format = '[%linter%] %s'
-let g:ale_linters = {'go': ['gometalinter']}
+let g:ale_linters = {'go': ['gometalinter'], 'typescript': ['tslint', 'typecheck', 'tsserver']}
 
 " Settings for jedi-vim
 let g:jedi#popup_select_first = 0
@@ -571,6 +574,10 @@ let g:jsdoc_allow_input_prompt = 1
 let g:jsdoc_input_description = 1
 
 let g:javascript_plugin_jsdoc = 1
+
+" gnupg
+set modeline
+set modelines=5
 
 " ------------------------------------------------------------------------ }}}
 " Settings for (neocomplete and deoplete) and neosnippet ---------------------------- {{{
