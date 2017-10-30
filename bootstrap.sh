@@ -8,7 +8,7 @@ echo "******************Command line tooling install...*************************
 echo "**************************************************************************"
 # TODO find how to install tooling without having to install XCode
 command -v gcc >/dev/null 2>&1 && xcode-select --install || true
-command -v gcc >/dev/null 2>&1 || { echo >&2 "I require gcc, i.e. XCode, but it's not installed.  Aborting."; exit 1; }
+command -v gcc >/dev/null 2>&1 || { echo >&2 "I require gcc, but it's not installed. Aborting."; exit 1; }
 
 echo "**************************************************************************"
 echo "******************Homebrew Install...*************************************"
@@ -54,7 +54,7 @@ echo "**************************************************************************
 git clone git://github.com/robbyrussell/oh-my-zsh.git $HOME/.oh-my-zsh && git clone git://github.com/zsh-users/zsh-syntax-highlighting.git $HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 
 echo "**************************************************************************"
-echo "************************Install Plug for nvim...***************************"
+echo "**********************Install Plug for nvim...****************************"
 echo "**************************************************************************"
 sudo pip install --upgrade neovim
 sudo pip3 install --upgrade neovim
@@ -95,7 +95,9 @@ fi
 echo "**************************************************************************"
 echo "*********************Symlinking personal folders...***********************"
 echo "**************************************************************************"
-ln -s $HOME/Dropbox/Github/go $HOME/go
+mkdir -p $HOME/go/src/github.com
+ln -s $HOME/Dropbox/Github/go/src/github.com/samuelmasuy $HOME/go/src/github.com/samuelmasuy
+ln -s $HOME/Dropbox/Github/go/src/github.com/lex $HOME/go/src/github.com/lex
 
 echo "**************************************************************************"
 echo "*********************Change shell to zsh...*******************************"
@@ -117,11 +119,5 @@ git clone https://github.com/jasonrudolph/ControlEscape.spoon.git $HOME/.hammers
 cd $HOME/.hammerspoon/Spoons/ControlEscape.spoon
 script/setup
 script/remap-caps-lock-to-control
-
-echo "**************************************************************************"
-echo "*********************Global node packages...******************************"
-echo "**************************************************************************"
-npm install -g tern
-npm install -g standard
 
 echo "Done!"
