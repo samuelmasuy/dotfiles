@@ -159,6 +159,7 @@ endif
 
 if has('nvim')
   let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+  set inccommand=nosplit
 endif
 " Show the line that have been wrapped.
 let &showbreak='↪ '
