@@ -104,6 +104,7 @@ if has('nvim')
   Plug 'godlygeek/tabular'
   Plug 'vim-scripts/visSum.vim'
   Plug 'mbbill/undotree'
+  Plug 'machakann/vim-highlightedyank'
 
   Plug 'jamessan/vim-gnupg'
 
@@ -158,6 +159,7 @@ endif
 " ------------------------------------------------------------------------ }}}
 " Miscellaneous settings ------------------------------------------------- {{{
 
+set inccommand=nosplit
 " Show the line that have been wrapped.
 let &showbreak='↪ '
 " Gdiff vertical split
