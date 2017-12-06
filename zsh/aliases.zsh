@@ -23,6 +23,7 @@ alias mux="tmuxinator"
 # Using neovim
 alias vim="nvim"
 alias vimdiff="nvim -d"
+alias ivm="nvim"
 # load vim with very basic settings (way faster)
 alias vi="vi -u ~/.vimrc"
 # dotfiles

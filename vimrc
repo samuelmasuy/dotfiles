@@ -78,6 +78,7 @@ if has('nvim')
   Plug 'tomasiser/vim-code-dark'
   Plug 'cocopon/iceberg.vim'
   Plug 'rakr/vim-one'
+  Plug 'chriskempson/base16-vim'
 
   Plug 'vim-airline/vim-airline'
 
@@ -157,9 +158,6 @@ endif
 " ------------------------------------------------------------------------ }}}
 " Miscellaneous settings ------------------------------------------------- {{{
 
-if has('nvim')
-  let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
-endif
 " Show the line that have been wrapped.
 let &showbreak='↪ '
 " Gdiff vertical split
@@ -189,7 +187,7 @@ highlight ColorColumn ctermbg=magenta
 call matchadd('ColorColumn', '\%101v', 100)
 
 " Showing line numbers and length.
-set relativenumber
+" set relativenumber
 " Show current line numbers.
 set number
 " Width of document.
@@ -368,6 +366,7 @@ autocmd FileType typescript noremap <leader>D :TSDoc<CR>
 autocmd FileType typescript noremap <leader>d :TSDef<CR>
 autocmd FileType typescript noremap <leader>ref :TSRefs<CR>
 autocmd FileType typescript noremap <leader>t :TSType<CR>
+autocmd FileType typescript noremap <leader>td :TSTypeDef<CR>
 autocmd FileType typescript noremap <leader>err :TSGetErr<CR>
 autocmd FileType typescript noremap <leader>imp :TSImport<CR>
 
@@ -410,6 +409,11 @@ autocmd BufLeave *.css,*.less,*scss normal! mC
 " Java ------------------------------------------------------------------- {{{
 autocmd FileType java setlocal shiftwidth=2 tabstop=8 softtabstop=2 expandtab
 autocmd FileType java setlocal commentstring=//\ %s
+
+" ------------------------------------------------------------------------ }}}
+" Groovy ----------------------------------------------------------------- {{{
+autocmd FileType groovy setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
+autocmd FileType groovy setlocal commentstring=//\ %s
 
 " ------------------------------------------------------------------------ }}}
 " rst -------------------------------------------------------------------- {{{
