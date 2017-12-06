@@ -103,6 +103,7 @@ if has('nvim')
   Plug 'godlygeek/tabular'
   Plug 'vim-scripts/visSum.vim'
   Plug 'mbbill/undotree'
+  Plug 'machakann/vim-highlightedyank'
 
   Plug 'jamessan/vim-gnupg'
 
