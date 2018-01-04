@@ -110,6 +110,8 @@ if has('nvim')
 
   Plug 'Chiel92/vim-autoformat'
 
+  Plug 'christoomey/vim-sort-motion'
+
   call plug#end()
 endif
 
@@ -376,8 +378,8 @@ autocmd FileType typescript nmap <leader>f <Plug>(test-toggle-ts)
 autocmd FileType typescript noremap <leader>r :Autoformat<CR>
 autocmd FileType typescript noremap <leader>o :JsDoc<CR>
 
-let g:nvim_typescript#tsimport#template='import { %s } from ''%s'''
-let g:nvim_typescript#max_completion_detail=100
+let g:nvim_typescript#tsimport#template = "import { %s } from '%s'"
+let g:nvim_typescript#max_completion_detail = 100
 autocmd BufLeave *.ts             normal! mT
 
 " ------------------------------------------------------------------------ }}}
