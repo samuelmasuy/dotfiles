@@ -65,6 +65,8 @@ if has('nvim')
   Plug 'rhysd/vim-grammarous', { 'for': ['text', 'markdown']}
   Plug 'ron89/thesaurus_query.vim', { 'for': ['text', 'markdown']}
   Plug 'chrisbra/unicode.vim', { 'for': ['text', 'markdown']}
+  Plug 'junegunn/vim-xmark', { 'do': 'make' }
+  Plug 'davinche/godown-vim'
 
   " python
   Plug 'davidhalter/jedi-vim', {'for': ['python']}
@@ -83,7 +85,7 @@ if has('nvim')
   Plug 'vim-airline/vim-airline'
 
   " search
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+  Plug '/usr/local/opt/fzf'
   Plug 'junegunn/fzf.vim'
   Plug 'junegunn/vim-peekaboo'
   Plug 'mileszs/ack.vim'
@@ -111,6 +113,8 @@ if has('nvim')
   Plug 'Chiel92/vim-autoformat'
 
   Plug 'christoomey/vim-sort-motion'
+
+  Plug 'vim-scripts/vimwiki'
 
   call plug#end()
 endif
@@ -144,8 +148,8 @@ set background=dark
 " Beautiful
 if has('nvim') && has("termguicolors")
   set termguicolors
-  silent! colorscheme onedark
-  let g:airline_theme = 'onedark'
+  silent! colorscheme gruvbox
+  let g:airline_theme = 'gruvbox'
 elseif has('gui_running')
   set macligatures
   set guifont=Fira\ Code:h15
@@ -247,8 +251,8 @@ map <left> <nop>
 map <right> <nop>
 
 " Quick Fold and Unfold.
-nnoremap <space> za
-vnoremap <space> zf
+" nnoremap <space> za
+" vnoremap <space> zf
 
 " Make sure to be in the middle of the screen when searching.
 nnoremap n nzzzv
@@ -391,22 +395,24 @@ autocmd FileType ruby setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType php setlocal shiftwidth=4 tabstop=8 softtabstop=4 expandtab
 
 " ------------------------------------------------------------------------ }}}
-" Template language (SGML / XML too) ------------------------------------- {{{
+" Template language (HTML / SGML / XML) ------------------------------------- {{{
 autocmd FileType xml,html,htmljinja,htmldjango setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType html setlocal commentstring=<!--\ %s\ -->
 autocmd FileType htmljinja setlocal commentstring={#\ %s\ #}
 autocmd FileType html setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 let html_no_rendering=1
-autocmd FileType html noremap <buffer> <leader>r :%!js-beautify --type html -j -q -B -f -<CR>
+autocmd FileType html noremap <leader>r :Autoformat<CR>
 autocmd BufLeave *.html             normal! mH
+let g:formatdef_custom_html = '"html-beautify -s 2 -f - -".(&expandtab ? "s ".shiftwidth() : "t")'
+let g:formatters_html = ['custom_html']
 
 " ------------------------------------------------------------------------ }}}
 " CSS -------------------------------------------------------------------- {{{
 autocmd FileType css,scss setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
 autocmd FileType css,scss setlocal commentstring=/*\ %s\ */
-autocmd FileType css,scss noremap <buffer> <leader>r :%!js-beautify --type css -j -q -B -f -<CR>
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType css,less,scss noremap <leader>r :Autoformat<CR>
 autocmd BufLeave *.css,*.less,*scss normal! mC
 
 " ------------------------------------------------------------------------ }}}
@@ -423,14 +429,6 @@ autocmd FileType groovy setlocal commentstring=//\ %s
 " rst -------------------------------------------------------------------- {{{
 autocmd BufEnter *.txt setlocal spell
 autocmd FileType rst setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 formatoptions+=nqt
-
-" ------------------------------------------------------------------------ }}}
-" md --------------------------------------------------------------------- {{{
-autocmd FileType md,markdown setlocal noexpandtab shiftwidth=4 tabstop=4 softtabstop=4
-autocmd FileType md,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd BufNewFile,BufRead *.txt setlocal ft=markdown
-autocmd FileType md,markdown setlocal spell
-autocmd FileType gitcommit setlocal spell
 
 " ------------------------------------------------------------------------ }}}
 " shell ------------------------------------------------------------------ {{{
@@ -538,6 +536,12 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 let g:ackhighlight = 1
 let g:ack_autofold_results = 1
 let g:ackpreview = 1
+if executable("rg")
+    set grepprg=rg\ --vimgrep
+    set grepformat=%f:%l:%c:%m,%f:%l:%m
+endif
+" nnoremap <leader>a :Ack<space>
+" nnoremap <leader>a :grep<space>
 
 " Vimux settings
 " Prompt for a command to run
@@ -571,11 +575,6 @@ nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
 omap <leader><tab> <plug>(fzf-maps-o)
 
-let vim_markdown_preview_hotkey='<C-m>'
-let vim_markdown_preview_github=1
-let vim_markdown_preview_toggle=3
-" let vim_markdown_preview_browser='Google Chrome'
-
 let g:jsdoc_underscore_private = 1
 " let g:jsdoc_enable_es6 = 1
 let g:jsdoc_allow_input_prompt = 1
@@ -586,6 +585,40 @@ let g:javascript_plugin_jsdoc = 1
 " gnupg
 set modeline
 set modelines=5
+
+" vimwiki
+" Allow "normal" editor style tab/shift-tab indent/dedent. (Only in vimwiki
+" buffers!)
+let g:vimwiki_table_mappings = 0
+
+" Use markdown
+" Don't make temporary wikis out of other .md files tho...sheesh. (Among other
+" things, this trips an auto-cd behavior I don't usually want.)
+let g:vimwiki_global_ext = 0
+
+let g:vimwiki_conceallevel = 0
+
+" Always 'cd' to vimwiki directory when opening vimwiki pages. This means git,
+" search, etc should always 'just work'.
+let g:vimwiki_auto_chdir = 1
+
+let g:vimwiki_ext2syntax = {'.md': 'markdown', '.mkd': 'markdown', '.wiki': 'markdown'}
+
+let g:vimwiki_list = [{'path': '~/vimwiki', 'ext': '.wiki', 'auto_tags': 1}]
+
+" markdown --------------------------------------------------------------- {{{
+autocmd FileType md,markdown setlocal noexpandtab shiftwidth=4 tabstop=4 softtabstop=4
+autocmd FileType md,markdown,wiki setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd BufNewFile,BufRead *.txt setlocal ft=markdown
+autocmd FileType md,markdown,wiki setlocal spell
+autocmd FileType gitcommit setlocal spell
+" autocmd BufNewFile,BufRead *.wiki   set ft=markdown
+let g:markdown_syntax_conceal = 0
+let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'javascript', 'go', 'css']
+
+" ------------------------------------------------------------------------ }}}
+
+" vim-xmark
 
 " ------------------------------------------------------------------------ }}}
 " Settings for (neocomplete and deoplete) and neosnippet ---------------------------- {{{

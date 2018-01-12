@@ -36,6 +36,8 @@ brew 'python'
 brew 'python3'
 brew 'reattach-to-user-namespace'
 brew 'rename'
+brew 'ripgrep'
+brew 'rust'
 brew 'the_silver_searcher'
 brew 'tig'
 brew 'tmux', args: ['HEAD']
