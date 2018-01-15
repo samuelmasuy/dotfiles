@@ -604,7 +604,7 @@ let g:vimwiki_auto_chdir = 1
 
 let g:vimwiki_ext2syntax = {'.md': 'markdown', '.mkd': 'markdown', '.wiki': 'markdown'}
 
-let g:vimwiki_list = [{'path': '~/vimwiki', 'ext': '.wiki', 'auto_tags': 1}]
+let g:vimwiki_list = [{'path': '~/src/github.com/samuelmasuy/vimwiki', 'ext': '.wiki', 'auto_tags': 1}]
 
 " markdown --------------------------------------------------------------- {{{
 autocmd FileType md,markdown setlocal noexpandtab shiftwidth=4 tabstop=4 softtabstop=4
