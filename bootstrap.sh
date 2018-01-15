@@ -95,9 +95,9 @@ fi
 echo "**************************************************************************"
 echo "*********************Symlinking personal folders...***********************"
 echo "**************************************************************************"
-mkdir -p $HOME/go/src/github.com
-ln -s $HOME/Dropbox/Github/go/src/github.com/samuelmasuy $HOME/go/src/github.com/samuelmasuy
-ln -s $HOME/Dropbox/Github/go/src/github.com/lex $HOME/go/src/github.com/lex
+mkdir -p $HOME/src/github.com
+ln -s $HOME/Dropbox/Github/go/src/github.com/samuelmasuy $HOME/src/github.com/samuelmasuy
+ln -s $HOME/Dropbox/Github/go/src/github.com/lex $HOME/src/github.com/lex
 
 echo "**************************************************************************"
 echo "*********************Change shell to zsh...*******************************"

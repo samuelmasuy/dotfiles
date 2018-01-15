@@ -1,4 +1,4 @@
-export GOPATH=$HOME/go
+export GOPATH=$HOME
 export MAVEN_OPTS="-Xmx1024m -Xms512m"
 export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
 #export IDEA_JDK="/Library/Java/JavaVirtualMachines/jdk1.8.0_72.jdk/Contents/Home
