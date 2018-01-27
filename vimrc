@@ -116,6 +116,8 @@ if has('nvim')
 
   Plug 'vim-scripts/vimwiki'
 
+  Plug 'mhinz/vim-rfc' " sudo gem install nokogiri
+  Plug 'vim-scripts/rfc-syntax', { 'for': 'rfc' }
   call plug#end()
 endif
 
@@ -148,8 +150,8 @@ set background=dark
 " Beautiful
 if has('nvim') && has("termguicolors")
   set termguicolors
-  silent! colorscheme gruvbox
-  let g:airline_theme = 'gruvbox'
+  silent! colorscheme onedark
+  let g:airline_theme = 'onedark'
 elseif has('gui_running')
   set macligatures
   set guifont=Fira\ Code:h15
