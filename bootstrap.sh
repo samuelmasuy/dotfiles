@@ -96,6 +96,8 @@ echo "**************************************************************************
 echo "*********************Symlinking personal folders...***********************"
 echo "**************************************************************************"
 mkdir -p $HOME/src/github.com
+mkdir -p $HOME/bin
+mkdir -p $HOME/pkg
 ln -s $HOME/Dropbox/Github/src/github.com/samuelmasuy $HOME/src/github.com/samuelmasuy
 ln -s $HOME/Dropbox/Github/src/github.com/lex $HOME/src/github.com/lex
 
