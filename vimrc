@@ -19,7 +19,7 @@ autocmd! bufwritepost $MYVIMRC source $MYVIMRC
 if has('nvim')
   call plug#begin('~/.config/nvim/plugged')
 
-  Plug 'samuelmasuy/vim-toggle-js-test'
+  " Plug 'samuelmasuy/vim-toggle-js-test'
 
   " Essential
   Plug 'tpope/vim-commentary'
@@ -34,6 +34,8 @@ if has('nvim')
 
   " Plug 'benekastah/neomake', {'for': ['python']}
   Plug 'w0rp/ale'
+
+  Plug 'Chiel92/vim-autoformat'
 
   Plug 'fatih/vim-go', {'for': ['go']}
 
@@ -65,22 +67,29 @@ if has('nvim')
   Plug 'rhysd/vim-grammarous', { 'for': ['text', 'markdown']}
   Plug 'ron89/thesaurus_query.vim', { 'for': ['text', 'markdown']}
   Plug 'chrisbra/unicode.vim', { 'for': ['text', 'markdown']}
-  Plug 'junegunn/vim-xmark', { 'do': 'make' }
-  Plug 'davinche/godown-vim'
+  " Plug 'junegunn/vim-xmark', { 'do': 'make' }
+  " Plug 'davinche/godown-vim'
 
   " python
   Plug 'davidhalter/jedi-vim', {'for': ['python']}
+
+  " RFC
+  Plug 'mhinz/vim-rfc' " sudo gem install nokogiri
+  Plug 'vim-scripts/rfc-syntax', { 'for': 'rfc' }
+
+  " Encryption
+  Plug 'jamessan/vim-gnupg'
 
   " colorscheme
   Plug 'joshdick/onedark.vim'
   Plug 'morhetz/gruvbox'
   Plug 'mhartington/oceanic-next'
-  Plug 'lifepillar/vim-wwdc16-theme'
-  Plug 'junegunn/seoul256.vim'
-  Plug 'tomasiser/vim-code-dark'
-  Plug 'cocopon/iceberg.vim'
-  Plug 'rakr/vim-one'
-  Plug 'chriskempson/base16-vim'
+  " Plug 'lifepillar/vim-wwdc16-theme'
+  " Plug 'junegunn/seoul256.vim'
+  " Plug 'tomasiser/vim-code-dark'
+  " Plug 'cocopon/iceberg.vim'
+  " Plug 'rakr/vim-one'
+  " Plug 'chriskempson/base16-vim'
 
   Plug 'vim-airline/vim-airline'
 
@@ -88,12 +97,11 @@ if has('nvim')
   Plug '/usr/local/opt/fzf'
   Plug 'junegunn/fzf.vim'
   Plug 'junegunn/vim-peekaboo'
-  Plug 'mileszs/ack.vim'
 
   " tmux
-  Plug 'tmux-plugins/vim-tmux'
-  Plug 'christoomey/vim-tmux-navigator'
-  Plug 'benmills/vimux'
+  " Plug 'tmux-plugins/vim-tmux'
+  " Plug 'christoomey/vim-tmux-navigator'
+  " Plug 'benmills/vimux'
 
   " utils
   Plug 'EinfachToll/DidYouMean'
@@ -106,18 +114,11 @@ if has('nvim')
   Plug 'godlygeek/tabular'
   Plug 'vim-scripts/visSum.vim'
   Plug 'mbbill/undotree'
-  Plug 'machakann/vim-highlightedyank'
-
-  Plug 'jamessan/vim-gnupg'
-
-  Plug 'Chiel92/vim-autoformat'
-
+  " Plug 'machakann/vim-highlightedyank'
   Plug 'christoomey/vim-sort-motion'
 
   Plug 'vim-scripts/vimwiki'
 
-  Plug 'mhinz/vim-rfc' " sudo gem install nokogiri
-  Plug 'vim-scripts/rfc-syntax', { 'for': 'rfc' }
   call plug#end()
 endif
 
@@ -242,6 +243,11 @@ set mouse-=a
 
 set noshowmode
 
+if executable("rg")
+  set grepprg=rg\ --vimgrep
+  set grepformat=%f:%l:%c:%m,%f:%l:%m
+endif
+
 " ------------------------------------------------------------------------ }}}
 " General Mapping  ------------------------------------------------------- {{{
 
@@ -348,7 +354,7 @@ let g:go_fmt_fail_silently = 0
 let g:go_fmt_command = "goimports"
 let g:go_snippet_engine = "ultisnips"
 autocmd BufLeave *.go             normal! mG
- " --concurrency=3
+" --concurrency=3
 let g:ale_go_gometalinter_options = "--tests --enable-gc --fast -D aligncheck -D dupl -D gocyclo -D gotype -D gas -E errcheck -E misspell -E unused --severity=unused:error --severity=errcheck:error"
 
 " ------------------------------------------------------------------------ }}}
@@ -484,13 +490,13 @@ nnoremap <leader><leader> <c-^>
 
 " Google search word under cursor from http://www.vimbits.com/bits/551
 nnoremap <leader>is :let @p=@"<cr>yiw:!open "https://www.google.com/search?q=""<cr><cr>
-    \:let @"=@p<cr>
+      \:let @"=@p<cr>
 
 vnoremap <leader>is y:!open "https://www.google.com/search?q=""<cr><cr>
 
 " Google search the definition of the word under cursor
 nnoremap <leader>id :let @p=@"<cr>yiw:!open "https://www.google.com/search?q=define ""<cr><cr>
-    \:let @"=@p<cr>
+      \:let @"=@p<cr>
 
 " Easy substitution
 nnoremap <leader>; :%s::cg<Left><Left><Left>
@@ -531,20 +537,6 @@ let g:ale_linters = {'go': ['gometalinter'], 'typescript': ['tslint', 'typecheck
 " Settings for jedi-vim
 let g:jedi#popup_select_first = 0
 
-" Settings for Ack.vim
-" Ack on <leader>a
-nnoremap <leader>a :Ack<space>
-let g:ackprg = 'ag --nogroup --nocolor --column'
-let g:ackhighlight = 1
-let g:ack_autofold_results = 1
-let g:ackpreview = 1
-if executable("rg")
-    set grepprg=rg\ --vimgrep
-    set grepformat=%f:%l:%c:%m,%f:%l:%m
-endif
-" nnoremap <leader>a :Ack<space>
-" nnoremap <leader>a :grep<space>
-
 " Vimux settings
 " Prompt for a command to run
 nnoremap <leader>cc :VimuxPromptCommand<CR>
@@ -567,10 +559,20 @@ endif
 let g:fzf_files_options =
       \ '--preview "(coderay {} || cat {}) 2> /dev/null | head -'.&lines.'"'
 
+if executable("rg")
+  command! -bang -nargs=* Rg
+        \ call fzf#vim#grep(
+        \   'rg --column --line-number --no-heading --color=always --ignore-case '.shellescape(<q-args>), 1,
+        \   <bang>0 ? fzf#vim#with_preview('up:60%')
+        \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+        \   <bang>0)
+  nnoremap <Leader>a        :Rg<Space>
+endif
+
 nnoremap <silent> <expr> <Leader><Leader> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
 nnoremap <silent> <Leader>c        :Colors<CR>
 nnoremap <silent> <Leader><Enter>  :Buffers<CR>
-nnoremap <silent> <Leader>ag       :Ag
+nnoremap <Leader>ag       :Ag<Space>
 nnoremap <silent> <Leader>`        :Marks<CR>
 
 nmap <leader><tab> <plug>(fzf-maps-n)
@@ -661,9 +663,9 @@ if has('nvim')
 
   let g:deoplete#omni#functions = {}
   let g:deoplete#omni#functions.javascript = [
-    \ 'tern#Complete',
-    \ 'jspc#omni'
-  \]
+        \ 'tern#Complete',
+        \ 'jspc#omni'
+        \]
 
   " Insert <TAB> or select next match
   inoremap <silent> <expr> <Tab> TabComplete()

@@ -32,3 +32,4 @@ if [ -f '/Users/smasuy/google-cloud-sdk/completion.zsh.inc' ]; then source '/Use
 # export PATH="/usr/local/opt/node@4/bin:$PATH"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
