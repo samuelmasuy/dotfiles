@@ -99,8 +99,8 @@ if has('nvim')
   Plug 'junegunn/vim-peekaboo'
 
   " tmux
-  " Plug 'tmux-plugins/vim-tmux'
-  " Plug 'christoomey/vim-tmux-navigator'
+  Plug 'tmux-plugins/vim-tmux'
+  Plug 'christoomey/vim-tmux-navigator'
   " Plug 'benmills/vimux'
 
   " utils
@@ -118,6 +118,7 @@ if has('nvim')
   Plug 'christoomey/vim-sort-motion'
 
   Plug 'vim-scripts/vimwiki'
+  Plug 'modille/groovy.vim'
 
   call plug#end()
 endif

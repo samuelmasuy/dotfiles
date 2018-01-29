@@ -29,7 +29,9 @@ if [ -f '/Users/smasuy/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/sma
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/smasuy/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/smasuy/google-cloud-sdk/completion.zsh.inc'; fi
 
-# export PATH="/usr/local/opt/node@4/bin:$PATH"
+[[ -s "$HOME/.tug/scripts/tug" ]] && source "$HOME/.tug/scripts/tug"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
+
+# export PATH="/usr/local/opt/node@6/bin:$PATH"
+export PATH="/usr/local/opt/node@8/bin:$PATH"
