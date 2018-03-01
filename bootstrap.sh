@@ -1,7 +1,14 @@
 #!/usr/bin/env bash
 set -e
 
-DOTFILES_HOME=$HOME/.dotfiles
+DOTFILES_HOME=$HOME/scr/github.com/samuelmasuy/dotfiles
+
+echo "**************************************************************************"
+echo "********************Home directories setup...*****************************"
+echo "**************************************************************************"
+mkdir -p $HOME/src/github.com
+mkdir -p $HOME/bin
+mkdir -p $HOME/pkg
 
 echo "**************************************************************************"
 echo "******************Command line tooling install...***********************************"
@@ -46,7 +53,7 @@ echo "**************************************************************************
 [ -f "$HOME/.tmux.conf" ] && rm -f $HOME/.tmux.conf
 [ -f "$HOME/.vimrc" ] && rm -f $HOME/.vimrc
 [ -f "$HOME/.zshrc" ] && rm -f $HOME/.zshrc
-[ -f "$HOME/Documents/mysolarized.itermcolors" ] && rm -f $HOME/Documents/mysolarized.itermcolors
+[ -f "$HOME/Documents/mysnazzy.itermcolors" ] && rm -f $HOME/Documents/mysnazzy.itermcolors
 
 echo "**************************************************************************"
 echo "*********************Install oh-my-zsh...*********************************"
@@ -69,13 +76,14 @@ ln -s $DOTFILES_HOME/bash_profile $HOME/.bash_profile
 ln -s $DOTFILES_HOME/basic_vimrc $HOME/.vimrc
 ln -s $DOTFILES_HOME/gitignore $HOME/.gitignore
 ln -s $DOTFILES_HOME/ideavimrc $HOME/.ideavimrc
-ln -s $DOTFILES_HOME/my_theme.zsh-theme $HOME/.oh-my-zsh/themes/my_theme.zsh-theme
-ln -s $DOTFILES_HOME/mysolarized.itermcolors $HOME/Documents/mysolarized.itermcolors
+ln -s $DOTFILES_HOME/zsh/theme/pure.zsh /usr/local/share/zsh/site-functions/prompt_pure_setup
+ln -s $DOTFILES_HOME/zsh/theme/async.zsh /usr/local/share/zsh/site-functions/async
+ln -s $DOTFILES_HOME/iterm/mysnazzy.itermcolors $HOME/Documents/mysnazzy.itermcolors
 ln -s $DOTFILES_HOME/tmux $HOME/.tmux
 ln -s $DOTFILES_HOME/tmux.conf $HOME/.tmux.conf
 ln -s $DOTFILES_HOME/vim/snips $HOME/.config/nvim/snips
 ln -s $DOTFILES_HOME/vimrc $HOME/.config/nvim/init.vim
-ln -s $DOTFILES_HOME/zsh $HOME/.zsh
+ln -s $DOTFILES_HOME/zsh/config $HOME/.zsh
 ln -s $DOTFILES_HOME/zshrc $HOME/.zshrc
 
 echo "**************************************************************************"
@@ -95,9 +103,6 @@ fi
 echo "**************************************************************************"
 echo "*********************Symlinking personal folders...***********************"
 echo "**************************************************************************"
-mkdir -p $HOME/src/github.com
-mkdir -p $HOME/bin
-mkdir -p $HOME/pkg
 ln -s $HOME/Dropbox/Github/src/github.com/samuelmasuy $HOME/src/github.com/samuelmasuy
 ln -s $HOME/Dropbox/Github/src/github.com/lex $HOME/src/github.com/lex
 
@@ -112,6 +117,8 @@ echo "*********************Gems install...**************************************
 echo "**************************************************************************"
 sudo gem install coderay
 sudo gem install tmuxinator
+sudo gem install neovim
+sudo gem install nokogiri
 
 echo "**************************************************************************"
 echo "*********************Hammerspoon install...*******************************"

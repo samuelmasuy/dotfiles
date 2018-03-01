@@ -117,8 +117,12 @@ if has('nvim')
   " Plug 'machakann/vim-highlightedyank'
   Plug 'christoomey/vim-sort-motion'
 
-  Plug 'vim-scripts/vimwiki'
+  Plug 'xolox/vim-misc'
+  Plug 'xolox/vim-notes'
+  "
   Plug 'modille/groovy.vim'
+
+  Plug 'mustache/vim-mustache-handlebars', {'for': ['*.mustache']}
 
   call plug#end()
 endif
@@ -168,6 +172,8 @@ endif
 
 " ------------------------------------------------------------------------ }}}
 " Miscellaneous settings ------------------------------------------------- {{{
+
+set expandtab shiftwidth=4 tabstop=4 softtabstop=4
 
 set inccommand=nosplit
 " Show the line that have been wrapped.
@@ -463,6 +469,17 @@ autocmd FileType json setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
 autocmd FileType json noremap <buffer> <leader>r :%!js-beautify --type js -j -q -B -f -<CR>
 
 " ------------------------------------------------------------------------ }}}
+" markdown --------------------------------------------------------------- {{{
+autocmd FileType md,markdown setlocal noexpandtab shiftwidth=4 tabstop=4 softtabstop=4
+autocmd FileType md,markdown,wiki setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd BufNewFile,BufRead *.txt setlocal ft=markdown
+autocmd FileType md,markdown,wiki setlocal spell
+autocmd FileType gitcommit setlocal spell
+" autocmd BufNewFile,BufRead *.wiki   set ft=markdown
+let g:markdown_syntax_conceal = 0
+let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'javascript', 'go', 'css']
+
+" ------------------------------------------------------------------------ }}}
 " ------------------------------------------------------------------------ }}}
 " Leader Key Mapping  ---------------------------------------------------- {{{
 
@@ -591,41 +608,17 @@ let g:javascript_plugin_jsdoc = 1
 set modeline
 set modelines=5
 
-" vimwiki
-" Allow "normal" editor style tab/shift-tab indent/dedent. (Only in vimwiki
-" buffers!)
-let g:vimwiki_table_mappings = 0
+" vim-notes
+let g:notes_directories = ['~/src/github.com/samuelmasuy/vimnotes']
+let g:notes_conceal_code = 0
+let g:notes_conceal_italic = 0
+let g:notes_conceal_bold = 0
+let g:notes_conceal_url = 0
+let g:notes_word_boundaries = 1
+let g:notes_smart_quotes = 0
+let g:notes_tab_indents = 0
+let g:notes_alt_indents = 0
 
-" Use markdown
-" Don't make temporary wikis out of other .md files tho...sheesh. (Among other
-" things, this trips an auto-cd behavior I don't usually want.)
-let g:vimwiki_global_ext = 0
-
-let g:vimwiki_conceallevel = 0
-
-" Always 'cd' to vimwiki directory when opening vimwiki pages. This means git,
-" search, etc should always 'just work'.
-let g:vimwiki_auto_chdir = 1
-
-let g:vimwiki_ext2syntax = {'.md': 'markdown', '.mkd': 'markdown', '.wiki': 'markdown'}
-
-let g:vimwiki_list = [{'path': '~/src/github.com/samuelmasuy/vimwiki', 'ext': '.wiki', 'auto_tags': 1}]
-
-" markdown --------------------------------------------------------------- {{{
-autocmd FileType md,markdown setlocal noexpandtab shiftwidth=4 tabstop=4 softtabstop=4
-autocmd FileType md,markdown,wiki setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd BufNewFile,BufRead *.txt setlocal ft=markdown
-autocmd FileType md,markdown,wiki setlocal spell
-autocmd FileType gitcommit setlocal spell
-" autocmd BufNewFile,BufRead *.wiki   set ft=markdown
-let g:markdown_syntax_conceal = 0
-let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'javascript', 'go', 'css']
-
-" ------------------------------------------------------------------------ }}}
-
-" vim-xmark
-
-" ------------------------------------------------------------------------ }}}
 " Settings for (neocomplete and deoplete) and neosnippet ---------------------------- {{{
 "
 function! TabComplete() abort
@@ -685,3 +678,5 @@ if has('nvim')
 endif
 
 " ------------------------------------------------------------------------ }}}
+" ------------------------------------------------------------------------ }}}
+

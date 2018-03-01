@@ -2,39 +2,43 @@
 # CRUNCH - created from Steve Eley's cat waxing.
 # Initially hacked from the Dallas theme. Thanks, Dallas Reedy.
 
-CRUNCH_BRACKET_COLOR="%{$fg[white]%}"
+# CRUNCH_BRACKET_COLOR="%{$fg[white]%}"
 CRUNCH_TIME_COLOR="%{$fg[magenta]%}"
-CRUNCH_DIR_COLOR="%{$fg[cyan]%}"
+# CRUNCH_DIR_COLOR="%{$fg[cyan]%}"
+CRUNCH_DIR_COLOR="%{$fg[blue]%}"
 CRUNCH_CHAR_COLOR="%{$fg[green]%}"
 CRUNCH_CHAR_YELLOW_COLOR="%{$fg[yellow]%}"
 CRUNCH_CHAR_RED_COLOR="%{$fg[red]%}"
-CRUNCH_GIT_BRANCH_COLOR="%{$fg[green]%}"
+CRUNCH_GIT_BRANCH_COLOR="%F{242}"
 CRUNCH_GIT_CLEAN_COLOR="%{$fg[green]%}"
 CRUNCH_GIT_DIRTY_COLOR="%{$fg[red]%}"
 CRUNCH_HOST="%{$fg[blue]%}"
 
 
 # These Git variables are used by the oh-my-zsh git_prompt_info helper:
-ZSH_THEME_GIT_PROMPT_PREFIX="$CRUNCH_BRACKET_COLOR:$CRUNCH_GIT_BRANCH_COLOR"
+# ZSH_THEME_GIT_PROMPT_PREFIX="$CRUNCH_BRACKET_COLOR:$CRUNCH_GIT_BRANCH_COLOR"
+ZSH_THEME_GIT_PROMPT_PREFIX="$CRUNCH_GIT_BRANCH_COLOR"
 ZSH_THEME_GIT_PROMPT_SUFFIX=""
 ZSH_THEME_GIT_PROMPT_CLEAN=" $CRUNCH_GIT_CLEAN_COLOR✓"
 ZSH_THEME_GIT_PROMPT_DIRTY=" $CRUNCH_GIT_DIRTY_COLOR✗"
 
-function _prompt_char() {
-    echo '$CRUNCH_CHAR_YELLOW_COLOR❯$CRUNCH_CHAR_RED_COLOR❯$CRUNCH_CHAR_COLOR❯%f'
-}
+# function _prompt_char() {
+#     echo '$CRUNCH_CHAR_YELLOW_COLOR❯$CRUNCH_CHAR_RED_COLOR❯$CRUNCH_CHAR_COLOR❯%f'
+# }
 
 # Our elements:
-CRUNCH_TIME_="$CRUNCH_BRACKET_COLOR{$CRUNCH_TIME_COLOR%T$CRUNCH_BRACKET_COLOR}%{$reset_color%}"
-CRUNCH_USER="$CRUNCH_DIR_COLOR%n$CRUNCH_BRACKET_COLOR at $CRUNCH_HOST%m:"
-CRUNCH_DIR_="$CRUNCH_DIR_COLOR%~\$(git_prompt_info) "
+# CRUNCH_TIME_="$CRUNCH_BRACKET_COLOR{$CRUNCH_TIME_COLOR%T$CRUNCH_BRACKET_COLOR}%{$reset_color%}"
+# CRUNCH_USER="$CRUNCH_DIR_COLOR%n$CRUNCH_BRACKET_COLOR at $CRUNCH_HOST%m:"
+CRUNCH_DIR_="$CRUNCH_DIR_COLOR%~ \$(git_prompt_info) "
 
 local ret_status="%(?:$CRUNCH_GIT_CLEAN_COLOR:$CRUNCH_GIT_DIRTY_COLOR)❯"
 
 # Put it all together!
-PROMPT="$CRUNCH_TIME_ $CRUNCH_USER $CRUNCH_DIR_
+PROMPT="$CRUNCH_DIR_
 ${ret_status}%{$reset_color%} "
 
+# PROMPT="$CRUNCH_TIME_ $CRUNCH_USER $CRUNCH_DIR_
+# ${ret_status}%{$reset_color%} "
 
 
 # OLD
