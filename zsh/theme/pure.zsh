@@ -128,14 +128,15 @@ prompt_pure_preprompt_render() {
 		# and after the last newline, leaving us with everything except the
 		# preprompt. This is needed because some software prefixes the prompt
 		# (e.g. virtualenv).
-		cleaned_ps1=${PROMPT%%${prompt_newline}*}${PROMPT##*${prompt_newline}}
+		# cleaned_ps1=${PROMPT%%${prompt_newline}*}${PROMPT##*${prompt_newline}}
+		cleaned_ps1=${PROMPT##*${prompt_newline}}
 	fi
 	unset MATCH MBEGIN MEND
 
 	# Construct the new prompt with a clean preprompt.
 	local -ah ps1
 	ps1=(
-		$prompt_newline           # Initial newline, for spaciousness.
+		# $prompt_newline           # Initial newline, for spaciousness.
 		${(j. .)preprompt_parts}  # Join parts, space separated.
 		$prompt_newline           # Separate preprompt and prompt.
 		$cleaned_ps1
@@ -152,7 +153,7 @@ prompt_pure_preprompt_render() {
 		zle && zle .reset-prompt
 	fi
 
-	typeset -g prompt_pure_last_prompt=$expanded_prompt
+	# typeset -g prompt_pure_last_prompt=$expanded_prompt
 }
 
 prompt_pure_precmd() {
@@ -271,7 +272,7 @@ prompt_pure_async_tasks() {
 		# reset git preprompt variables, switching working tree
 		unset prompt_pure_git_status
 		unset prompt_pure_git_last_status_check_timestamp
-		unset prompt_pure_git_fetch_pattern
+		# unset prompt_pure_git_fetch_pattern
 		prompt_pure_vcs_info[branch]=
 		prompt_pure_vcs_info[top]=
 	fi
@@ -295,11 +296,11 @@ prompt_pure_async_refresh() {
 		async_job "prompt_pure" prompt_pure_async_git_aliases $working_tree
 	fi
 
-	# do not preform git fetch if it is disabled or working_tree == HOME
-	if (( ${PURE_GIT_PULL:-1} )) && [[ $working_tree != $HOME ]]; then
-		# tell worker to do a git fetch
-		async_job "prompt_pure" prompt_pure_async_git_fetch $PWD
-	fi
+	# # do not preform git fetch if it is disabled or working_tree == HOME
+	# if (( ${PURE_GIT_PULL:-1} )) && [[ $working_tree != $HOME ]]; then
+	# 	# tell worker to do a git fetch
+	# 	async_job "prompt_pure" prompt_pure_async_git_fetch $PWD
+	# fi
 
 	# if dirty checking is sufficiently fast, tell worker to check it again, or wait for timeout
 	integer time_since_last_status_check=$(( EPOCHSECONDS - ${prompt_pure_git_last_status_check_timestamp:-0} ))
