@@ -1,3 +1,5 @@
+set surround
+
 set history=1000                  " keep x lines of command line history
 set hlsearch                      " highlight search occurrences
 set ignorecase                    " ignore case in search patterns

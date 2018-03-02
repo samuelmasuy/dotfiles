@@ -28,3 +28,5 @@ export PROMPT_COMMAND='history -a'
 export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache
 # Tmux config.
 export DISABLE_AUTO_TITLE=true
+
+export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'

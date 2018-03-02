@@ -2,7 +2,7 @@
 export ZSH=$HOME/.oh-my-zsh
 
 # Set name of zsh theme to load.
-ZSH_THEME="my_theme"
+ZSH_THEME=""
 
 # Plugins for zsh.
 plugins=(git tmux mvn tmuxinator docker brew osx kubectl colorize go vi-mode web-search zsh_reload z vagrant zsh-syntax-highlighting history-substring-search)
@@ -19,6 +19,10 @@ source ~/.zsh/secrets.zsh
 # Initiate oh-my-zsh.
 source $ZSH/oh-my-zsh.sh
 
+autoload -U promptinit; promptinit
+PURE_CMD_MAX_EXEC_TIME=10
+prompt pure
+
 zstyle ':completion:*:cd:*' ignore-parents parent pwd # cd will never select the parent directory
 # ternjs settings to load file eagerly
 ulimit -n 2048
@@ -29,7 +33,8 @@ if [ -f '/Users/smasuy/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/sma
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/smasuy/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/smasuy/google-cloud-sdk/completion.zsh.inc'; fi
 
-# export PATH="/usr/local/opt/node@4/bin:$PATH"
+[[ -s "$HOME/.tug/scripts/tug" ]] && source "$HOME/.tug/scripts/tug"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
+
+export PATH="$PATH:/usr/local/opt/node@8/bin"
