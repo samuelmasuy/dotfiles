@@ -99,8 +99,8 @@ if has('nvim')
   Plug 'junegunn/vim-peekaboo'
 
   " tmux
-  " Plug 'tmux-plugins/vim-tmux'
-  " Plug 'christoomey/vim-tmux-navigator'
+  Plug 'tmux-plugins/vim-tmux'
+  Plug 'christoomey/vim-tmux-navigator'
   " Plug 'benmills/vimux'
 
   " utils
@@ -111,8 +111,8 @@ if has('nvim')
   Plug 'Valloric/ListToggle'
   Plug 'vim-scripts/DirDiff.vim' " :DirDiff <A:Src Directory> <B:Src Directory>
   Plug 'bronson/vim-trailing-whitespace'
-  Plug 'godlygeek/tabular'
-  Plug 'vim-scripts/visSum.vim'
+  Plug 'godlygeek/tabular' " :'<,'>Tabularize /:
+  Plug 'vim-scripts/visSum.vim' " <leader>su
   Plug 'mbbill/undotree'
   " Plug 'machakann/vim-highlightedyank'
   Plug 'christoomey/vim-sort-motion'
