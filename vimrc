@@ -116,8 +116,8 @@ if has('nvim')
   Plug 'Valloric/ListToggle'
   Plug 'vim-scripts/DirDiff.vim' " :DirDiff <A:Src Directory> <B:Src Directory>
   Plug 'bronson/vim-trailing-whitespace'
-  Plug 'godlygeek/tabular'
-  Plug 'vim-scripts/visSum.vim'
+  Plug 'godlygeek/tabular' " :'<,'>Tabularize /:
+  Plug 'vim-scripts/visSum.vim' " <leader>su
   Plug 'vim-scripts/VisIncr'
   Plug 'mbbill/undotree'
   " Plug 'machakann/vim-highlightedyank'
