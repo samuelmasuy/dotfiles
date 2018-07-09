@@ -38,3 +38,6 @@ if [ -f '/Users/smasuy/google-cloud-sdk/completion.zsh.inc' ]; then source '/Use
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export PATH="$PATH:/usr/local/opt/node@8/bin"
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /Users/smasuy/bin/vault vault

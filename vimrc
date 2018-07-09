@@ -32,6 +32,8 @@ if has('nvim')
   Plug 'tpope/vim-abolish' " Camel case, snake crc
   Plug 'tpope/vim-markdown', {'for': ['markdown', 'md']}
 
+  Plug 'justinmk/vim-dirvish'
+
   " Plug 'benekastah/neomake', {'for': ['python']}
   Plug 'w0rp/ale'
 
@@ -73,6 +75,9 @@ if has('nvim')
   " python
   Plug 'davidhalter/jedi-vim', {'for': ['python']}
 
+  " yaml
+  " Plug 'stephpy/vim-yaml', {'for': ['yaml']}
+
   " RFC
   Plug 'mhinz/vim-rfc' " sudo gem install nokogiri
   Plug 'vim-scripts/rfc-syntax', { 'for': 'rfc' }
@@ -113,6 +118,7 @@ if has('nvim')
   Plug 'bronson/vim-trailing-whitespace'
   Plug 'godlygeek/tabular'
   Plug 'vim-scripts/visSum.vim'
+  Plug 'vim-scripts/VisIncr'
   Plug 'mbbill/undotree'
   " Plug 'machakann/vim-highlightedyank'
   Plug 'christoomey/vim-sort-motion'
@@ -447,7 +453,7 @@ autocmd FileType rst setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 for
 
 " ------------------------------------------------------------------------ }}}
 " shell ------------------------------------------------------------------ {{{
-autocmd FileType sh,bash,zsh setlocal noexpandtab shiftwidth=4 tabstop=4 softtabstop=4
+autocmd FileType sh,bash,zsh setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
 autocmd FileType sh,bash,zsh noremap <leader>r :Autoformat<CR>
 
 " ------------------------------------------------------------------------ }}}
@@ -516,6 +522,9 @@ vnoremap <leader>is y:!open "https://www.google.com/search?q=""<cr><cr>
 nnoremap <leader>id :let @p=@"<cr>yiw:!open "https://www.google.com/search?q=define ""<cr><cr>
       \:let @"=@p<cr>
 
+" urlencode selection
+vnoremap <leader>en :!python -c 'import sys,urllib;print urllib.quote(sys.stdin.read().strip())'<cr>
+
 " Easy substitution
 nnoremap <leader>; :%s::cg<Left><Left><Left>
 vnoremap <leader>; :s::g<Left><Left>
@@ -550,7 +559,15 @@ let g:ale_sign_warning = '☂'
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_enter = 0
 let g:ale_echo_msg_format = '[%linter%] %s'
-let g:ale_linters = {'go': ['gometalinter'], 'typescript': ['tslint', 'typecheck', 'tsserver']}
+let g:ale_linters = {
+            \  'go': ['gometalinter'],
+            \  'typescript': ['tslint', 'typecheck', 'tsserver'],
+            \  'bash': ['shellcheck'],
+            \  'yaml': ['yamllint'],
+            \  'cloudformation': ['cfn-python-lint'],
+            \  'gitcommit': ['gitlint'],
+            \  'dockerfile': ['hadolint']
+            \}
 
 " Settings for jedi-vim
 let g:jedi#popup_select_first = 0
