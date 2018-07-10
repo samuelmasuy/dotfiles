@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-DOTFILES_HOME=$HOME/scr/github.com/samuelmasuy/dotfiles
+DOTFILES_HOME=$HOME/.dotfiles
 
 echo "**************************************************************************"
 echo "********************Home directories setup...*****************************"
@@ -91,20 +91,6 @@ echo "***********************Install nVim plugins...**************************"
 echo "**************************************************************************"
 nvim -c "PlugInstall" -c q -c q
 nvim -c "UpdateRemotePlugins" -c q
-
-echo "**************************************************************************"
-echo "******************Dropbox Install...**************************************"
-echo "**************************************************************************"
-if [[ ! -d "$HOME/Dropbox" ]]; then
-    echo "Need to sync Dropbox"
-    exit 1
-fi
-
-echo "**************************************************************************"
-echo "*********************Symlinking personal folders...***********************"
-echo "**************************************************************************"
-ln -s $HOME/Dropbox/Github/src/github.com/samuelmasuy $HOME/src/github.com/samuelmasuy
-ln -s $HOME/Dropbox/Github/src/github.com/lex $HOME/src/github.com/lex
 
 echo "**************************************************************************"
 echo "*********************Change shell to zsh...*******************************"
