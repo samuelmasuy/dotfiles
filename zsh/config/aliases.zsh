@@ -41,3 +41,6 @@ alias drms="docker ps -aq --no-trunc | xargs docker rm"
 alias drmd="docker images -q --filter dangling=true | xargs docker rmi"
 # hub alias
 eval "$(hub alias -s)"
+# tools alias
+alias gpr="git pull-request -r jive/dev-devops-tools -a samuelmasuy"
+alias gpb="gpsup"

@@ -61,7 +61,8 @@ if has('nvim')
   " ts
   Plug 'leafgarland/typescript-vim', {'for': ['typescript']}
   " Plug 'bdauria/angular-cli.vim', { 'for': ['typescript'] }
-  Plug 'mhartington/nvim-typescript', {'for': ['typescript']}
+  " Plug 'mhartington/nvim-typescript', {'for': ['typescript']}
+  Plug 'mhartington/nvim-typescript', {'for': ['typescript', 'tsx'], 'do': './install.sh' }
   Plug 'Shougo/echodoc.vim', {'for': ['typescript']}
   " Plug 'Quramy/tsuquyomi'
 
@@ -566,7 +567,8 @@ let g:ale_linters = {
             \  'yaml': ['yamllint'],
             \  'cloudformation': ['cfn-python-lint'],
             \  'gitcommit': ['gitlint'],
-            \  'dockerfile': ['hadolint']
+            \  'dockerfile': ['hadolint'],
+            \  'json': ['jsonlint']
             \}
 
 " Settings for jedi-vim
