@@ -107,6 +107,17 @@ sudo gem install neovim
 sudo gem install nokogiri
 
 echo "**************************************************************************"
+echo "*********************Npm install...***************************************"
+echo "**************************************************************************"
+npm install -g typescript
+npm install -g tern
+npm install -g bash-language-server
+npm install -g neovim
+npm install -g npm
+
+# pip install cfn-lint
+
+echo "**************************************************************************"
 echo "*********************Hammerspoon install...*******************************"
 echo "**************************************************************************"
 mkdir -p $HOME/.hammerspoon/Spoons

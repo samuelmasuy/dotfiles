@@ -41,3 +41,5 @@ export PATH="$PATH:/usr/local/opt/node@8/bin"
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /Users/smasuy/bin/vault vault
+
+source /usr/local/bin/virtualenvwrapper.sh

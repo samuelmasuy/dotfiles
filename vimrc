@@ -563,7 +563,7 @@ let g:ale_echo_msg_format = '[%linter%] %s'
 let g:ale_linters = {
             \  'go': ['gometalinter'],
             \  'typescript': ['tslint', 'typecheck', 'tsserver'],
-            \  'bash': ['shellcheck'],
+            \  'sh': ['language_server', 'shellcheck'],
             \  'yaml': ['yamllint'],
             \  'cloudformation': ['cfn-python-lint'],
             \  'gitcommit': ['gitlint'],

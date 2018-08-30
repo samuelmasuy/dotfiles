@@ -239,6 +239,18 @@ prompt_pure_async_git_status() {
 	return $?
 }
 
+# prompt_pure_async_git_ci() {
+# 	setopt localoptions noshwordsplit
+#     local status=''
+
+# 	# use cd -q to avoid side effects of changing directory, e.g. chpwd hooks
+# 	builtin cd -q $dir
+
+#     status=$(command hub ci-status 2> /dev/null | tail -n1)
+
+# 	return status
+# }
+
 prompt_pure_async_git_fetch() {
 	setopt localoptions noshwordsplit
 	# use cd -q to avoid side effects of changing directory, e.g. chpwd hooks
