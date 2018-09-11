@@ -39,7 +39,7 @@ if has('nvim')
 
   Plug 'Chiel92/vim-autoformat'
 
-  Plug 'fatih/vim-go', {'for': ['go']}
+  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
   " auto completion
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -47,6 +47,10 @@ if has('nvim')
   Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript'] }
   " Plug 'zchee/deoplete-jedi', {'for': ['python']}
   " Plug 'zchee/deoplete-clang', {'for': ['cpp']}
+  " Plug 'autozimu/LanguageClient-neovim', {
+  "   \ 'branch': 'next',
+  "   \ 'do': 'bash install.sh',
+  "   \ }
 
   " snippets
   Plug 'SirVer/ultisnips'
@@ -128,6 +132,8 @@ if has('nvim')
   Plug 'xolox/vim-notes'
   "
   Plug 'modille/groovy.vim'
+
+  Plug 'NLKNguyen/cloudformation-syntax.vim'
 
   Plug 'mustache/vim-mustache-handlebars', {'for': ['*.mustache']}
 
@@ -369,7 +375,7 @@ let g:go_fmt_command = "goimports"
 let g:go_snippet_engine = "ultisnips"
 autocmd BufLeave *.go             normal! mG
 " --concurrency=3
-let g:ale_go_gometalinter_options = "--tests --enable-gc --fast -D aligncheck -D dupl -D gocyclo -D gotype -D gas -E errcheck -E misspell -E unused --severity=unused:error --severity=errcheck:error"
+" let g:ale_go_gometalinter_options = "--tests --enable-gc --fast -D aligncheck -D dupl -D gocyclo -D gotype -D gas -E errcheck -E misspell -E unused --severity=unused:error --severity=errcheck:error"
 
 " ------------------------------------------------------------------------ }}}
 " Javascript ------------------------------------------------------------- {{{
@@ -560,8 +566,8 @@ let g:ale_sign_warning = '☂'
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_enter = 0
 let g:ale_echo_msg_format = '[%linter%] %s'
+            " \  'go': ['gometalinter'],
 let g:ale_linters = {
-            \  'go': ['gometalinter'],
             \  'typescript': ['tslint', 'typecheck', 'tsserver'],
             \  'sh': ['language_server', 'shellcheck'],
             \  'yaml': ['yamllint'],
@@ -640,6 +646,12 @@ let g:notes_alt_indents = 0
 
 " Settings for (neocomplete and deoplete) and neosnippet ---------------------------- {{{
 "
+" let g:LanguageClient_serverCommands = {
+"       \ 'go': ['go-langserver']
+"       \ }
+
+" let g:LanguageClient_autoStart = 0
+
 function! TabComplete() abort
   let l:col = col('.') - 1
 
