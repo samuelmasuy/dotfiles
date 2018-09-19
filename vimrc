@@ -31,6 +31,7 @@ if has('nvim')
   Plug 'tpope/vim-vinegar' " Enhance netrw
   Plug 'tpope/vim-abolish' " Camel case, snake crc
   Plug 'tpope/vim-markdown', {'for': ['markdown', 'md']}
+  Plug 'tpope/vim-rhubarb' " Companion of fugitive for integration with Github
 
   Plug 'justinmk/vim-dirvish'
 
