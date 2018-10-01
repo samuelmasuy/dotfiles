@@ -7,6 +7,7 @@ export PATH="$PATH:/usr/local/sbin:/usr/local/bin/python:/Applications/VirtualBo
 export PATH="$PATH:/usr/local/bin:$HOME/bin/:$HOME/bin/aws/:/usr/bin:/bin:/usr/sbin:/sbin:$GOPATH/bin"
 export PATH="$PATH:$JAVA_HOME/bin:/opt/apache-maven-3.3.9/bin"
 export PATH="$PATH:$HOME/.yarn/bin"
+export PATH="$PATH:$HOME/src/github.com/jive/jh/helper"
 export MANPATH="/usr/local/man:$MANPATH"
 
 export EDITOR="nvim"
