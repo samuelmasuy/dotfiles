@@ -31,6 +31,7 @@ echo "**************************************************************************
 echo "******************Dotfiles Install...*************************************"
 echo "**************************************************************************"
 [ ! -d "$DOTFILES_HOME" ] && git clone --recursive git@github.com:samuelmasuy/dotfiles.git $DOTFILES_HOME
+ln -s $DOTFILES_HOME $HOME/.dotfiles
 
 echo "**************************************************************************"
 echo "******************Application and tool installation...********************"

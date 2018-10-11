@@ -38,9 +38,12 @@ if has('nvim')
   " Plug 'benekastah/neomake', {'for': ['python']}
   Plug 'w0rp/ale'
 
+  " Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
+
   Plug 'Chiel92/vim-autoformat'
 
   Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+  Plug 'buoto/gotests-vim', {'for': ['go']}
 
   " auto completion
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -66,8 +69,7 @@ if has('nvim')
   " ts
   Plug 'leafgarland/typescript-vim', {'for': ['typescript']}
   " Plug 'bdauria/angular-cli.vim', { 'for': ['typescript'] }
-  " Plug 'mhartington/nvim-typescript', {'for': ['typescript']}
-  Plug 'mhartington/nvim-typescript', {'for': ['typescript', 'tsx'], 'do': './install.sh' }
+  Plug 'mhartington/nvim-typescript', {'for': ['typescript'], 'do': './install.sh' }
   Plug 'Shougo/echodoc.vim', {'for': ['typescript']}
   " Plug 'Quramy/tsuquyomi'
 
