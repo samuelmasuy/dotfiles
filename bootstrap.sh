@@ -115,8 +115,12 @@ npm install -g tern
 npm install -g bash-language-server
 npm install -g neovim
 npm install -g npm
+npm install -g fixjson
+npm install -g remark-cli
 
+# go get -u mvdan.cc/sh/cmd/shfmt
 # pip install cfn-lint
+# pip install gitlint
 
 echo "**************************************************************************"
 echo "*********************Hammerspoon install...*******************************"

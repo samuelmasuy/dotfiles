@@ -38,8 +38,6 @@ if has('nvim')
   " Plug 'benekastah/neomake', {'for': ['python']}
   Plug 'w0rp/ale'
 
-  " Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
-
   Plug 'Chiel92/vim-autoformat'
 
   Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
@@ -51,10 +49,10 @@ if has('nvim')
   Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript'] }
   " Plug 'zchee/deoplete-jedi', {'for': ['python']}
   " Plug 'zchee/deoplete-clang', {'for': ['cpp']}
-  " Plug 'autozimu/LanguageClient-neovim', {
-  "   \ 'branch': 'next',
-  "   \ 'do': 'bash install.sh',
-  "   \ }
+  Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
 
   " snippets
   Plug 'SirVer/ultisnips'
@@ -482,7 +480,7 @@ autocmd FileType vim setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 " ------------------------------------------------------------------------ }}}
 " JSON ------------------------------------------------------------------- {{{
 autocmd FileType json setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
-autocmd FileType json noremap <buffer> <leader>r :%!js-beautify --type js -j -q -B -f -<CR>
+autocmd FileType json noremap <leader>r :Autoformat<CR>
 
 " ------------------------------------------------------------------------ }}}
 " markdown --------------------------------------------------------------- {{{
@@ -491,6 +489,7 @@ autocmd FileType md,markdown,wiki setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd BufNewFile,BufRead *.txt setlocal ft=markdown
 autocmd FileType md,markdown,wiki setlocal spell
 autocmd FileType gitcommit setlocal spell
+autocmd FileType md,markdown noremap <leader>r :Autoformat<CR>
 " autocmd BufNewFile,BufRead *.wiki   set ft=markdown
 let g:markdown_syntax_conceal = 0
 let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'javascript', 'go', 'css']
