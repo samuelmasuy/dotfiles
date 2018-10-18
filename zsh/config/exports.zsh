@@ -35,5 +35,5 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
 export GROOVY_HOME=/usr/local/opt/groovy/libexec
 
 export BAT_THEME="TwoDark"
-export ISP="isp.jumpy.v1"
-export NURSE="nurse.instances.v2"
+export ISP_TABLE="isp.jumpy.v1"
+export NURSE_TABLE="nurse.instances.v2"
