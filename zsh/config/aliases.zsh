@@ -47,3 +47,6 @@ alias gprd="git pull-request -b develop -r jive/dev-devops-tools -a samuelmasuy"
 alias gpb="gpsup"
 # bat > cat
 alias cat="bat"
+
+alias j8="export JAVA_HOME=`/usr/libexec/java_home -v 1.8`; java -version"
+alias j11="export JAVA_HOME=`/usr/libexec/java_home -v 11`; java -version"
