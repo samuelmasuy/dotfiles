@@ -45,8 +45,8 @@ if has('nvim')
 
   " auto completion
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  Plug 'zchee/deoplete-go', { 'do': 'make', 'for': ['go']}
-  Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript'] }
+  " Plug 'zchee/deoplete-go', { 'do': 'make', 'for': ['go']}
+  " Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript'] }
   " Plug 'zchee/deoplete-jedi', {'for': ['python']}
   " Plug 'zchee/deoplete-clang', {'for': ['cpp']}
   Plug 'autozimu/LanguageClient-neovim', {
@@ -59,7 +59,7 @@ if has('nvim')
   Plug 'honza/vim-snippets'
 
   " js
-  Plug 'ternjs/tern_for_vim', { 'for': ['javascript'] }
+  " Plug 'ternjs/tern_for_vim', { 'for': ['javascript'] }
   Plug 'othree/jspc.vim', { 'for': ['javascript'] }
   Plug 'pangloss/vim-javascript', {'for': ['javascript', 'typescript']}
   Plug 'heavenshell/vim-jsdoc', {'for': ['javascript', 'typescript']}
@@ -386,10 +386,16 @@ autocmd FileType javascript noremap <buffer> <leader>fmt :%!js-beautify --type j
 autocmd FileType javascript noremap <leader>r :Autoformat<CR>
 autocmd FileType javascript let b:javascript_fold = 0
 " autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType javascript noremap <leader>d :TernDef<CR>
-autocmd FileType javascript noremap <leader>ref :TernRefs<CR>
-autocmd FileType javascript noremap <leader>re :TernRename<CR>
-autocmd FileType javascript noremap <leader>td :TernDoc<CR>
+" autocmd FileType javascript noremap <leader>d :TernDef<CR>
+" autocmd FileType javascript noremap <leader>ref :TernRefs<CR>
+" autocmd FileType javascript noremap <leader>re :TernRename<CR>
+" autocmd FileType javascript noremap <leader>td :TernDoc<CR>
+" <leader>ld to go to definition
+autocmd FileType javascript nnoremap <buffer> <leader>d :call LanguageClient_textDocument_definition()<cr>
+" <leader>lh for type info under cursor
+autocmd FileType javascript nnoremap <buffer> <leader>ref :call LanguageClient_textDocument_hover()<cr>
+" <leader>lr to rename variable under cursor
+autocmd FileType javascript nnoremap <buffer> <leader>re :call LanguageClient_textDocument_rename()<cr>
 let javascript_enable_domhtmlcss=1
 autocmd BufLeave *.js             normal! mJ
 autocmd FileType javascript nmap <leader>t <Plug>(test-toggle-js)
@@ -571,7 +577,7 @@ let g:ale_echo_msg_format = '[%linter%] %s'
             " \  'go': ['gometalinter'],
 let g:ale_linters = {
             \  'typescript': ['tslint', 'typecheck', 'tsserver'],
-            \  'sh': ['language_server', 'shellcheck'],
+            \  'sh': ['language_server', 'shfmt', 'shellcheck'],
             \  'yaml': ['yamllint'],
             \  'cloudformation': ['cfn-python-lint'],
             \  'gitcommit': ['gitlint'],
@@ -648,11 +654,11 @@ let g:notes_alt_indents = 0
 
 " Settings for (neocomplete and deoplete) and neosnippet ---------------------------- {{{
 "
-" let g:LanguageClient_serverCommands = {
-"       \ 'go': ['go-langserver']
-"       \ }
+let g:LanguageClient_serverCommands = {
+      \ 'javascript': ['javascript-typescript-stdio']
+      \ }
 
-" let g:LanguageClient_autoStart = 0
+let g:LanguageClient_autoStart = 1
 
 function! TabComplete() abort
   let l:col = col('.') - 1
@@ -673,10 +679,10 @@ if has('nvim')
   let g:deoplete#enable_at_startup = 1
   let g:echodoc_enable_at_startup=1
 
-  let g:tern_map_keys = 0
-  let g:tern_show_signature_in_pum=1
-  let g:tern#command = ['tern']
-  let g:tern#arguments = ['--persistent', '--no-port-file']
+  " let g:tern_map_keys = 0
+  " let g:tern_show_signature_in_pum=1
+  " let g:tern#command = ['tern']
+  " let g:tern#arguments = ['--persistent', '--no-port-file']
 
   if !exists('g:deoplete#sources#omni#input_patterns')
     let g:deoplete#sources#omni#input_patterns = {}
@@ -685,12 +691,11 @@ if has('nvim')
 
   let g:deoplete#sources={}
   let g:deoplete#sources.vim  = ['buffer', 'member', 'file', 'ultisnips']
-  let g:deoplete#sources.javascript = ['ultisnips', 'ternjs', 'buffer']
+  let g:deoplete#sources.javascript = ['ultisnips', 'LanguageClient', 'buffer']
   let g:deoplete#sources.html = ['buffer', 'member', 'file', 'omni', 'ultisnips']
 
   let g:deoplete#omni#functions = {}
   let g:deoplete#omni#functions.javascript = [
-        \ 'tern#Complete',
         \ 'jspc#omni'
         \]
 
