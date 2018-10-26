@@ -658,7 +658,7 @@ let g:LanguageClient_serverCommands = {
       \ 'javascript': ['javascript-typescript-stdio']
       \ }
 
-let g:LanguageClient_autoStart = 1
+let g:LanguageClient_autoStart = 0
 
 function! TabComplete() abort
   let l:col = col('.') - 1
