@@ -1,6 +1,7 @@
 export GOPATH=$HOME
 export MAVEN_OPTS="-Xmx1024m -Xms512m"
 export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
+export DOTFILES_HOME=$HOME/.dotfiles
 #export IDEA_JDK="/Library/Java/JavaVirtualMachines/jdk1.8.0_72.jdk/Contents/Home
 
 export PATH="$PATH:/usr/local/sbin:/usr/local/bin/python:/Applications/VirtualBox.app/Contents/MacOS"
@@ -8,11 +9,19 @@ export PATH="$PATH:/usr/local/bin:$HOME/bin/:$HOME/bin/aws/:/usr/bin:/bin:/usr/s
 export PATH="$PATH:$JAVA_HOME/bin:/opt/apache-maven-3.3.9/bin"
 export PATH="$PATH:$HOME/.yarn/bin"
 export PATH="$PATH:$HOME/src/github.com/jive/jh/helper"
+export PATH="$PATH:/usr/local/opt/node@10/bin"
 export MANPATH="/usr/local/man:$MANPATH"
+
+# Colors handling.
+autoload colors; colors;
+export LSCOLORS="Gxfxcxdxbxegedabagacad"
+export ZLSCOLORS="${LSCOLORS}"
 
 export EDITOR="nvim"
 
-export NODE_PATH='/usr/local/lib/node_modules'
+# export NODE_PATH='/usr/local/lib/node_modules'
+export LDFLAGS="-L/usr/local/opt/node@10/lib"
+export CPPFLAGS="-I/usr/local/opt/node@10/include"
 
 # Location of history file.
 export HISTFILE=~/.histfile
@@ -34,6 +43,7 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
 
 export GROOVY_HOME=/usr/local/opt/groovy/libexec
 
-export BAT_THEME="TwoDark"
+export BAT_THEME="OneHalfDark"
+export BAT_STYLE="changes"
 export ISP_TABLE="isp.jumpy.v1"
 export NURSE_TABLE="nurse.instances.v2"

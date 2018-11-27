@@ -1,45 +1,63 @@
-# Path to oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
 
-# Set name of zsh theme to load.
-ZSH_THEME=""
-
-# Plugins for zsh.
-plugins=(git tmux mvn tmuxinator docker brew osx kubectl colorize go vi-mode web-search zsh_reload z vagrant zsh-syntax-highlighting history-substring-search)
-
-source ~/.zsh/colors.zsh
 source ~/.zsh/exports.zsh
 source ~/.zsh/aliases.zsh
 source ~/.zsh/functions.zsh
 source ~/.zsh/secrets.zsh
 
-# bindkey '^[[A' history-substring-search-up
-# bindkey '^[[B' history-substring-search-down
+export ZPLUG_HOME=$DOTFILES_HOME/zsh/zplug
 
-# Initiate oh-my-zsh.
+source $ZPLUG_HOME/init.zsh
+
+# zplug "zsh-users/zsh-autosuggestions", from:github
+zplug "zsh-users/zsh-completions", from:github, defer:0
+zplug "zsh-users/zsh-syntax-highlighting", from:github, defer:2
+zplug "zsh-users/zsh-history-substring-search", from:github, defer:2
+
+zplug "plugins/git", from:oh-my-zsh
+zplug "plugins/tmux", from:oh-my-zsh
+zplug "plugins/tmuxinator", from:oh-my-zsh
+zplug "plugins/docker", from:oh-my-zsh
+zplug "plugins/osx", from:oh-my-zsh
+zplug "plugins/kubectl", from:oh-my-zsh
+zplug "plugins/go", from:oh-my-zsh
+zplug "plugins/zsh_reload", from:oh-my-zsh
+zplug "plugins/z", from:oh-my-zsh
+
+export ZSH_PLUGINS_ALIAS_TIPS_TEXT='💡 '
+
+# Install plugins if there are plugins that have not been installed
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+
+# Then, source plugins and add commands to $PATH
+zplug load --verbose
+
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=white'
+
+export ZSH=$ZPLUG_HOME/repos/robbyrussell/oh-my-zsh
+ZSH_THEME=""
+plugins=()
 source $ZSH/oh-my-zsh.sh
 
 autoload -U promptinit; promptinit
 PURE_CMD_MAX_EXEC_TIME=10
 prompt pure
 
+bindkey -v
+# bindkey '^[[A' history-substring-search-up
+# bindkey '^[[B' history-substring-search-down
+
 zstyle ':completion:*:cd:*' ignore-parents parent pwd # cd will never select the parent directory
-# ternjs settings to load file eagerly
-ulimit -n 2048
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/smasuy/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/smasuy/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/smasuy/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/smasuy/google-cloud-sdk/completion.zsh.inc'; fi
 
 [[ -s "$HOME/.tug/scripts/tug" ]] && source "$HOME/.tug/scripts/tug"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-export PATH="$PATH:/usr/local/opt/node@8/bin"
-
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /Users/smasuy/bin/vault vault
+# autoload -U +X bashcompinit && bashcompinit
+# complete -o nospace -C /Users/smasuy/bin/vault vault
 
 # source /usr/local/bin/virtualenvwrapper.sh

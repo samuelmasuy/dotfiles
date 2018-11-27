@@ -45,7 +45,7 @@ if has('nvim')
 
   " auto completion
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  " Plug 'zchee/deoplete-go', { 'do': 'make', 'for': ['go']}
+  Plug 'zchee/deoplete-go', { 'do': 'make', 'for': ['go']}
   " Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript'] }
   " Plug 'zchee/deoplete-jedi', {'for': ['python']}
   " Plug 'zchee/deoplete-clang', {'for': ['cpp']}
@@ -490,7 +490,7 @@ autocmd FileType json noremap <leader>r :Autoformat<CR>
 
 " ------------------------------------------------------------------------ }}}
 " markdown --------------------------------------------------------------- {{{
-autocmd FileType md,markdown setlocal noexpandtab shiftwidth=4 tabstop=4 softtabstop=4
+autocmd FileType md,markdown setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
 autocmd FileType md,markdown,wiki setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd BufNewFile,BufRead *.txt setlocal ft=markdown
 autocmd FileType md,markdown,wiki setlocal spell
@@ -568,6 +568,7 @@ let g:airline#extensions#whitespace#checks = []
 " autocmd FileType python call neomake#configure#automake('w')
 
 " Setting for ale
+
 let g:airline#extensions#ale#enabled = 1
 let g:ale_sign_error = '✘'
 let g:ale_sign_warning = '☂'

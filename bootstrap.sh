@@ -43,7 +43,6 @@ echo "**************************************************************************
 echo "*********************Removing dotfiles...*********************************"
 echo "**************************************************************************"
 [ -d "$HOME/.config" ] && rm -rf $HOME/.config
-[ -d "$HOME/.oh-my-zsh" ] && rm -rf $HOME/.oh-my-zsh
 [ -d "$HOME/.tmux" ] && rm -rf $HOME/.tmux
 [ -d "$HOME/.zsh" ] && rm -rf $HOME/.zsh
 [ -f "$HOME/.ackrc" ] && rm -f $HOME/.ackrc
@@ -55,11 +54,6 @@ echo "**************************************************************************
 [ -f "$HOME/.vimrc" ] && rm -f $HOME/.vimrc
 [ -f "$HOME/.zshrc" ] && rm -f $HOME/.zshrc
 [ -f "$HOME/Documents/mysnazzy.itermcolors" ] && rm -f $HOME/Documents/mysnazzy.itermcolors
-
-echo "**************************************************************************"
-echo "*********************Install oh-my-zsh...*********************************"
-echo "**************************************************************************"
-git clone git://github.com/robbyrussell/oh-my-zsh.git $HOME/.oh-my-zsh && git clone git://github.com/zsh-users/zsh-syntax-highlighting.git $HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 
 echo "**************************************************************************"
 echo "**********************Install Plug for nvim...****************************"
@@ -78,7 +72,6 @@ ln -s $DOTFILES_HOME/basic_vimrc $HOME/.vimrc
 ln -s $DOTFILES_HOME/gitignore $HOME/.gitignore
 ln -s $DOTFILES_HOME/ideavimrc $HOME/.ideavimrc
 ln -s $DOTFILES_HOME/zsh/theme/pure.zsh /usr/local/share/zsh/site-functions/prompt_pure_setup
-ln -s $DOTFILES_HOME/zsh/theme/async.zsh /usr/local/share/zsh/site-functions/async
 ln -s $DOTFILES_HOME/iterm/mysnazzy.itermcolors $HOME/Documents/mysnazzy.itermcolors
 ln -s $DOTFILES_HOME/tmux $HOME/.tmux
 ln -s $DOTFILES_HOME/tmux.conf $HOME/.tmux.conf
@@ -116,8 +109,9 @@ npm install -g bash-language-server
 npm install -g neovim
 npm install -g npm
 npm install -g fixjson
+npm install -g jsonlint
 npm install -g remark-cli
-
+npm install -g javascript-typescript-langserver
 # go get -u mvdan.cc/sh/cmd/shfmt
 # pip install cfn-lint
 # pip install gitlint
