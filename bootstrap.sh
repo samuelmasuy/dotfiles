@@ -56,6 +56,11 @@ echo "**************************************************************************
 [ -f "$HOME/Documents/mysnazzy.itermcolors" ] && rm -f $HOME/Documents/mysnazzy.itermcolors
 
 echo "**************************************************************************"
+echo "*********************Install oh-my-zsh...*********************************"
+echo "**************************************************************************"
+git clone git://github.com/robbyrussell/oh-my-zsh.git $HOME/.oh-my-zsh && git clone git://github.com/zsh-users/zsh-syntax-highlighting.git $HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+
+echo "**************************************************************************"
 echo "**********************Install Plug for nvim...****************************"
 echo "**************************************************************************"
 sudo pip install --upgrade neovim

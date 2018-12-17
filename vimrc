@@ -21,6 +21,7 @@ if has('nvim')
 
   " Plug 'samuelmasuy/vim-toggle-js-test'
 
+  Plug 'hashivim/vim-terraform'
   " Essential
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-fugitive'
@@ -138,6 +139,7 @@ if has('nvim')
 
   Plug 'mustache/vim-mustache-handlebars', {'for': ['*.mustache']}
 
+  Plug 'udalov/kotlin-vim'
   call plug#end()
 endif
 
@@ -459,6 +461,8 @@ autocmd FileType java setlocal commentstring=//\ %s
 " Groovy ----------------------------------------------------------------- {{{
 autocmd FileType groovy setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 autocmd FileType groovy setlocal commentstring=//\ %s
+autocmd FileType groovy noremap <leader>b :!groovy %<CR>
+
 
 " ------------------------------------------------------------------------ }}}
 " rst -------------------------------------------------------------------- {{{
