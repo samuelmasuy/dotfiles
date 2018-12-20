@@ -494,7 +494,7 @@ autocmd FileType json noremap <leader>r :Autoformat<CR>
 
 " ------------------------------------------------------------------------ }}}
 " markdown --------------------------------------------------------------- {{{
-autocmd FileType md,markdown setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
+autocmd FileType md,markdown setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType md,markdown,wiki setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd BufNewFile,BufRead *.txt setlocal ft=markdown
 autocmd FileType md,markdown,wiki setlocal spell
@@ -503,6 +503,10 @@ autocmd FileType md,markdown noremap <leader>r :Autoformat<CR>
 " autocmd BufNewFile,BufRead *.wiki   set ft=markdown
 let g:markdown_syntax_conceal = 0
 let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'javascript', 'go', 'css']
+
+" ------------------------------------------------------------------------ }}}
+" yaml --------------------------------------------------------------- {{{
+autocmd FileType yaml,yml setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 
 " ------------------------------------------------------------------------ }}}
 " ------------------------------------------------------------------------ }}}
@@ -581,14 +585,25 @@ let g:ale_lint_on_enter = 0
 let g:ale_echo_msg_format = '[%linter%] %s'
             " \  'go': ['gometalinter'],
 let g:ale_linters = {
-            \  'typescript': ['tslint', 'typecheck', 'tsserver'],
-            \  'sh': ['language_server', 'shfmt', 'shellcheck'],
-            \  'yaml': ['yamllint'],
-            \  'cloudformation': ['cfn-python-lint'],
-            \  'gitcommit': ['gitlint'],
-            \  'dockerfile': ['hadolint'],
-            \  'json': ['jsonlint']
-            \}
+\  'typescript': ['tslint', 'typecheck', 'tsserver'],
+\  'sh': ['language_server', 'shfmt', 'shellcheck'],
+\  'yaml': ['yamllint'],
+\  'cloudformation': ['cfn-python-lint'],
+\  'gitcommit': ['gitlint'],
+\  'dockerfile': ['hadolint'],
+\  'json': ['jsonlint']
+\}
+
+let g:ale_fixers = {
+\  'javascript': ['prettier'],
+\  'css': ['prettier'],
+\  'markdown': ['prettier'],
+\  'json': ['prettier'],
+\  'html': ['prettier'],
+\  'yaml': ['prettier'],
+\}
+
+let g:ale_linters_explicit = 1
 
 " Settings for jedi-vim
 let g:jedi#popup_select_first = 0
