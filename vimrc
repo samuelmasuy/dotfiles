@@ -19,12 +19,8 @@ autocmd! bufwritepost $MYVIMRC source $MYVIMRC
 if has('nvim')
   call plug#begin('~/.config/nvim/plugged')
 
-  " Plug 'samuelmasuy/vim-toggle-js-test'
-
-  Plug 'hashivim/vim-terraform'
   " Essential
   Plug 'tpope/vim-commentary'
-  Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-repeat'
   Plug 'tpope/vim-unimpaired'
   Plug 'tpope/vim-eunuch' " Adds Unix commands to vim.
@@ -32,6 +28,7 @@ if has('nvim')
   Plug 'tpope/vim-vinegar' " Enhance netrw
   Plug 'tpope/vim-abolish' " Camel case, snake crc
   Plug 'tpope/vim-markdown', {'for': ['markdown', 'md']}
+  Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-rhubarb' " Companion of fugitive for integration with Github
 
   Plug 'justinmk/vim-dirvish'
@@ -42,11 +39,11 @@ if has('nvim')
   Plug 'Chiel92/vim-autoformat'
 
   Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-  Plug 'buoto/gotests-vim', {'for': ['go']}
+  Plug 'buoto/gotests-vim', {'for': ['go'],  'do': ':!go get -u github.com/cweill/gotests/...' }
 
   " auto completion
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  Plug 'zchee/deoplete-go', { 'do': 'make', 'for': ['go']}
+  " Plug 'zchee/deoplete-go', { 'do': 'make', 'for': ['go']}
   " Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript'] }
   " Plug 'zchee/deoplete-jedi', {'for': ['python']}
   " Plug 'zchee/deoplete-clang', {'for': ['cpp']}
@@ -59,6 +56,11 @@ if has('nvim')
   Plug 'SirVer/ultisnips'
   Plug 'honza/vim-snippets'
 
+  " hashivim
+  Plug 'hashivim/vim-terraform'
+  Plug 'hashivim/vim-vaultproject'
+  Plug 'fatih/vim-hclfmt'
+
   " js
   " Plug 'ternjs/tern_for_vim', { 'for': ['javascript'] }
   Plug 'othree/jspc.vim', { 'for': ['javascript'] }
@@ -68,8 +70,8 @@ if has('nvim')
   " ts
   Plug 'leafgarland/typescript-vim', {'for': ['typescript']}
   " Plug 'bdauria/angular-cli.vim', { 'for': ['typescript'] }
-  Plug 'mhartington/nvim-typescript', {'for': ['typescript'], 'do': './install.sh' }
-  Plug 'Shougo/echodoc.vim', {'for': ['typescript']}
+  " Plug 'mhartington/nvim-typescript', {'for': ['typescript'], 'do': './install.sh' }
+  " Plug 'Shougo/echodoc.vim', {'for': ['typescript']}
   " Plug 'Quramy/tsuquyomi'
 
   " markdown
@@ -80,7 +82,7 @@ if has('nvim')
   " Plug 'davinche/godown-vim'
 
   " python
-  Plug 'davidhalter/jedi-vim', {'for': ['python']}
+  " Plug 'davidhalter/jedi-vim', {'for': ['python']}
 
   " yaml
   " Plug 'stephpy/vim-yaml', {'for': ['yaml']}
@@ -94,8 +96,8 @@ if has('nvim')
 
   " colorscheme
   Plug 'joshdick/onedark.vim'
-  Plug 'morhetz/gruvbox'
-  Plug 'mhartington/oceanic-next'
+  " Plug 'morhetz/gruvbox'
+  " Plug 'mhartington/oceanic-next'
   " Plug 'lifepillar/vim-wwdc16-theme'
   " Plug 'junegunn/seoul256.vim'
   " Plug 'tomasiser/vim-code-dark'
@@ -116,7 +118,7 @@ if has('nvim')
   " Plug 'benmills/vimux'
 
   " utils
-  Plug 'EinfachToll/DidYouMean'
+  " Plug 'EinfachToll/DidYouMean'
   Plug 'mhinz/vim-startify'
   Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
   Plug 'Valloric/MatchTagAlways'
@@ -130,16 +132,17 @@ if has('nvim')
   " Plug 'machakann/vim-highlightedyank'
   Plug 'christoomey/vim-sort-motion'
 
-  Plug 'xolox/vim-misc'
-  Plug 'xolox/vim-notes'
-  "
+  " Plug 'fmoralesc/vim-tutor-mode'
+  " Plug 'fmoralesc/vim-pad', { 'branch': 'devel' }
+
   Plug 'modille/groovy.vim'
 
   Plug 'NLKNguyen/cloudformation-syntax.vim'
 
   Plug 'mustache/vim-mustache-handlebars', {'for': ['*.mustache']}
 
-  Plug 'udalov/kotlin-vim'
+  " Plug 'udalov/kotlin-vim'
+  " Plug 'StanAngeloff/php.vim'
   call plug#end()
 endif
 
@@ -174,23 +177,26 @@ if has('nvim') && has("termguicolors")
   set termguicolors
   silent! colorscheme onedark
   let g:airline_theme = 'onedark'
-elseif has('gui_running')
-  set macligatures
-  set guifont=Fira\ Code:h15
-  silent! colorscheme OceanicNext
-  let g:airline_theme = 'oceanicnext'
-else
-  set t_Co=256
-  silent! colorscheme gruvbox
-  let g:gruvbox_italicize_comments=0
-  let g:airline_theme = 'powerlineish'
+  " let g:onedark_terminal_italics = 1
 endif
+" elseif has('gui_running')
+"   set macligatures
+"   set guifont=Fira\ Code:h15
+"   silent! colorscheme OceanicNext
+"   let g:airline_theme = 'oceanicnext'
+" else
+"   set t_Co=256
+"   silent! colorscheme gruvbox
+"   let g:gruvbox_italicize_comments=0
+"   let g:airline_theme = 'powerlineish'
+" endif
 
 " ------------------------------------------------------------------------ }}}
 " Miscellaneous settings ------------------------------------------------- {{{
 
 set expandtab shiftwidth=4 tabstop=4 softtabstop=4
 
+set autowrite
 set inccommand=nosplit
 " Show the line that have been wrapped.
 let &showbreak='↪ '
@@ -342,33 +348,32 @@ let python_slow_sync=1
 "   E301 expected 1 blank line, found 0
 "   E303 expected 2 blank lines, found <n>
 "   E721 do not compare types, use 'isinstance()'
+autocmd FileType python nnoremap <buffer> gd :call LanguageClient_textDocument_definition()<cr>
+" <leader>lh for type info under cursor
+autocmd FileType python nnoremap <buffer> <leader>ref :call LanguageClient_textDocument_hover()<cr>
+" <leader>lr to rename variable under cursor
+autocmd FileType python nnoremap <buffer> <leader>re :call LanguageClient_textDocument_rename()<cr>
 autocmd BufLeave *.py               normal! mP
 
 " ------------------------------------------------------------------------ }}}
 " Go --------------------------------------------------------------------- {{{
-autocmd FileType go nmap <leader>r <Plug>(go-run)
-autocmd FileType go nmap <leader>t <Plug>(go-info)
-autocmd FileType go nmap <leader>ii <Plug>(go-implements)
-autocmd FileType go nmap <leader>re <Plug>(go-rename)
-autocmd FileType go nmap <leader>ref <Plug>(go-referrers)
-autocmd FileType go nmap <leader>f <Plug>(go-test)
-autocmd FileType go nmap <leader>d <Plug>(go-def)
-autocmd FileType go nmap <leader>de <Plug>(go-describe)
-autocmd FileType go nmap K <Plug>(go-doc)
-autocmd FileType go setlocal noexpandtab shiftwidth=4 tabstop=4 softtabstop=4
 let g:go_highlight_build_constraints = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
+" let g:go_highlight_methods = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_structs = 1
+
 let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_generate_tags = 1
 
 let g:go_highlight_space_tab_error = 0
 let g:go_highlight_array_whitespace_error = 0
 let g:go_highlight_trailing_whitespace_error = 0
-" let g:go_auto_type_info = 1
+
+let g:go_auto_type_info = 1
 " let g:go_auto_sameids = 1
 
 let g:go_addtags_transform = "snakecase"
@@ -376,9 +381,56 @@ let g:go_autodetect_gopath = 1
 let g:go_fmt_fail_silently = 0
 let g:go_fmt_command = "goimports"
 let g:go_snippet_engine = "ultisnips"
+let g:go_metalinter_command='golangci-lint'
+let g:go_def_mode = 'gopls'
+
 autocmd BufLeave *.go             normal! mG
+
+augroup go
+  autocmd!
+  " Show by default 4 spaces for a tab
+  autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
+  " :GoBuild and :GoTestCompile
+  " autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
+  autocmd FileType go nmap <leader>b <Plug>(go-build)
+  " :GoTest
+  autocmd FileType go nmap <leader>t  <Plug>(go-test)
+  " :GoRun
+  autocmd FileType go nmap <leader>r  <Plug>(go-run)
+  " :GoDoc
+  " autocmd FileType go nmap K <Plug>(go-doc)
+  " :GoInfo
+  " autocmd FileType go nmap <Leader>i <Plug>(go-info)
+  " :GoReferers
+  autocmd FileType go nmap <Leader>i <Plug>(go-referers)
+  " :GoMetaLinter
+  autocmd FileType go nmap <Leader>l <Plug>(go-metalinter)
+  " :GoDef
+  " autocmd FileType go nmap <leader>d <Plug>(go-def)
+  " :GoDescribe
+  autocmd FileType go nmap <leader>de <Plug>(go-describe)
+  " :GoRename
+  autocmd FileType go nmap <leader>re <Plug>(go-rename)
+  " :GoCoverageToggle
+  autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
+  " :GoAlternate  commands :A, :AV, :AS and :AT
+  autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
+  autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
+  autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
+augroup END
+
+" build_go_files is a custom function that builds or compiles the test file.
+" It calls :GoBuild if its a Go file, or :GoTestCompile if it's a test file
+" function! s:build_go_files()
+"   let l:file = expand('%')
+"   if l:file =~# '^\f\+_test\.go$'
+"     call go#test#Test(0, 1)
+"   elseif l:file =~# '^\f\+\.go$'
+"     call go#cmd#Build(0)
+"   endif
+" endfunction
 " --concurrency=3
-" let g:ale_go_gometalinter_options = "--tests --enable-gc --fast -D aligncheck -D dupl -D gocyclo -D gotype -D gas -E errcheck -E misspell -E unused --severity=unused:error --severity=errcheck:error"
+let g:ale_go_gometalinter_options = "--tests --enable-gc --fast -D aligncheck -D dupl -D gocyclo -D gotype -D gas -E errcheck -E misspell -E unused --severity=unused:error --severity=errcheck:error"
 
 " ------------------------------------------------------------------------ }}}
 " Javascript ------------------------------------------------------------- {{{
@@ -457,6 +509,12 @@ autocmd BufLeave *.css,*.less,*scss normal! mC
 autocmd FileType java setlocal shiftwidth=2 tabstop=8 softtabstop=2 expandtab
 autocmd FileType java setlocal commentstring=//\ %s
 
+autocmd FileType java nnoremap <buffer> gd :call LanguageClient_textDocument_definition()<cr>
+" <leader>lh for type info under cursor
+autocmd FileType java nnoremap <buffer> <leader>lh :call LanguageClient_textDocument_hover()<cr>
+" <leader>lr to rename variable under cursor
+autocmd FileType java nnoremap <buffer> <leader>re :call LanguageClient_textDocument_rename()<cr>
+autocmd FileType java nnoremap <leader>r :call LanguageClient_textDocument_formatting()<cr>
 " ------------------------------------------------------------------------ }}}
 " Groovy ----------------------------------------------------------------- {{{
 autocmd FileType groovy setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
@@ -471,7 +529,7 @@ autocmd FileType rst setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 for
 
 " ------------------------------------------------------------------------ }}}
 " shell ------------------------------------------------------------------ {{{
-autocmd FileType sh,bash,zsh setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
+autocmd FileType sh,bash,zsh setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType sh,bash,zsh noremap <leader>r :Autoformat<CR>
 
 " ------------------------------------------------------------------------ }}}
@@ -580,18 +638,19 @@ let g:airline#extensions#whitespace#checks = []
 let g:airline#extensions#ale#enabled = 1
 let g:ale_sign_error = '✘'
 let g:ale_sign_warning = '☂'
-let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_text_changed = 'always'
 let g:ale_lint_on_enter = 0
 let g:ale_echo_msg_format = '[%linter%] %s'
-            " \  'go': ['gometalinter'],
 let g:ale_linters = {
 \  'typescript': ['tslint', 'typecheck', 'tsserver'],
-\  'sh': ['language_server', 'shfmt', 'shellcheck'],
+\  'sh': ['shfmt', 'shellcheck'],
 \  'yaml': ['yamllint'],
 \  'cloudformation': ['cfn-python-lint'],
 \  'gitcommit': ['gitlint'],
 \  'dockerfile': ['hadolint'],
-\  'json': ['jsonlint']
+\  'json': ['jsonlint'],
+\  'go': ['gometalinter'],
+\  'terraform': ['tflint', 'fmt']
 \}
 
 let g:ale_fixers = {
@@ -603,7 +662,10 @@ let g:ale_fixers = {
 \  'yaml': ['prettier'],
 \}
 
-let g:ale_linters_explicit = 1
+" let g:ale_linters_explicit = 1
+
+" Settings for terraform
+let g:terraform_fmt_on_save=1
 
 " Settings for jedi-vim
 let g:jedi#popup_select_first = 0
@@ -661,21 +723,27 @@ let g:javascript_plugin_jsdoc = 1
 set modeline
 set modelines=5
 
-" vim-notes
-let g:notes_directories = ['~/src/github.com/samuelmasuy/vimnotes']
-let g:notes_conceal_code = 0
-let g:notes_conceal_italic = 0
-let g:notes_conceal_bold = 0
-let g:notes_conceal_url = 0
-let g:notes_word_boundaries = 1
-let g:notes_smart_quotes = 0
-let g:notes_tab_indents = 0
-let g:notes_alt_indents = 0
+" hcl
+let g:tf_fmt_autosave = 0
+let g:nomad_fmt_autosave = 0
+autocmd BufNewFile,BufRead *.hcl setf conf
+autocmd BufNewFile,BufRead *.hcl setlocal expandtab shiftwidth=2 tabstop=2
+
+
+" vim-pad
+let g:pad#dir = '~/src/github.com/samuelmasuy/pad/local'
+let g:pad#local_dir = '~/src/github.com/samuelmasuy/pad/public'
+let g:pad#search_backend = 'ag'
+let g:pad#set_mappings = 0
+nnoremap <leader>s <plug>(pad-list)
+nnoremap gn <plug>(pad-incremental-new-note)
 
 " Settings for (neocomplete and deoplete) and neosnippet ---------------------------- {{{
 "
 let g:LanguageClient_serverCommands = {
-      \ 'javascript': ['javascript-typescript-stdio']
+      \ 'javascript': ['javascript-typescript-stdio'],
+      \ 'java': ['/Users/smasuy/bin/jdtls'],
+      \ 'python': ['/usr/local/bin/pyls'],
       \ }
 
 let g:LanguageClient_autoStart = 0
@@ -718,6 +786,8 @@ if has('nvim')
   let g:deoplete#omni#functions.javascript = [
         \ 'jspc#omni'
         \]
+
+  call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
 
   " Insert <TAB> or select next match
   inoremap <silent> <expr> <Tab> TabComplete()
