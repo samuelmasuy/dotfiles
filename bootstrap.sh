@@ -56,11 +56,6 @@ echo "**************************************************************************
 [ -f "$HOME/Documents/mysnazzy.itermcolors" ] && rm -f $HOME/Documents/mysnazzy.itermcolors
 
 echo "**************************************************************************"
-echo "*********************Install oh-my-zsh...*********************************"
-echo "**************************************************************************"
-git clone git://github.com/robbyrussell/oh-my-zsh.git $HOME/.oh-my-zsh && git clone git://github.com/zsh-users/zsh-syntax-highlighting.git $HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
-
-echo "**************************************************************************"
 echo "**********************Install Plug for nvim...****************************"
 echo "**************************************************************************"
 sudo pip install --upgrade neovim
@@ -76,7 +71,6 @@ ln -s $DOTFILES_HOME/bash_profile $HOME/.bash_profile
 ln -s $DOTFILES_HOME/basic_vimrc $HOME/.vimrc
 ln -s $DOTFILES_HOME/gitignore $HOME/.gitignore
 ln -s $DOTFILES_HOME/ideavimrc $HOME/.ideavimrc
-ln -s $DOTFILES_HOME/zsh/theme/pure.zsh /usr/local/share/zsh/site-functions/prompt_pure_setup
 ln -s $DOTFILES_HOME/iterm/mysnazzy.itermcolors $HOME/Documents/mysnazzy.itermcolors
 ln -s $DOTFILES_HOME/tmux $HOME/.tmux
 ln -s $DOTFILES_HOME/tmux.conf $HOME/.tmux.conf
@@ -109,14 +103,16 @@ echo "**************************************************************************
 echo "*********************Npm install...***************************************"
 echo "**************************************************************************"
 npm install -g typescript
-npm install -g tern
-npm install -g bash-language-server
 npm install -g neovim
 npm install -g npm
 npm install -g fixjson
 npm install -g jsonlint
 npm install -g remark-cli
-npm install -g javascript-typescript-langserver
+npm install -g git-removed-branches
+npm install -g markdown2confluence
+npm install -g prettier
+npm install -g serverless
+npm install -g yarn
 # go get -u mvdan.cc/sh/cmd/shfmt
 # pip install cfn-lint
 # pip install gitlint

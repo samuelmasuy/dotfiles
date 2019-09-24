@@ -127,3 +127,5 @@ export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Hom
 export IDEA_JDK="/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home"
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 [[ -s "$HOME/.tug/scripts/tug" ]] && source "$HOME/.tug/scripts/tug"
+
+complete -C /usr/local/bin/vault vault

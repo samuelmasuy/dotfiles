@@ -34,7 +34,7 @@ if has('nvim')
   Plug 'justinmk/vim-dirvish'
 
   " Plug 'benekastah/neomake', {'for': ['python']}
-  Plug 'w0rp/ale'
+  Plug 'dense-analysis/ale'
 
   Plug 'Chiel92/vim-autoformat'
 
@@ -42,19 +42,20 @@ if has('nvim')
   Plug 'buoto/gotests-vim', {'for': ['go'],  'do': ':!go get -u github.com/cweill/gotests/...' }
 
   " auto completion
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   " Plug 'zchee/deoplete-go', { 'do': 'make', 'for': ['go']}
   " Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript'] }
   " Plug 'zchee/deoplete-jedi', {'for': ['python']}
   " Plug 'zchee/deoplete-clang', {'for': ['cpp']}
-  Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
+  " Plug 'autozimu/LanguageClient-neovim', {
+  "   \ 'branch': 'next',
+  "   \ 'do': 'bash install.sh',
+  "   \ }
+  Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 
   " snippets
-  Plug 'SirVer/ultisnips'
-  Plug 'honza/vim-snippets'
+  " Plug 'SirVer/ultisnips'
+  " Plug 'honza/vim-snippets'
 
   " hashivim
   Plug 'hashivim/vim-terraform'
@@ -73,6 +74,9 @@ if has('nvim')
   " Plug 'mhartington/nvim-typescript', {'for': ['typescript'], 'do': './install.sh' }
   " Plug 'Shougo/echodoc.vim', {'for': ['typescript']}
   " Plug 'Quramy/tsuquyomi'
+  "
+  Plug 'janko/vim-test'
+
 
   " markdown
   Plug 'rhysd/vim-grammarous', { 'for': ['text', 'markdown']}
@@ -331,7 +335,7 @@ endif
 " python ----------------------------------------------------------------- {{{
 autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=4 formatoptions=croqj softtabstop=4 comments=:#\:,:#
 autocmd FileType python nnoremap <leader>y :0,$!yapf<Cr>
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+" autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 let python_highlight_all=1
 let python_slow_sync=1
 " let g:neomake_python_flake8_maker = {
@@ -348,11 +352,11 @@ let python_slow_sync=1
 "   E301 expected 1 blank line, found 0
 "   E303 expected 2 blank lines, found <n>
 "   E721 do not compare types, use 'isinstance()'
-autocmd FileType python nnoremap <buffer> gd :call LanguageClient_textDocument_definition()<cr>
+" autocmd FileType python nnoremap <buffer> gd :call LanguageClient_textDocument_definition()<cr>
 " <leader>lh for type info under cursor
-autocmd FileType python nnoremap <buffer> <leader>ref :call LanguageClient_textDocument_hover()<cr>
+" autocmd FileType python nnoremap <buffer> <leader>ref :call LanguageClient_textDocument_hover()<cr>
 " <leader>lr to rename variable under cursor
-autocmd FileType python nnoremap <buffer> <leader>re :call LanguageClient_textDocument_rename()<cr>
+" autocmd FileType python nnoremap <buffer> <leader>re :call LanguageClient_textDocument_rename()<cr>
 autocmd BufLeave *.py               normal! mP
 
 " ------------------------------------------------------------------------ }}}
@@ -380,9 +384,9 @@ let g:go_addtags_transform = "snakecase"
 let g:go_autodetect_gopath = 1
 let g:go_fmt_fail_silently = 0
 let g:go_fmt_command = "goimports"
-let g:go_snippet_engine = "ultisnips"
+" let g:go_snippet_engine = "ultisnips"
 let g:go_metalinter_command='golangci-lint'
-let g:go_def_mode = 'gopls'
+" let g:go_def_mode = 'gopls'
 
 autocmd BufLeave *.go             normal! mG
 
@@ -402,15 +406,15 @@ augroup go
   " :GoInfo
   " autocmd FileType go nmap <Leader>i <Plug>(go-info)
   " :GoReferers
-  autocmd FileType go nmap <Leader>i <Plug>(go-referers)
+  " autocmd FileType go nmap <Leader>i <Plug>(go-referers)
   " :GoMetaLinter
-  autocmd FileType go nmap <Leader>l <Plug>(go-metalinter)
+  " autocmd FileType go nmap <Leader>l <Plug>(go-metalinter)
   " :GoDef
   " autocmd FileType go nmap <leader>d <Plug>(go-def)
   " :GoDescribe
   autocmd FileType go nmap <leader>de <Plug>(go-describe)
   " :GoRename
-  autocmd FileType go nmap <leader>re <Plug>(go-rename)
+  " autocmd FileType go nmap <leader>re <Plug>(go-rename)
   " :GoCoverageToggle
   autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
   " :GoAlternate  commands :A, :AV, :AS and :AT
@@ -418,6 +422,8 @@ augroup go
   autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
   autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
 augroup END
+
+let g:go_def_mapping_enabled = 0
 
 " build_go_files is a custom function that builds or compiles the test file.
 " It calls :GoBuild if its a Go file, or :GoTestCompile if it's a test file
@@ -437,7 +443,7 @@ let g:ale_go_gometalinter_options = "--tests --enable-gc --fast -D aligncheck -D
 autocmd FileType javascript setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType javascript setlocal commentstring=//\ %s
 autocmd FileType javascript noremap <buffer> <leader>fmt :%!js-beautify --type js -j -q -B -f -<CR>
-autocmd FileType javascript noremap <leader>r :Autoformat<CR>
+autocmd FileType javascript noremap <leader>r :ALEFix<CR>
 autocmd FileType javascript let b:javascript_fold = 0
 " autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 " autocmd FileType javascript noremap <leader>d :TernDef<CR>
@@ -459,20 +465,20 @@ autocmd FileType javascript noremap <leader>o :JsDoc<CR>
 " Typescript ------------------------------------------------------------- {{{
 " autocmd FileType typescript setlocal completeopt+=menu,preview
 autocmd FileType typescript setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType typescript noremap <leader>D :TSDoc<CR>
-autocmd FileType typescript noremap <leader>d :TSDef<CR>
-autocmd FileType typescript noremap <leader>ref :TSRefs<CR>
-autocmd FileType typescript noremap <leader>t :TSType<CR>
-autocmd FileType typescript noremap <leader>td :TSTypeDef<CR>
-autocmd FileType typescript noremap <leader>err :TSGetErr<CR>
-autocmd FileType typescript noremap <leader>imp :TSImport<CR>
+" autocmd FileType typescript noremap <leader>D :TSDoc<CR>
+" autocmd FileType typescript noremap gd :TSDef<CR>
+" autocmd FileType typescript noremap <leader>ref :TSRefs<CR>
+" autocmd FileType typescript noremap <leader>t :TSType<CR>
+" autocmd FileType typescript noremap <leader>td :TSTypeDef<CR>
+" autocmd FileType typescript noremap <leader>err :TSGetErr<CR>
+" autocmd FileType typescript noremap <leader>imp :TSImport<CR>
 
 autocmd FileType typescript nmap <leader>f <Plug>(test-toggle-ts)
-autocmd FileType typescript noremap <leader>r :Autoformat<CR>
+autocmd FileType typescript noremap <leader>r :ALEFix<CR>
 autocmd FileType typescript noremap <leader>o :JsDoc<CR>
 
-let g:nvim_typescript#tsimport#template = "import { %s } from '%s'"
-let g:nvim_typescript#max_completion_detail = 100
+" let g:nvim_typescript#tsimport#template = "import { %s } from '%s'"
+" let g:nvim_typescript#max_completion_detail = 100
 autocmd BufLeave *.ts             normal! mT
 
 " ------------------------------------------------------------------------ }}}
@@ -491,7 +497,7 @@ autocmd FileType htmljinja setlocal commentstring={#\ %s\ #}
 autocmd FileType html setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 let html_no_rendering=1
-autocmd FileType html noremap <leader>r :Autoformat<CR>
+autocmd FileType html noremap <leader>r :ALEFix<CR>
 autocmd BufLeave *.html             normal! mH
 let g:formatdef_custom_html = '"html-beautify -s 2 -f - -".(&expandtab ? "s ".shiftwidth() : "t")'
 let g:formatters_html = ['custom_html']
@@ -501,7 +507,7 @@ let g:formatters_html = ['custom_html']
 autocmd FileType css,scss setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
 autocmd FileType css,scss setlocal commentstring=/*\ %s\ */
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType css,less,scss noremap <leader>r :Autoformat<CR>
+autocmd FileType css,less,scss noremap <leader>r :ALEFix<CR>
 autocmd BufLeave *.css,*.less,*scss normal! mC
 
 " ------------------------------------------------------------------------ }}}
@@ -509,12 +515,12 @@ autocmd BufLeave *.css,*.less,*scss normal! mC
 autocmd FileType java setlocal shiftwidth=2 tabstop=8 softtabstop=2 expandtab
 autocmd FileType java setlocal commentstring=//\ %s
 
-autocmd FileType java nnoremap <buffer> gd :call LanguageClient_textDocument_definition()<cr>
+" autocmd FileType java nnoremap <buffer> gd :call LanguageClient_textDocument_definition()<cr>
 " <leader>lh for type info under cursor
-autocmd FileType java nnoremap <buffer> <leader>lh :call LanguageClient_textDocument_hover()<cr>
+" autocmd FileType java nnoremap <buffer> <leader>lh :call LanguageClient_textDocument_hover()<cr>
 " <leader>lr to rename variable under cursor
-autocmd FileType java nnoremap <buffer> <leader>re :call LanguageClient_textDocument_rename()<cr>
-autocmd FileType java nnoremap <leader>r :call LanguageClient_textDocument_formatting()<cr>
+" autocmd FileType java nnoremap <buffer> <leader>re :call LanguageClient_textDocument_rename()<cr>
+" autocmd FileType java nnoremap <leader>r :call LanguageClient_textDocument_formatting()<cr>
 " ------------------------------------------------------------------------ }}}
 " Groovy ----------------------------------------------------------------- {{{
 autocmd FileType groovy setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
@@ -548,7 +554,7 @@ autocmd FileType vim setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 " ------------------------------------------------------------------------ }}}
 " JSON ------------------------------------------------------------------- {{{
 autocmd FileType json setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
-autocmd FileType json noremap <leader>r :Autoformat<CR>
+autocmd FileType json noremap <leader>r :ALEFix<CR>
 
 " ------------------------------------------------------------------------ }}}
 " markdown --------------------------------------------------------------- {{{
@@ -557,7 +563,7 @@ autocmd FileType md,markdown,wiki setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd BufNewFile,BufRead *.txt setlocal ft=markdown
 autocmd FileType md,markdown,wiki setlocal spell
 autocmd FileType gitcommit setlocal spell
-autocmd FileType md,markdown noremap <leader>r :Autoformat<CR>
+autocmd FileType md,markdown noremap <leader>r :ALEFix<CR>
 " autocmd BufNewFile,BufRead *.wiki   set ft=markdown
 let g:markdown_syntax_conceal = 0
 let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'javascript', 'go', 'css']
@@ -655,6 +661,7 @@ let g:ale_linters = {
 
 let g:ale_fixers = {
 \  'javascript': ['prettier'],
+\  'typescript': ['prettier'],
 \  'css': ['prettier'],
 \  'markdown': ['prettier'],
 \  'json': ['prettier'],
@@ -738,72 +745,154 @@ let g:pad#set_mappings = 0
 nnoremap <leader>s <plug>(pad-list)
 nnoremap gn <plug>(pad-incremental-new-note)
 
+" vim-test
+let test#strategy = "neovim"
+
 " Settings for (neocomplete and deoplete) and neosnippet ---------------------------- {{{
 "
-let g:LanguageClient_serverCommands = {
-      \ 'javascript': ['javascript-typescript-stdio'],
-      \ 'java': ['/Users/smasuy/bin/jdtls'],
-      \ 'python': ['/usr/local/bin/pyls'],
-      \ }
+" let g:LanguageClient_serverCommands = {
+"       \ 'javascript': ['javascript-typescript-stdio'],
+"       \ 'java': ['/Users/smasuy/bin/jdtls'],
+"       \ 'python': ['/usr/local/bin/pyls'],
+"       \ }
 
-let g:LanguageClient_autoStart = 0
+" let g:LanguageClient_autoStart = 0
 
-function! TabComplete() abort
-  let l:col = col('.') - 1
+" function! TabComplete() abort
+"   let l:col = col('.') - 1
 
-  if pumvisible()
-    return "\<C-n>"
-  else
-    if !l:col || getline('.')[l:col - 1] !~# '\k'
-      return "\<TAB>"
-    else
-      return "\<C-n>"
-    endif
-  endif
+"   if pumvisible()
+"     return "\<C-n>"
+"   else
+"     if !l:col || getline('.')[l:col - 1] !~# '\k'
+"       return "\<TAB>"
+"     else
+"       return "\<C-n>"
+"     endif
+"   endif
+" endfunction
+
+" if has('nvim')
+"   " " Deoplete
+"   let g:deoplete#enable_at_startup = 1
+
+"   " let g:echodoc_enable_at_startup=1
+
+"   " let g:tern_map_keys = 0
+"   " let g:tern_show_signature_in_pum=1
+"   " let g:tern#command = ['tern']
+"   " let g:tern#arguments = ['--persistent', '--no-port-file']
+
+"   " if !exists('g:deoplete#sources#omni#input_patterns')
+"   "   let g:deoplete#sources#omni#input_patterns = {}
+"   " endif
+"   " let g:deoplete#sources#omni#input_patterns.javascript = '\h\w*\|[^. \t]\.\w*'
+
+"   " let g:deoplete#sources={}
+"   " let g:deoplete#sources.vim  = ['buffer', 'member', 'file', 'ultisnips']
+"   " let g:deoplete#sources.javascript = ['ultisnips', 'LanguageClient', 'buffer']
+"   " let g:deoplete#sources.html = ['buffer', 'member', 'file', 'omni', 'ultisnips']
+
+"   " let g:deoplete#omni#functions = {}
+"   " let g:deoplete#omni#functions.javascript = [
+"   "       \ 'jspc#omni'
+"   "       \]
+
+"   call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
+
+"   " Insert <TAB> or select next match
+"   inoremap <silent> <expr> <Tab> TabComplete()
+
+"   " <C-h>, <BS>: close popup and delete backword char
+"   " inoremap <expr><C-h> deoplete#mappings#smart_close_popup()."\<C-h>"
+"   " inoremap <expr><BS> deoplete#mappings#smart_close_popup()."\<C-h>"
+
+"   " UltiSnips settings
+"   let g:UltiSnipsEditSplit = 'vertical'
+"   let g:UltiSnipsSnippetsDir = '~/.config/nvim/snips'
+"   let g:UltiSnipsSnippetDirectories = ['snips']
+"   let g:UltiSnipsExpandTrigger="<C-j>"
+"   let g:UltiSnipsJumpForwardTrigger="<C-j>"
+"   autocmd FileType javascript let g:UltiSnipsEnableSnipMate = 0
+" endif
+"
+
+" -------------------------------------------------------------------------------------------------
+" coc.nvim default settings
+" -------------------------------------------------------------------------------------------------
+
+" Better display for messages
+set cmdheight=2
+" Smaller updatetime for CursorHold & CursorHoldI
+set updatetime=300
+" don't give |ins-completion-menu| messages.
+set shortmess+=c
+" always show signcolumns
+set signcolumn=yes
+
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-if has('nvim')
-  " " Deoplete
-  let g:deoplete#enable_at_startup = 1
-  let g:echodoc_enable_at_startup=1
+" Use <c-space> to trigger completion.
+" inoremap <silent><expr> <c-space> coc#refresh()
 
-  " let g:tern_map_keys = 0
-  " let g:tern_show_signature_in_pum=1
-  " let g:tern#command = ['tern']
-  " let g:tern#arguments = ['--persistent', '--no-port-file']
+" Use `[c` and `]c` to navigate diagnostics
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)
 
-  if !exists('g:deoplete#sources#omni#input_patterns')
-    let g:deoplete#sources#omni#input_patterns = {}
-  endif
-  let g:deoplete#sources#omni#input_patterns.javascript = '\h\w*\|[^. \t]\.\w*'
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
 
-  let g:deoplete#sources={}
-  let g:deoplete#sources.vim  = ['buffer', 'member', 'file', 'ultisnips']
-  let g:deoplete#sources.javascript = ['ultisnips', 'LanguageClient', 'buffer']
-  let g:deoplete#sources.html = ['buffer', 'member', 'file', 'omni', 'ultisnips']
+" Use U to show documentation in preview window
+nnoremap <silent> U :call <SID>show_documentation()<CR>
 
-  let g:deoplete#omni#functions = {}
-  let g:deoplete#omni#functions.javascript = [
-        \ 'jspc#omni'
-        \]
+" Show all diagnostics
+" nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+" " Manage extensions
+" nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+" " Show commands
+" nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+" " Find symbol of current document
+" nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+" " Search workspace symbols
+" nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+" " Do default action for next item.
+" nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+" " Do default action for previous item.
+" nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+" " Resume latest coc list
+" nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+"
+"Examples
+" Use <C-l> for trigger snippet expand.
+imap <C-l> <Plug>(coc-snippets-expand)
 
-  call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
+" Use <C-j> for select text for visual placeholder of snippet.
+vmap <C-j> <Plug>(coc-snippets-select)
 
-  " Insert <TAB> or select next match
-  inoremap <silent> <expr> <Tab> TabComplete()
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-j>'
 
-  " <C-h>, <BS>: close popup and delete backword char
-  inoremap <expr><C-h> deoplete#mappings#smart_close_popup()."\<C-h>"
-  inoremap <expr><BS> deoplete#mappings#smart_close_popup()."\<C-h>"
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-k>'
 
-  " UltiSnips settings
-  let g:UltiSnipsEditSplit = 'vertical'
-  let g:UltiSnipsSnippetsDir = '~/.config/nvim/snips'
-  let g:UltiSnipsSnippetDirectories = ['snips']
-  let g:UltiSnipsExpandTrigger="<C-j>"
-  let g:UltiSnipsJumpForwardTrigger="<C-j>"
-  autocmd FileType javascript let g:UltiSnipsEnableSnipMate = 0
-endif
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
 
 " ------------------------------------------------------------------------ }}}
 " ------------------------------------------------------------------------ }}}
