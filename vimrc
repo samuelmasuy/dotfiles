@@ -712,7 +712,7 @@ nnoremap <silent> gS :Sayonara!<CR>
 " Settings for ListToggle
 let g:lt_quickfix_list_toggle_map = '<leader>fix'
 " let g:lt_location_list_toggle_map = '<leader>l' " <- default
-
+"
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
 
 " File preview using bat
@@ -722,11 +722,7 @@ function! FzfFilePreview()
 
   function! s:files()
     let l:files = split(system($FZF_DEFAULT_COMMAND), '\n')
-    return s:prepend_indicators(l:files)
-  endfunction
-
-  function! s:prepend_indicators(candidates)
-    return s:prepend_icon(a:candidates)
+    return s:prepend_icon(l:files)
   endfunction
 
   function! s:prepend_icon(candidates)
@@ -773,7 +769,7 @@ function! RipgrepFzf(query, fullscreen)
   call fzf#vim#grep(initial_command, 1, options, a:fullscreen)
 endfunction
 
-command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+command! -nargs=* -bang Rg call RipgrepFzf(<q-args>, <bang>0)
 nnoremap <Leader>a        :Rg<Space>
 
 nnoremap <silent> <expr> <Leader><Leader> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
