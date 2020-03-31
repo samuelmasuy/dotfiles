@@ -919,9 +919,8 @@ if has_key(g:plugs, 'coc.nvim')
   nnoremap <silent> K :call <SID>show_documentation()<CR>
 
   let g:coc_global_extensions = ['coc-github', 'coc-yaml', 'coc-python',
-    \ 'coc-html', 'coc-json', 'coc-css',
-    \ 'coc-prettier', 'coc-tsserver', 'coc-emoji', 'coc-java']
-  command! -nargs=0 Prettier :CocCommand prettier.formatFile
+    \ 'coc-html', 'coc-json', 'coc-css', 'coc-rls', 'coc-vimlsp',
+    \ 'coc-tsserver', 'coc-emoji', 'coc-java']
 
   let g:go_doc_keywordprg_enabled = 0
 
