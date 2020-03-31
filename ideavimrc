@@ -7,7 +7,7 @@ set smartcase                     " no ignore case when pattern is uppercase
 set number                        " line numbers
 " set relativenumber                " relative line numbers
 set scrolloff=5 sidescrolloff=10  " keep some lines before and after the cursor visible
-set clipboard=unnamedplus
+set clipboard+=ideaput
 
 " edit ideavim config
 nnoremap ,e :e ~/.ideavimrc<CR>
@@ -48,3 +48,4 @@ nnoremap coh :nohlsearch<cr>
 nnoremap ,<space> :action Run<CR>
 nnoremap gcc :action CommentByLineComment<CR>
 vnoremap gcc :action CommentByLineComment<CR>
+set clipboard+=ideaput

@@ -16,7 +16,7 @@
       custom_pure10k_user_host  # user@host
       command_execution_time    # previous command wall time
       newline                   # \n
-      virtualenv                # python virtual environment
+      # virtualenv                # python virtual environment
   )
   typeset -g POWERLEVEL9K_DISABLE_RPROMPT=true
 
@@ -41,36 +41,56 @@
 
   # Make git prompt grey in all states. Also make stale prompts appear indistinguishable from
   # fresh ones. This is unlikely to be desired by anyone but that's how Pure does it.
-  typeset -g POWERLEVEL9K_VCS_{CLEAN,UNTRACKED,MODIFIED,LOADING,ACTIONFORMAT}_FOREGROUND=242
+  #
+  # typeset -g POWERLEVEL9K_VCS_{CLEAN,UNTRACKED,MODIFIED,LOADING,ACTIONFORMAT}_FOREGROUND=242
+
   # Make ahead/behind arrows cyan in every state including when the git prompt is stale.
   # This is unlikely to be desired by anyone but that's how Pure does it.
-  typeset -g POWERLEVEL9K_VCS_{CLEAN,UNTRACKED,MODIFIED,LOADING}_{INCOMING,OUTGOING}_CHANGESFORMAT_FOREGROUND=cyan
+  #
+  # typeset -g POWERLEVEL9K_VCS_{CLEAN,UNTRACKED,MODIFIED,LOADING}_{INCOMING,OUTGOING}_CHANGESFORMAT_FOREGROUND=cyan
+
   # Disable async loading indicator to make directories that aren't git repositories
   # indistinguishable from large git repositories without known state. This is unlikely
   # to be desired by anyone but that's how Pure does it.
-  typeset -g POWERLEVEL9K_VCS_LOADING_TEXT=
-  # Disable background.
-  typeset -g POWERLEVEL9K_VCS_{CLEAN,UNTRACKED,MODIFIED,LOADING}_BACKGROUND=none
-  # Don't show remote branch, current tag or stashes.
-  typeset -g POWERLEVEL9K_VCS_GIT_HOOKS=(vcs-detect-changes git-untracked git-aheadbehind)
-  # Disable most icons.
-  typeset -g POWERLEVEL9K_VCS_{GIT,GIT_GITHUB,GIT_BITBUCKET,GIT_GITLAB,BRANCH}_ICON=
-  # When in detached HEAD state, show '@commit' where branch normally goes.
-  typeset -g POWERLEVEL9K_VCS_COMMIT_ICON='@'
-  # Don't show staged, unstaged, untracked indicators.
-  typeset -g POWERLEVEL9K_VCS_{STAGED,UNSTAGED,UNTRACKED}_ICON=$'\b'
-  # Show '*' when there are staged, unstaged or untracked files.
-  typeset -g POWERLEVEL9K_VCS_DIRTY_ICON='✗'
-  # Show '⇣' if local branch is behind remote.
-  typeset -g POWERLEVEL9K_VCS_INCOMING_CHANGES_ICON='⇣'
-  # Show '⇡' if local branch is ahead of remote.
-  typeset -g POWERLEVEL9K_VCS_OUTGOING_CHANGES_ICON='⇡'
-  # Don't show the number of commits next to the ahead/behind arrows.
-  typeset -g POWERLEVEL9K_VCS_{COMMITS_AHEAD,COMMITS_BEHIND}_MAX_NUM=1
+  #
+  # typeset -g POWERLEVEL9K_VCS_LOADING_TEXT=
 
-  typeset -g POWERLEVEL9K_CUSTOM_PURE10K_USER_HOST=pure10k_user_host
-  typeset -g POWERLEVEL9K_CUSTOM_PURE10K_USER_HOST_BACKGROUND=none
-  typeset -g POWERLEVEL9K_CUSTOM_PURE10K_USER_HOST_FOREGROUND=none
+  # Disable background.
+  #
+  # typeset -g POWERLEVEL9K_VCS_{CLEAN,UNTRACKED,MODIFIED,LOADING}_BACKGROUND=none
+
+  # Don't show remote branch, current tag or stashes.
+  #
+  # typeset -g POWERLEVEL9K_VCS_GIT_HOOKS=(vcs-detect-changes git-untracked git-aheadbehind)
+
+  # Disable most icons.
+  #
+  # typeset -g POWERLEVEL9K_VCS_{GIT,GIT_GITHUB,GIT_BITBUCKET,GIT_GITLAB,BRANCH}_ICON=
+
+  # When in detached HEAD state, show '@commit' where branch normally goes.
+  #
+  # typeset -g POWERLEVEL9K_VCS_COMMIT_ICON='@'
+
+  # Don't show staged, unstaged, untracked indicators.
+  #
+  # typeset -g POWERLEVEL9K_VCS_{STAGED,UNSTAGED,UNTRACKED}_ICON=$'\b'
+
+  # Show '*' when there are staged, unstaged or untracked files.
+  # typeset -g POWERLEVEL9K_VCS_DIRTY_ICON='✗'
+
+  # Show '⇣' if local branch is behind remote.
+  # typeset -g POWERLEVEL9K_VCS_INCOMING_CHANGES_ICON='⇣'
+
+  # Show '⇡' if local branch is ahead of remote.
+  # typeset -g POWERLEVEL9K_VCS_OUTGOING_CHANGES_ICON='⇡'
+
+  # Don't show the number of commits next to the ahead/behind arrows.
+  #
+  # typeset -g POWERLEVEL9K_VCS_{COMMITS_AHEAD,COMMITS_BEHIND}_MAX_NUM=1
+
+  # typeset -g POWERLEVEL9K_CUSTOM_PURE10K_USER_HOST=pure10k_user_host
+  # typeset -g POWERLEVEL9K_CUSTOM_PURE10K_USER_HOST_BACKGROUND=none
+  # typeset -g POWERLEVEL9K_CUSTOM_PURE10K_USER_HOST_FOREGROUND=none
 
   # Show previous command wall time only if it's >= 5s.
   typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD=5

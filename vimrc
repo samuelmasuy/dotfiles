@@ -17,154 +17,153 @@
 autocmd! bufwritepost $MYVIMRC source $MYVIMRC
 
 if has('nvim')
-  call plug#begin('~/.config/nvim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 
-  " Essential
-  Plug 'tpope/vim-commentary'
-  Plug 'tpope/vim-repeat'
-  Plug 'tpope/vim-unimpaired'
-  Plug 'tpope/vim-eunuch' " Adds Unix commands to vim.
-  Plug 'tpope/vim-surround' " To change surrounding quote: cs(' ;tag cst<th> ;to add quote ysW'
-  Plug 'tpope/vim-vinegar' " Enhance netrw
-  Plug 'tpope/vim-abolish' " Camel case, snake crc
-  Plug 'tpope/vim-markdown', {'for': ['markdown', 'md']}
-  Plug 'tpope/vim-fugitive'
-  Plug 'tpope/vim-rhubarb' " Companion of fugitive for integration with Github
+" Essential
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-eunuch' " Adds Unix commands to vim.
+Plug 'tpope/vim-surround' " To change surrounding quote: cs(' ;tag cst<th> ;to add quote ysW'
+Plug 'tpope/vim-vinegar' " Enhance netrw
+Plug 'tpope/vim-abolish' " Camel case, snake crc
+Plug 'tpope/vim-markdown', {'for': ['markdown', 'md']}
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb' " Companion of fugitive for integration with Github
 
-  Plug 'justinmk/vim-dirvish'
+Plug 'justinmk/vim-dirvish'
 
-  " Plug 'benekastah/neomake', {'for': ['python']}
-  Plug 'dense-analysis/ale'
+" Plug 'benekastah/neomake', {'for': ['python']}
+Plug 'dense-analysis/ale'
 
-  Plug 'Chiel92/vim-autoformat'
+Plug 'Chiel92/vim-autoformat'
 
-  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-  Plug 'buoto/gotests-vim', {'for': ['go'],  'do': ':!go get -u github.com/cweill/gotests/...' }
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'buoto/gotests-vim', {'for': ['go'],  'do': ':!go get -u github.com/cweill/gotests/...' }
 
-  " auto completion
-  " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  " Plug 'zchee/deoplete-go', { 'do': 'make', 'for': ['go']}
-  " Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript'] }
-  " Plug 'zchee/deoplete-jedi', {'for': ['python']}
-  " Plug 'zchee/deoplete-clang', {'for': ['cpp']}
-  " Plug 'autozimu/LanguageClient-neovim', {
-  "   \ 'branch': 'next',
-  "   \ 'do': 'bash install.sh',
-  "   \ }
-  Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+" auto completion
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'zchee/deoplete-go', { 'do': 'make', 'for': ['go']}
+" Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript'] }
+" Plug 'zchee/deoplete-jedi', {'for': ['python']}
+" Plug 'zchee/deoplete-clang', {'for': ['cpp']}
+" Plug 'autozimu/LanguageClient-neovim', {
+"   \ 'branch': 'next',
+"   \ 'do': 'bash install.sh',
+"   \ }
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 
-  " snippets
-  " Plug 'SirVer/ultisnips'
-  " Plug 'honza/vim-snippets'
+" snippets
+" Plug 'SirVer/ultisnips'
+" Plug 'honza/vim-snippets'
 
-  " hashivim
-  Plug 'hashivim/vim-terraform'
-  Plug 'hashivim/vim-vaultproject'
-  Plug 'fatih/vim-hclfmt'
+" hashivim
+Plug 'hashivim/vim-hashicorp-tools'
 
-  " js
-  " Plug 'ternjs/tern_for_vim', { 'for': ['javascript'] }
-  Plug 'othree/jspc.vim', { 'for': ['javascript'] }
-  Plug 'pangloss/vim-javascript', {'for': ['javascript', 'typescript']}
-  Plug 'heavenshell/vim-jsdoc', {'for': ['javascript', 'typescript']}
+" js
+" Plug 'ternjs/tern_for_vim', { 'for': ['javascript'] }
+Plug 'othree/jspc.vim', { 'for': ['javascript'] }
+Plug 'pangloss/vim-javascript', {'for': ['javascript', 'typescript']}
+Plug 'heavenshell/vim-jsdoc', {'for': ['javascript', 'typescript']}
 
-  " ts
-  Plug 'leafgarland/typescript-vim', {'for': ['typescript']}
-  " Plug 'bdauria/angular-cli.vim', { 'for': ['typescript'] }
-  " Plug 'mhartington/nvim-typescript', {'for': ['typescript'], 'do': './install.sh' }
-  " Plug 'Shougo/echodoc.vim', {'for': ['typescript']}
-  " Plug 'Quramy/tsuquyomi'
-  "
-  Plug 'janko/vim-test'
+" ts
+Plug 'leafgarland/typescript-vim', {'for': ['typescript']}
+" Plug 'bdauria/angular-cli.vim', { 'for': ['typescript'] }
+" Plug 'mhartington/nvim-typescript', {'for': ['typescript'], 'do': './install.sh' }
+" Plug 'Shougo/echodoc.vim', {'for': ['typescript']}
+" Plug 'Quramy/tsuquyomi'
+"
+Plug 'janko/vim-test'
 
 
-  " markdown
-  Plug 'rhysd/vim-grammarous', { 'for': ['text', 'markdown']}
-  Plug 'ron89/thesaurus_query.vim', { 'for': ['text', 'markdown']}
-  Plug 'chrisbra/unicode.vim', { 'for': ['text', 'markdown']}
-  " Plug 'junegunn/vim-xmark', { 'do': 'make' }
-  " Plug 'davinche/godown-vim'
+" markdown
+Plug 'rhysd/vim-grammarous', { 'for': ['text', 'markdown']}
+Plug 'ron89/thesaurus_query.vim', { 'for': ['text', 'markdown']}
+Plug 'chrisbra/unicode.vim', { 'for': ['text', 'markdown']}
+" Plug 'junegunn/vim-xmark', { 'do': 'make' }
+" Plug 'davinche/godown-vim'
 
-  " python
-  " Plug 'davidhalter/jedi-vim', {'for': ['python']}
+" python
+" Plug 'davidhalter/jedi-vim', {'for': ['python']}
 
-  " yaml
-  " Plug 'stephpy/vim-yaml', {'for': ['yaml']}
+" yaml
+" Plug 'stephpy/vim-yaml', {'for': ['yaml']}
 
-  " RFC
-  Plug 'mhinz/vim-rfc' " sudo gem install nokogiri
-  Plug 'vim-scripts/rfc-syntax', { 'for': 'rfc' }
+" RFC
+Plug 'mhinz/vim-rfc' " sudo gem install nokogiri
+Plug 'vim-scripts/rfc-syntax', { 'for': 'rfc' }
 
-  " Encryption
-  Plug 'jamessan/vim-gnupg'
+" Encryption
+Plug 'jamessan/vim-gnupg'
 
-  " colorscheme
-  Plug 'joshdick/onedark.vim'
-  " Plug 'morhetz/gruvbox'
-  " Plug 'mhartington/oceanic-next'
-  " Plug 'lifepillar/vim-wwdc16-theme'
-  " Plug 'junegunn/seoul256.vim'
-  " Plug 'tomasiser/vim-code-dark'
-  " Plug 'cocopon/iceberg.vim'
-  " Plug 'rakr/vim-one'
-  " Plug 'chriskempson/base16-vim'
+" colorscheme
+Plug 'joshdick/onedark.vim'
+" Plug 'morhetz/gruvbox'
+" Plug 'mhartington/oceanic-next'
+" Plug 'lifepillar/vim-wwdc16-theme'
+" Plug 'junegunn/seoul256.vim'
+" Plug 'tomasiser/vim-code-dark'
+" Plug 'cocopon/iceberg.vim'
+" Plug 'rakr/vim-one'
+" Plug 'chriskempson/base16-vim'
 
-  Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline'
 
-  " search
-  Plug '/usr/local/opt/fzf'
-  Plug 'junegunn/fzf.vim'
-  Plug 'junegunn/vim-peekaboo'
+" search
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/vim-peekaboo'
 
-  " tmux
-  Plug 'tmux-plugins/vim-tmux'
-  Plug 'christoomey/vim-tmux-navigator'
-  " Plug 'benmills/vimux'
+" tmux
+Plug 'tmux-plugins/vim-tmux'
+Plug 'christoomey/vim-tmux-navigator'
+" Plug 'benmills/vimux'
 
-  " utils
-  " Plug 'EinfachToll/DidYouMean'
-  Plug 'mhinz/vim-startify'
-  Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
-  Plug 'Valloric/MatchTagAlways'
-  Plug 'Valloric/ListToggle'
-  Plug 'vim-scripts/DirDiff.vim' " :DirDiff <A:Src Directory> <B:Src Directory>
-  Plug 'bronson/vim-trailing-whitespace'
-  Plug 'godlygeek/tabular' " :'<,'>Tabularize /:
-  Plug 'vim-scripts/visSum.vim' " <leader>su
-  Plug 'vim-scripts/VisIncr'
-  Plug 'mbbill/undotree'
-  " Plug 'machakann/vim-highlightedyank'
-  Plug 'christoomey/vim-sort-motion'
+" utils
+" Plug 'EinfachToll/DidYouMean'
+Plug 'mhinz/vim-startify'
+Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
+Plug 'Valloric/MatchTagAlways'
+Plug 'Valloric/ListToggle'
+Plug 'vim-scripts/DirDiff.vim' " :DirDiff <A:Src Directory> <B:Src Directory>
+Plug 'bronson/vim-trailing-whitespace'
+Plug 'godlygeek/tabular' " :'<,'>Tabularize /:
+Plug 'vim-scripts/visSum.vim' " <leader>su
+Plug 'vim-scripts/VisIncr'
+Plug 'mbbill/undotree'
+" Plug 'machakann/vim-highlightedyank'
+Plug 'christoomey/vim-sort-motion'
 
-  " Plug 'fmoralesc/vim-tutor-mode'
-  " Plug 'fmoralesc/vim-pad', { 'branch': 'devel' }
+" Plug 'fmoralesc/vim-tutor-mode'
+" Plug 'fmoralesc/vim-pad', { 'branch': 'devel' }
 
-  Plug 'modille/groovy.vim'
+Plug 'modille/groovy.vim'
 
-  Plug 'NLKNguyen/cloudformation-syntax.vim'
+Plug 'NLKNguyen/cloudformation-syntax.vim'
 
-  Plug 'mustache/vim-mustache-handlebars', {'for': ['*.mustache']}
+Plug 'mustache/vim-mustache-handlebars', {'for': ['*.mustache']}
 
-  " Plug 'udalov/kotlin-vim'
-  " Plug 'StanAngeloff/php.vim'
-  call plug#end()
+Plug 'vim-scripts/haproxy', {'for': ['haproxy*']}
+" Plug 'udalov/kotlin-vim'
+" Plug 'StanAngeloff/php.vim'
+call plug#end()
 endif
 
 " Better copy & paste.
 if has('mac')
-  set clipboard=unnamed
+set clipboard=unnamed
 elseif has('unix') && (executable('pbcopy') || executable('xclip') || executable('xsel')) && has('clipboard')
-  set clipboard+=unnamedplus
+set clipboard+=unnamedplus
 endif
 
 " See the commands typed in the right bottom corner.
 set showcmd
 
 if !has('nvim')
-  " Make backspace behave like normal.
-  set bs=2
-  " Auto Indent
-  set autoindent
+" Make backspace behave like normal.
+set bs=2
+" Auto Indent
+set autoindent
 endif
 
 filetype plugin indent on
@@ -178,10 +177,10 @@ set background=dark
 
 " Beautiful
 if has('nvim') && has("termguicolors")
-  set termguicolors
-  silent! colorscheme onedark
-  let g:airline_theme = 'onedark'
-  " let g:onedark_terminal_italics = 1
+set termguicolors
+silent! colorscheme onedark
+let g:airline_theme = 'onedark'
+" let g:onedark_terminal_italics = 1
 endif
 " elseif has('gui_running')
 "   set macligatures
@@ -242,13 +241,13 @@ set nowrap
 set fo-=t
 
 if !has('nvim')
-  " Useful settings.
-  set history=700
-  " Make search case insensitive.
-  set hlsearch
-  set incsearch
-  " Tab-completion options.
-  set wildmenu
+" Useful settings.
+set history=700
+" Make search case insensitive.
+set hlsearch
+set incsearch
+" Tab-completion options.
+set wildmenu
 endif
 
 " How many undos
@@ -277,8 +276,8 @@ set mouse-=a
 set noshowmode
 
 if executable("rg")
-  set grepprg=rg\ --vimgrep
-  set grepformat=%f:%l:%c:%m,%f:%l:%m
+set grepprg=rg\ --vimgrep
+set grepformat=%f:%l:%c:%m,%f:%l:%m
 endif
 
 " ------------------------------------------------------------------------ }}}
@@ -322,12 +321,12 @@ nnoremap <leader>dup :diffupdate<CR>
 nnoremap <silent> * :let stay_star_view = winsaveview()<cr>*:call winrestview(stay_star_view)<cr>
 
 if has('nvim')
-  " Terminal mode
-  tnoremap <Esc> <C-\><C-n>
-  tnoremap <C-h> <C-\><C-n><C-w>h
-  tnoremap <C-j> <C-\><C-n><C-w>j
-  tnoremap <C-k> <C-\><C-n><C-w>k
-  tnoremap <C-l> <C-\><C-n><C-w>l
+" Terminal mode
+tnoremap <Esc> <C-\><C-n>
+tnoremap <C-h> <C-\><C-n><C-w>h
+tnoremap <C-j> <C-\><C-n><C-w>j
+tnoremap <C-k> <C-\><C-n><C-w>k
+tnoremap <C-l> <C-\><C-n><C-w>l
 endif
 
 " ------------------------------------------------------------------------ }}}
@@ -391,36 +390,36 @@ let g:go_metalinter_command='golangci-lint'
 autocmd BufLeave *.go             normal! mG
 
 augroup go
-  autocmd!
-  " Show by default 4 spaces for a tab
-  autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
-  " :GoBuild and :GoTestCompile
-  " autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
-  autocmd FileType go nmap <leader>b <Plug>(go-build)
-  " :GoTest
-  autocmd FileType go nmap <leader>t  <Plug>(go-test)
-  " :GoRun
-  autocmd FileType go nmap <leader>r  <Plug>(go-run)
-  " :GoDoc
-  " autocmd FileType go nmap K <Plug>(go-doc)
-  " :GoInfo
-  " autocmd FileType go nmap <Leader>i <Plug>(go-info)
-  " :GoReferers
-  " autocmd FileType go nmap <Leader>i <Plug>(go-referers)
-  " :GoMetaLinter
-  " autocmd FileType go nmap <Leader>l <Plug>(go-metalinter)
-  " :GoDef
-  " autocmd FileType go nmap <leader>d <Plug>(go-def)
-  " :GoDescribe
-  autocmd FileType go nmap <leader>de <Plug>(go-describe)
-  " :GoRename
-  " autocmd FileType go nmap <leader>re <Plug>(go-rename)
-  " :GoCoverageToggle
-  autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
-  " :GoAlternate  commands :A, :AV, :AS and :AT
-  autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
-  autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
-  autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
+autocmd!
+" Show by default 4 spaces for a tab
+autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
+" :GoBuild and :GoTestCompile
+" autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
+autocmd FileType go nmap <leader>b <Plug>(go-build)
+" :GoTest
+" autocmd FileType go nmap <leader>t  <Plug>(go-test)
+" :GoRun
+autocmd FileType go nmap <leader>r  <Plug>(go-run)
+" :GoDoc
+" autocmd FileType go nmap K <Plug>(go-doc)
+" :GoInfo
+" autocmd FileType go nmap <Leader>i <Plug>(go-info)
+" :GoReferers
+" autocmd FileType go nmap <Leader>i <Plug>(go-referers)
+" :GoMetaLinter
+" autocmd FileType go nmap <Leader>l <Plug>(go-metalinter)
+" :GoDef
+autocmd FileType go nmap gd <Plug>(go-def)
+" :GoDescribe
+autocmd FileType go nmap <leader>de <Plug>(go-describe)
+" :GoRename
+" autocmd FileType go nmap <leader>re <Plug>(go-rename)
+" :GoCoverageToggle
+autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
+" :GoAlternate  commands :A, :AV, :AS and :AT
+autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
+autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
+autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
 augroup END
 
 let g:go_def_mapping_enabled = 0
@@ -571,6 +570,19 @@ let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'javascript', 'g
 " ------------------------------------------------------------------------ }}}
 " yaml --------------------------------------------------------------- {{{
 autocmd FileType yaml,yml setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType yaml,yml noremap <leader>r :ALEFix<CR>
+
+" ------------------------------------------------------------------------ }}}
+" Tug ----------------------------------------------------------------- {{{
+autocmd BufRead,BufNewFile *.Tugfile set filetype=terraform
+autocmd BufRead,BufNewFile Tugfile set filetype=terraform
+autocmd FileType terraform noremap <leader>r :TerraformFmt<CR>
+
+" ------------------------------------------------------------------------ }}}
+
+" haproxy ----------------------------------------------------------------- {{{
+autocmd BufRead,BufNewFile haproxy* set filetype=haproxy
+autocmd FileType haproxy setlocal commentstring=#\ %s
 
 " ------------------------------------------------------------------------ }}}
 " ------------------------------------------------------------------------ }}}
@@ -624,6 +636,9 @@ map <silent> <Leader>H :vertical :resize +5<CR>
 map <silent> <Leader>J :resize -5<CR>
 map <silent> <Leader>K :resize +5<CR>
 map <silent> <Leader>L :vertical :resize -5<CR>
+
+nnoremap <leader>tn :TestNearest<CR>
+nnoremap <leader>tf :TestFile<CR>
 " ------------------------------------------------------------------------ }}}
 " Plugins setup. --------------------------------------------------------- {{{
 " Settings for vim-airline
