@@ -17,135 +17,131 @@
 autocmd! bufwritepost $MYVIMRC source $MYVIMRC
 
 if has('nvim')
-call plug#begin('~/.config/nvim/plugged')
+  call plug#begin('~/.config/nvim/plugged')
 
-" Essential
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-eunuch' " Adds Unix commands to vim.
-Plug 'tpope/vim-surround' " To change surrounding quote: cs(' ;tag cst<th> ;to add quote ysW'
-Plug 'tpope/vim-vinegar' " Enhance netrw
-Plug 'tpope/vim-abolish' " Camel case, snake crc
-Plug 'tpope/vim-markdown', {'for': ['markdown', 'md']}
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rhubarb' " Companion of fugitive for integration with Github
+  " Essential
+  Plug 'tpope/vim-commentary'
+  Plug 'tpope/vim-repeat'
+  Plug 'tpope/vim-unimpaired'
+  Plug 'tpope/vim-eunuch' " Adds Unix commands to vim.
+  Plug 'tpope/vim-surround' " To change surrounding quote: cs(' ;tag cst<th> ;to add quote ysW'
+  Plug 'tpope/vim-vinegar' " Enhance netrw
+  Plug 'tpope/vim-abolish' " Camel case, snake crc
+  Plug 'tpope/vim-markdown', {'for': ['markdown', 'md']}
+  Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-rhubarb' " Companion of fugitive for integration with Github
 
-Plug 'justinmk/vim-dirvish'
+  Plug 'justinmk/vim-dirvish'
 
-" Plug 'benekastah/neomake', {'for': ['python']}
-Plug 'dense-analysis/ale'
+  Plug 'dense-analysis/ale'
 
-Plug 'Chiel92/vim-autoformat'
+  Plug 'Chiel92/vim-autoformat'
 
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'buoto/gotests-vim', {'for': ['go'],  'do': ':!go get -u github.com/cweill/gotests/...' }
+  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+  Plug 'buoto/gotests-vim', {'for': ['go'],  'do': ':!go get -u github.com/cweill/gotests/...' }
 
-" auto completion
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" Plug 'zchee/deoplete-go', { 'do': 'make', 'for': ['go']}
-" Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript'] }
-" Plug 'zchee/deoplete-jedi', {'for': ['python']}
-" Plug 'zchee/deoplete-clang', {'for': ['cpp']}
-" Plug 'autozimu/LanguageClient-neovim', {
-"   \ 'branch': 'next',
-"   \ 'do': 'bash install.sh',
-"   \ }
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+  " auto completion
+  " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  " Plug 'zchee/deoplete-go', { 'do': 'make', 'for': ['go']}
+  " Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript'] }
+  " Plug 'zchee/deoplete-jedi', {'for': ['python']}
+  " Plug 'zchee/deoplete-clang', {'for': ['cpp']}
+  " Plug 'autozimu/LanguageClient-neovim', {
+  "   \ 'branch': 'next',
+  "   \ 'do': 'bash install.sh',
+  "   \ }
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" snippets
-" Plug 'SirVer/ultisnips'
-" Plug 'honza/vim-snippets'
+  " snippets
+  " Plug 'SirVer/ultisnips'
+  " Plug 'honza/vim-snippets'
 
-" hashivim
-Plug 'hashivim/vim-hashicorp-tools'
+  " hashivim
+  Plug 'hashivim/vim-hashicorp-tools'
 
-" js
-" Plug 'ternjs/tern_for_vim', { 'for': ['javascript'] }
-Plug 'othree/jspc.vim', { 'for': ['javascript'] }
-Plug 'pangloss/vim-javascript', {'for': ['javascript', 'typescript']}
-Plug 'heavenshell/vim-jsdoc', {'for': ['javascript', 'typescript']}
+  " js
+  " Plug 'ternjs/tern_for_vim', { 'for': ['javascript'] }
+  Plug 'othree/jspc.vim', { 'for': ['javascript'] }
+  Plug 'pangloss/vim-javascript', {'for': ['javascript', 'typescript']}
+  Plug 'heavenshell/vim-jsdoc', {'for': ['javascript', 'typescript']}
 
-" ts
-Plug 'leafgarland/typescript-vim', {'for': ['typescript']}
-" Plug 'bdauria/angular-cli.vim', { 'for': ['typescript'] }
-" Plug 'mhartington/nvim-typescript', {'for': ['typescript'], 'do': './install.sh' }
-" Plug 'Shougo/echodoc.vim', {'for': ['typescript']}
-" Plug 'Quramy/tsuquyomi'
-"
-Plug 'janko/vim-test'
+  " ts
+  Plug 'leafgarland/typescript-vim', {'for': ['typescript']}
+  " Plug 'bdauria/angular-cli.vim', { 'for': ['typescript'] }
+  " Plug 'mhartington/nvim-typescript', {'for': ['typescript'], 'do': './install.sh' }
+  " Plug 'Shougo/echodoc.vim', {'for': ['typescript']}
+  " Plug 'Quramy/tsuquyomi'
+  "
+  Plug 'janko/vim-test'
 
+  " markdown
+  Plug 'rhysd/vim-grammarous', { 'for': ['text', 'markdown']}
+  Plug 'ron89/thesaurus_query.vim', { 'for': ['text', 'markdown']}
+  Plug 'chrisbra/unicode.vim', { 'for': ['text', 'markdown']}
+  " Plug 'davinche/godown-vim'
 
-" markdown
-Plug 'rhysd/vim-grammarous', { 'for': ['text', 'markdown']}
-Plug 'ron89/thesaurus_query.vim', { 'for': ['text', 'markdown']}
-Plug 'chrisbra/unicode.vim', { 'for': ['text', 'markdown']}
-" Plug 'junegunn/vim-xmark', { 'do': 'make' }
-" Plug 'davinche/godown-vim'
+  " python
+  " Plug 'davidhalter/jedi-vim', {'for': ['python']}
 
-" python
-" Plug 'davidhalter/jedi-vim', {'for': ['python']}
+  " yaml
+  " Plug 'stephpy/vim-yaml', {'for': ['yaml']}
 
-" yaml
-" Plug 'stephpy/vim-yaml', {'for': ['yaml']}
+  " RFC
+  Plug 'mhinz/vim-rfc' " sudo gem install nokogiri
+  Plug 'vim-scripts/rfc-syntax', { 'for': 'rfc' }
 
-" RFC
-Plug 'mhinz/vim-rfc' " sudo gem install nokogiri
-Plug 'vim-scripts/rfc-syntax', { 'for': 'rfc' }
+  " Encryption
+  Plug 'jamessan/vim-gnupg'
 
-" Encryption
-Plug 'jamessan/vim-gnupg'
+  " colorscheme
+  Plug 'joshdick/onedark.vim'
+  " Plug 'morhetz/gruvbox'
+  " Plug 'mhartington/oceanic-next'
+  " Plug 'lifepillar/vim-wwdc16-theme'
+  " Plug 'junegunn/seoul256.vim'
+  " Plug 'tomasiser/vim-code-dark'
+  " Plug 'cocopon/iceberg.vim'
+  " Plug 'rakr/vim-one'
+  " Plug 'chriskempson/base16-vim'
 
-" colorscheme
-Plug 'joshdick/onedark.vim'
-" Plug 'morhetz/gruvbox'
-" Plug 'mhartington/oceanic-next'
-" Plug 'lifepillar/vim-wwdc16-theme'
-" Plug 'junegunn/seoul256.vim'
-" Plug 'tomasiser/vim-code-dark'
-" Plug 'cocopon/iceberg.vim'
-" Plug 'rakr/vim-one'
-" Plug 'chriskempson/base16-vim'
+  Plug 'vim-airline/vim-airline'
 
-Plug 'vim-airline/vim-airline'
+  " search
+  Plug '/usr/local/opt/fzf'
+  Plug 'junegunn/fzf.vim'
+  Plug 'junegunn/vim-peekaboo'
 
-" search
-Plug '/usr/local/opt/fzf'
-Plug 'junegunn/fzf.vim'
-Plug 'junegunn/vim-peekaboo'
+  " tmux
+  Plug 'tmux-plugins/vim-tmux'
+  Plug 'christoomey/vim-tmux-navigator'
 
-" tmux
-Plug 'tmux-plugins/vim-tmux'
-Plug 'christoomey/vim-tmux-navigator'
-" Plug 'benmills/vimux'
+  " utils
+  " Plug 'EinfachToll/DidYouMean'
+  Plug 'mhinz/vim-startify'
+  Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
+  Plug 'Valloric/MatchTagAlways'
+  Plug 'Valloric/ListToggle'
+  Plug 'vim-scripts/DirDiff.vim' " :DirDiff <A:Src Directory> <B:Src Directory>
+  Plug 'bronson/vim-trailing-whitespace'
+  Plug 'godlygeek/tabular' " :'<,'>Tabularize /:
+  Plug 'vim-scripts/visSum.vim' " <leader>su
+  Plug 'vim-scripts/VisIncr'
+  Plug 'mbbill/undotree'
+  " Plug 'machakann/vim-highlightedyank'
+  Plug 'christoomey/vim-sort-motion'
 
-" utils
-" Plug 'EinfachToll/DidYouMean'
-Plug 'mhinz/vim-startify'
-Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
-Plug 'Valloric/MatchTagAlways'
-Plug 'Valloric/ListToggle'
-Plug 'vim-scripts/DirDiff.vim' " :DirDiff <A:Src Directory> <B:Src Directory>
-Plug 'bronson/vim-trailing-whitespace'
-Plug 'godlygeek/tabular' " :'<,'>Tabularize /:
-Plug 'vim-scripts/visSum.vim' " <leader>su
-Plug 'vim-scripts/VisIncr'
-Plug 'mbbill/undotree'
-" Plug 'machakann/vim-highlightedyank'
-Plug 'christoomey/vim-sort-motion'
+  " Plug 'fmoralesc/vim-tutor-mode'
 
-" Plug 'fmoralesc/vim-tutor-mode'
-" Plug 'fmoralesc/vim-pad', { 'branch': 'devel' }
+  Plug 'modille/groovy.vim'
 
-Plug 'modille/groovy.vim'
+  Plug 'NLKNguyen/cloudformation-syntax.vim'
 
-Plug 'NLKNguyen/cloudformation-syntax.vim'
+  Plug 'mustache/vim-mustache-handlebars', {'for': ['*.mustache']}
 
-Plug 'mustache/vim-mustache-handlebars', {'for': ['*.mustache']}
+  Plug 'vim-scripts/haproxy', {'for': ['haproxy*']}
+  Plug 'cespare/vim-toml', {'for': ['*.toml']}
 
-Plug 'vim-scripts/haproxy', {'for': ['haproxy*']}
-" Plug 'udalov/kotlin-vim'
-" Plug 'StanAngeloff/php.vim'
+  Plug 'ryanoasis/vim-devicons'
 call plug#end()
 endif
 
@@ -198,6 +194,8 @@ endif
 " Miscellaneous settings ------------------------------------------------- {{{
 
 set expandtab shiftwidth=4 tabstop=4 softtabstop=4
+
+set encoding=utf8
 
 set autowrite
 set inccommand=nosplit
@@ -280,15 +278,25 @@ set grepprg=rg\ --vimgrep
 set grepformat=%f:%l:%c:%m,%f:%l:%m
 endif
 
+" Make diffing better: https://vimways.org/2018/the-power-of-diff/
+set diffopt+=algorithm:patience
+set diffopt+=indent-heuristic
+
 " ------------------------------------------------------------------------ }}}
 " General Mapping  ------------------------------------------------------- {{{
 
 " cnoremap wq :echo 'Use ZZ'<CR>
 " Disable un-VI keys.
-map <up> <nop>
-map <down> <nop>
-map <left> <nop>
-map <right> <nop>
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+
+" Left and right can switch buffers
+nnoremap <left> :bp<CR>
+nnoremap <right> :bn<CR>
 
 " Quick Fold and Unfold.
 " nnoremap <space> za
@@ -562,6 +570,7 @@ autocmd FileType md,markdown,wiki setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd BufNewFile,BufRead *.txt setlocal ft=markdown
 autocmd FileType md,markdown,wiki setlocal spell
 autocmd FileType gitcommit setlocal spell
+autocmd FileType gitcommit setlocal completefunc=emoji#complet
 autocmd FileType md,markdown noremap <leader>r :ALEFix<CR>
 " autocmd BufNewFile,BufRead *.wiki   set ft=markdown
 let g:markdown_syntax_conceal = 0
@@ -645,6 +654,10 @@ nnoremap <leader>tf :TestFile<CR>
 let g:airline_powerline_fonts = 1
 set laststatus=2
 let g:airline#extensions#whitespace#checks = []
+let g:webdevicons_enable_airline_statusline = 1
+
+" adding icons to vim-startify screen
+let g:webdevicons_enable_startify = 1
 
 " Settings for neomake
 " let g:neomake_verbose = 0
@@ -671,7 +684,8 @@ let g:ale_linters = {
 \  'dockerfile': ['hadolint'],
 \  'json': ['jsonlint'],
 \  'go': ['gometalinter'],
-\  'terraform': ['tflint', 'fmt']
+\  'terraform': ['tflint', 'fmt'],
+\  'rust': ['rls']
 \}
 
 let g:ale_fixers = {
@@ -682,6 +696,7 @@ let g:ale_fixers = {
 \  'json': ['prettier'],
 \  'html': ['prettier'],
 \  'yaml': ['prettier'],
+\  'rust': ['rustfmt']
 \}
 
 " let g:ale_linters_explicit = 1
@@ -705,29 +720,69 @@ nnoremap <silent> gS :Sayonara!<CR>
 " Settings for ListToggle
 let g:lt_quickfix_list_toggle_map = '<leader>fix'
 " let g:lt_location_list_toggle_map = '<leader>l' " <- default
+"
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
 
-if has('nvim')
-  let $FZF_DEFAULT_OPTS .= ' --inline-info'
-endif
+" File preview using bat
+nnoremap <silent> <C-p> :call FzfFilePreview()<CR>
+function! FzfFilePreview()
+  let l:fzf_files_options = '--preview "bat --theme="OneHalfDark" --style=numbers,changes --color always {2..-1} | head -200" --expect=ctrl-v,ctrl-x'
 
-" File preview using CodeRay (http://coderay.rubychan.de/) sudo gem install coderay
-let g:fzf_files_options =
-      \ '--preview "(coderay {} || cat {}) 2> /dev/null | head -'.&lines.'"'
+  function! s:files()
+    let l:files = split(system($FZF_DEFAULT_COMMAND), '\n')
+    return s:prepend_icon(l:files)
+  endfunction
 
-if executable("rg")
-  command! -bang -nargs=* Rg
-        \ call fzf#vim#grep(
-        \   'rg --column --line-number --no-heading --color=always --ignore-case '.shellescape(<q-args>), 1,
-        \   <bang>0 ? fzf#vim#with_preview('up:60%')
-        \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-        \   <bang>0)
-  nnoremap <Leader>a        :Rg<Space>
-endif
+  function! s:prepend_icon(candidates)
+    let l:result = []
+    for l:candidate in a:candidates
+      let l:filename = fnamemodify(l:candidate, ':p:t')
+      let l:icon = WebDevIconsGetFileTypeSymbol(l:filename, isdirectory(l:filename))
+      call add(l:result, printf('%s %s', l:icon, l:candidate))
+    endfor
+
+    return l:result
+  endfunction
+
+  function! s:edit_file(lines)
+    if len(a:lines) < 2 | return | endif
+
+    let l:cmd = get({'ctrl-x': 'split',
+                 \ 'ctrl-v': 'vertical split',
+                 \ 'ctrl-t': 'tabe'}, a:lines[0], 'e')
+
+    for l:item in a:lines[1:]
+      let l:pos = strridx(l:item, ' ')
+      let l:file_path = l:item[pos+1:-1]
+      execute 'silent '. l:cmd . ' ' . l:file_path
+    endfor
+  endfunction
+
+  call fzf#run({
+        \ 'source': <sid>files(),
+        \ 'sink*':   function('s:edit_file'),
+        \ 'options': '-m --preview-window=right:70%:noborder --prompt Files\> ' . l:fzf_files_options,
+        \ 'down':    '70%'})
+
+endfunction
+
+function! RipgrepFzf(query, fullscreen)
+  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case %s || true'
+  let initial_command = printf(command_fmt, shellescape(a:query))
+  let reload_command = printf(command_fmt, '{q}')
+  let options = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+  if a:fullscreen
+    let options = fzf#vim#with_preview(options)
+  endif
+  call fzf#vim#grep(initial_command, 1, options, a:fullscreen)
+endfunction
+
+command! -nargs=* -bang Rg call RipgrepFzf(<q-args>, <bang>0)
+nnoremap <Leader>a        :Rg<Space>
 
 nnoremap <silent> <expr> <Leader><Leader> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
 nnoremap <silent> <Leader>c        :Colors<CR>
 nnoremap <silent> <Leader><Enter>  :Buffers<CR>
-nnoremap <Leader>ag       :Ag<Space>
 nnoremap <silent> <Leader>`        :Marks<CR>
 
 nmap <leader><tab> <plug>(fzf-maps-n)
@@ -751,14 +806,8 @@ let g:nomad_fmt_autosave = 0
 autocmd BufNewFile,BufRead *.hcl setf conf
 autocmd BufNewFile,BufRead *.hcl setlocal expandtab shiftwidth=2 tabstop=2
 
-
-" vim-pad
-let g:pad#dir = '~/src/github.com/samuelmasuy/pad/local'
-let g:pad#local_dir = '~/src/github.com/samuelmasuy/pad/public'
-let g:pad#search_backend = 'ag'
-let g:pad#set_mappings = 0
-nnoremap <leader>s <plug>(pad-list)
-nnoremap gn <plug>(pad-incremental-new-note)
+" rust
+autocmd FileType rust noremap <leader>r :ALEFix<CR>
 
 " vim-test
 let test#strategy = "neovim"
@@ -837,7 +886,7 @@ let test#strategy = "neovim"
 " -------------------------------------------------------------------------------------------------
 
 " Better display for messages
-set cmdheight=2
+" set cmdheight=2
 " Smaller updatetime for CursorHold & CursorHoldI
 set updatetime=300
 " don't give |ins-completion-menu| messages.
@@ -847,31 +896,50 @@ set signcolumn=yes
 
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+if has_key(g:plugs, 'coc.nvim')
+  function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~# '\s'
+  endfunction
 
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
+  inoremap <silent><expr> <TAB>
+        \ pumvisible() ? "\<C-n>" :
+        \ <SID>check_back_space() ? "\<TAB>" :
+        \ coc#refresh()
+  inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-" Use <c-space> to trigger completion.
-" inoremap <silent><expr> <c-space> coc#refresh()
+  function! s:show_documentation()
+    if (index(['vim', 'help'], &filetype) >= 0)
+      execute 'h' expand('<cword>')
+    else
+      call CocAction('doHover')
+    endif
+  endfunction
 
-" Use `[c` and `]c` to navigate diagnostics
-nmap <silent> [c <Plug>(coc-diagnostic-prev)
-nmap <silent> ]c <Plug>(coc-diagnostic-next)
+  nnoremap <silent> K :call <SID>show_documentation()<CR>
 
-" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-" Remap for rename current word
-nmap <leader>rn <Plug>(coc-rename)
+  let g:coc_global_extensions = ['coc-github', 'coc-yaml', 'coc-python',
+    \ 'coc-html', 'coc-json', 'coc-css',
+    \ 'coc-prettier', 'coc-tsserver', 'coc-emoji', 'coc-java']
+  command! -nargs=0 Prettier :CocCommand prettier.formatFile
+
+  let g:go_doc_keywordprg_enabled = 0
+
+  augroup coc-config
+    autocmd!
+    autocmd VimEnter * nmap <silent> gd <Plug>(coc-definition)
+    autocmd VimEnter * nmap <silent> gi <Plug>(coc-implementation)
+    autocmd VimEnter * nmap <silent> g? <Plug>(coc-references)
+    autocmd VimEnter * nmap <silent> gy <Plug>(coc-type-definition)
+    autocmd VimEnter * nmap <silent> gr <Plug>(coc-references)
+    " Use `[c` and `]c` to navigate diagnostics
+    autocmd VimEnter * nmap <silent> [c <Plug>(coc-diagnostic-prev)
+    autocmd VimEnter * nmap <silent> ]c <Plug>(coc-diagnostic-next)
+    " Remap for rename current word
+    autocmd VimEnter * nmap <leader>rn <Plug>(coc-rename)
+  augroup END
+endif
+
 
 " Use U to show documentation in preview window
 nnoremap <silent> U :call <SID>show_documentation()<CR>

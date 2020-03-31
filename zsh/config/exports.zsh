@@ -1,16 +1,16 @@
 export GOPATH=$HOME
 export MAVEN_OPTS="-Xmx1024m -Xms512m"
-export JAVA_HOME=`/usr/libexec/java_home -v 11`
+# export JAVA_HOME=`/usr/libexec/java_home -v 11`
 export DOTFILES_HOME=$HOME/.dotfiles
 export IDEA_HOME="/Applications/IntelliJ IDEA CE.app/Contents"
 #export IDEA_JDK="/Library/Java/JavaVirtualMachines/jdk1.8.0_72.jdk/Contents/Home
 
 export PATH="$PATH:/usr/local/sbin:/usr/local/bin/python:/Applications/VirtualBox.app/Contents/MacOS"
 export PATH="$PATH:/usr/local/bin:$HOME/bin/:$HOME/bin/aws/:/usr/bin:/bin:/usr/sbin:/sbin:$GOPATH/bin"
-export PATH="$PATH:$JAVA_HOME/bin"
+# export PATH="$PATH:$JAVA_HOME/bin"
 export PATH="$PATH:$HOME/.yarn/bin"
 export PATH="$PATH:$HOME/src/github.com/jive/jh/helper"
-export PATH="$PATH:/usr/local/opt/node@10/bin"
+export PATH="$PATH:/usr/local/opt/node@12/bin"
 export MANPATH="/usr/local/man:$MANPATH"
 
 # Colors handling.
@@ -21,8 +21,8 @@ export ZLSCOLORS="${LSCOLORS}"
 export EDITOR="nvim"
 
 # export NODE_PATH='/usr/local/lib/node_modules'
-export LDFLAGS="-L/usr/local/opt/node@10/lib"
-export CPPFLAGS="-I/usr/local/opt/node@10/include"
+export LDFLAGS="-L/usr/local/opt/node@12/lib"
+export CPPFLAGS="-I/usr/local/opt/node@12/include"
 
 # Location of history file.
 export HISTFILE=~/.histfile
@@ -41,8 +41,6 @@ setopt hist_ignore_space
 export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache
 # Tmux config.
 export DISABLE_AUTO_TITLE=true
-
-export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
 
 export GROOVY_HOME=/usr/local/opt/groovy/libexec
 
