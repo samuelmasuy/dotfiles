@@ -48,4 +48,3 @@ nnoremap coh :nohlsearch<cr>
 nnoremap ,<space> :action Run<CR>
 nnoremap gcc :action CommentByLineComment<CR>
 vnoremap gcc :action CommentByLineComment<CR>
-set clipboard+=ideaput
