@@ -1,7 +1,3 @@
-# Always add file or directory to the opened window in sublime.
-function sublime() {
-    subl -a $1
-}
 # Change cd to do a ls right after executing.
 function chpwd() {
     emulate -L zsh
@@ -67,35 +63,6 @@ function mvd() {
 function highlight () {
     grep --color -E "$1|$" "$@"
 }
-
-# Search chrome history with fzf.
-function chist() {
-  local cols sep
-  cols=$(( COLUMNS / 3 ))
-  sep='{::}'
-
-  cp -f ~/Library/Application\ Support/Google/Chrome/Default/History /tmp/h
-
-  sqlite3 -separator $sep /tmp/h \
-    "select substr(title, 1, $cols), url
-     from urls order by last_visit_time desc" |
-  awk -F $sep '{printf "%-'$cols's  \x1b[36m%s\x1b[m\n", $1, $2}' |
-  fzf --ansi --multi --no-hscroll --tiebreak=begin |
-  sed 's#.*\(https*://\)#\1#' | xargs open
-}
-function fzf_killps() {
-    zle -I;
-    ps -ef | sed 1d | fzf -m | awk '{print $2}' | xargs kill -${1:-9} ;
-};
-zle -N fzf_killps;
-bindkey '^Q' fzf_killps
-
-fzf_cd() {
-    zle -I;
-    DIR=$(find ${1:-*} -path '*/\.*' -prune -o -type d -print 2> /dev/null | fzf) && cd "$DIR" ;
-};
-zle -N fzf_cd;
-bindkey '^E' fzf_cd
 
 function rawurlencode() {
   local string="${1}"
