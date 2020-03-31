@@ -67,10 +67,6 @@ if has('nvim')
 
   " ts
   Plug 'leafgarland/typescript-vim', {'for': ['typescript']}
-  " Plug 'bdauria/angular-cli.vim', { 'for': ['typescript'] }
-  " Plug 'mhartington/nvim-typescript', {'for': ['typescript'], 'do': './install.sh' }
-  " Plug 'Shougo/echodoc.vim', {'for': ['typescript']}
-  " Plug 'Quramy/tsuquyomi'
   "
   Plug 'janko/vim-test'
 
@@ -78,7 +74,6 @@ if has('nvim')
   Plug 'rhysd/vim-grammarous', { 'for': ['text', 'markdown']}
   Plug 'ron89/thesaurus_query.vim', { 'for': ['text', 'markdown']}
   Plug 'chrisbra/unicode.vim', { 'for': ['text', 'markdown']}
-  " Plug 'davinche/godown-vim'
 
   " python
   " Plug 'davidhalter/jedi-vim', {'for': ['python']}
@@ -97,7 +92,6 @@ if has('nvim')
   Plug 'joshdick/onedark.vim'
   " Plug 'morhetz/gruvbox'
   " Plug 'mhartington/oceanic-next'
-  " Plug 'lifepillar/vim-wwdc16-theme'
   " Plug 'junegunn/seoul256.vim'
   " Plug 'tomasiser/vim-code-dark'
   " Plug 'cocopon/iceberg.vim'
@@ -116,7 +110,6 @@ if has('nvim')
   Plug 'christoomey/vim-tmux-navigator'
 
   " utils
-  " Plug 'EinfachToll/DidYouMean'
   Plug 'mhinz/vim-startify'
   Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
   Plug 'Valloric/MatchTagAlways'
@@ -173,22 +166,11 @@ set background=dark
 
 " Beautiful
 if has('nvim') && has("termguicolors")
-set termguicolors
-silent! colorscheme onedark
-let g:airline_theme = 'onedark'
-" let g:onedark_terminal_italics = 1
+  set termguicolors
+  silent! colorscheme onedark
+  let g:airline_theme = 'onedark'
+  " let g:onedark_terminal_italics = 1
 endif
-" elseif has('gui_running')
-"   set macligatures
-"   set guifont=Fira\ Code:h15
-"   silent! colorscheme OceanicNext
-"   let g:airline_theme = 'oceanicnext'
-" else
-"   set t_Co=256
-"   silent! colorscheme gruvbox
-"   let g:gruvbox_italicize_comments=0
-"   let g:airline_theme = 'powerlineish'
-" endif
 
 " ------------------------------------------------------------------------ }}}
 " Miscellaneous settings ------------------------------------------------- {{{
@@ -345,25 +327,6 @@ autocmd FileType python nnoremap <leader>y :0,$!yapf<Cr>
 " autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 let python_highlight_all=1
 let python_slow_sync=1
-" let g:neomake_python_flake8_maker = {
-"       \ 'args': [
-"       \ '--ignore=E121,E124,E126,E261,E301,E303,E501,E721',
-"       \ '--max-line-length=104']
-"       \ }
-" Don't warn on
-"   E121 continuation line indentation is not a multiple of four
-"   E124 closing bracket does not match visual indentation
-"   E126 continuation line over-indented for hanging indent
-"   E128 continuation line under-indented for visual indent
-"   E261 at least two spaces before inline comment
-"   E301 expected 1 blank line, found 0
-"   E303 expected 2 blank lines, found <n>
-"   E721 do not compare types, use 'isinstance()'
-" autocmd FileType python nnoremap <buffer> gd :call LanguageClient_textDocument_definition()<cr>
-" <leader>lh for type info under cursor
-" autocmd FileType python nnoremap <buffer> <leader>ref :call LanguageClient_textDocument_hover()<cr>
-" <leader>lr to rename variable under cursor
-" autocmd FileType python nnoremap <buffer> <leader>re :call LanguageClient_textDocument_rename()<cr>
 autocmd BufLeave *.py               normal! mP
 
 " ------------------------------------------------------------------------ }}}
@@ -659,16 +622,8 @@ let g:webdevicons_enable_airline_statusline = 1
 " adding icons to vim-startify screen
 let g:webdevicons_enable_startify = 1
 
-" Settings for neomake
-" let g:neomake_verbose = 0
-" hi NeoErrorMsg ctermfg=88
-" hi NeoWarningMsg ctermfg=136
-" let g:neomake_error_sign = {'text': '✘', 'texthl': 'NeomakeErrorSign'}
-" let g:neomake_warning_sign = {'text': '☂', 'texthl': 'NeomakeWarningSign' }
-" autocmd FileType python call neomake#configure#automake('w')
 
 " Setting for ale
-
 let g:airline#extensions#ale#enabled = 1
 let g:ale_sign_error = '✘'
 let g:ale_sign_warning = '☂'
@@ -812,81 +767,12 @@ autocmd FileType rust noremap <leader>r :ALEFix<CR>
 " vim-test
 let test#strategy = "neovim"
 
-" Settings for (neocomplete and deoplete) and neosnippet ---------------------------- {{{
-"
-" let g:LanguageClient_serverCommands = {
-"       \ 'javascript': ['javascript-typescript-stdio'],
-"       \ 'java': ['/Users/smasuy/bin/jdtls'],
-"       \ 'python': ['/usr/local/bin/pyls'],
-"       \ }
-
-" let g:LanguageClient_autoStart = 0
-
-" function! TabComplete() abort
-"   let l:col = col('.') - 1
-
-"   if pumvisible()
-"     return "\<C-n>"
-"   else
-"     if !l:col || getline('.')[l:col - 1] !~# '\k'
-"       return "\<TAB>"
-"     else
-"       return "\<C-n>"
-"     endif
-"   endif
-" endfunction
-
-" if has('nvim')
-"   " " Deoplete
-"   let g:deoplete#enable_at_startup = 1
-
-"   " let g:echodoc_enable_at_startup=1
-
-"   " let g:tern_map_keys = 0
-"   " let g:tern_show_signature_in_pum=1
-"   " let g:tern#command = ['tern']
-"   " let g:tern#arguments = ['--persistent', '--no-port-file']
-
-"   " if !exists('g:deoplete#sources#omni#input_patterns')
-"   "   let g:deoplete#sources#omni#input_patterns = {}
-"   " endif
-"   " let g:deoplete#sources#omni#input_patterns.javascript = '\h\w*\|[^. \t]\.\w*'
-
-"   " let g:deoplete#sources={}
-"   " let g:deoplete#sources.vim  = ['buffer', 'member', 'file', 'ultisnips']
-"   " let g:deoplete#sources.javascript = ['ultisnips', 'LanguageClient', 'buffer']
-"   " let g:deoplete#sources.html = ['buffer', 'member', 'file', 'omni', 'ultisnips']
-
-"   " let g:deoplete#omni#functions = {}
-"   " let g:deoplete#omni#functions.javascript = [
-"   "       \ 'jspc#omni'
-"   "       \]
-
-"   call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
-
-"   " Insert <TAB> or select next match
-"   inoremap <silent> <expr> <Tab> TabComplete()
-
-"   " <C-h>, <BS>: close popup and delete backword char
-"   " inoremap <expr><C-h> deoplete#mappings#smart_close_popup()."\<C-h>"
-"   " inoremap <expr><BS> deoplete#mappings#smart_close_popup()."\<C-h>"
-
-"   " UltiSnips settings
-"   let g:UltiSnipsEditSplit = 'vertical'
-"   let g:UltiSnipsSnippetsDir = '~/.config/nvim/snips'
-"   let g:UltiSnipsSnippetDirectories = ['snips']
-"   let g:UltiSnipsExpandTrigger="<C-j>"
-"   let g:UltiSnipsJumpForwardTrigger="<C-j>"
-"   autocmd FileType javascript let g:UltiSnipsEnableSnipMate = 0
-" endif
-"
-
 " -------------------------------------------------------------------------------------------------
 " coc.nvim default settings
 " -------------------------------------------------------------------------------------------------
 
 " Better display for messages
-" set cmdheight=2
+" set cmdheight=1
 " Smaller updatetime for CursorHold & CursorHoldI
 set updatetime=300
 " don't give |ins-completion-menu| messages.
@@ -938,10 +824,6 @@ if has_key(g:plugs, 'coc.nvim')
     autocmd VimEnter * nmap <leader>rn <Plug>(coc-rename)
   augroup END
 endif
-
-
-" Use U to show documentation in preview window
-nnoremap <silent> U :call <SID>show_documentation()<CR>
 
 " Show all diagnostics
 " nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
