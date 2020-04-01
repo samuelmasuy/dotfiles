@@ -15,8 +15,6 @@ export MANPATH="/usr/local/man:$MANPATH"
 
 # Colors handling.
 autoload colors; colors;
-export LSCOLORS="Gxfxcxdxbxegedabagacad"
-export ZLSCOLORS="${LSCOLORS}"
 
 export EDITOR="nvim"
 

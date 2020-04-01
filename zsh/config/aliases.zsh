@@ -1,10 +1,11 @@
 # cd in the previous directory.
 alias cdp="cd ~-"
 # Display all files and directories including the hidden ones, with precision.
-alias la='ls -larth'
-alias ls='ls -G'
 # Make the terminal say all the files and directories.
-alias lt="ls | say -va"
+alias lt="/bin/ls | say -va"
+# exa love
+alias ls='exa'
+alias la='exa -la'
 # Open the given directory in finder.
 alias f='open .'
 # Clear the terminal

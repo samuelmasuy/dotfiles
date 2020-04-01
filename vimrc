@@ -37,19 +37,10 @@ if has('nvim')
 
   Plug 'Chiel92/vim-autoformat'
 
-  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+  Plug 'fatih/vim-go'
   Plug 'buoto/gotests-vim', {'for': ['go'],  'do': ':!go get -u github.com/cweill/gotests/...' }
 
   " auto completion
-  " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  " Plug 'zchee/deoplete-go', { 'do': 'make', 'for': ['go']}
-  " Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript'] }
-  " Plug 'zchee/deoplete-jedi', {'for': ['python']}
-  " Plug 'zchee/deoplete-clang', {'for': ['cpp']}
-  " Plug 'autozimu/LanguageClient-neovim', {
-  "   \ 'branch': 'next',
-  "   \ 'do': 'bash install.sh',
-  "   \ }
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
   " snippets
@@ -61,9 +52,9 @@ if has('nvim')
 
   " js
   " Plug 'ternjs/tern_for_vim', { 'for': ['javascript'] }
-  Plug 'othree/jspc.vim', { 'for': ['javascript'] }
+  " Plug 'othree/jspc.vim', { 'for': ['javascript'] }
   Plug 'pangloss/vim-javascript', {'for': ['javascript', 'typescript']}
-  Plug 'heavenshell/vim-jsdoc', {'for': ['javascript', 'typescript']}
+  " Plug 'heavenshell/vim-jsdoc', {'for': ['javascript', 'typescript']}
 
   " ts
   Plug 'leafgarland/typescript-vim', {'for': ['typescript']}
@@ -82,8 +73,8 @@ if has('nvim')
   " Plug 'stephpy/vim-yaml', {'for': ['yaml']}
 
   " RFC
-  Plug 'mhinz/vim-rfc' " sudo gem install nokogiri
-  Plug 'vim-scripts/rfc-syntax', { 'for': 'rfc' }
+  " Plug 'mhinz/vim-rfc' " sudo gem install nokogiri
+  " Plug 'vim-scripts/rfc-syntax', { 'for': 'rfc' }
 
   " Encryption
   Plug 'jamessan/vim-gnupg'
@@ -101,6 +92,7 @@ if has('nvim')
   Plug 'vim-airline/vim-airline'
 
   " search
+  Plug 'airblade/vim-rooter'
   Plug '/usr/local/opt/fzf'
   Plug 'junegunn/fzf.vim'
   Plug 'junegunn/vim-peekaboo'

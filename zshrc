@@ -10,16 +10,16 @@ ZSH_THEME=powerlevel10k/powerlevel10k
 plugins=(git mvn tmuxinator docker kubectl helm web-search zsh_reload z fast-syntax-highlighting history-substring-search)
 # kubectl go osx tmux 
 
+# Initiate oh-my-zsh.
+source $ZSH/oh-my-zsh.sh
+# source $HOME/.zsh/pure10k.zsh
+source $HOME/.zsh/purepower.zsh
+
 source $HOME/.zsh/exports.zsh
 source $HOME/.zsh/aliases.zsh
 source $HOME/.zsh/functions.zsh
 source $HOME/.zsh/fzf.zsh
 source $HOME/.zsh/secrets.zsh
-
-# Initiate oh-my-zsh.
-source $ZSH/oh-my-zsh.sh
-# source $HOME/.zsh/pure10k.zsh
-source $HOME/.zsh/purepower.zsh
 
 # function zle-line-init zle-keymap-select {
 #   PROMPT=`$HOME/src/github.com/xcambar/purs/target/release/purs prompt -k "$KEYMAP" -r "$?"`
