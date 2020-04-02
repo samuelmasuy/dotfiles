@@ -45,7 +45,6 @@ echo "**************************************************************************
 [ -d "$HOME/.config" ] && rm -rf $HOME/.config
 [ -d "$HOME/.tmux" ] && rm -rf $HOME/.tmux
 [ -d "$HOME/.zsh" ] && rm -rf $HOME/.zsh
-[ -f "$HOME/.ackrc" ] && rm -f $HOME/.ackrc
 [ -f "$HOME/.bash_profile" ] && rm -f $HOME/.bash_profile
 [ -f "$HOME/.gitconfig" ] && rm -f $HOME/.gitconfig
 [ -f "$HOME/.gitignore" ] && rm -f $HOME/.gitignore
@@ -66,7 +65,6 @@ curl -fLo $HOME/.config/nvim/autoload/plug.vim --create-dirs \
 echo "**************************************************************************"
 echo "*********************Symlinking dotfiles...*******************************"
 echo "**************************************************************************"
-ln -s $DOTFILES_HOME/ackrc $HOME/.ackrc
 ln -s $DOTFILES_HOME/bash_profile $HOME/.bash_profile
 ln -s $DOTFILES_HOME/basic_vimrc $HOME/.vimrc
 ln -s $DOTFILES_HOME/gitignore $HOME/.gitignore
@@ -95,7 +93,6 @@ sudo chsh -s "$(command -v zsh)" "${USER}"
 echo "**************************************************************************"
 echo "*********************Gems install...**************************************"
 echo "**************************************************************************"
-sudo gem install coderay
 sudo gem install tmuxinator
 sudo gem install neovim
 sudo gem install nokogiri
@@ -107,16 +104,12 @@ npm install -g typescript
 npm install -g neovim
 npm install -g npm
 npm install -g fixjson
-npm install -g jsonlint
 npm install -g remark-cli
 npm install -g git-removed-branches
 npm install -g markdown2confluence
-npm install -g prettier
 npm install -g serverless
 npm install -g yarn
 # go get -u mvdan.cc/sh/cmd/shfmt
-# pip install cfn-lint
-# pip install gitlint
 
 echo "**************************************************************************"
 echo "*********************Hammerspoon install...*******************************"

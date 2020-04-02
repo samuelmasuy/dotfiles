@@ -1,8 +1,0 @@
---type-add=js=.js.erb,.coffee
---type-set=c=.c,.cpp,.ino,.pde,.h
---ignore-dir=coverage
---smart-case
---sort-files
---color
---follow
---group
