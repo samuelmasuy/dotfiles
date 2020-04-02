@@ -741,10 +741,12 @@ endif
 " ------------------------------------------------------------------------ }}}
 " Others. ------------------------------------------------------------- {{{
 " Settings for vim-airline
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
 set laststatus=2
 let g:airline#extensions#whitespace#checks = []
-let g:webdevicons_enable_airline_statusline = 1
+let g:webdevicons_enable_airline_statusline = 0
+let g:airline_section_y = ''
+let g:airline_skip_empty_sections = 1
 
 " adding icons to vim-startify screen
 let g:webdevicons_enable_startify = 1

@@ -72,7 +72,6 @@ ln -s $DOTFILES_HOME/ideavimrc $HOME/.ideavimrc
 ln -s $DOTFILES_HOME/iterm/mysnazzy.itermcolors $HOME/Documents/mysnazzy.itermcolors
 ln -s $DOTFILES_HOME/tmux $HOME/.tmux
 ln -s $DOTFILES_HOME/tmux.conf $HOME/.tmux.conf
-# ln -s $DOTFILES_HOME/vim/snips $HOME/.config/nvim/snips
 ln -s $DOTFILES_HOME/vimrc $HOME/.config/nvim/init.vim
 ln -s $DOTFILES_HOME/coc-settings.json $HOME/.config/nvim/coc-settings.json
 ln -s $DOTFILES_HOME/zsh/config $HOME/.zsh
