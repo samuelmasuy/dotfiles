@@ -76,7 +76,6 @@ ln -s $DOTFILES_HOME/vimrc $HOME/.config/nvim/init.vim
 ln -s $DOTFILES_HOME/coc-settings.json $HOME/.config/nvim/coc-settings.json
 ln -s $DOTFILES_HOME/zsh/config $HOME/.zsh
 ln -s $DOTFILES_HOME/zshrc $HOME/.zshrc
-ln -s $DOTFILES_HOME/zsh/theme/p10k.zsh $HOME/.zsh/p10k.zsh
 
 echo "**************************************************************************"
 echo "***********************Install nVim plugins...**************************"
