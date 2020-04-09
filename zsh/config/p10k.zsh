@@ -1,0 +1,1 @@
+/Users/smasuy/.dotfiles/zsh/theme/p10k.zsh
