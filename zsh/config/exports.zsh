@@ -1,10 +1,7 @@
 export GOPATH=$HOME
 export MAVEN_OPTS="-Xmx1024m -Xms512m"
-# export JAVA_HOME=`/usr/libexec/java_home -v 11`
 export DOTFILES_HOME=$HOME/.dotfiles
 export IDEA_HOME="/Applications/IntelliJ IDEA CE.app/Contents"
-#export IDEA_JDK="/Library/Java/JavaVirtualMachines/jdk1.8.0_72.jdk/Contents/Home
-
 export PATH="$PATH:$HOME/bin/"
 export PATH="$PATH:/usr/local/sbin:/Applications/VirtualBox.app/Contents/MacOS"
 export PATH="$PATH:/usr/local/bin:$HOME/bin/aws/:$HOME/bin/git-toolbelt/:/usr/bin:/bin:/usr/sbin:/sbin:$GOPATH/bin"
@@ -49,8 +46,4 @@ export GROOVY_HOME=/usr/local/opt/groovy/libexec
 
 export BAT_THEME="OneHalfDark"
 export BAT_STYLE="changes"
-export ISP_TABLE="isp.jumpy.v1"
-export NURSE_TABLE="nurse.instances.v2"
 
-export GOPROXY=https://nexus.devops.jive.com/repository/go-all/
-export GOPRIVATE=github.com/jive/*

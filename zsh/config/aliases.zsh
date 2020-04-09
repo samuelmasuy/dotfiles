@@ -45,8 +45,6 @@ alias drmd="docker images -q --filter dangling=true | xargs docker rmi"
 # hub alias
 eval "$(hub alias -s)"
 # tools alias
-alias gprm="git pull-request -r jive/dev-devops-tools -a samuelmasuy"
-alias gprd="git pull-request -b develop -r jive/dev-devops-tools -a samuelmasuy"
 alias gpb="gpsup"
 alias gprco="git pr checkout"
 # bat > cat

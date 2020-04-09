@@ -18,7 +18,8 @@ source $HOME/.zsh/purepower.zsh
 source $HOME/.zsh/exports.zsh
 source $HOME/.zsh/aliases.zsh
 source $HOME/.zsh/functions.zsh
-source $HOME/.zsh/secrets.zsh
+[[ -f $HOME/.zsh/secrets.zsh ]] && source $HOME/.zsh/secrets.zsh
+[[ -f $HOME/.zsh/work.zsh ]] && source $HOME/.zsh/work.zsh
 
 # function zle-line-init zle-keymap-select {
 #   PROMPT=`$HOME/src/github.com/xcambar/purs/target/release/purs prompt -k "$KEYMAP" -r "$?"`
