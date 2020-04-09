@@ -7,8 +7,8 @@ export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME=powerlevel10k/powerlevel10k
 
 # Plugins for zsh.
-plugins=(git mvn tmuxinator docker kubectl helm web-search zsh_reload z fast-syntax-highlighting history-substring-search)
-# kubectl go osx tmux 
+plugins=(git mvn docker zsh_reload z fast-syntax-highlighting history-substring-search)
+# kubectl go osx tmux
 
 # Initiate oh-my-zsh.
 source $ZSH/oh-my-zsh.sh
@@ -18,7 +18,6 @@ source $HOME/.zsh/purepower.zsh
 source $HOME/.zsh/exports.zsh
 source $HOME/.zsh/aliases.zsh
 source $HOME/.zsh/functions.zsh
-source $HOME/.zsh/fzf.zsh
 source $HOME/.zsh/secrets.zsh
 
 # function zle-line-init zle-keymap-select {
@@ -52,4 +51,16 @@ zstyle ':completion:*:cd:*' ignore-parents parent pwd # cd will never select the
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/terraform terraform
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+complete -o nospace -C /usr/local/bin/vault vault
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
+# tabtab source for slss package
+# uninstall by removing these lines or running `tabtab uninstall slss`
+[[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh
+
+source $HOME/.zsh/fzf.zsh

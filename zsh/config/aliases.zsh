@@ -4,8 +4,10 @@ alias cdp="cd ~-"
 # Make the terminal say all the files and directories.
 alias lt="/bin/ls | say -va"
 # exa love
-alias ls='exa'
-alias la='exa -la'
+# alias ls='exa'
+# alias la='exa -la'
+alias la='ls -larth'
+alias ls='ls -G'
 # Open the given directory in finder.
 alias f='open .'
 # Clear the terminal

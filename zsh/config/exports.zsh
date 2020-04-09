@@ -5,12 +5,17 @@ export DOTFILES_HOME=$HOME/.dotfiles
 export IDEA_HOME="/Applications/IntelliJ IDEA CE.app/Contents"
 #export IDEA_JDK="/Library/Java/JavaVirtualMachines/jdk1.8.0_72.jdk/Contents/Home
 
-export PATH="$PATH:/usr/local/sbin:/usr/local/bin/python:/Applications/VirtualBox.app/Contents/MacOS"
-export PATH="$PATH:/usr/local/bin:$HOME/bin/:$HOME/bin/aws/:/usr/bin:/bin:/usr/sbin:/sbin:$GOPATH/bin"
-# export PATH="$PATH:$JAVA_HOME/bin"
+export PATH="$PATH:$HOME/bin/"
+export PATH="$PATH:/usr/local/sbin:/Applications/VirtualBox.app/Contents/MacOS"
+export PATH="$PATH:/usr/local/bin:$HOME/bin/aws/:$HOME/bin/git-toolbelt/:/usr/bin:/bin:/usr/sbin:/sbin:$GOPATH/bin"
+export PATH="$PATH:$JAVA_HOME/bin"
 export PATH="$PATH:$HOME/.yarn/bin"
 export PATH="$PATH:$HOME/src/github.com/jive/jh/helper"
 export PATH="$PATH:/usr/local/opt/node@12/bin"
+export PATH="$PATH:/usr/local/opt/curl-openssl/bin"
+export PATH="$PATH:/usr/local/opt/python@3.8/bin"
+export PATH="$PATH:/usr/local/opt/curl-openssl/bin"
+
 export MANPATH="/usr/local/man:$MANPATH"
 
 # Colors handling.
@@ -47,4 +52,5 @@ export BAT_STYLE="changes"
 export ISP_TABLE="isp.jumpy.v1"
 export NURSE_TABLE="nurse.instances.v2"
 
-export GO111MODULE=on
+export GOPROXY=https://nexus.devops.jive.com/repository/go-all/
+export GOPRIVATE=github.com/jive/*

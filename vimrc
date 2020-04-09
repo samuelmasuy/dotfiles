@@ -55,7 +55,6 @@ if has('nvim')
 
   " utils
   Plug 'mhinz/vim-startify' " start up screen
-  Plug 'mhinz/vim-sayonara' " quit
   Plug 'Valloric/MatchTagAlways'
   Plug 'Valloric/ListToggle' " quick*fix* *l*ocation
   Plug 'vim-scripts/DirDiff.vim' " :DirDiff <A:Src Directory> <B:Src Directory>
@@ -74,7 +73,7 @@ if has('nvim')
   Plug 'tmux-plugins/vim-tmux' " tmux.conf
   Plug 'christoomey/vim-tmux-navigator'
 
-  " all hashicorp goodie
+  " all hashicorp goodies
   Plug 'hashivim/vim-hashicorp-tools'
 
   Plug 'fatih/vim-go'
@@ -240,9 +239,9 @@ set modelines=5
 " ------------------------------------------------------------------------ }}}
 " General Mapping  ------------------------------------------------------- {{{
 
-" try to use gs
-cnoremap wq :echo 'Use gs'<CR>
-cnoremap q! :echo 'Use gs'<CR>
+" try to use ZZ
+cnoremap wq :echo 'Use ZZ'<CR>
+cnoremap q! :echo 'Use ZQ'<CR>
 
 " Disable un-VI keys.
 nnoremap <up> <nop>
@@ -379,7 +378,6 @@ let g:go_addtags_transform = "snakecase"
 let g:go_autodetect_gopath = 1
 let g:go_fmt_fail_silently = 0
 let g:go_fmt_command = "goimports"
-" let g:go_snippet_engine = "ultisnips"
 let g:go_metalinter_command='golangci-lint'
 " let g:go_def_mode = 'gopls'
 
@@ -395,13 +393,11 @@ augroup go
   " :GoTest
   " autocmd FileType go nmap <leader>t  <Plug>(go-test)
   " :GoRun
-  autocmd FileType go nmap <leader>r  <Plug>(go-run)
-  " :GoDoc
-  " autocmd FileType go nmap K <Plug>(go-doc)
+  " autocmd FileType go nmap <leader>r  <Plug>(go-run)
   " :GoInfo
   " autocmd FileType go nmap <Leader>i <Plug>(go-info)
   " :GoReferers
-  " autocmd FileType go nmap <Leader>i <Plug>(go-referers)
+  autocmd FileType go nmap <Leader>r <Plug>(go-referers)
   " :GoMetaLinter
   " autocmd FileType go nmap <Leader>l <Plug>(go-metalinter)
   " :GoDef
@@ -758,9 +754,6 @@ let g:sort_motion_visual = 'gso'
 
 " Settings for terraform
 let g:terraform_fmt_on_save=1
-
-" Settings for sayonara
-nnoremap gs :Sayonara<cr>
 
 " Settings for ListToggle
 let g:lt_quickfix_list_toggle_map = '<leader>fix'
