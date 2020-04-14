@@ -13,7 +13,7 @@ export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME=powerlevel10k/powerlevel10k
 
 # Plugins for zsh.
-plugins=(git mvn docker zsh_reload z fast-syntax-highlighting history-substring-search)
+plugins=(git mvn docker zsh_reload z colored-man-pages fast-syntax-highlighting history-substring-search)
 # kubectl go osx tmux
 
 # Initiate oh-my-zsh.

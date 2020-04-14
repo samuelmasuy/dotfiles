@@ -84,7 +84,7 @@ if has('nvim')
   Plug 'leafgarland/typescript-vim', {'for': ['typescript']} " syntax
 
   Plug 'rhysd/vim-grammarous', { 'for': ['text', 'markdown']}
-  Plug 'ron89/thesaurus_query.vim', { 'for': ['text', 'markdown']}
+  Plug 'ron89/thesaurus_query.vim' " synonym <leader>cs
   Plug 'chrisbra/unicode.vim', { 'for': ['text', 'markdown']}
 
   " Plug 'stephpy/vim-yaml', {'for': ['yaml']}
@@ -241,7 +241,6 @@ set modelines=5
 
 " try to use ZZ
 cnoremap wq :echo 'Use ZZ'<CR>
-cnoremap q! :echo 'Use ZQ'<CR>
 
 " Disable un-VI keys.
 nnoremap <up> <nop>
@@ -561,6 +560,7 @@ let g:ale_linters = {
 \  'gitcommit': ['gitlint'],
 \  'dockerfile': ['hadolint'],
 \  'json': ['jsonlint'],
+\  'markdown': ['spellcheck'],
 \  'go': ['gometalinter'],
 \  'terraform': ['tflint', 'fmt'],
 \  'rust': ['rls']
@@ -625,25 +625,12 @@ function! FzfFilePreview()
 
 endfunction
 
-function! RipgrepFzf(query, fullscreen)
-  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case %s || true'
-  let initial_command = printf(command_fmt, shellescape(a:query))
-  let reload_command = printf(command_fmt, '{q}')
-  let options = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
-  if a:fullscreen
-    let options = fzf#vim#with_preview(options)
-  endif
-  call fzf#vim#grep(initial_command, 1, options, a:fullscreen)
-endfunction
-
-command! -nargs=* -bang Rg call RipgrepFzf(<q-args>, <bang>0)
-nnoremap <Leader>a        :Rg<Space>
-
 nnoremap <silent> <expr> <Leader><Leader> ('').":Files\<CR>"
 nnoremap <silent> <Leader>c        :Colors<CR>
 nnoremap <silent> <Leader><Enter>  :Buffers<CR>
 nnoremap <silent> <Leader>`        :Marks<CR>
 nnoremap <silent> <Leader>m        :Maps<CR>
+nnoremap <Leader>a        :Rg<Space>
 
 " ------------------------------------------------------------------------ }}}
 " coc.nvim -------------------------------------------------------- {{{
