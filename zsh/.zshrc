@@ -6,7 +6,8 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # Path to oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+export ZSH=${XDG_CONFIG_HOME:-$HOME/.config}/oh-my-zsh
+hash -d c=$XDG_CONFIG_HOME
 
 # Set name of zsh theme to load.
 # ZSH_THEME="my_theme"
@@ -19,11 +20,11 @@ plugins=(git mvn docker zsh_reload z colored-man-pages fast-syntax-highlighting 
 # Initiate oh-my-zsh.
 source $ZSH/oh-my-zsh.sh
 
-source $HOME/.zsh/exports.zsh
-source $HOME/.zsh/aliases.zsh
-source $HOME/.zsh/functions.zsh
-[[ -f $HOME/.zsh/secrets.zsh ]] && source $HOME/.zsh/secrets.zsh
-[[ -f $HOME/.zsh/work.zsh ]] && source $HOME/.zsh/work.zsh
+source ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/config/exports.zsh
+source ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/config/aliases.zsh
+source ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/config/functions.zsh
+[[ -f ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/config/secrets.zsh ]] && source ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/config/secrets.zsh
+[[ -f ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/config/work.zsh ]] && source ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/config/work.zsh
 
 bindkey -v
 bindkey '^[OA' history-substring-search-up
@@ -34,13 +35,11 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=white'
 zstyle ':completion:*:cd:*' ignore-parents parent pwd # cd will never select the parent directory
 
 # source /usr/local/bin/virtualenvwrapper.sh
-
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/terraform terraform
-
 complete -o nospace -C /usr/local/bin/vault vault
 
-[[ -f $HOME/.zsh/fzf.zsh ]] && source $HOME/.zsh/fzf.zsh
+[[ -f ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/config/fzf.zsh ]] && source ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/config/fzf.zsh
 
 # To customize prompt, run `p10k configure`
-[[ ! -f $HOME/.zsh/p10k.zsh ]] || source $HOME/.zsh/p10k.zsh
+[[ ! -f ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/config/p10k.zsh ]] || source ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/config/p10k.zsh

@@ -2,6 +2,7 @@
 set -e
 
 DOTFILES_HOME=$HOME/.dotfiles
+source .profile
 
 echo "**************************************************************************"
 echo "********************Home directories setup...*****************************"
@@ -40,21 +41,6 @@ brew tap Homebrew/bundle
 brew bundle --file=$DOTFILES_HOME/Brewfile
 
 echo "**************************************************************************"
-echo "*********************Removing dotfiles...*********************************"
-echo "**************************************************************************"
-[ -d "$HOME/.config" ] && rm -rf $HOME/.config
-[ -d "$HOME/.tmux" ] && rm -rf $HOME/.tmux
-[ -d "$HOME/.zsh" ] && rm -rf $HOME/.zsh
-[ -f "$HOME/.bash_profile" ] && rm -f $HOME/.bash_profile
-[ -f "$HOME/.gitconfig" ] && rm -f $HOME/.gitconfig
-[ -f "$HOME/.gitignore" ] && rm -f $HOME/.gitignore
-[ -f "$HOME/.ideavimrc" ] && rm -f $HOME/.ideavimrc
-[ -f "$HOME/.tmux.conf" ] && rm -f $HOME/.tmux.conf
-[ -f "$HOME/.vimrc" ] && rm -f $HOME/.vimrc
-[ -f "$HOME/.zshrc" ] && rm -f $HOME/.zshrc
-[ -f "$HOME/Documents/mysnazzy.itermcolors" ] && rm -f $HOME/Documents/mysnazzy.itermcolors
-
-echo "**************************************************************************"
 echo "**********************Install Plug for nvim...****************************"
 echo "**************************************************************************"
 sudo pip install --upgrade neovim
@@ -65,17 +51,24 @@ curl -fLo $HOME/.config/nvim/autoload/plug.vim --create-dirs \
 echo "**************************************************************************"
 echo "*********************Symlinking dotfiles...*******************************"
 echo "**************************************************************************"
-ln -s $DOTFILES_HOME/bash_profile $HOME/.bash_profile
-ln -s $DOTFILES_HOME/basic_vimrc $HOME/.vimrc
-ln -s $DOTFILES_HOME/gitignore $HOME/.gitignore
+ln -s $DOTFILES_HOME/.profile $HOME/.zprofile
+
+mkdir -p $XDG_CONFIG_HOME/vim && \
+  ln -s $DOTFILES_HOME/basic_vimrc $XDG_CONFIG_HOME/vim/.vimrc
+mkdir -p $XDG_CONFIG_HOME/git && \
+  ln -s $DOTFILES_HOME/gitignore $XDG_CONFIG_HOME/git/ignore
+mkdir -p $XDG_CONFIG_HOME/nvim && \
+  ln -s $DOTFILES_HOME/nvim/init.vim $XDG_CONFIG_HOME/nvim/init.vim && \
+  ln -s $DOTFILES_HOME/nvim/coc-settings.json $XDG_CONFIG_HOME/nvim/coc-settings.json
+mkdir -p $XDG_CONFIG_HOME/zsh && \
+  ln -s $DOTFILES_HOME/zsh/.zshrc $XDG_CONFIG_HOME/zsh/.zshrc && \
+  ln -s $DOTFILES_HOME/zsh/config $XDG_CONFIG_HOME/zsh/config
+
+ln -s $DOTFILES_HOME/tmux $XDG_CONFIG_HOME/tmux
+
 ln -s $DOTFILES_HOME/ideavimrc $HOME/.ideavimrc
+
 ln -s $DOTFILES_HOME/iterm/mysnazzy.itermcolors $HOME/Documents/mysnazzy.itermcolors
-ln -s $DOTFILES_HOME/tmux $HOME/.tmux
-ln -s $DOTFILES_HOME/tmux.conf $HOME/.tmux.conf
-ln -s $DOTFILES_HOME/vimrc $HOME/.config/nvim/init.vim
-ln -s $DOTFILES_HOME/coc-settings.json $HOME/.config/nvim/coc-settings.json
-ln -s $DOTFILES_HOME/zsh/config $HOME/.zsh
-ln -s $DOTFILES_HOME/zshrc $HOME/.zshrc
 
 echo "**************************************************************************"
 echo "***********************Install nVim plugins...**************************"

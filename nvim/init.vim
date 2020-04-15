@@ -16,8 +16,7 @@
 " Automatic reloading of vimrc
 autocmd! bufwritepost $MYVIMRC source $MYVIMRC
 
-if has('nvim')
-  call plug#begin('~/.config/nvim/plugged')
+call plug#begin('~/.config/nvim/plugged')
   " Essential
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-repeat'
@@ -103,8 +102,7 @@ if has('nvim')
   Plug 'cespare/vim-toml', {'for': ['*.toml']}
 
   Plug 'ryanoasis/vim-devicons' " must be last
-  call plug#end()
-endif
+call plug#end()
 
 " Better copy & paste.
 if has('mac')
@@ -115,13 +113,6 @@ endif
 
 " See the commands typed in the right bottom corner.
 set showcmd
-
-if !has('nvim')
-  " Make backspace behave like normal.
-  set bs=2
-  " Auto Indent
-  set autoindent
-endif
 
 filetype plugin indent on
 
@@ -188,20 +179,9 @@ set nowrap
 " Don't automatically wrap text when typing.
 set fo-=t
 
-if !has('nvim')
-  " Useful settings.
-  set history=700
-  " Make search case insensitive.
-  set hlsearch
-  set incsearch
-  " Tab-completion options.
-  set wildmenu
-endif
-
 " How many undos
 set undolevels=1000
 " Undo file
-set undodir=~/.config/nvim/undos
 set undofile
 
 set ignorecase
@@ -282,14 +262,12 @@ nnoremap ` '
 " Don't move on *
 nnoremap <silent> * :let stay_star_view = winsaveview()<cr>*:call winrestview(stay_star_view)<cr>
 
-if has('nvim')
-  " Terminal mode
-  tnoremap <Esc> <C-\><C-n>
-  tnoremap <C-h> <C-\><C-n><C-w>h
-  tnoremap <C-j> <C-\><C-n><C-w>j
-  tnoremap <C-k> <C-\><C-n><C-w>k
-  tnoremap <C-l> <C-\><C-n><C-w>l
-endif
+" Terminal mode
+tnoremap <Esc> <C-\><C-n>
+tnoremap <C-h> <C-\><C-n><C-w>h
+tnoremap <C-j> <C-\><C-n><C-w>j
+tnoremap <C-k> <C-\><C-n><C-w>k
+tnoremap <C-l> <C-\><C-n><C-w>l
 
 " ------------------------------------------------------------------------ }}}
 " Leader Key Mapping  ---------------------------------------------------- {{{
