@@ -102,3 +102,24 @@ function extract () {
        echo "'$1' is not a valid file"
    fi
 }
+
+function brew-switch() {
+  local formulae=$1
+  if [ -z "$formulae" ]; then
+    echo "no formulae supplied"
+    return 1
+  fi
+
+  brew_versions=$(brew list --versions $formulae)
+  if [ $? -eq 1 ]; then
+    echo "could not find formulae: $1"
+    return 1
+  fi
+
+  local version=$(echo $brew_versions | cut -d' ' -f2- | tr ' ' '\n' | fzf)
+  brew switch $formulae $version
+}
+
+function kube-switch() {
+  brew-switch kubernetes-cli
+}

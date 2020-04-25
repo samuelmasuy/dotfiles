@@ -278,6 +278,8 @@ noremap \ ,
 
 " Open in a new tab .vimrc
 nnoremap <leader>e :tabedit $MYVIMRC<CR>
+" Open fzf in a new tab on dotfiles
+nnoremap <leader>z :tabnew \| FZF $DOTFILES_HOME<CR>
 " Remap visual block select.
 nnoremap <leader>v <c-v>
 "Open new vertical split
@@ -459,7 +461,8 @@ autocmd FileType java setlocal commentstring=//\ %s
 " Groovy ----------------------------------------------------------------- {{{
 autocmd FileType groovy setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 autocmd FileType groovy setlocal commentstring=//\ %s
-autocmd FileType groovy noremap <leader>b :!groovy %<CR>
+autocmd FileType groovy noremap <leader>b :!groovy %:p<CR>
+autocmd FileType groovy noremap <leader>r :!/Applications/IntelliJ\ IDEA\ CE.app/Contents/bin/format.sh %:p<CR>
 
 
 " ------------------------------------------------------------------------ }}}
@@ -511,6 +514,7 @@ autocmd FileType yaml,yml noremap <leader>r :ALEFix<CR>
 " Tug ----------------------------------------------------------------- {{{
 autocmd BufRead,BufNewFile *.Tugfile set filetype=terraform
 autocmd BufRead,BufNewFile Tugfile set filetype=terraform
+autocmd BufRead,BufNewFile *.hcl set filetype=terraform
 autocmd FileType terraform noremap <leader>r :TerraformFmt<CR>
 
 " ------------------------------------------------------------------------ }}}

@@ -70,6 +70,16 @@ ln -s $DOTFILES_HOME/ideavimrc $HOME/.ideavimrc
 
 ln -s $DOTFILES_HOME/iterm/mysnazzy.itermcolors $HOME/Documents/mysnazzy.itermcolors
 
+mkdir -p "$XDG_DATA_HOME/gem"
+mkdir -p "$XDG_CACHE_HOME/gem"
+mkdir -p "$XDG_CONFIG_HOME"/docker
+mkdir -p $XDG_CONFIG_HOME/npm
+mkdir -p $XDG_DATA_HOME/npm
+mkdir -p $XDG_DATA_HOME/cargo
+mkdir -p $XDG_DATA_HOME/rustup
+mkdir -p $XDG_DATA_HOME/tig
+mkdir -p $XDG_DATA_HOME/zsh
+mkdir -p $XDG_DATA_HOME/tmux
 echo "**************************************************************************"
 echo "***********************Install nVim plugins...**************************"
 echo "**************************************************************************"

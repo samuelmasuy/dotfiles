@@ -1,5 +1,7 @@
 # cd in the previous directory.
 alias cdp="cd ~-"
+alias ..='cd -- ..'
+alias ...='cd -- ../..'
 # Display all files and directories including the hidden ones, with precision.
 # Make the terminal say all the files and directories.
 alias lt="/bin/ls | say -va"
@@ -55,6 +57,9 @@ alias gprco="git pr checkout"
 alias cat="bat"
 # docker console
 alias lzd='lazydocker'
+# prefer ripgrep, but I always type ag
+alias ag='rg --smart-case'
+alias rg='rg --smart-case'
 
 alias j8='export JAVA_HOME=$(/usr/libexec/java_home -v 1.8); java -version'
 alias j11='export JAVA_HOME=$(/usr/libexec/java_home -v 11); java -version'

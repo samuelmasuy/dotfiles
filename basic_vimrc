@@ -21,7 +21,7 @@ filetype plugin indent on
 " Enable syntax highlighting.
 syntax on
 " Gdiff vertical split
-set diffopt+=vertical
+" set diffopt+=vertical
 " Make Esc work faster.
 set ttimeoutlen=50
 " Always shows 5 lines above/below the cursor.
