@@ -4,4 +4,4 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_RUNTIME_DIR="$TMPDIR/.run-$USER"
 
 export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
-export ZSH_CACHE_DIR="${XDG_CACHE_HOME}/zshcache"
+export ZSH_CACHE_DIR="${XDG_CACHE_HOME}/zsh"

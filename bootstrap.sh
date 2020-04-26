@@ -63,6 +63,8 @@ mkdir -p $XDG_CONFIG_HOME/nvim && \
 mkdir -p $XDG_CONFIG_HOME/zsh && \
   ln -s $DOTFILES_HOME/zsh/.zshrc $XDG_CONFIG_HOME/zsh/.zshrc && \
   ln -s $DOTFILES_HOME/zsh/config $XDG_CONFIG_HOME/zsh/config
+mkdir -p $XDG_CONFIG_HOME/npm && \
+  ln -s $DOTFILES_HOME/npmrc $XDG_CONFIG_HOME/npm/npmrc && \
 
 ln -s $DOTFILES_HOME/tmux $XDG_CONFIG_HOME/tmux
 

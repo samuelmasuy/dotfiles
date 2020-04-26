@@ -95,7 +95,7 @@ call plug#begin('~/.config/nvim/plugged')
 
   Plug 'NLKNguyen/cloudformation-syntax.vim'
 
-  Plug 'mustache/vim-mustache-handlebars', {'for': ['*.mustache']}
+  " Plug 'mustache/vim-mustache-handlebars', {'for': ['*.mustache']}
 
   Plug 'vim-scripts/haproxy', {'for': ['haproxy*']}
 
@@ -220,7 +220,7 @@ set modelines=5
 " General Mapping  ------------------------------------------------------- {{{
 
 " try to use ZZ
-cnoremap wq :echo 'Use ZZ'<CR>
+cnoremap wq :echo 'Use ZZ or :x'<CR>
 
 " Disable un-VI keys.
 nnoremap <up> <nop>
