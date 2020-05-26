@@ -503,7 +503,7 @@ autocmd FileType gitcommit setlocal spell
 autocmd FileType gitcommit setlocal completefunc=emoji#complete
 autocmd FileType md,markdown noremap <leader>r :ALEFix<CR>
 let g:markdown_syntax_conceal = 0
-let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'javascript', 'go', 'css']
+let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'javascript', 'go', 'css', 'java', 'groovy']
 
 " ------------------------------------------------------------------------ }}}
 " yaml --------------------------------------------------------------- {{{

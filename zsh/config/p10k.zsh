@@ -36,10 +36,16 @@
   # Unset all configuration options.
   unset -m 'POWERLEVEL9K_*'
 
+  # Terraform Segment
+  typeset -g POWERLEVEL9K_CUSTOM_TERRAFORM="zsh_terraform"
+  # typeset -g POWERLEVEL9K_CUSTOM_TERRAFORM_BACKGROUND=057
+  typeset -g POWERLEVEL9K_CUSTOM_TERRAFORM_FOREGROUND=65
+
   # Left prompt segments.
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
       dir                       # current directory
       vcs                       # git status
+      custom_terraform
       context                   # user@host
       newline                   # \n
       virtualenv                # python virtual environment
