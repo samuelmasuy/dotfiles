@@ -6,7 +6,6 @@ if [[ -r "${XDG_CACHE_HOME}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Path to oh-my-zsh installation.
 hash -d c=$XDG_CONFIG_HOME
 hash -d d=$XDG_DATA_HOME
 
@@ -29,7 +28,6 @@ antibody bundle robbyrussell/oh-my-zsh path:lib/completion.zsh
 antibody bundle robbyrussell/oh-my-zsh path:lib/directories.zsh
 
 antibody bundle robbyrussell/oh-my-zsh path:plugins/git
-antibody bundle robbyrussell/oh-my-zsh path:plugins/kubectl
 antibody bundle robbyrussell/oh-my-zsh path:plugins/mvn
 antibody bundle robbyrussell/oh-my-zsh path:plugins/docker
 antibody bundle robbyrussell/oh-my-zsh path:plugins/zsh_reload
@@ -41,6 +39,7 @@ antibody bundle zsh-users/zsh-history-substring-search
 source ${XDG_CONFIG_HOME}/zsh/config/exports.zsh
 source ${XDG_CONFIG_HOME}/zsh/config/aliases.zsh
 source ${XDG_CONFIG_HOME}/zsh/config/functions.zsh
+source ${XDG_CONFIG_HOME}/zsh/config/completions.zsh
 [[ -f ${XDG_CONFIG_HOME}/zsh/config/secrets.zsh ]] && source ${XDG_CONFIG_HOME}/zsh/config/secrets.zsh
 [[ -f ${XDG_CONFIG_HOME}/zsh/config/work.zsh ]] && source ${XDG_CONFIG_HOME}/zsh/config/work.zsh
 
@@ -70,9 +69,6 @@ zstyle ':completion:*:cd:*' ignore-parents parent pwd # cd will never select the
 # zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
 # source /usr/local/bin/virtualenvwrapper.sh
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /usr/local/bin/terraform terraform
-complete -o nospace -C $HOME/bin/vault vault
 
 [[ -f ${XDG_CONFIG_HOME}/zsh/config/fzf.zsh ]] && source ${XDG_CONFIG_HOME}/zsh/config/fzf.zsh
 
