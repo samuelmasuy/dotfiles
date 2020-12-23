@@ -41,6 +41,16 @@ brew tap Homebrew/bundle
 brew bundle --file=$DOTFILES_HOME/Brewfile
 
 echo "**************************************************************************"
+echo "******************ASDF Installation...************************************"
+echo "**************************************************************************"
+asdf plugin add kubectl https://github.com/Banno/asdf-kubectl.git
+asdf plugin add vault https://github.com/Banno/asdf-hashicorp.git
+asdf plugin add terraform https://github.com/Banno/asdf-hashicorp.git
+asdf plugin add packer https://github.com/Banno/asdf-hashicorp.git
+asdf plugin add helm https://github.com/Antiarchitect/asdf-helm.git
+asdf install
+
+echo "**************************************************************************"
 echo "**********************Install Plug for nvim...****************************"
 echo "**************************************************************************"
 sudo pip install --upgrade neovim
@@ -71,6 +81,8 @@ ln -s $DOTFILES_HOME/tmux $XDG_CONFIG_HOME/tmux
 ln -s $DOTFILES_HOME/ideavimrc $HOME/.ideavimrc
 
 ln -s $DOTFILES_HOME/iterm/mysnazzy.itermcolors $HOME/Documents/mysnazzy.itermcolors
+
+ln -s $DOTFILES_HOME/asdf/tool-versions $HOME/.tool-versions
 
 mkdir -p $XDG_DATA_HOME/gem
 mkdir -p $XDG_CACHE_HOME/gem

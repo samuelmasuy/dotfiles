@@ -28,7 +28,7 @@ antibody bundle robbyrussell/oh-my-zsh path:lib/completion.zsh
 antibody bundle robbyrussell/oh-my-zsh path:lib/directories.zsh
 
 antibody bundle robbyrussell/oh-my-zsh path:plugins/git
-antibody bundle robbyrussell/oh-my-zsh path:plugins/mvn
+# antibody bundle robbyrussell/oh-my-zsh path:plugins/mvn
 antibody bundle robbyrussell/oh-my-zsh path:plugins/docker
 antibody bundle robbyrussell/oh-my-zsh path:plugins/zsh_reload
 antibody bundle robbyrussell/oh-my-zsh path:plugins/colored-man-pages
@@ -36,7 +36,8 @@ antibody bundle robbyrussell/oh-my-zsh path:plugins/colored-man-pages
 antibody bundle zdharma/fast-syntax-highlighting
 antibody bundle zsh-users/zsh-history-substring-search
 
-source ${XDG_CONFIG_HOME}/zsh/config/exports.zsh
+source ${XDG_CONFIG_HOME}/zsh/config/exports.zsh #1
+source ${XDG_CONFIG_HOME}/zsh/config/asdf.zsh #2
 source ${XDG_CONFIG_HOME}/zsh/config/aliases.zsh
 source ${XDG_CONFIG_HOME}/zsh/config/functions.zsh
 source ${XDG_CONFIG_HOME}/zsh/config/completions.zsh
@@ -75,3 +76,4 @@ zstyle ':completion:*:cd:*' ignore-parents parent pwd # cd will never select the
 # To customize prompt, run `p10k configure`
 [[ ! -f ${XDG_CONFIG_HOME}/zsh/config/p10k.zsh ]] || source ${XDG_CONFIG_HOME}/zsh/config/p10k.zsh
 # zprof
+
