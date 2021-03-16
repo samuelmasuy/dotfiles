@@ -60,6 +60,11 @@ alias lzd='lazydocker'
 # prefer ripgrep, but I always type ag
 alias ag='rg --smart-case'
 alias rg='rg --smart-case'
+# spotify
+alias sp="spotify"
+alias spn="spotify next"
+alias spp="spotify prev"
+alias spst="spotify status"
 
 alias j8='export JAVA_HOME=$(/usr/libexec/java_home -v 1.8); java -version'
 alias j11='export JAVA_HOME=$(/usr/libexec/java_home -v 11); java -version'

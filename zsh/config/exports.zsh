@@ -14,6 +14,9 @@ export PYLINTHOME="$XDG_CACHE_HOME"/pylint
 export AZURE_CONFIG_DIR=$XDG_DATA_HOME/azure
 export _RESURRECT_DIR=$XDG_DATA_HOME/tmux/resurrect
 export GRADLE_USER_HOME="${XDG_CONFIG_HOME}/gradle"
+export SHPOTIFY_CONFIG_FILE="${XDG_CONFIG_HOME}/shpotify/config"
+export ASDF_CONFIG_FILE="${XDG_CONFIG_HOME}/asdf/config"
+export ASDF_DATA_DIR="${XDG_DATA_HOME}/asdf"
 
 export PATH="$PATH:$HOME/bin/:$HOME/bin/aws/:$HOME/bin/git-toolbelt/"
 export PATH="$PATH:/usr/local/sbin:/Applications/VirtualBox.app/Contents/MacOS"
@@ -22,9 +25,9 @@ export PATH="$PATH:$JAVA_HOME/bin"
 export PATH="$PATH:$XDG_DATA_HOME/yarn/bin"
 export PATH="$PATH:$XDG_DATA_HOME/npm/bin"
 export PATH="$PATH:$HOME/src/github.com/jive/jh/helper"
-export PATH="$PATH:/usr/local/opt/node@12/bin"
+export PATH="$PATH:/usr/local/opt/node@14/bin"
 export PATH="$PATH:/usr/local/opt/curl-openssl/bin"
-export PATH="$PATH:/usr/local/opt/python@3.8/bin"
+export PATH="$PATH:/usr/local/opt/python@3.9/bin"
 export PATH="$PATH:/usr/local/opt/curl-openssl/bin"
 export PATH="$PATH:$CARGO_HOME/bin"
 
@@ -38,8 +41,8 @@ autoload colors; colors;
 export EDITOR="nvim"
 
 # export NODE_PATH='/usr/local/lib/node_modules'
-export LDFLAGS="-L/usr/local/opt/node@12/lib"
-export CPPFLAGS="-I/usr/local/opt/node@12/include"
+export LDFLAGS="-L/usr/local/opt/node@14/lib"
+export CPPFLAGS="-I/usr/local/opt/node@14/include"
 
 # Location of history file.
 export HISTFILE="$XDG_DATA_HOME"/zsh/history
