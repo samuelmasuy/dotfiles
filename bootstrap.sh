@@ -14,7 +14,6 @@ mkdir -p $HOME/pkg
 echo "**************************************************************************"
 echo "******************Command line tooling install...***********************************"
 echo "**************************************************************************"
-# TODO find how to install tooling without having to install XCode
 command -v gcc >/dev/null 2>&1 && xcode-select --install || true
 command -v gcc >/dev/null 2>&1 || { echo >&2 "I require gcc, but it's not installed. Aborting."; exit 1; }
 
@@ -82,7 +81,7 @@ ln -s $DOTFILES_HOME/ideavimrc $HOME/.ideavimrc
 
 ln -s $DOTFILES_HOME/iterm/mysnazzy.itermcolors $HOME/Documents/mysnazzy.itermcolors
 
-ln -s $DOTFILES_HOME/asdf/tool-versions $HOME/.tool-versions
+cp $DOTFILES_HOME/asdf/tool-versions $HOME/.tool-versions
 
 mkdir -p $XDG_DATA_HOME/gem
 mkdir -p $XDG_CACHE_HOME/gem
@@ -110,31 +109,17 @@ sudo chsh -s "$(command -v zsh)" "${USER}"
 echo "**************************************************************************"
 echo "*********************Gems install...**************************************"
 echo "**************************************************************************"
-sudo gem install tmuxinator
 sudo gem install neovim
-sudo gem install nokogiri
 
 echo "**************************************************************************"
 echo "*********************Npm install...***************************************"
 echo "**************************************************************************"
-npm install -g typescript
+# npm install -g typescript
 npm install -g neovim
 npm install -g npm
 npm install -g fixjson
-npm install -g remark-cli
 npm install -g git-removed-branches
-npm install -g markdown2confluence
-npm install -g serverless
-npm install -g yarn
+# npm install -g yarn
 # go get -u mvdan.cc/sh/cmd/shfmt
-
-echo "**************************************************************************"
-echo "*********************Hammerspoon install...*******************************"
-echo "**************************************************************************"
-mkdir -p $HOME/.hammerspoon/Spoons
-git clone https://github.com/jasonrudolph/ControlEscape.spoon.git $HOME/.hammerspoon/Spoons/ControlEscape.spoon
-cd $HOME/.hammerspoon/Spoons/ControlEscape.spoon
-script/setup
-script/remap-caps-lock-to-control
 
 echo "Almost Done! Just do that: https://blog.birkhoff.me/make-sudo-authenticate-with-touch-id-in-a-tmux/"

@@ -55,7 +55,7 @@ call plug#begin('~/.config/nvim/plugged')
   " utils
   Plug 'mhinz/vim-startify' " start up screen
   Plug 'Valloric/MatchTagAlways'
-  Plug 'Valloric/ListToggle' " quick*fix* *l*ocation
+  " Plug 'Valloric/ListToggle' " quick*fix* *l*ocation
   Plug 'vim-scripts/DirDiff.vim' " :DirDiff <A:Src Directory> <B:Src Directory>
   Plug 'bronson/vim-trailing-whitespace' " show them
   Plug 'godlygeek/tabular' " :'<,'>Tabularize /:
@@ -231,8 +231,12 @@ inoremap <left> <nop>
 inoremap <right> <nop>
 
 " Left and right can switch buffers
-nnoremap <left> :bp<CR>
-nnoremap <right> :bn<CR>
+nnoremap <left> :bprevious<CR>
+nnoremap <right> :bnext<CR>
+
+" Up and down can switch quickfix list
+nnoremap <up> :cprevious<CR>
+nnoremap <down> :cnext<CR>
 
 " Quick Fold and Unfold.
 " nnoremap <space> za
@@ -723,10 +727,6 @@ let g:sort_motion_visual = 'gso'
 
 " Settings for terraform
 let g:terraform_fmt_on_save=1
-
-" Settings for ListToggle
-let g:lt_quickfix_list_toggle_map = '<leader>fix'
-" let g:lt_location_list_toggle_map = '<leader>l' " <- default
 
 " hcl
 let g:tf_fmt_autosave = 0
