@@ -6,6 +6,7 @@
 " Tip:
 " "ap: put (print) content of macro in register a.
 " "ayy: put back current line in register a (macro).
+" ":cdo s/blink/div/g | update
 " switch to last place edited: ''
 " <C-o> in insert mode is awesome
 " To make a portable tar vim:
