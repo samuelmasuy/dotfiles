@@ -66,7 +66,7 @@
       status                  # exit code of the last command
       command_execution_time  # duration of the last command
       background_jobs         # presence of background jobs
-      # kubecontext           # current kubernetes context (https://kubernetes.io/)
+      kubecontext           # current kubernetes context (https://kubernetes.io/)
       custom_rprompt          # the output of function `custom_rprompt()` if it is defined
       # context               # user@host
       time                    # current time

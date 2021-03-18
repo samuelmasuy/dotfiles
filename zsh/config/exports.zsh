@@ -6,7 +6,7 @@ export CARGO_HOME="$XDG_DATA_HOME"/cargo
 export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
 export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
 export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
-export _Z_DATA="$XDG_DATA_HOME/zsh/z"
+export _ZO_DATA_DIR="$XDG_DATA_HOME/zoxide"
 export GEM_HOME="$XDG_DATA_HOME"/gem
 export GEM_SPEC_CACHE="$XDG_CACHE_HOME"/gem
 export HTTPIE_CONFIG_DIR="$XDG_CONFIG_HOME"/httpie
@@ -27,9 +27,9 @@ export PATH="$PATH:$XDG_DATA_HOME/npm/bin"
 export PATH="$PATH:$HOME/src/github.com/jive/jh/helper"
 export PATH="$PATH:/usr/local/opt/node@14/bin"
 export PATH="$PATH:/usr/local/opt/curl-openssl/bin"
-export PATH="$PATH:/usr/local/opt/python@3.9/bin"
 export PATH="$PATH:/usr/local/opt/curl-openssl/bin"
 export PATH="$PATH:$CARGO_HOME/bin"
+export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 
 export MANPATH="/usr/local/man:$MANPATH"
 
