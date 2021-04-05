@@ -60,7 +60,7 @@ curl -fLo $HOME/.config/nvim/autoload/plug.vim --create-dirs \
 echo "**************************************************************************"
 echo "*********************Symlinking dotfiles...*******************************"
 echo "**************************************************************************"
-ln -s $DOTFILES_HOME/.profile $HOME/.zprofile
+ln -s $DOTFILES_HOME/.zshenv $HOME/.zshenv
 
 mkdir -p $XDG_CONFIG_HOME/vim && \
   ln -s $DOTFILES_HOME/basic_vimrc $XDG_CONFIG_HOME/vim/.vimrc

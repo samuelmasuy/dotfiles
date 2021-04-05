@@ -664,7 +664,7 @@ if has_key(g:plugs, 'coc.nvim')
   augroup coc-config
     autocmd!
     autocmd VimEnter * nmap <silent> gd <Plug>(coc-definition)
-    autocmd VimEnter * nmap <silent> gi <Plug>(coc-implementation)
+    " autocmd VimEnter * nmap <silent> gi <Plug>(coc-implementation)
     autocmd VimEnter * nmap <silent> g? <Plug>(coc-references)
     autocmd VimEnter * nmap <silent> gy <Plug>(coc-type-definition)
     autocmd VimEnter * nmap <silent> gr <Plug>(coc-references)

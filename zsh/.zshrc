@@ -17,8 +17,6 @@ else
 	compinit -C;
 fi;
 
-# Initiate oh-my-zsh.
-# source $ZSH/oh-my-zsh.sh
 source <(antibody init)
 
 antibody bundle romkatv/powerlevel10k
@@ -47,6 +45,7 @@ source ${XDG_CONFIG_HOME}/zsh/config/completions.zsh
 
 # Use the Vi-like keybindings
 bindkey -v
+export KEYTIMEOUT=1 # short switch between modes
 # bindkey '^[OA' history-substring-search-up
 # bindkey '^[OB' history-substring-search-down
 bindkey '^[[A' history-substring-search-up
@@ -54,8 +53,6 @@ bindkey '^[[B' history-substring-search-down
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=white'
 
-HISTSIZE=50000
-SAVEHIST=10000
 ## History command configuration
 setopt extended_history       # record timestamp of command in HISTFILE
 setopt hist_expire_dups_first # delete duplicates first when HISTFILE size exceeds HISTSIZE

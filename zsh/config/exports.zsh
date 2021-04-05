@@ -38,18 +38,10 @@ export MAVEN_OPTS="-Xmx1024m -Xms512m"
 # Colors handling.
 autoload colors; colors;
 
-export EDITOR="nvim"
-
 # export NODE_PATH='/usr/local/lib/node_modules'
 export LDFLAGS="-L/usr/local/opt/node@14/lib"
 export CPPFLAGS="-I/usr/local/opt/node@14/include"
 
-# Location of history file.
-export HISTFILE="$XDG_DATA_HOME"/zsh/history
-# Number of lines kept in history.
-export HISTSIZE=10000
-# Number of lines saved in the history after logout.
-export SAVEHIST=10000
 export PROMPT_COMMAND='history -a'
 # ignore storing commands prefixed by a space
 setopt hist_ignore_space
