@@ -121,13 +121,14 @@ function brew-switch() {
 }
 
 function kube-switch() {
-  brew-switch kubernetes-cli
+  local version=$(asdf list kubectl | fzf)
+  asdf global kubectl $(echo $version | awk '{$1=$1};1')
 }
 
 zsh_terraform() {
   # break if there is no .terraform directory
   if [[ -d .terraform ]]; then
-    local tf_workspace=$(/usr/local/bin/terraform workspace show)
+    local tf_workspace=$(terraform workspace show)
     echo -n "($tf_workspace)"
   fi
 }

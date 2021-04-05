@@ -74,6 +74,8 @@ mkdir -p $XDG_CONFIG_HOME/zsh && \
   ln -s $DOTFILES_HOME/zsh/config $XDG_CONFIG_HOME/zsh/config
 mkdir -p $XDG_CONFIG_HOME/npm && \
   ln -s $DOTFILES_HOME/npmrc $XDG_CONFIG_HOME/npm/npmrc && \
+mkdir -p $XDG_CONFIG_HOME/yamllint && \
+  ln -s $DOTFILES_HOME/yamllint.yaml $XDG_CONFIG_HOME/yamllint/config
 
 ln -s $DOTFILES_HOME/tmux $XDG_CONFIG_HOME/tmux
 

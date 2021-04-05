@@ -20,16 +20,18 @@ fi;
 source <(antibody init)
 
 antibody bundle romkatv/powerlevel10k
-antibody bundle rupa/z
 
 antibody bundle robbyrussell/oh-my-zsh path:lib/completion.zsh
 antibody bundle robbyrussell/oh-my-zsh path:lib/directories.zsh
+antibody bundle robbyrussell/oh-my-zsh path:lib/git.zsh
 
 antibody bundle robbyrussell/oh-my-zsh path:plugins/git
 # antibody bundle robbyrussell/oh-my-zsh path:plugins/mvn
 antibody bundle robbyrussell/oh-my-zsh path:plugins/docker
 antibody bundle robbyrussell/oh-my-zsh path:plugins/zsh_reload
 antibody bundle robbyrussell/oh-my-zsh path:plugins/colored-man-pages
+
+antibody bundle zsh-users/zsh-completions
 
 antibody bundle zdharma/fast-syntax-highlighting
 antibody bundle zsh-users/zsh-history-substring-search
@@ -67,6 +69,17 @@ zstyle ':completion:*:cd:*' ignore-parents parent pwd # cd will never select the
 # zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
 # source /usr/local/bin/virtualenvwrapper.sh
+
+# if type brew &>/dev/null; then
+#   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+
+#   autoload -Uz compinit
+#   compinit
+# fi
+#
+eval "$(zoxide init zsh)"
+
+. $(brew --prefix asdf)/asdf.sh
 
 [[ -f ${XDG_CONFIG_HOME}/zsh/config/fzf.zsh ]] && source ${XDG_CONFIG_HOME}/zsh/config/fzf.zsh
 
