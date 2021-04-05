@@ -68,15 +68,6 @@ zstyle ':completion:*:cd:*' ignore-parents parent pwd # cd will never select the
 # zstyle ':completion:*' menu select
 # zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
-# source /usr/local/bin/virtualenvwrapper.sh
-
-# if type brew &>/dev/null; then
-#   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
-
-#   autoload -Uz compinit
-#   compinit
-# fi
-#
 eval "$(zoxide init zsh)"
 
 . $(brew --prefix asdf)/asdf.sh
