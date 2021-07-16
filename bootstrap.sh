@@ -50,14 +50,6 @@ asdf plugin add helm https://github.com/Antiarchitect/asdf-helm.git
 asdf install
 
 echo "**************************************************************************"
-echo "**********************Install Plug for nvim...****************************"
-echo "**************************************************************************"
-sudo pip install --upgrade neovim
-sudo pip3 install --upgrade neovim
-curl -fLo $HOME/.config/nvim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-echo "**************************************************************************"
 echo "*********************Symlinking dotfiles...*******************************"
 echo "**************************************************************************"
 ln -s $DOTFILES_HOME/.zshenv $HOME/.zshenv
@@ -66,9 +58,6 @@ mkdir -p $XDG_CONFIG_HOME/vim && \
   ln -s $DOTFILES_HOME/basic_vimrc $XDG_CONFIG_HOME/vim/.vimrc
 mkdir -p $XDG_CONFIG_HOME/git && \
   ln -s $DOTFILES_HOME/gitignore $XDG_CONFIG_HOME/git/ignore
-mkdir -p $XDG_CONFIG_HOME/nvim && \
-  ln -s $DOTFILES_HOME/nvim/init.vim $XDG_CONFIG_HOME/nvim/init.vim && \
-  ln -s $DOTFILES_HOME/nvim/coc-settings.json $XDG_CONFIG_HOME/nvim/coc-settings.json
 mkdir -p $XDG_CONFIG_HOME/zsh && \
   ln -s $DOTFILES_HOME/zsh/.zshrc $XDG_CONFIG_HOME/zsh/.zshrc && \
   ln -s $DOTFILES_HOME/zsh/config $XDG_CONFIG_HOME/zsh/config
@@ -76,6 +65,8 @@ mkdir -p $XDG_CONFIG_HOME/npm && \
   ln -s $DOTFILES_HOME/npmrc $XDG_CONFIG_HOME/npm/npmrc && \
 mkdir -p $XDG_CONFIG_HOME/yamllint && \
   ln -s $DOTFILES_HOME/yamllint.yaml $XDG_CONFIG_HOME/yamllint/config
+
+ln -s $DOTFILES_HOME/nvim $XDG_CONFIG_HOME/nvim
 
 ln -s $DOTFILES_HOME/tmux $XDG_CONFIG_HOME/tmux
 
@@ -96,17 +87,17 @@ mkdir -p $XDG_DATA_HOME/tig
 mkdir -p $XDG_CACHE_HOME/zsh
 mkdir -p $XDG_DATA_HOME/zsh
 mkdir -p $XDG_DATA_HOME/tmux
-echo "**************************************************************************"
-echo "***********************Install nVim plugins...**************************"
-echo "**************************************************************************"
-nvim -c "PlugInstall" -c q -c q
-nvim -c "UpdateRemotePlugins" -c q
-
+mkdir -p $XDG_DATA_HOME/zoxide
 echo "**************************************************************************"
 echo "*********************Change shell to zsh...*******************************"
 echo "**************************************************************************"
 command -v zsh | sudo tee -a /etc/shells
 sudo chsh -s "$(command -v zsh)" "${USER}"
+
+echo "**************************************************************************"
+echo "**********************Install python stuff...*****************************"
+echo "**************************************************************************"
+sudo pip3 install --upgrade neovim
 
 echo "**************************************************************************"
 echo "*********************Gems install...**************************************"
@@ -116,12 +107,8 @@ sudo gem install neovim
 echo "**************************************************************************"
 echo "*********************Npm install...***************************************"
 echo "**************************************************************************"
-# npm install -g typescript
 npm install -g neovim
 npm install -g npm
-npm install -g fixjson
 npm install -g git-removed-branches
-# npm install -g yarn
-# go get -u mvdan.cc/sh/cmd/shfmt
 
 echo "Almost Done! Just do that: https://blog.birkhoff.me/make-sudo-authenticate-with-touch-id-in-a-tmux/"
