@@ -1,14 +1,16 @@
 vim.cmd [[packadd packer.nvim]]
 vim.cmd [[packadd vimball]]
 
+vim.cmd [[autocmd BufWritePost packer_plugins.lua source <afile> | PackerCompile]]
+
 return require('packer').startup {
   function(use)
     use 'wbthomason/packer.nvim'
 
     -- Better profiling output for startup.
     use {
-      "dstein64/vim-startuptime",
-      cmd = "StartupTime",
+      'dstein64/vim-startuptime',
+      cmd = 'StartupTime',
     }
 
     -- LSP
@@ -48,7 +50,7 @@ return require('packer').startup {
         }
       end
     }
-    -- use "nvim-treesitter/nvim-treesitter-textobjects"
+    -- use 'nvim-treesitter/nvim-treesitter-textobjects'
 
     -- Syntax
     use 'kyazdani42/nvim-web-devicons'
@@ -59,16 +61,22 @@ return require('packer').startup {
     use { 'vim-scripts/haproxy', ft = 'haproxy*' }
     use { 'cespare/vim-toml', ft = '*.toml' }
     use 'tjdevries/nlua.nvim'
-    use { "elzr/vim-json", ft = "json" }
+    use { 'elzr/vim-json', ft = 'json' }
     -- use 'NLKNguyen/cloudformation-syntax.vim'
     -- use { 'stephpy/vim-yaml', ft = 'yaml' }
     -- use 'mhinz/vim-rfc' -- sudo gem install nokogiri
     -- use { 'vim-scripts/rfc-syntax', ft = 'rfc' }
-    use "justinmk/vim-syntax-extra"
+    use 'justinmk/vim-syntax-extra'
 
     -- all go
-    -- use 'fatih/vim-go'
-    -- use 'ray-x/go.nvim'
+
+    use 'nvim-lua/plenary.nvim'
+    use 'nvim-lua/popup.nvim'
+    use {
+        'crispgm/nvim-go',
+        run = ':GoInstallBinaries',
+        -- ft = 'go',
+    }
     use { 'buoto/gotests-vim', ft = 'go',  run = ':!go install github.com/cweill/gotests/...' }
 
     -- express yourself well
@@ -77,19 +85,18 @@ return require('packer').startup {
     use { 'chrisbra/unicode.vim', ft = { 'text', 'markdown' } }
 
     -- colorschemes
-    use { 'joshdick/onedark.vim', enable = false }
+    use { 'joshdick/onedark.vim' }
     use {
       'navarasu/onedark.nvim',
-      enable = true,
       config = function()
         vim.g.onedark_style = 'darker'
       end
     }
-    use { 'chriskempson/base16-vim', enable = false }
-    use { 'yashguptaz/calvera-dark.nvim', enable = false }
-    use { 'marko-cerovac/material.nvim', enable = false }
-    use { 'Th3Whit3Wolf/one-nvim', enable = false }
-    use { 'folke/tokyonight.nvim', enable = false }
+    use { 'chriskempson/base16-vim' }
+    use { 'yashguptaz/calvera-dark.nvim' }
+    use { 'marko-cerovac/material.nvim' }
+    use { 'Th3Whit3Wolf/one-nvim' }
+    use { 'folke/tokyonight.nvim' }
 
     -- line
     use {
@@ -110,6 +117,7 @@ return require('packer').startup {
     use 'mhinz/vim-startify' -- Startup Screen
 
     use 'tpope/vim-vinegar' -- Enhance netrw
+    use 'tpope/vim-eunuch' -- Adds Unix commands to vim.
     use 'justinmk/vim-dirvish' -- minimalist directory viewer -
     -- use 'Valloric/MatchTagAlways'
     -- use 'Valloric/ListToggle' -- quick*fix* *l*ocation
@@ -121,7 +129,7 @@ return require('packer').startup {
     -- use 'machakann/vim-highlightedyank'
     use 'christoomey/vim-sort-motion' -- sort lines characters arguments etc
     -- use 'fmoralesc/vim-tutor-mode'
-    -- use 'janko/vim-test' -- let test#strategy = "neovim"
+    -- use 'janko/vim-test' -- let test#strategy = 'neovim'
 
     -- all hashicorp goodies
     use 'hashivim/vim-hashicorp-tools'

@@ -30,16 +30,15 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
   buf_set_keymap("n", "<leader>r", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 
-  local filetype = vim.api.nvim_buf_get_option(0, "filetype")
-
-  if filetype == "go" then
-    vim.cmd [[
-      augroup lsp_buf_format
-        au! BufWritePre <buffer>
-        autocmd BufWritePre <buffer> :lua vim.lsp.buf.formatting()
-      augroup END
-    ]]
-  end
+  -- local filetype = vim.api.nvim_buf_get_option(0, "filetype")
+  -- if filetype == "go" then
+  --   vim.cmd [[
+  --     augroup lsp_buf_format
+  --       au! BufWritePre <buffer>
+  --       autocmd BufWritePre <buffer> :lua vim.lsp.buf.formatting()
+  --     augroup END
+  --   ]]
+  -- end
 end
 
 local lsp_installer = require'nvim-lsp-installer'

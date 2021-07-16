@@ -16,7 +16,7 @@ if require 'first_load'() then
   return
 end
 
-require 'plugins'
+require 'packer_plugins'
 
 require 'options'
 require 'mappings'

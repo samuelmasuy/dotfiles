@@ -1,5 +1,7 @@
 local opt = vim.opt
 
+opt.clipboard = "unnamed"
+
 opt.expandtab = true
 opt.shiftwidth = 4
 opt.softtabstop = 4
