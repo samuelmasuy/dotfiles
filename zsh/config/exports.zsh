@@ -25,11 +25,11 @@ export PATH="$PATH:$JAVA_HOME/bin"
 export PATH="$PATH:$XDG_DATA_HOME/yarn/bin"
 export PATH="$PATH:$XDG_DATA_HOME/npm/bin"
 export PATH="$PATH:$HOME/src/github.com/jive/jh/helper"
-export PATH="$PATH:/usr/local/opt/node@14/bin"
 export PATH="$PATH:/usr/local/opt/curl-openssl/bin"
 export PATH="$PATH:/usr/local/opt/curl-openssl/bin"
 export PATH="$PATH:$CARGO_HOME/bin"
 export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+export PATH="$PATH:/usr/local/opt/node@14/bin"
 
 export MANPATH="/usr/local/man:$MANPATH"
 

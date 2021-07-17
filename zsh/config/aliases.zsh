@@ -7,9 +7,20 @@ alias ...='cd -- ../..'
 alias lt="/bin/ls | say -va"
 # exa love
 # alias ls='exa'
-# alias la='exa -la'
-alias la='ls -larth'
+# alias la='exa -la --sort modified'
+alias l='exa -a --git-ignore'
+alias ll='exa -la --git-ignore --sort modified'
+# or not
 alias ls='ls -G'
+alias la='ls -larth'
+# alias la='exa -la --sort modified'
+# alias l='exa -a --git-ignore'
+# alias ll='exa -la --git-ignore --sort modified'
+
+alias -g ...='../..'
+alias -g ....='../../..'
+alias -g .....='../../../..'
+alias -g ......='../../../../..'
 # confirm && verbose
 alias	cp="cp -i"
 alias	mv="mv -i"

@@ -22,7 +22,6 @@ source <(antibody init)
 antibody bundle romkatv/powerlevel10k
 
 antibody bundle robbyrussell/oh-my-zsh path:lib/completion.zsh
-antibody bundle robbyrussell/oh-my-zsh path:lib/directories.zsh
 antibody bundle robbyrussell/oh-my-zsh path:lib/git.zsh
 
 antibody bundle robbyrussell/oh-my-zsh path:plugins/git
@@ -63,6 +62,10 @@ setopt hist_ignore_space      # ignore commands that start with space
 setopt hist_verify            # show command with history expansion to user before running it
 setopt inc_append_history     # add commands to HISTFILE in order of execution
 setopt share_history          # share command history data
+# Changing/making/removing directory
+setopt auto_pushd
+setopt pushd_ignore_dups
+setopt pushdminus
 
 zstyle ':completion:*:cd:*' ignore-parents parent pwd # cd will never select the parent directory
 # zstyle ':completion:*' menu select

@@ -125,6 +125,10 @@ function kube-switch() {
   asdf global kubectl $(echo $version | awk '{$1=$1};1')
 }
 
+function e() {
+  vim $(which $1)
+}
+
 zsh_terraform() {
   # break if there is no .terraform directory
   if [[ -d .terraform ]]; then
