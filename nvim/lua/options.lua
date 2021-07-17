@@ -1,5 +1,8 @@
 local opt = vim.opt
+local cmd = vim.cmd
 
+cmd 'syntax enable'
+cmd 'filetype plugin indent on'
 opt.clipboard = "unnamed"
 
 opt.expandtab = true
@@ -15,7 +18,7 @@ opt.showcmd = true
 opt.showbreak = '↪ '
 -- Completion options (select longest + show menu even if a single match is found)
 -- opt.completeopt = 'menuone,noselect'
-vim.cmd 'autocmd CompleteDone * pclose'
+cmd 'autocmd CompleteDone * pclose'
 -- Make Esc work faster.
 opt.ttimeoutlen = 40
 -- Always shows 5 lines above/below the cursor.
@@ -87,11 +90,11 @@ opt.modelines = 5
 opt.updatetime = 300
 
  -- don't give |ins-completion-menu| messages.
-opt.shortmess     = opt.shortmess + 'c'
+opt.shortmess = opt.shortmess + 'c'
 
 -- " always show signcolumns
 opt.signcolumn = 'yes'
 
 -- Colorize the 100th column if goes over.
-vim.cmd('highlight ColorColumn ctermbg=magenta')
+cmd 'highlight ColorColumn ctermbg=magenta'
 vim.fn.matchadd('ColorColumn', '\\%101v', 100)

@@ -1,11 +1,16 @@
 vim.cmd [[packadd packer.nvim]]
 vim.cmd [[packadd vimball]]
 
-vim.cmd [[autocmd BufWritePost packer_plugins.lua source <afile> | PackerCompile]]
+vim.cmd [[autocmd BufWritePost packer_plugins.lua source <afile> | PackerSync]]
 
 return require('packer').startup {
   function(use)
     use 'wbthomason/packer.nvim'
+
+    use {
+        'tjdevries/astronauta.nvim', -- Lua ftplugins & lua plugin
+        'nvim-lua/plenary.nvim', -- lua utils
+    }
 
     -- Better profiling output for startup.
     use {
@@ -48,9 +53,12 @@ return require('packer').startup {
             enable = true,
           },
         }
-      end
+      end,
+      requires = {
+        'nvim-treesitter/nvim-treesitter-refactor',
+        'nvim-treesitter/nvim-treesitter-textobjects',
+      },
     }
-    -- use 'nvim-treesitter/nvim-treesitter-textobjects'
 
     -- Syntax
     use 'kyazdani42/nvim-web-devicons'
@@ -69,12 +77,10 @@ return require('packer').startup {
     use 'justinmk/vim-syntax-extra'
 
     -- all go
-
-    use 'nvim-lua/plenary.nvim'
-    use 'nvim-lua/popup.nvim'
     use {
         'crispgm/nvim-go',
         run = ':GoInstallBinaries',
+        requires = { 'nvim-lua/plenary.nvim', 'nvim-lua/popup.nvim' }
         -- ft = 'go',
     }
     use { 'buoto/gotests-vim', ft = 'go',  run = ':!go install github.com/cweill/gotests/...' }

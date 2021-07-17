@@ -73,6 +73,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/samuelmasuy/.local/share/nvim/site/pack/packer/start/DirDiff.vim"
   },
+  ["astronauta.nvim"] = {
+    loaded = true,
+    path = "/Users/samuelmasuy/.local/share/nvim/site/pack/packer/start/astronauta.nvim"
+  },
   ["base16-vim"] = {
     loaded = true,
     path = "/Users/samuelmasuy/.local/share/nvim/site/pack/packer/start/base16-vim"
@@ -109,7 +113,7 @@ _G.packer_plugins = {
     path = "/Users/samuelmasuy/.local/share/nvim/site/pack/packer/opt/haproxy"
   },
   ["lualine.nvim"] = {
-    config = { "\27LJ\2\n´\1\0\0\5\0\b\0\v6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\6\0005\3\3\0005\4\4\0=\4\5\3=\3\a\2B\0\2\1K\0\1\0\foptions\1\0\0\15extensions\1\4\0\0\rquickfix\bfzf\rfugitive\1\0\3\23section_separators\5\ntheme\fonedark\25component_separators\5\nsetup\flualine\frequire\0" },
+    config = { "\27LJ\2\n´\1\0\0\5\0\b\0\v6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\6\0005\3\3\0005\4\4\0=\4\5\3=\3\a\2B\0\2\1K\0\1\0\foptions\1\0\0\15extensions\1\4\0\0\rquickfix\bfzf\rfugitive\1\0\3\ntheme\fonedark\25component_separators\5\23section_separators\5\nsetup\flualine\frequire\0" },
     loaded = true,
     path = "/Users/samuelmasuy/.local/share/nvim/site/pack/packer/start/lualine.nvim"
   },
@@ -141,6 +145,14 @@ _G.packer_plugins = {
     config = { "\27LJ\2\ni\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\14highlight\1\0\0\1\0\1\venable\2\nsetup\28nvim-treesitter.configs\frequire\0" },
     loaded = true,
     path = "/Users/samuelmasuy/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
+  },
+  ["nvim-treesitter-refactor"] = {
+    loaded = true,
+    path = "/Users/samuelmasuy/.local/share/nvim/site/pack/packer/start/nvim-treesitter-refactor"
+  },
+  ["nvim-treesitter-textobjects"] = {
+    loaded = true,
+    path = "/Users/samuelmasuy/.local/share/nvim/site/pack/packer/start/nvim-treesitter-textobjects"
   },
   ["nvim-web-devicons"] = {
     loaded = true,
@@ -303,18 +315,18 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: nvim-treesitter
-time([[Config for nvim-treesitter]], true)
-try_loadstring("\27LJ\2\ni\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\14highlight\1\0\0\1\0\1\venable\2\nsetup\28nvim-treesitter.configs\frequire\0", "config", "nvim-treesitter")
-time([[Config for nvim-treesitter]], false)
 -- Config for: onedark.nvim
 time([[Config for onedark.nvim]], true)
 try_loadstring("\27LJ\2\n6\0\0\2\0\4\0\0056\0\0\0009\0\1\0'\1\3\0=\1\2\0K\0\1\0\vdarker\18onedark_style\6g\bvim\0", "config", "onedark.nvim")
 time([[Config for onedark.nvim]], false)
 -- Config for: lualine.nvim
 time([[Config for lualine.nvim]], true)
-try_loadstring("\27LJ\2\n´\1\0\0\5\0\b\0\v6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\6\0005\3\3\0005\4\4\0=\4\5\3=\3\a\2B\0\2\1K\0\1\0\foptions\1\0\0\15extensions\1\4\0\0\rquickfix\bfzf\rfugitive\1\0\3\23section_separators\5\ntheme\fonedark\25component_separators\5\nsetup\flualine\frequire\0", "config", "lualine.nvim")
+try_loadstring("\27LJ\2\n´\1\0\0\5\0\b\0\v6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\6\0005\3\3\0005\4\4\0=\4\5\3=\3\a\2B\0\2\1K\0\1\0\foptions\1\0\0\15extensions\1\4\0\0\rquickfix\bfzf\rfugitive\1\0\3\ntheme\fonedark\25component_separators\5\23section_separators\5\nsetup\flualine\frequire\0", "config", "lualine.nvim")
 time([[Config for lualine.nvim]], false)
+-- Config for: nvim-treesitter
+time([[Config for nvim-treesitter]], true)
+try_loadstring("\27LJ\2\ni\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\14highlight\1\0\0\1\0\1\venable\2\nsetup\28nvim-treesitter.configs\frequire\0", "config", "nvim-treesitter")
+time([[Config for nvim-treesitter]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)
@@ -327,38 +339,38 @@ vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Filetype lazy-loads
 time([[Defining lazy-load filetype autocommands]], true)
-vim.cmd [[au FileType groovy ++once lua require("packer.load")({'groovy.vim'}, { ft = "groovy" }, _G.packer_plugins)]]
-vim.cmd [[au FileType text ++once lua require("packer.load")({'vim-grammarous', 'unicode.vim'}, { ft = "text" }, _G.packer_plugins)]]
-vim.cmd [[au FileType haproxy* ++once lua require("packer.load")({'haproxy'}, { ft = "haproxy*" }, _G.packer_plugins)]]
-vim.cmd [[au FileType *.toml ++once lua require("packer.load")({'vim-toml'}, { ft = "*.toml" }, _G.packer_plugins)]]
-vim.cmd [[au FileType go ++once lua require("packer.load")({'gotests-vim'}, { ft = "go" }, _G.packer_plugins)]]
 vim.cmd [[au FileType json ++once lua require("packer.load")({'vim-json'}, { ft = "json" }, _G.packer_plugins)]]
-vim.cmd [[au FileType markdown ++once lua require("packer.load")({'vim-grammarous', 'vim-markdown', 'unicode.vim'}, { ft = "markdown" }, _G.packer_plugins)]]
+vim.cmd [[au FileType markdown ++once lua require("packer.load")({'unicode.vim', 'vim-grammarous', 'vim-markdown'}, { ft = "markdown" }, _G.packer_plugins)]]
 vim.cmd [[au FileType md ++once lua require("packer.load")({'vim-markdown'}, { ft = "md" }, _G.packer_plugins)]]
-vim.cmd [[au FileType Jenkinsfile ++once lua require("packer.load")({'groovy.vim'}, { ft = "Jenkinsfile" }, _G.packer_plugins)]]
 vim.cmd [[au FileType javascript ++once lua require("packer.load")({'vim-javascript'}, { ft = "javascript" }, _G.packer_plugins)]]
 vim.cmd [[au FileType typescript ++once lua require("packer.load")({'typescript-vim', 'vim-javascript'}, { ft = "typescript" }, _G.packer_plugins)]]
+vim.cmd [[au FileType go ++once lua require("packer.load")({'gotests-vim'}, { ft = "go" }, _G.packer_plugins)]]
+vim.cmd [[au FileType text ++once lua require("packer.load")({'unicode.vim', 'vim-grammarous'}, { ft = "text" }, _G.packer_plugins)]]
+vim.cmd [[au FileType Jenkinsfile ++once lua require("packer.load")({'groovy.vim'}, { ft = "Jenkinsfile" }, _G.packer_plugins)]]
+vim.cmd [[au FileType haproxy* ++once lua require("packer.load")({'haproxy'}, { ft = "haproxy*" }, _G.packer_plugins)]]
+vim.cmd [[au FileType *.toml ++once lua require("packer.load")({'vim-toml'}, { ft = "*.toml" }, _G.packer_plugins)]]
+vim.cmd [[au FileType groovy ++once lua require("packer.load")({'groovy.vim'}, { ft = "groovy" }, _G.packer_plugins)]]
 time([[Defining lazy-load filetype autocommands]], false)
 vim.cmd("augroup END")
 vim.cmd [[augroup filetypedetect]]
 time([[Sourcing ftdetect script at: /Users/samuelmasuy/.local/share/nvim/site/pack/packer/opt/typescript-vim/ftdetect/typescript.vim]], true)
 vim.cmd [[source /Users/samuelmasuy/.local/share/nvim/site/pack/packer/opt/typescript-vim/ftdetect/typescript.vim]]
 time([[Sourcing ftdetect script at: /Users/samuelmasuy/.local/share/nvim/site/pack/packer/opt/typescript-vim/ftdetect/typescript.vim]], false)
-time([[Sourcing ftdetect script at: /Users/samuelmasuy/.local/share/nvim/site/pack/packer/opt/vim-json/ftdetect/json.vim]], true)
-vim.cmd [[source /Users/samuelmasuy/.local/share/nvim/site/pack/packer/opt/vim-json/ftdetect/json.vim]]
-time([[Sourcing ftdetect script at: /Users/samuelmasuy/.local/share/nvim/site/pack/packer/opt/vim-json/ftdetect/json.vim]], false)
-time([[Sourcing ftdetect script at: /Users/samuelmasuy/.local/share/nvim/site/pack/packer/opt/vim-markdown/ftdetect/markdown.vim]], true)
-vim.cmd [[source /Users/samuelmasuy/.local/share/nvim/site/pack/packer/opt/vim-markdown/ftdetect/markdown.vim]]
-time([[Sourcing ftdetect script at: /Users/samuelmasuy/.local/share/nvim/site/pack/packer/opt/vim-markdown/ftdetect/markdown.vim]], false)
+time([[Sourcing ftdetect script at: /Users/samuelmasuy/.local/share/nvim/site/pack/packer/opt/unicode.vim/ftdetect/unicode.vim]], true)
+vim.cmd [[source /Users/samuelmasuy/.local/share/nvim/site/pack/packer/opt/unicode.vim/ftdetect/unicode.vim]]
+time([[Sourcing ftdetect script at: /Users/samuelmasuy/.local/share/nvim/site/pack/packer/opt/unicode.vim/ftdetect/unicode.vim]], false)
 time([[Sourcing ftdetect script at: /Users/samuelmasuy/.local/share/nvim/site/pack/packer/opt/vim-javascript/ftdetect/flow.vim]], true)
 vim.cmd [[source /Users/samuelmasuy/.local/share/nvim/site/pack/packer/opt/vim-javascript/ftdetect/flow.vim]]
 time([[Sourcing ftdetect script at: /Users/samuelmasuy/.local/share/nvim/site/pack/packer/opt/vim-javascript/ftdetect/flow.vim]], false)
 time([[Sourcing ftdetect script at: /Users/samuelmasuy/.local/share/nvim/site/pack/packer/opt/vim-javascript/ftdetect/javascript.vim]], true)
 vim.cmd [[source /Users/samuelmasuy/.local/share/nvim/site/pack/packer/opt/vim-javascript/ftdetect/javascript.vim]]
 time([[Sourcing ftdetect script at: /Users/samuelmasuy/.local/share/nvim/site/pack/packer/opt/vim-javascript/ftdetect/javascript.vim]], false)
-time([[Sourcing ftdetect script at: /Users/samuelmasuy/.local/share/nvim/site/pack/packer/opt/unicode.vim/ftdetect/unicode.vim]], true)
-vim.cmd [[source /Users/samuelmasuy/.local/share/nvim/site/pack/packer/opt/unicode.vim/ftdetect/unicode.vim]]
-time([[Sourcing ftdetect script at: /Users/samuelmasuy/.local/share/nvim/site/pack/packer/opt/unicode.vim/ftdetect/unicode.vim]], false)
+time([[Sourcing ftdetect script at: /Users/samuelmasuy/.local/share/nvim/site/pack/packer/opt/vim-json/ftdetect/json.vim]], true)
+vim.cmd [[source /Users/samuelmasuy/.local/share/nvim/site/pack/packer/opt/vim-json/ftdetect/json.vim]]
+time([[Sourcing ftdetect script at: /Users/samuelmasuy/.local/share/nvim/site/pack/packer/opt/vim-json/ftdetect/json.vim]], false)
+time([[Sourcing ftdetect script at: /Users/samuelmasuy/.local/share/nvim/site/pack/packer/opt/vim-markdown/ftdetect/markdown.vim]], true)
+vim.cmd [[source /Users/samuelmasuy/.local/share/nvim/site/pack/packer/opt/vim-markdown/ftdetect/markdown.vim]]
+time([[Sourcing ftdetect script at: /Users/samuelmasuy/.local/share/nvim/site/pack/packer/opt/vim-markdown/ftdetect/markdown.vim]], false)
 time([[Sourcing ftdetect script at: /Users/samuelmasuy/.local/share/nvim/site/pack/packer/opt/vim-toml/ftdetect/toml.vim]], true)
 vim.cmd [[source /Users/samuelmasuy/.local/share/nvim/site/pack/packer/opt/vim-toml/ftdetect/toml.vim]]
 time([[Sourcing ftdetect script at: /Users/samuelmasuy/.local/share/nvim/site/pack/packer/opt/vim-toml/ftdetect/toml.vim]], false)

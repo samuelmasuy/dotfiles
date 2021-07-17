@@ -9,15 +9,15 @@
 -- switch to last place edited: ''
 -- <C-o> in insert mode is awesome
 
--- Rebind <leader> key.
-vim.g.mapleader = ','
-
 if require 'first_load'() then
   return
 end
 
-require 'packer_plugins'
+-- Rebind <leader> key.
+vim.g.mapleader = ','
 
+require 'packer_plugins'
+require 'colorscheme'
 require 'options'
 require 'mappings'
 require 'leader'
