@@ -3,9 +3,7 @@
 *.DS_Store
 
 .rgignore
-f.sh
-f.groovy
-f
 foo.groovy
 foo.sh
-f.yaml
+f
+f.*
