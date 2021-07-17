@@ -1,7 +1,7 @@
 vim.cmd [[packadd packer.nvim]]
 vim.cmd [[packadd vimball]]
 
-vim.cmd [[autocmd BufWritePost packer_plugins.lua source <afile> | PackerSync]]
+vim.cmd [[autocmd BufWritePost packer_plugins.lua source <afile> | PackerCompile]]
 
 return require('packer').startup {
   function(use)
@@ -63,6 +63,7 @@ return require('packer').startup {
     -- Syntax
     use 'kyazdani42/nvim-web-devicons'
     use { 'tpope/vim-markdown', ft = { 'markdown', 'md' } }
+    use 'ajorgensen/vim-markdown-toc'
     use { 'pangloss/vim-javascript', ft = { 'javascript', 'typescript' } }
     use { 'leafgarland/typescript-vim', ft = 'typescript' }
     use { 'modille/groovy.vim', ft = { 'groovy', 'Jenkinsfile' } }
@@ -70,6 +71,9 @@ return require('packer').startup {
     use { 'cespare/vim-toml', ft = '*.toml' }
     use 'tjdevries/nlua.nvim'
     use { 'elzr/vim-json', ft = 'json' }
+    use 'towolf/vim-helm'
+    use 'chr4/nginx.vim'
+
     -- use 'NLKNguyen/cloudformation-syntax.vim'
     -- use { 'stephpy/vim-yaml', ft = 'yaml' }
     -- use 'mhinz/vim-rfc' -- sudo gem install nokogiri
@@ -136,6 +140,7 @@ return require('packer').startup {
     use 'christoomey/vim-sort-motion' -- sort lines characters arguments etc
     -- use 'fmoralesc/vim-tutor-mode'
     -- use 'janko/vim-test' -- let test#strategy = 'neovim'
+    use 'christianrondeau/vim-base64' -- <leader>atob / btoa
 
     -- all hashicorp goodies
     use 'hashivim/vim-hashicorp-tools'
