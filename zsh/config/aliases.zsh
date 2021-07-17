@@ -9,7 +9,7 @@ alias lt="/bin/ls | say -va"
 # alias ls='exa'
 # alias la='exa -la --sort modified'
 alias l='exa -a --git-ignore'
-alias ll='exa -la --git-ignore --sort modified'
+alias ll='exa -la --git-ignore --git --sort modified'
 # or not
 alias ls='ls -G'
 alias la='ls -larth'
