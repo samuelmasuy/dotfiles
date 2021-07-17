@@ -2,7 +2,7 @@
 set -e
 
 DOTFILES_HOME=$HOME/.dotfiles
-source .profile
+source .zshenv
 
 echo "**************************************************************************"
 echo "********************Home directories setup...*****************************"
