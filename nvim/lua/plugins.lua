@@ -1,7 +1,7 @@
 vim.cmd [[packadd packer.nvim]]
 vim.cmd [[packadd vimball]]
 
-vim.cmd [[autocmd BufWritePost packer_plugins.lua source <afile> | PackerCompile]]
+vim.cmd [[autocmd BufWritePost plugins.lua source <afile> | PackerCompile]]
 
 return require('packer').startup {
   function(use)
@@ -57,6 +57,7 @@ return require('packer').startup {
       requires = {
         'nvim-treesitter/nvim-treesitter-refactor',
         'nvim-treesitter/nvim-treesitter-textobjects',
+        'RRethy/nvim-treesitter-textsubjects',
       },
     }
 

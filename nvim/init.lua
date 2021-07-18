@@ -16,7 +16,7 @@ end
 -- Rebind <leader> key.
 vim.g.mapleader = ','
 
-require 'packer_plugins'
+require 'plugins'
 require 'colorscheme'
 require 'options'
 require 'mappings'
