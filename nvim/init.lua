@@ -15,12 +15,16 @@ end
 
 -- Rebind <leader> key.
 vim.g.mapleader = ','
+vim.g.disable_toggle_style = true
 
-require 'plugins'
-require 'colorscheme'
 require 'options'
 require 'mappings'
 require 'leader'
 
+require 'plugins'
+require 'colorscheme'
+require 'line'
+
 require 'lsp'
 require 'completion'
+

@@ -8,8 +8,8 @@ return require('packer').startup {
     use 'wbthomason/packer.nvim'
 
     use {
-        'tjdevries/astronauta.nvim', -- Lua ftplugins & lua plugin
-        'nvim-lua/plenary.nvim', -- lua utils
+      'tjdevries/astronauta.nvim', -- Lua ftplugins & lua plugin
+      'nvim-lua/plenary.nvim', -- lua utils
     }
 
     -- Better profiling output for startup.
@@ -70,7 +70,7 @@ return require('packer').startup {
     use { 'modille/groovy.vim', ft = { 'groovy', 'Jenkinsfile' } }
     use { 'vim-scripts/haproxy', ft = 'haproxy*' }
     use { 'cespare/vim-toml', ft = '*.toml' }
-    use 'tjdevries/nlua.nvim'
+    use { 'tjdevries/nlua.nvim' }
     use { 'elzr/vim-json', ft = 'json' }
     use 'towolf/vim-helm'
     use 'chr4/nginx.vim'
@@ -83,10 +83,10 @@ return require('packer').startup {
 
     -- all go
     use {
-        'crispgm/nvim-go',
-        run = ':GoInstallBinaries',
-        requires = { 'nvim-lua/plenary.nvim', 'nvim-lua/popup.nvim' }
-        -- ft = 'go',
+      'crispgm/nvim-go',
+      run = ':GoInstallBinaries',
+      requires = { 'nvim-lua/plenary.nvim', 'nvim-lua/popup.nvim' }
+      -- ft = 'go',
     }
     use { 'buoto/gotests-vim', ft = 'go',  run = ':!go install github.com/cweill/gotests/...' }
 
@@ -96,33 +96,17 @@ return require('packer').startup {
     use { 'chrisbra/unicode.vim', ft = { 'text', 'markdown' } }
 
     -- colorschemes
-    use { 'joshdick/onedark.vim' }
-    use {
-      'navarasu/onedark.nvim',
-      config = function()
-        vim.g.onedark_style = 'darker'
-      end
-    }
-    use { 'chriskempson/base16-vim' }
-    use { 'yashguptaz/calvera-dark.nvim' }
-    use { 'marko-cerovac/material.nvim' }
-    use { 'Th3Whit3Wolf/one-nvim' }
-    use { 'folke/tokyonight.nvim' }
+    -- use { 'joshdick/onedark.vim' }
+    use { 'navarasu/onedark.nvim' }
+    -- use { 'Th3Whit3Wolf/one-nvim' }
+    -- use { 'yashguptaz/calvera-dark.nvim' }
+    -- use { 'marko-cerovac/material.nvim' }
+    -- use { 'folke/tokyonight.nvim' }
+    -- use { 'tjdevries/colorbuddy.vim' }
+    -- use { 'tjdevries/gruvbuddy.nvim' }
 
     -- line
-    use {
-      'hoob3rt/lualine.nvim',
-      config = function()
-        require('lualine').setup {
-          options = {
-            theme = 'onedark',
-            extensions = {'quickfix', 'fzf', 'fugitive'},
-            section_separators = '',
-            component_separators = '',
-          }
-        }
-      end
-    }
+    use { 'hoob3rt/lualine.nvim' }
 
     -- utils
     use 'mhinz/vim-startify' -- Startup Screen

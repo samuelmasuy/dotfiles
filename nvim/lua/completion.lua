@@ -15,6 +15,7 @@ require'compe'.setup {
   source = {
     path = true,
     buffer = true,
+    calc = true,
 
     nvim_lsp = true,
     nvim_lua = true,
@@ -23,6 +24,8 @@ require'compe'.setup {
     treesitter = false,
     snippets_nvim = false,
     vsnip = false,
+
+    emoji = true,
   };
 }
 local t = function(str)
@@ -30,12 +33,12 @@ local t = function(str)
 end
 
 local check_back_space = function()
-    local col = vim.fn.col('.') - 1
-    if col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
-        return true
-    else
-        return false
-    end
+  local col = vim.fn.col('.') - 1
+  if col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
+    return true
+  else
+    return false
+  end
 end
 
 -- Use (s-)tab to:
