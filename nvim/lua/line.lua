@@ -34,7 +34,7 @@ local lsp = {
 }
 
 local location = {'location', color = {fg = colors.dark_yellow, gui = 'bold'}}
-local filename = {'filename', color = {fg = colors.purple, gui = 'bold'}}
+local filename = {'filename', color = {fg = colors.fg, gui = 'bold'}}
 
 local config = {
   options = {
