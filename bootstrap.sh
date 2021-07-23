@@ -2,7 +2,8 @@
 set -e
 
 DOTFILES_HOME=$HOME/.dotfiles
-source .zshenv
+source zsh/zshenv
+source zsh/zprofile
 
 echo "**************************************************************************"
 echo "********************Home directories setup...*****************************"
@@ -52,12 +53,14 @@ asdf install
 echo "**************************************************************************"
 echo "*********************Symlinking dotfiles...*******************************"
 echo "**************************************************************************"
-ln -s $DOTFILES_HOME/.zshenv $HOME/.zshenv
+ln -s $DOTFILES_HOME/zsh/zshenv $HOME/.zshenv
 
 mkdir -p $XDG_CONFIG_HOME/vim && \
   ln -s $DOTFILES_HOME/basic_vimrc $XDG_CONFIG_HOME/vim/.vimrc
 mkdir -p $XDG_CONFIG_HOME/git && \
   ln -s $DOTFILES_HOME/gitignore $XDG_CONFIG_HOME/git/ignore
+mkdir -p $XDG_CONFIG_HOME/fd && \
+  ln -s $DOTFILES_HOME/gitignore $XDG_CONFIG_HOME/fd/ignore
 mkdir -p $XDG_CONFIG_HOME/zsh && \
   ln -s $DOTFILES_HOME/zsh/.zshrc $XDG_CONFIG_HOME/zsh/.zshrc && \
   ln -s $DOTFILES_HOME/zsh/config $XDG_CONFIG_HOME/zsh/config

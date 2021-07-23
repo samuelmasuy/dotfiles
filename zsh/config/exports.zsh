@@ -1,3 +1,14 @@
+# Location of history file.
+export HISTFILE="$XDG_DATA_HOME"/zsh/history
+# Number of lines kept in history.
+export HISTSIZE=50000
+# Number of lines saved in the history after logout.
+export SAVEHIST=10000
+export EDITOR=nvim
+export VISUAL=nvim
+
+export ZSH_CACHE_DIR="${XDG_CACHE_HOME}/zsh"
+
 export GOPATH=$HOME
 export DOTFILES_HOME=$HOME/.dotfiles
 export IDEA_HOME="/Applications/IntelliJ IDEA CE.app/Contents"
@@ -13,10 +24,10 @@ export HTTPIE_CONFIG_DIR="$XDG_CONFIG_HOME"/httpie
 export PYLINTHOME="$XDG_CACHE_HOME"/pylint
 export AZURE_CONFIG_DIR=$XDG_DATA_HOME/azure
 export _RESURRECT_DIR=$XDG_DATA_HOME/tmux/resurrect
-export GRADLE_USER_HOME="${XDG_CONFIG_HOME}/gradle"
-export SHPOTIFY_CONFIG_FILE="${XDG_CONFIG_HOME}/shpotify/config"
-export ASDF_CONFIG_FILE="${XDG_CONFIG_HOME}/asdf/config"
-export ASDF_DATA_DIR="${XDG_DATA_HOME}/asdf"
+export GRADLE_USER_HOME="$XDG_DATA_HOME"/gradle
+export SHPOTIFY_CONFIG_FILE="$XDG_CONFIG_HOME"/shpotify/config
+export ASDF_CONFIG_FILE="$XDG_CONFIG_HOME"/asdf/config
+export ASDF_DATA_DIR="$XDG_DATA_HOME"/asdf
 
 export PATH="$PATH:$HOME/bin/:$HOME/bin/aws/:$HOME/bin/git-toolbelt/"
 export PATH="$PATH:/usr/local/sbin:/Applications/VirtualBox.app/Contents/MacOS"

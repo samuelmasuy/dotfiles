@@ -44,9 +44,9 @@ opt.tw = 79
 -- Don't automatically wrap on load.
 opt.wrap = false
 opt.formatoptions:remove({
-    't',                       -- Don't auto wrap text
-    'o',                       -- Do not continue comments with 'o' or 'O'
-    '2',                       -- ... that's just weird
+  't',                       -- Don't auto wrap text
+  'o',                       -- Do not continue comments with 'o' or 'O'
+  '2',                       -- ... that's just weird
 })
 
 -- How many undos
@@ -69,15 +69,15 @@ opt.writebackup = false
 opt.swapfile = false
 
 opt.mouse:remove({
-    'a', -- Disable mouse click to go to position
+  'a', -- Disable mouse click to go to position
 })
 
 opt.showmode = false
 
 opt.diffopt:append {
-    'vertical',           -- Gdiff vertical split
-    'algorithm:patience', -- Make diffing better: https://vimways.org/2018/the-power-of-diff/
-    'indent-heuristic',
+  'vertical',           -- Gdiff vertical split
+  'algorithm:patience', -- Make diffing better: https://vimways.org/2018/the-power-of-diff/
+  'indent-heuristic',
 }
 
 -- gnupg

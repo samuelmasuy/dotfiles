@@ -7,18 +7,7 @@ function! FzfFilePreview()
 
   function! s:files()
     let l:files = split(system($FZF_DEFAULT_COMMAND), '\n')
-    return s:prepend_icon(l:files)
-  endfunction
-
-  function! s:prepend_icon(candidates)
-    let l:result = []
-    for l:candidate in a:candidates
-      let l:filename = fnamemodify(l:candidate, ':p:t')
-      let l:icon = WebDevIconsGetFileTypeSymbol(l:filename, isdirectory(l:filename))
-      call add(l:result, printf('%s %s', l:icon, l:candidate))
-    endfor
-
-    return l:result
+    return l:files
   endfunction
 
   function! s:edit_file(lines)
@@ -42,6 +31,18 @@ function! FzfFilePreview()
         \ 'down':    '70%'})
 
 endfunction
+
+function! s:build_quickfix_list(lines)
+  call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
+  copen
+  cc
+endfunction
+
+let g:fzf_action = {
+  \ 'ctrl-q': function('s:build_quickfix_list'),
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
 
 nnoremap <silent> <expr> <Leader><Leader> ('').":Files\<CR>"
 nnoremap <silent> <Leader>c        :Colors<CR>

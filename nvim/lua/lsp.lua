@@ -47,20 +47,21 @@ local lsp_installer = require'nvim-lsp-installer'
 local ensure_server = function(s)
   local ok, analyzer = lsp_installer.get_server(s)
   if ok then
-      if not analyzer:is_installed() then
-          analyzer:install()
-      end
+    if not analyzer:is_installed() then
+      analyzer:install()
+    end
   end
 end
 
-ensure_server "gopls"
-ensure_server "yamlls"
-ensure_server "pyright"
-ensure_server "html"
-ensure_server "jsonls"
-ensure_server "vimls"
-ensure_server "tsserver"
-ensure_server "terraformls"
+ensure_server 'gopls'
+ensure_server 'yamlls'
+ensure_server 'pyright'
+ensure_server 'html'
+ensure_server 'jsonls'
+ensure_server 'vimls'
+ensure_server 'tsserver'
+ensure_server 'terraformls'
+ensure_server 'sumneko_lua'
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
