@@ -28,6 +28,7 @@ export GRADLE_USER_HOME="$XDG_DATA_HOME"/gradle
 export SHPOTIFY_CONFIG_FILE="$XDG_CONFIG_HOME"/shpotify/config
 export ASDF_CONFIG_FILE="$XDG_CONFIG_HOME"/asdf/config
 export ASDF_DATA_DIR="$XDG_DATA_HOME"/asdf
+export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/ripgreprc"
 
 export PATH="$PATH:$HOME/bin/:$HOME/bin/aws/:$HOME/bin/git-toolbelt/"
 export PATH="$PATH:/usr/local/sbin:/Applications/VirtualBox.app/Contents/MacOS"

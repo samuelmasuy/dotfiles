@@ -79,3 +79,6 @@ alias spst="spotify status"
 
 alias j8='export JAVA_HOME=$(/usr/libexec/java_home -v 1.8); java -version'
 alias j11='export JAVA_HOME=$(/usr/libexec/java_home -v 11); java -version'
+
+# Symlink all dotfiles like magic
+alias dotfilesInstall="$DOTFILES_HOME/install"

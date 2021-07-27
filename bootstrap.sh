@@ -2,8 +2,7 @@
 set -e
 
 DOTFILES_HOME=$HOME/.dotfiles
-source zsh/zshenv
-source zsh/zprofile
+source zsh/dot-zshenv
 
 echo "**************************************************************************"
 echo "********************Home directories setup...*****************************"
@@ -32,7 +31,6 @@ echo "**************************************************************************
 echo "******************Dotfiles Install...*************************************"
 echo "**************************************************************************"
 [ ! -d "$DOTFILES_HOME" ] && git clone --recursive git@github.com:samuelmasuy/dotfiles.git $DOTFILES_HOME
-ln -s $DOTFILES_HOME $HOME/.dotfiles
 
 echo "**************************************************************************"
 echo "******************Application and tool installation...********************"
@@ -49,48 +47,6 @@ asdf plugin add terraform https://github.com/Banno/asdf-hashicorp.git
 asdf plugin add packer https://github.com/Banno/asdf-hashicorp.git
 asdf plugin add helm https://github.com/Antiarchitect/asdf-helm.git
 asdf install
-
-echo "**************************************************************************"
-echo "*********************Symlinking dotfiles...*******************************"
-echo "**************************************************************************"
-ln -s $DOTFILES_HOME/zsh/zshenv $HOME/.zshenv
-
-mkdir -p $XDG_CONFIG_HOME/vim && \
-  ln -s $DOTFILES_HOME/basic_vimrc $XDG_CONFIG_HOME/vim/.vimrc
-mkdir -p $XDG_CONFIG_HOME/git && \
-  ln -s $DOTFILES_HOME/gitignore $XDG_CONFIG_HOME/git/ignore
-mkdir -p $XDG_CONFIG_HOME/fd && \
-  ln -s $DOTFILES_HOME/gitignore $XDG_CONFIG_HOME/fd/ignore
-mkdir -p $XDG_CONFIG_HOME/zsh && \
-  ln -s $DOTFILES_HOME/zsh/.zshrc $XDG_CONFIG_HOME/zsh/.zshrc && \
-  ln -s $DOTFILES_HOME/zsh/config $XDG_CONFIG_HOME/zsh/config
-mkdir -p $XDG_CONFIG_HOME/npm && \
-  ln -s $DOTFILES_HOME/npmrc $XDG_CONFIG_HOME/npm/npmrc && \
-mkdir -p $XDG_CONFIG_HOME/yamllint && \
-  ln -s $DOTFILES_HOME/yamllint.yaml $XDG_CONFIG_HOME/yamllint/config
-
-ln -s $DOTFILES_HOME/nvim $XDG_CONFIG_HOME/nvim
-
-ln -s $DOTFILES_HOME/tmux $XDG_CONFIG_HOME/tmux
-
-ln -s $DOTFILES_HOME/ideavimrc $HOME/.ideavimrc
-
-ln -s $DOTFILES_HOME/iterm/mysnazzy.itermcolors $HOME/Documents/mysnazzy.itermcolors
-
-cp $DOTFILES_HOME/asdf/tool-versions $HOME/.tool-versions
-
-mkdir -p $XDG_DATA_HOME/gem
-mkdir -p $XDG_CACHE_HOME/gem
-mkdir -p $XDG_CONFIG_HOME/docker
-mkdir -p $XDG_CONFIG_HOME/npm
-mkdir -p $XDG_DATA_HOME/npm
-mkdir -p $XDG_DATA_HOME/cargo
-mkdir -p $XDG_DATA_HOME/rustup
-mkdir -p $XDG_DATA_HOME/tig
-mkdir -p $XDG_CACHE_HOME/zsh
-mkdir -p $XDG_DATA_HOME/zsh
-mkdir -p $XDG_DATA_HOME/tmux
-mkdir -p $XDG_DATA_HOME/zoxide
 echo "**************************************************************************"
 echo "*********************Change shell to zsh...*******************************"
 echo "**************************************************************************"
@@ -98,20 +54,49 @@ command -v zsh | sudo tee -a /etc/shells
 sudo chsh -s "$(command -v zsh)" "${USER}"
 
 echo "**************************************************************************"
-echo "**********************Install python stuff...*****************************"
+echo "*********************Symlinking dotfiles...*******************************"
 echo "**************************************************************************"
-sudo pip3 install --upgrade neovim
+mkdir -p $XDG_CONFIG_HOME/docker
+mkdir -p $XDG_CONFIG_HOME/zsh
+mkdir -p $XDG_DATA_HOME/cargo
+mkdir -p $XDG_DATA_HOME/gem
+mkdir -p $XDG_DATA_HOME/npm
+mkdir -p $XDG_DATA_HOME/rustup
+mkdir -p $XDG_DATA_HOME/tig
+mkdir -p $XDG_DATA_HOME/tmux
+mkdir -p $XDG_DATA_HOME/zoxide
+mkdir -p $XDG_DATA_HOME/zsh
+mkdir -p $XDG_CACHE_HOME/gem
+mkdir -p $XDG_CACHE_HOME/zsh
 
-echo "**************************************************************************"
-echo "*********************Gems install...**************************************"
-echo "**************************************************************************"
-sudo gem install neovim
+echo "Almost Done! Run ./install and Just do that: https://blog.birkhoff.me/make-sudo-authenticate-with-touch-id-in-a-tmux/"
 
-echo "**************************************************************************"
-echo "*********************Npm install...***************************************"
-echo "**************************************************************************"
-npm install -g neovim
-npm install -g npm
-npm install -g git-removed-branches
+# echo "**************************************************************************"
+# echo "**********************neovim stuff...*************************************"
+# echo "**************************************************************************"
+# sudo pip3 install --upgrade neovim
+# sudo gem install neovim
+# npm install -g neovim
 
-echo "Almost Done! Just do that: https://blog.birkhoff.me/make-sudo-authenticate-with-touch-id-in-a-tmux/"
+# TODO: check for stow https://www.gnu.org/software/stow/ for a better symlink management
+# ln -s $DOTFILES_HOME/zsh/zshenv $HOME/.zshenv
+
+# mkdir -p $XDG_CONFIG_HOME/vim && \
+#   ln -s $DOTFILES_HOME/basic_vimrc $XDG_CONFIG_HOME/vim/.vimrc
+# mkdir -p $XDG_CONFIG_HOME/git && \
+#   ln -s $DOTFILES_HOME/gitignore $XDG_CONFIG_HOME/git/ignore
+# mkdir -p $XDG_CONFIG_HOME/fd && \
+#   ln -s $DOTFILES_HOME/gitignore $XDG_CONFIG_HOME/fd/ignore
+# mkdir -p $XDG_CONFIG_HOME/zsh && \
+#   ln -s $DOTFILES_HOME/zsh/.zshrc $XDG_CONFIG_HOME/zsh/.zshrc && \
+#   ln -s $DOTFILES_HOME/zsh/config $XDG_CONFIG_HOME/zsh/config
+# mkdir -p $XDG_CONFIG_HOME/npm && \
+#   ln -s $DOTFILES_HOME/npmrc $XDG_CONFIG_HOME/npm/npmrc && \
+# mkdir -p $XDG_CONFIG_HOME/yamllint && \
+#   ln -s $DOTFILES_HOME/yamllint.yaml $XDG_CONFIG_HOME/yamllint/config
+# ln -s $DOTFILES_HOME/nvim $XDG_CONFIG_HOME/nvim
+# ln -s $DOTFILES_HOME/tmux $XDG_CONFIG_HOME/tmux
+# ln -s $DOTFILES_HOME/ideavimrc $HOME/.ideavimrc
+# ln -s $DOTFILES_HOME/iterm/mysnazzy.itermcolors $HOME/Documents/mysnazzy.itermcolors
+
+# cp $DOTFILES_HOME/asdf/tool-versions $HOME/.tool-versions

@@ -7,3 +7,6 @@ export XDG_STATE_HOME="$HOME/.local/state"
 # Needs to be set here, so Zsh can find other dotfiles.
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 
+# Simlink it all
+# export STOW_FOLDERS="zsh"
+export STOW_FOLDERS="zsh,nvim,tmux,vim,git,fd,npm,yamllint,iterm,ripgrep"

@@ -35,13 +35,13 @@ antibody bundle zsh-users/zsh-completions
 antibody bundle zdharma/fast-syntax-highlighting
 antibody bundle zsh-users/zsh-history-substring-search
 
-source ${XDG_CONFIG_HOME}/zsh/config/exports.zsh #1
-source ${XDG_CONFIG_HOME}/zsh/config/asdf.zsh #2
-source ${XDG_CONFIG_HOME}/zsh/config/aliases.zsh
-source ${XDG_CONFIG_HOME}/zsh/config/functions.zsh
-source ${XDG_CONFIG_HOME}/zsh/config/completions.zsh
-[[ -f ${XDG_CONFIG_HOME}/zsh/config/secrets.zsh ]] && source ${XDG_CONFIG_HOME}/zsh/config/secrets.zsh
-[[ -f ${XDG_CONFIG_HOME}/zsh/config/work.zsh ]] && source ${XDG_CONFIG_HOME}/zsh/config/work.zsh
+source ${XDG_CONFIG_HOME}/zsh/exports.zsh #1
+source ${XDG_CONFIG_HOME}/zsh/asdf.zsh #2
+source ${XDG_CONFIG_HOME}/zsh/aliases.zsh
+source ${XDG_CONFIG_HOME}/zsh/functions.zsh
+source ${XDG_CONFIG_HOME}/zsh/completions.zsh
+[[ -f ${XDG_CONFIG_HOME}/zsh/secrets.zsh ]] && source ${XDG_CONFIG_HOME}/zsh/secrets.zsh
+[[ -f ${XDG_CONFIG_HOME}/zsh/work.zsh ]] && source ${XDG_CONFIG_HOME}/zsh/work.zsh
 
 
 # Use the Vi-like keybindings
@@ -75,9 +75,9 @@ eval "$(zoxide init zsh)"
 
 . $(brew --prefix asdf)/asdf.sh
 
-[[ -f ${XDG_CONFIG_HOME}/zsh/config/fzf.zsh ]] && source ${XDG_CONFIG_HOME}/zsh/config/fzf.zsh
+[[ -f ${XDG_CONFIG_HOME}/zsh/fzf.zsh ]] && source ${XDG_CONFIG_HOME}/zsh/fzf.zsh
 
 # To customize prompt, run `p10k configure`
-[[ ! -f ${XDG_CONFIG_HOME}/zsh/config/p10k.zsh ]] || source ${XDG_CONFIG_HOME}/zsh/config/p10k.zsh
+[[ ! -f ${XDG_CONFIG_HOME}/zsh/p10k.zsh ]] || source ${XDG_CONFIG_HOME}/zsh/p10k.zsh
 # zprof
 

@@ -58,6 +58,9 @@ return require('packer').startup {
         'nvim-treesitter/nvim-treesitter-refactor',
         'nvim-treesitter/nvim-treesitter-textobjects',
         'RRethy/nvim-treesitter-textsubjects',
+        'RRethy/nvim-treesitter-textsubjects',
+        'nvim-treesitter/nvim-treesitter',
+        'nvim-treesitter/playground',
       },
     }
 
