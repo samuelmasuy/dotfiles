@@ -8,6 +8,7 @@ opt.termguicolors = true
 -- cmd [[colorscheme material]]
 -- cmd [[colorscheme one-nvim]]
 -- cmd [[colorscheme tokyonight]]
+-- cmd [[colorscheme gruvbox]]
 
 vim.g.onedark_style = 'dark'
 require('onedark').setup()

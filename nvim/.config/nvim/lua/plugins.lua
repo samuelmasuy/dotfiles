@@ -101,6 +101,12 @@ return require('packer').startup {
     -- colorschemes
     -- use { 'joshdick/onedark.vim' }
     use { 'navarasu/onedark.nvim' }
+    use {
+      'npxbr/gruvbox.nvim',
+      requires = {
+        'rktjmp/lush.nvim',
+      }
+    }
     -- use { 'Th3Whit3Wolf/one-nvim' }
     -- use { 'yashguptaz/calvera-dark.nvim' }
     -- use { 'marko-cerovac/material.nvim' }
