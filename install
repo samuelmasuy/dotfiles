@@ -15,8 +15,8 @@ source ./zsh/dot-zshenv
 for folder in $(echo $STOW_FOLDERS | sed "s/,/ /g")
 do
   if "$dry_run"; then
-    stow --dotfiles --simulate -vv -D $folder
-    stow --dotfiles --simulate -vv $folder
+    stow --simulate --dotfiles -vv -D $folder
+    stow --simulate --dotfiles -vv $folder
   else
     stow --dotfiles -D $folder
     stow --dotfiles $folder

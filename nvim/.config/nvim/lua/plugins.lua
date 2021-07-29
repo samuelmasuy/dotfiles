@@ -137,7 +137,11 @@ return require('packer').startup {
     use 'christianrondeau/vim-base64' -- <leader>atob / btoa
 
     -- all hashicorp goodies
-    use 'hashivim/vim-hashicorp-tools'
+    use {
+      'hashivim/vim-packer',
+      'hashivim/vim-terraform',
+      'hashivim/vim-vaultproject',
+    }
 
     -- tmux
     use 'tmux-plugins/vim-tmux' -- tmux.conf

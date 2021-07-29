@@ -67,7 +67,7 @@ mkdir -p $XDG_DATA_HOME/tmux
 mkdir -p $XDG_DATA_HOME/zoxide
 mkdir -p $XDG_DATA_HOME/zsh
 mkdir -p $XDG_CACHE_HOME/gem
-mkdir -p $XDG_CACHE_HOME/zsh
+
 
 echo "Almost Done! Run ./install and Just do that: https://blog.birkhoff.me/make-sudo-authenticate-with-touch-id-in-a-tmux/"
 
