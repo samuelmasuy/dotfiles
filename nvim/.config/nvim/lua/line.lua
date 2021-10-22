@@ -10,8 +10,8 @@ local diagnostics = {
   'diagnostics',
   sources = {'nvim_lsp'},
   symbols = {error = ' ', warn = ' ', info = ' '},
-  -- color_error = colors.red,
-  -- color_warn = colors.yellow,
+  color_error = colors.red,
+  color_warn = colors.yellow,
   -- color_info = colors.cyan,
 }
 

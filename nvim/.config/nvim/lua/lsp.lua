@@ -1,7 +1,8 @@
-local nvim_lsp = require('lspconfig')
+-- local nvim_lsp = require('lspconfig')
+-- vim.lsp.set_log_level("trace")
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
-local on_attach = function(client, bufnr)
+local on_attach = function(_, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
@@ -15,7 +16,6 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
   buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
   buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
   buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
   buf_set_keymap('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
   buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
@@ -31,7 +31,7 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
   buf_set_keymap("n", "<leader>r", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 
-  -- local filetype = vim.api.nvim_buf_get_option(0, "filetype")
+  local filetype = vim.api.nvim_buf_get_option(0, "filetype")
   -- if filetype == "go" then
   --   vim.cmd [[
   --     augroup lsp_buf_format
@@ -40,39 +40,130 @@ local on_attach = function(client, bufnr)
   --     augroup END
   --   ]]
   -- end
-end
-
-local lsp_installer = require'nvim-lsp-installer'
-
-local ensure_server = function(s)
-  local ok, analyzer = lsp_installer.get_server(s)
-  if ok then
-    if not analyzer:is_installed() then
-      analyzer:install()
-    end
+  if filetype == "helm" then
+    LspHide()
   end
 end
 
-ensure_server 'gopls'
-ensure_server 'yamlls'
-ensure_server 'pyright'
-ensure_server 'html'
-ensure_server 'jsonls'
-ensure_server 'vimls'
-ensure_server 'tsserver'
-ensure_server 'terraformls'
-ensure_server 'sumneko_lua'
-
--- Use a loop to conveniently call 'setup' on multiple servers and
--- map buffer local keybindings when the language server attaches
-local installed_servers = lsp_installer.get_installed_servers()
-for _, lsp in pairs(installed_servers) do
-  opts = {
-    on_attach = on_attach,
-    flags = {
-      debounce_text_changes = 150,
-    },
+local lsp_installer = require'nvim-lsp-installer'
+local function install_missing_servers()
+  local lsps = {
+    'bashls',
+    'gopls',
+    'yamlls',
+    'pyright',
+    'html',
+    'jsonls',
+    'vimls',
+    'tsserver',
+    'terraformls',
+    'sumneko_lua',
+    'dockerls',
   }
 
-  lsp:setup(opts)
+  for _, lsp_name in ipairs(lsps) do
+    local ok, lsp_server = lsp_installer.get_server(lsp_name)
+    if ok then
+      if not lsp_server:is_installed() then
+        lsp_installer.install(lsp_name)
+      end
+    end
+  end
 end
+install_missing_servers()
+
+lsp_installer.on_server_ready(
+  function(server)
+    local opts = {
+      on_attach = on_attach,
+      flags = {
+        debounce_text_changes = 150,
+      },
+      settings = {},
+      capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+    }
+
+    if server.name == "yamlls" then
+      opts.settings = {
+        yaml = {
+          validate = true,
+          -- completion = true,
+          schemas = {
+            kubernetes =  '/rendered.yaml'
+          },
+        }
+      }
+
+          -- trace = {
+          --   server = "verbose"
+          -- },
+          -- schemaDownload = {  enable = true },
+          -- validate = true,
+      -- print(vim.inspect(opts))
+    end
+
+    server:setup(opts)
+    vim.cmd [[ do User LspAttachBuffers ]]
+  end
+)
+
+-- local check_function = function(bufnr, _)
+--     local ok, result = pcall(vim.api.nvim_buf_get_var, bufnr, 'lsp_enabled')
+--     -- No buffer local variable set, so just enable by default
+--     if not ok then
+--         return true
+--     end
+
+--     return result
+-- end
+
+-- vim.lsp.handlers["textDocument/publishDiagnostics"] =
+--     vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+--         underline = check_function,
+--         signs = false,
+--         update_in_insert = false,
+--         virtual_text = check_function
+--     })
+
+
+-- function LspSwap()
+--     if vim.b.lsp_enabled == false then
+--         LspShow()
+--     else
+--         LspHide()
+--     end
+-- end
+
+-- vim.api.nvim_buf_set_keymap(0, 'n', 'yop',
+--                                 '<cmd>lua require("lsp-local").LspSwap()<CR>',
+--                                 {noremap = true})
+
+function LspHide()
+    if #vim.lsp.buf_get_clients() > 0 then
+        vim.b.lsp_enable = 1
+        vim.lsp.diagnostic.disable()
+        print("Diagnostic Disabled.")
+    else
+        error('Diagnostic not enabled in this buffer.')
+    end
+end
+
+function LspShow()
+    if #vim.lsp.buf_get_clients() > 0 then
+        vim.b.lsp_enable = 0
+        vim.lsp.diagnostic.enable()
+        print('Diagnostic Enabled.')
+    else
+        error('Diagnostic not enabled in this buffer.')
+    end
+end
+
+function LspSwap()
+    if vim.b.lsp_enable == 0 then
+        LspShow()
+    else
+        LspHide()
+    end
+end
+
+vim.api.nvim_buf_set_keymap(0, 'n', '<space>d', '<cmd>lua LspSwap()<CR>', {noremap = true})

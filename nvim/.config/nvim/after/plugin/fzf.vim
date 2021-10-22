@@ -51,3 +51,8 @@ nnoremap <silent> <Leader>`        :Marks<CR>
 nnoremap <silent> <Leader>m        :Maps<CR>
 nnoremap <Leader>a        :Rg<Space>
 nnoremap <leader>z :tabnew \| FZF $XDG_CONFIG_HOME<CR>
+" nnoremap <leader>w :tabnew \| FZF $WORKPATH<CR>
+" nnoremap <leader>fv :call fzf#run({'options': '--reverse --prompt "VimFiles"', 'down': 20, 'dir': '~/.vim/', 'sink': 'e' })<CR>
+nnoremap <leader>w :call fzf#run({'source': 'fd -d 1 -t d', 'options': '--prompt "WorkDirs\> "', 'dir': '$WORKPATH', 'sink': 'e', 'window': { 'width': 0.9, 'height': 0.9 }})<CR><CR>
+
+" fd -d 2 -t 'd'

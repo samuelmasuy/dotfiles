@@ -17,11 +17,20 @@ return require('packer').startup {
       'dstein64/vim-startuptime',
       cmd = 'StartupTime',
     }
-
     -- LSP
     use 'neovim/nvim-lspconfig'
     use 'williamboman/nvim-lsp-installer'
-    use 'hrsh7th/nvim-compe'
+    -- use 'nvim-lua/lsp_extensions.nvim'
+    use "hrsh7th/nvim-cmp"
+    use "hrsh7th/cmp-buffer"
+    use "hrsh7th/cmp-path"
+    use "hrsh7th/cmp-nvim-lua"
+    use "hrsh7th/cmp-nvim-lsp"
+    -- Snip
+    use 'L3MON4D3/LuaSnip'
+    use 'saadparwaiz1/cmp_luasnip'
+
+    use 'chiel92/vim-autoformat' -- when lsp format does not work
 
     -- Text Maniuplation
     use 'godlygeek/tabular' -- Quickly align text by pattern :'<,'>Tabularize /:
@@ -77,6 +86,8 @@ return require('packer').startup {
     use { 'elzr/vim-json', ft = 'json' }
     use 'towolf/vim-helm'
     use 'chr4/nginx.vim'
+    use 'mustache/vim-mustache-handlebars'
+
 
     -- use 'NLKNguyen/cloudformation-syntax.vim'
     -- use { 'stephpy/vim-yaml', ft = 'yaml' }
