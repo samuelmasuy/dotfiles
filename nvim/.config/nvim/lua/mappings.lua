@@ -4,8 +4,8 @@ local api = vim.api
 api.nvim_set_keymap("c", "wq", ":echo 'Use ZZ or :x'<CR>", {noremap = true})
 
 -- Disable un-VI keys.
-api.nvim_set_keymap("n", "<up>", "<nop>", {noremap = true})
-api.nvim_set_keymap("n", "<down>", "<nop>", {noremap = true})
+-- api.nvim_set_keymap("n", "<up>", "<nop>", {noremap = true})
+-- api.nvim_set_keymap("n", "<down>", "<nop>", {noremap = true})
 api.nvim_set_keymap("i", "<up>", "<nop>", {noremap = true})
 api.nvim_set_keymap("i", "<down>", "<nop>", {noremap = true})
 api.nvim_set_keymap("i", "<left>", "<nop>", {noremap = true})
@@ -23,9 +23,11 @@ api.nvim_set_keymap("n", "<down>", ":cnext<CR>", {noremap = true})
 -- api.nvim_set_keymap("n", "<space>", "za", {noremap = true})
 -- api.nvim_set_keymap("v", "<space>", "zf", {noremap = true})
 
--- Make sure to be in the middle of the screen when searching.
+-- Make sure to be in the middle of the screen when searching
 api.nvim_set_keymap("n", "n", "nzzzv", {noremap = true})
 api.nvim_set_keymap("n", "N", "Nzzzv", {noremap = true})
+-- Make sure to stay at current cursor position when joining
+api.nvim_set_keymap("n", "J", "mzJ`v", {noremap = true})
 
 -- Easier indentation of code blocks.
 api.nvim_set_keymap("v", "<", "<gv", {noremap = true})
@@ -37,12 +39,12 @@ api.nvim_set_keymap("n", ":", ";", {noremap = true})
 api.nvim_set_keymap("v", ";", ":", {noremap = true})
 api.nvim_set_keymap("v", ":", ";", {noremap = true})
 
--- logical
+-- logical, why vi
 api.nvim_set_keymap("n", "Y", "y$", {noremap = true})
 
 -- Switch marks
-api.nvim_set_keymap("n", "'", "`", {noremap = true})
-api.nvim_set_keymap("n", "`", "'", {noremap = true})
+-- api.nvim_set_keymap("n", "'", "`", {noremap = true})
+-- api.nvim_set_keymap("n", "`", "'", {noremap = true})
 
 -- Don't move on *
 api.nvim_set_keymap("n", "*", ":let stay_star_view = winsaveview()<cr>*:call winrestview(stay_star_view)<cr>", {noremap = true, silent = true})

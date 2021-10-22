@@ -19,9 +19,7 @@ api.nvim_set_keymap("n", "<leader>.", ":lcd %:p:h<CR>", {noremap = true})
 
 -- Google search word under cursor from http://www.vimbits.com/bits/551
 api.nvim_set_keymap("n", "<leader>is", ":let @p=@\"<cr>yiw:!open \"https://www.google.com/search?q=\"\"<cr><cr>:let @\"=@p<cr>", {noremap = true})
-
 api.nvim_set_keymap("v", "<leader>is", "y:!open \"https://www.google.com/search?q=\"\"<cr><cr>", {noremap = true})
-
 -- Google search the definition of the word under cursor
 api.nvim_set_keymap("n", "<leader>id", ":let @p=@\"<cr>yiw:!open \"https://www.google.com/search?q=define \"\"<cr><cr>:let @\"=@p<cr>", {noremap = true})
 
