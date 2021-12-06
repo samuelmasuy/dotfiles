@@ -102,6 +102,7 @@ lsp_installer.on_server_ready(
       -- print(vim.inspect(opts))
     end
 
+    -- server:setup(require("coq").lsp_ensure_capabilities(opts))
     server:setup(opts)
     vim.cmd [[ do User LspAttachBuffers ]]
   end

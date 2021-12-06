@@ -21,14 +21,22 @@ return require('packer').startup {
     use 'neovim/nvim-lspconfig'
     use 'williamboman/nvim-lsp-installer'
     -- use 'nvim-lua/lsp_extensions.nvim'
+
+    -- Completion
     use "hrsh7th/nvim-cmp"
     use "hrsh7th/cmp-buffer"
     use "hrsh7th/cmp-path"
-    use "hrsh7th/cmp-nvim-lua"
+    use "hrsh7th/cmp-nvim-lua" -- for vim.api
     use "hrsh7th/cmp-nvim-lsp"
     -- Snip
-    use 'L3MON4D3/LuaSnip'
-    use 'saadparwaiz1/cmp_luasnip'
+    -- use 'L3MON4D3/LuaSnip'
+    -- use 'saadparwaiz1/cmp_luasnip'
+    -- main
+    -- use { 'ms-jpq/coq_nvim', branch = 'coq' }
+    -- -- 9000+ Snippets
+    -- use { 'ms-jpq/coq.artifacts', branch = 'artifacts' }
+    -- -- lua & third party sources -- See https://github.com/ms-jpq/coq.thirdparty
+    -- use { 'ms-jpq/coq.thirdparty', branch = '3p' }
 
     use 'chiel92/vim-autoformat' -- when lsp format does not work
 
