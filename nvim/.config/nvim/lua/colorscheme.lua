@@ -10,5 +10,7 @@ opt.termguicolors = true
 -- cmd [[colorscheme tokyonight]]
 -- cmd [[colorscheme gruvbox]]
 
-vim.g.onedark_style = 'dark'
-require('onedark').setup()
+require('onedark').setup {
+    style = 'dark'
+}
+require('onedark').load()

@@ -8,7 +8,7 @@ return require('packer').startup {
     use 'wbthomason/packer.nvim'
 
     use {
-      'tjdevries/astronauta.nvim', -- Lua ftplugins & lua plugin
+      -- 'tjdevries/astronauta.nvim', -- Lua ftplugins & lua plugin
       'nvim-lua/plenary.nvim', -- lua utils
     }
 
@@ -89,7 +89,7 @@ return require('packer').startup {
     use { 'leafgarland/typescript-vim', ft = 'typescript' }
     use { 'modille/groovy.vim', ft = { 'groovy', 'Jenkinsfile' } }
     use { 'vim-scripts/haproxy', ft = 'haproxy*' }
-    use { 'cespare/vim-toml', ft = '*.toml' }
+    -- use { 'cespare/vim-toml', ft = '*.toml' }
     use { 'tjdevries/nlua.nvim' }
     use { 'elzr/vim-json', ft = 'json' }
     use 'towolf/vim-helm'
