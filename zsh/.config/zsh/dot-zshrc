@@ -27,7 +27,6 @@ antibody bundle robbyrussell/oh-my-zsh path:lib/git.zsh
 antibody bundle robbyrussell/oh-my-zsh path:plugins/git
 # antibody bundle robbyrussell/oh-my-zsh path:plugins/mvn
 antibody bundle robbyrussell/oh-my-zsh path:plugins/docker
-antibody bundle robbyrussell/oh-my-zsh path:plugins/zsh_reload
 antibody bundle robbyrussell/oh-my-zsh path:plugins/colored-man-pages
 
 antibody bundle zsh-users/zsh-completions
@@ -36,7 +35,7 @@ antibody bundle zdharma/fast-syntax-highlighting
 antibody bundle zsh-users/zsh-history-substring-search
 
 source ${XDG_CONFIG_HOME}/zsh/exports.zsh #1
-source ${XDG_CONFIG_HOME}/zsh/asdf.zsh #2
+. $(brew --prefix asdf)/asdf.sh #2
 source ${XDG_CONFIG_HOME}/zsh/aliases.zsh
 source ${XDG_CONFIG_HOME}/zsh/functions.zsh
 source ${XDG_CONFIG_HOME}/zsh/completions.zsh

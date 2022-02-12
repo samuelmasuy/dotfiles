@@ -129,10 +129,30 @@ function e() {
   vim $(which $1)
 }
 
-zsh_terraform() {
-  # break if there is no .terraform directory
-  if [[ -d .terraform ]]; then
-    local tf_workspace=$(terraform workspace show)
-    echo -n "($tf_workspace)"
-  fi
+zsh_kubectl_minor_version() {
+  local kubectl_minor_version=$(kubectl version --client --output=json | jq -r .clientVersion.minor)
+  echo -n "($kubectl_minor_version)"
+}
+
+src() {
+	local cache="$ZSH_CACHE_DIR"
+	autoload -U compinit zrecompile
+	compinit -i -d "$cache/zcomp-$HOST"
+
+	for f in ${ZDOTDIR:-~}/.zshrc "$cache/zcomp-$HOST"; do
+		zrecompile -p $f && command rm -f $f.zwc.old
+	done
+
+	# Use $SHELL if it's available and a zsh shell
+	local shell="$ZSH_ARGZERO"
+	if [[ "${${SHELL:t}#-}" = zsh ]]; then
+		shell="$SHELL"
+	fi
+
+	# Remove leading dash if login shell and run accordingly
+	if [[ "${shell:0:1}" = "-" ]]; then
+		exec -l "${shell#-}"
+	else
+		exec "$shell"
+	fi
 }

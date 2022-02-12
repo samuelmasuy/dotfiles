@@ -37,11 +37,13 @@ export PATH="$PATH:$JAVA_HOME/bin"
 export PATH="$PATH:$XDG_DATA_HOME/yarn/bin"
 export PATH="$PATH:$XDG_DATA_HOME/npm/bin"
 export PATH="$PATH:$HOME/src/github.com/jive/jh/helper"
+export PATH="$PATH:$HOME/src/github.com/jive/jh"
 export PATH="$PATH:/usr/local/opt/curl-openssl/bin"
 export PATH="$PATH:/usr/local/opt/curl-openssl/bin"
 export PATH="$PATH:$CARGO_HOME/bin"
+export PATH="$PATH:${HOME}/.krew/bin"
 export PATH="/usr/local/opt/python/libexec/bin:$PATH"
-export PATH="$PATH:/usr/local/opt/node@14/bin"
+# export PATH="$PATH:/usr/local/opt/node@14/bin"
 
 export MANPATH="/usr/local/man:$MANPATH"
 
@@ -50,9 +52,9 @@ export MAVEN_OPTS="-Xmx1024m -Xms512m"
 # Colors handling.
 autoload colors; colors;
 
-# export NODE_PATH='/usr/local/lib/node_modules'
-export LDFLAGS="-L/usr/local/opt/node@14/lib"
-export CPPFLAGS="-I/usr/local/opt/node@14/include"
+export NODE_PATH='/usr/local/lib/node_modules'
+# export LDFLAGS="-L/usr/local/opt/node@14/lib"
+# export CPPFLAGS="-I/usr/local/opt/node@14/include"
 
 export PROMPT_COMMAND='history -a'
 # ignore storing commands prefixed by a space
@@ -72,4 +74,3 @@ export GROOVY_HOME=/usr/local/opt/groovy/libexec
 
 export BAT_THEME="OneHalfDark"
 export BAT_STYLE="changes"
-

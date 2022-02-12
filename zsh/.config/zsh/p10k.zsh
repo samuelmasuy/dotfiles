@@ -36,40 +36,37 @@
   # Zsh >= 5.1 is required.
   autoload -Uz is-at-least && is-at-least 5.1 || return
 
-  # Terraform Segment
-  typeset -g POWERLEVEL9K_CUSTOM_TERRAFORM="zsh_terraform"
-  # typeset -g POWERLEVEL9K_CUSTOM_TERRAFORM_BACKGROUND=057
-  typeset -g POWERLEVEL9K_CUSTOM_TERRAFORM_FOREGROUND=65
-
+  typeset -g POWERLEVEL9K_CUSTOM_KUBECTL_MINOR_VERSION="zsh_kubectl_minor_version"
   # Prompt colors.
-  local grey=242
-  local red=1
-  local yellow=3
-  local blue=4
-  local magenta=5
-  local cyan=6
-  local white=7
+  local grey='242'
+  local red='1'
+  local yellow='3'
+  local blue='4'
+  local magenta='5'
+  local cyan='6'
+  local white='7'
 
   # Left prompt segments.
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
       dir                       # current directory
       vcs                       # git status
-      custom_terraform
+      terraform
+      virtualenv                # python virtual environment
       context                   # user@host
       newline                   # \n
-      virtualenv                # python virtual environment
       prompt_char               # prompt symbol
   )
 
   # Right prompt segments.
   typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
-      status                  # exit code of the last command
-      command_execution_time  # duration of the last command
-      background_jobs         # presence of background jobs
-      kubecontext           # current kubernetes context (https://kubernetes.io/)
-      custom_rprompt          # the output of function `custom_rprompt()` if it is defined
-      # context               # user@host
-      time                    # current time
+      status                       # exit code of the last command
+      command_execution_time       # duration of the last command
+      background_jobs              # presence of background jobs
+      kubecontext                  # current kubernetes context (https://kubernetes.io/)
+      custom_kubectl_minor_version # current kubernetes client minor version
+      custom_rprompt               # the output of function `custom_rprompt()` if it is defined
+      # context                    # user@host
+      time                         # current time
   )
 
   # Basic style options that define the overall prompt look.
@@ -102,6 +99,9 @@
   typeset -g POWERLEVEL9K_VIRTUALENV_SHOW_PYTHON_VERSION=false
   typeset -g POWERLEVEL9K_VIRTUALENV_{LEFT,RIGHT}_DELIMITER=
 
+  # Greenish terraform workspace
+  typeset -g POWERLEVEL9K_TERRAFORM_FOREGROUND=65
+  typeset -g POWERLEVEL9K_TERRAFORM_CONTENT_EXPANSION='(${P9K_CONTENT})'
   # Blue current directory.
   typeset -g POWERLEVEL9K_DIR_FOREGROUND=$blue
 

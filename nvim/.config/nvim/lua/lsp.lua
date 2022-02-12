@@ -51,7 +51,7 @@ local function install_missing_servers()
     'bashls',
     'gopls',
     'yamlls',
-    'pyright',
+    -- 'pyright',
     'html',
     'jsonls',
     'vimls',
@@ -86,8 +86,8 @@ lsp_installer.on_server_ready(
     if server.name == "yamlls" then
       opts.settings = {
         yaml = {
-          validate = true,
-          -- completion = true,
+          validate = false,
+          completion = true,
           schemas = {
             kubernetes =  '/rendered.yaml'
           },

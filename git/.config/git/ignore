@@ -3,6 +3,7 @@
 *.DS_Store
 .DS_Store
 
+scratch/
 .rgignore
 foo.groovy
 foo.sh

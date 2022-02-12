@@ -2,3 +2,6 @@
 --smart-case
 # Beause I often care about them
 --hidden
+# but exclude .git
+--glob=!.git
+

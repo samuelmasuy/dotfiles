@@ -1,1 +1,1 @@
-. $(brew --prefix asdf)/asdf.sh
+# . $(brew --prefix asdf)/asdf.sh

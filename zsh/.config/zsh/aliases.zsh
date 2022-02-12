@@ -69,8 +69,7 @@ alias cat="bat"
 # docker console
 alias lzd='lazydocker'
 # prefer ripgrep, but I always type ag
-alias ag='rg --smart-case'
-alias rg='rg --smart-case'
+alias ag='rg'
 # spotify
 alias sp="spotify"
 alias spn="spotify next"
