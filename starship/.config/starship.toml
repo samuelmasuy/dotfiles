@@ -75,7 +75,7 @@ style = "bright-black"
 
 [custom.kube_version]
 command = "kubectl version --client --output=json | jq -r .clientVersion.minor"
-when = "exit 0"
+when = "kubectl config current-context"
 format = '[($output@)]($style)'
 style = "cyan"
 
