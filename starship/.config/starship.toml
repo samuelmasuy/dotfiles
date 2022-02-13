@@ -11,9 +11,8 @@ $fill\
 $status\
 $cmd_duration\
 $jobs\
-${custom.kube_context}\
-${kubernetes}\
 ${custom.kube_version}\
+${kubernetes}\
 $time\
 $line_break\
 $character"""
@@ -74,19 +73,15 @@ style = "yellow"
 format = "[$virtualenv]($style) "
 style = "bright-black"
 
-[custom.kube_context]
-command = "kubectl config current-context | rev | cut -d: -f1 | rev"
-format = '[$output]($style)'
-when = "exit 0"
-style = "cyan bold"
-
-[kubernetes]
-disabled = false
-format = '[/$namespace]($style)'
-style = "cyan bold"
-
 [custom.kube_version]
 command = "kubectl version --client --output=json | jq -r .clientVersion.minor"
 when = "exit 0"
-format = '[ $output]($style)'
+format = '[($output@)]($style)'
 style = "cyan"
+
+[kubernetes]
+disabled = false
+format = '[$context(/$namespace)]($style)'
+style = "cyan bold"
+[kubernetes.context_aliases]
+".+:(?P<cluster>.+)" = "$cluster"
