@@ -1,0 +1,92 @@
+add_newline = false
+
+format = """
+$directory\
+$git_branch\
+$git_state\
+$git_status\
+$terraform\
+$python\
+$fill\
+$status\
+$cmd_duration\
+$jobs\
+${custom.kube_context}\
+${kubernetes}\
+${custom.kube_version}\
+$time\
+$line_break\
+$character"""
+
+# right_format = """
+# $cmd_duration
+# """
+
+[directory]
+style = "blue"
+truncation_length = 2
+truncate_to_repo = false
+
+[fill]
+symbol = " "
+style = "bold green"
+
+[terraform]
+format = ' [\($workspace\)](65) '
+
+[status]
+disabled = false
+# format = '[$common_meaning $signal_number $maybe_int]($style) '
+format = '[$status]($style) '
+
+[character]
+success_symbol = "[❯](green)"
+error_symbol = "[❯](red)"
+vicmd_symbol = "[❮](green)"
+
+[git_branch]
+format = "[$branch]($style)"
+style = "bright-black"
+
+[git_status]
+format = "[[($deleted$renamed$untracked$modified)]($style)[($staged)]($style) ($ahead_behind)](cyan)"
+style = "bright-black"
+modified = "✗"
+deleted = "✗"
+renamed = "✗"
+untracked = "✘"
+staged = "+"
+
+[git_state]
+format = '\([$state( $progress_current/$progress_total)]($style)\) '
+style = "bright-black"
+
+[time]
+disabled = false
+time_format = "%H:%M"
+format = " [$time](242)"
+
+[cmd_duration]
+format = "[$duration]($style) "
+style = "yellow"
+
+[python]
+format = "[$virtualenv]($style) "
+style = "bright-black"
+
+[custom.kube_context]
+command = "kubectl config current-context | rev | cut -d: -f1 | rev"
+format = '[$output]($style)'
+when = "exit 0"
+style = "cyan bold"
+
+[kubernetes]
+disabled = false
+format = '[/$namespace]($style)'
+style = "cyan bold"
+
+[custom.kube_version]
+command = "kubectl version --client --output=json | jq -r .clientVersion.minor"
+when = "exit 0"
+format = '[ $output]($style)'
+style = "cyan"
