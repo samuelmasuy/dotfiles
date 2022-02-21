@@ -55,10 +55,18 @@ return require('packer').startup {
 
     -- search
     use 'airblade/vim-rooter' -- auto cwd in root git repo
-    use '/usr/local/opt/fzf'
-    use 'junegunn/fzf.vim'
+    -- use '/usr/local/opt/fzf'
+    -- use 'junegunn/fzf.vim'
     use 'junegunn/vim-peekaboo' -- what's in @ and \"
-    -- use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim', 'nvim-lua/popup.nvim' } }
+    use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim', 'nvim-lua/popup.nvim' } }
+    use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+    use {
+      "nvim-telescope/telescope-frecency.nvim",
+      config = function()
+        require"telescope".load_extension("frecency")
+      end,
+      requires = {"tami5/sqlite.lua"}
+    }
 
     -- TREE SITTER:
     use {
@@ -76,7 +84,6 @@ return require('packer').startup {
         'nvim-treesitter/nvim-treesitter-textobjects',
         'RRethy/nvim-treesitter-textsubjects',
         'RRethy/nvim-treesitter-textsubjects',
-        'nvim-treesitter/nvim-treesitter',
         'nvim-treesitter/playground',
       },
     }

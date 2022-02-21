@@ -9,7 +9,7 @@
 -- switch to last place edited: ''
 -- <C-o> in insert mode is awesome
 
-if require 'first_load'() then
+if require 'sam.first_load'() then
   return
 end
 
@@ -17,14 +17,4 @@ end
 vim.g.mapleader = ','
 vim.g.disable_toggle_style = true
 
-require 'options'
-require 'mappings'
-require 'leader'
-
-require 'plugins'
-require 'colorscheme'
-require 'line'
-
-require 'lsp'
-require 'completion'
-
+require('sam')

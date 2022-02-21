@@ -102,6 +102,27 @@ lsp_installer.on_server_ready(
       -- print(vim.inspect(opts))
     end
 
+    if server.name == "sumneko_lua" then
+      opts.settings = {
+        Lua = {
+          -- runtime = {
+          --   version = 'LuaJit',
+          --   path = vim.split(package.path, ';')
+          -- },
+          diagnostics = {
+            globals = { 'vim', 'use' }
+          },
+          workspace = {
+            library = vim.api.nvim_get_runtime_file("", true),
+            checkThirdParty = false
+          },
+          telemetry = {
+            enable = false
+          },
+        }
+      }
+    end
+
     -- server:setup(require("coq").lsp_ensure_capabilities(opts))
     server:setup(opts)
     vim.cmd [[ do User LspAttachBuffers ]]
