@@ -1,7 +1,10 @@
 local actions = require('telescope.actions')
+require('telescope').load_extension('fzf')
+
 require('telescope').setup {
   defaults = {
-    prompt_prefix = '❯ ',
+    prompt_prefix = "❯ ",
+    path_display = { "smart" },
     color_devicons = true,
 
     file_previewer   = require('telescope.previewers').vim_buffer_cat.new,
@@ -28,7 +31,6 @@ require('telescope').setup {
   }
 }
 
-require('telescope').load_extension('fzf')
 
 local M = {}
 M.search_configs = function()
