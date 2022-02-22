@@ -28,6 +28,7 @@ return require('packer').startup {
     use "hrsh7th/cmp-path"
     use "hrsh7th/cmp-nvim-lua" -- for vim.api
     use "hrsh7th/cmp-nvim-lsp"
+    use "b0o/SchemaStore.nvim"
     -- Snip
     -- use 'L3MON4D3/LuaSnip'
     -- use 'saadparwaiz1/cmp_luasnip'
@@ -126,13 +127,14 @@ return require('packer').startup {
 
     -- colorschemes
     -- use { 'joshdick/onedark.vim' }
+    -- use 'ful1e5/onedark.nvim'
     use { 'navarasu/onedark.nvim' }
-    use {
-      'npxbr/gruvbox.nvim',
-      requires = {
-        'rktjmp/lush.nvim',
-      }
-    }
+    -- use {
+    --   'npxbr/gruvbox.nvim',
+    --   requires = {
+    --     'rktjmp/lush.nvim',
+    --   }
+    -- }
     -- use { 'Th3Whit3Wolf/one-nvim' }
     -- use { 'yashguptaz/calvera-dark.nvim' }
     -- use { 'marko-cerovac/material.nvim' }

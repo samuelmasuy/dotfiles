@@ -1,7 +1,11 @@
 local actions = require('telescope.actions')
+local themes = require('telescope.themes')
+require('telescope').load_extension('fzf')
+
 require('telescope').setup {
   defaults = {
-    prompt_prefix = '❯ ',
+    prompt_prefix = "❯ ",
+    path_display = { "smart" },
     color_devicons = true,
 
     file_previewer   = require('telescope.previewers').vim_buffer_cat.new,
@@ -28,7 +32,6 @@ require('telescope').setup {
   }
 }
 
-require('telescope').load_extension('fzf')
 
 local M = {}
 M.search_configs = function()
@@ -42,9 +45,21 @@ end
 
 M.search_files = function()
   require('telescope.builtin').find_files({
+    find_command = { "fd", "--type", "f", "--exclude", ".git", "--exclude", "node_modules" },
     hidden = true,
     follow = true,
   })
+end
+
+M.lsp_code_actions = function()
+  local opts = themes.get_dropdown {
+    winblend = 10,
+    border = true,
+    previewer = false,
+    shorten_path = false,
+  }
+
+  require("telescope.builtin").lsp_code_actions(opts)
 end
 
 return M
