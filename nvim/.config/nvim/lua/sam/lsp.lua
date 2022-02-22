@@ -84,24 +84,42 @@ lsp_installer.on_server_ready(
     }
 
     if server.name == "yamlls" then
+      -- local schemas = require("schemastore").json.schemas()
+
       opts.settings = {
         yaml = {
-          validate = false,
+          validate = true,
           completion = true,
-          schemas = {
-            kubernetes =  '/rendered.yaml'
-          },
+          schemas = { kubernetes = "/*.yaml" },
+          schemaDownload = {  enable = true },
         }
       }
 
           -- trace = {
           --   server = "verbose"
           -- },
-          -- schemaDownload = {  enable = true },
           -- validate = true,
       -- print(vim.inspect(opts))
     end
 
+    if server.name == "jsonls" then
+      opts = {
+        settings = {
+          json = {
+            schemas = require("schemastore").json.schemas(),
+          },
+        },
+        setup = {
+          commands = {
+            Format = {
+              function()
+                vim.lsp.buf.range_formatting({}, { 0, 0 }, { vim.fn.line "$", 0 })
+              end,
+            },
+          },
+        },
+      }
+    end
     if server.name == "sumneko_lua" then
       opts.settings = {
         Lua = {
