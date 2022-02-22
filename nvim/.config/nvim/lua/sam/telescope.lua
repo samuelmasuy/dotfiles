@@ -42,6 +42,7 @@ end
 
 M.search_files = function()
   require('telescope.builtin').find_files({
+    find_command = { "fd", "--type", "f", "--exclude", ".git", "--exclude", "node_modules" },
     hidden = true,
     follow = true,
   })

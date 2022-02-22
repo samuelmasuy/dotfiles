@@ -29,7 +29,6 @@ local lsp = {
         return client.name
       end
     end
-    return
   end,
   icon = ' ',
   color = {fg = colors.dark_cyan},
