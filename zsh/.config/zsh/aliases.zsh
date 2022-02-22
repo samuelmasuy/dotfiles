@@ -17,10 +17,6 @@ alias la='ls -larth'
 # alias l='exa -a --git-ignore'
 # alias ll='exa -la --git-ignore --sort modified'
 
-alias -g ...='../..'
-alias -g ....='../../..'
-alias -g .....='../../../..'
-alias -g ......='../../../../..'
 # confirm && verbose
 alias	cp="cp -i"
 alias	mv="mv -i"
