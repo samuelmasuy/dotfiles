@@ -1,3 +1,5 @@
+local M = {}
+
 -- local nvim_lsp = require('lspconfig')
 -- vim.lsp.set_log_level("trace")
 -- Use an on_attach function to only map the following keys
@@ -42,7 +44,8 @@ local on_attach = function(_, bufnr)
   --   ]]
   -- end
   if filetype == "helm" then
-    LspHide()
+    vim.b.lsp_shown = 0
+    vim.diagnostic.disable()
   end
 end
 
@@ -91,8 +94,18 @@ lsp_installer.on_server_ready(
         yaml = {
           validate = true,
           completion = true,
+          -- schemas = vim.list_extend(
+          --   {
+          --     {
+          --       kubernetes = '/*.yaml',
+          --       name = 'kubernetes',
+          --     },
+          --   },
+          --   require('schemastore').json.schemas()
+          -- ),
           schemas = { kubernetes = "/*.yaml" },
-          schemaDownload = {  enable = true },
+          -- schemaStore = {  enable = true, url = "https://json.schemastore.org/schema-catalog.json" },
+
         }
       }
 
@@ -147,64 +160,34 @@ lsp_installer.on_server_ready(
     vim.cmd [[ do User LspAttachBuffers ]]
   end
 )
+-- require"fidget".setup{}
 
--- local check_function = function(bufnr, _)
---     local ok, result = pcall(vim.api.nvim_buf_get_var, bufnr, 'lsp_enabled')
---     -- No buffer local variable set, so just enable by default
---     if not ok then
---         return true
---     end
-
---     return result
--- end
-
--- vim.lsp.handlers["textDocument/publishDiagnostics"] =
---     vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
---         underline = check_function,
---         signs = false,
---         update_in_insert = false,
---         virtual_text = check_function
---     })
-
-
--- function LspSwap()
---     if vim.b.lsp_enabled == false then
---         LspShow()
---     else
---         LspHide()
---     end
--- end
-
--- vim.api.nvim_buf_set_keymap(0, 'n', 'yop',
---                                 '<cmd>lua require("lsp-local").LspSwap()<CR>',
---                                 {noremap = true})
-
-function LspHide()
+function M.LspHide()
     if #vim.lsp.buf_get_clients() > 0 then
-        vim.b.lsp_enable = 1
-        vim.lsp.diagnostic.disable()
+        vim.b.lsp_shown = 0
+        vim.diagnostic.hide()
         print("Diagnostic Disabled.")
     else
         error('Diagnostic not enabled in this buffer.')
     end
 end
 
-function LspShow()
+function M.LspShow()
     if #vim.lsp.buf_get_clients() > 0 then
-        vim.b.lsp_enable = 0
-        vim.lsp.diagnostic.enable()
+        vim.b.lsp_shown = 1
+        vim.diagnostic.show()
         print('Diagnostic Enabled.')
     else
         error('Diagnostic not enabled in this buffer.')
     end
 end
 
-function LspSwap()
-    if vim.b.lsp_enable == 0 then
-        LspShow()
+function M.LspSwap()
+    if vim.b.lsp_shown == 0 then
+        M.LspShow()
     else
-        LspHide()
+        M.LspHide()
     end
 end
 
-vim.api.nvim_buf_set_keymap(0, 'n', '<space>d', '<cmd>lua LspSwap()<CR>', {noremap = true})
+return M

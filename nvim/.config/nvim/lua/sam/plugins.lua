@@ -20,6 +20,7 @@ return require('packer').startup {
     -- LSP
     use 'neovim/nvim-lspconfig'
     use 'williamboman/nvim-lsp-installer'
+    -- use 'j-hui/fidget.nvim'
     -- use 'nvim-lua/lsp_extensions.nvim'
 
     -- Completion
