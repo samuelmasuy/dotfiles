@@ -11,8 +11,8 @@ $fill\
 $status\
 $cmd_duration\
 $jobs\
-${custom.kube_version}\
 ${kubernetes}\
+${custom.kube_version}\
 $time\
 $line_break\
 $character"""
@@ -23,12 +23,15 @@ $character"""
 
 [directory]
 style = "blue"
-truncation_length = 2
-truncate_to_repo = false
+# truncation_length = 2
+truncate_to_repo = true
+fish_style_pwd_dir_length = 1
+repo_root_style = "bold blue"
+# use_logical_path = true
 
 [fill]
 symbol = " "
-style = "bold green"
+style = "None"
 
 [terraform]
 format = ' [\($workspace\)](65) '
@@ -53,7 +56,7 @@ style = "bright-black"
 modified = "✗"
 deleted = "✗"
 renamed = "✗"
-untracked = "✘"
+untracked = "✗"
 staged = "+"
 
 [git_state]
@@ -73,15 +76,17 @@ style = "yellow"
 format = "[$virtualenv]($style) "
 style = "bright-black"
 
-[custom.kube_version]
-command = "kubectl version --client --output=json | jq -r .clientVersion.minor"
-when = "kubectl config current-context"
-format = '[($output@)]($style)'
-style = "cyan"
-
 [kubernetes]
 disabled = false
-format = '[$context(/$namespace)]($style)'
+format = '[$context([@](blue)$namespace)]($style)'
 style = "cyan bold"
 [kubernetes.context_aliases]
 ".+:(?P<cluster>.+)" = "$cluster"
+
+[custom.kube_version]
+command = "kubectl version --client --output=json | jq -r .clientVersion.minor"
+# when = "kubectl config current-context"
+when = "exit 0"
+format = '[(:$output)]($style)'
+style = "cyan"
+
