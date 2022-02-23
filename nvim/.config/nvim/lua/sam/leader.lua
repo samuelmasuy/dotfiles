@@ -2,7 +2,7 @@ local keymap = vim.keymap
 
 keymap.set("", "\\", ",", {noremap = true})
 -- Open in a new tab .vimrc
-keymap.set("n", "<leader>e", ":tabedit $MYVIMRC<CR>", {noremap = true})
+-- keymap.set("n", "<leader>e", ":tabedit $MYVIMRC<CR>", {noremap = true})
 -- Remap visual block select.
 -- keymap.set("n", "<leader>v", "<c-v>", {noremap = true})
 -- Open new vertical split
@@ -36,7 +36,7 @@ keymap.set("v", "<leader>p", '"_dp', {noremap = true})
 -- redraw screen
 -- keymap.set("n", "<leader>1", ":redraw!<CR>", {noremap = true})
 
--- use <Leader>H,J,K,L to swap windows
+-- use <Leader>H,J,K,L to resize windows
 keymap.set("", "<leader>H", ":vertical :resize +5<CR>", {noremap = true, silent = true})
 keymap.set("", "<leader>J", ":resize -5<CR>", {noremap = true, silent = true})
 keymap.set("", "<leader>K", ":resize +5<CR>", {noremap = true, silent = true})
