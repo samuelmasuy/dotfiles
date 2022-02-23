@@ -74,13 +74,12 @@ local set_prompt_to_entry_value = function(prompt_bufnr)
 end
 
 function M.edit_neovim()
-
   local opts_with_preview, opts_without_preview
 
   opts_with_preview = {
-    prompt_title = "~ dotfiles ~",
+    prompt_title = "~ nvim ~",
     shorten_path = false,
-    cwd = "~/.config/nvim",
+    cwd = "$XDG_CONFIG_HOME/nvim",
 
     layout_strategy = "flex",
     layout_config = {
