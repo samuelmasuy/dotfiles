@@ -56,6 +56,7 @@ end
 M.search_work_dirs = function()
   require('telescope.builtin').find_files({
     find_command = { "fd", "--type", "d", "--max-depth", "1", "--exclude", "node_modules" },
+    prompt_title = '< Work Dirs >',
     cwd = '$WORKPATH',
   })
 end
