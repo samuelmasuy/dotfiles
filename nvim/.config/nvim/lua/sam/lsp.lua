@@ -55,7 +55,7 @@ local function install_missing_servers()
     'bashls',
     'gopls',
     'yamlls',
-    -- 'pyright',
+    -- 'pyright', // wont' die
     'html',
     'jsonls',
     'vimls',

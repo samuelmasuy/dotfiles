@@ -53,6 +53,13 @@ M.search_files = function()
   })
 end
 
+M.search_work_dirs = function()
+  require('telescope.builtin').find_files({
+    find_command = { "fd", "--type", "d", "--max-depth", "1", "--exclude", "node_modules" },
+    cwd = '$WORKPATH',
+  })
+end
+
 M.lsp_code_actions = function()
   local opts = themes.get_dropdown {
     winblend = 10,
