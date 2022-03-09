@@ -1,9 +1,5 @@
+# vim:ft=zsh
 # zmodload zsh/zprof
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# if [[ -r "${XDG_CACHE_HOME}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-#   source "${XDG_CACHE_HOME}/p10k-instant-prompt-${(%):-%n}.zsh"
-# fi
-
 hash -d c=$XDG_CONFIG_HOME
 hash -d d=$XDG_DATA_HOME
 
@@ -17,15 +13,11 @@ fi;
 
 source <(antibody init)
 
-# antibody bundle romkatv/powerlevel10k
-
 antibody bundle robbyrussell/oh-my-zsh path:lib/completion.zsh
 antibody bundle robbyrussell/oh-my-zsh path:lib/git.zsh
 
 antibody bundle robbyrussell/oh-my-zsh path:plugins/git
-# antibody bundle robbyrussell/oh-my-zsh path:plugins/mvn
 antibody bundle robbyrussell/oh-my-zsh path:plugins/docker
-antibody bundle robbyrussell/oh-my-zsh path:plugins/colored-man-pages
 
 antibody bundle zsh-users/zsh-completions
 
@@ -74,9 +66,6 @@ eval "$(zoxide init zsh)"
 
 [[ -f ${XDG_CONFIG_HOME}/zsh/fzf.zsh ]] && source ${XDG_CONFIG_HOME}/zsh/fzf.zsh
 
-# To customize prompt, run `p10k configure`
-# [[ ! -f ${XDG_CONFIG_HOME}/zsh/p10k.zsh ]] || source ${XDG_CONFIG_HOME}/zsh/p10k.zsh
 eval "$(starship init zsh)"
 
 # zprof
-

@@ -35,7 +35,7 @@ alias clock='while sleep 1;do tput sc;tput cup 0 $(($(tput cols)-29));date;tput 
 alias mvim='open -a macvim'
 # Open tmux
 alias tmux="tmux -f ${XDG_CONFIG_HOME:-$HOME/.config}/tmux/tmux.conf"
-alias mux="tmuxinator"
+# alias mux="tmuxinator"
 # Using neovim
 alias vim="nvim"
 alias vimdiff="nvim -d"
@@ -45,7 +45,7 @@ alias vi="vi -u ${XDG_CONFIG_HOME:-$HOME/.config}/vim/.vimrc"
 # dotfiles
 alias cdd="cd $HOME/.dotfiles"
 # weather
-alias weath="curl wttr.in/montreal"
+alias weather="curl wttr.in/montreal"
 # suffix alias
 alias -s md=nvim
 #docker
@@ -57,15 +57,8 @@ alias drms="docker ps -aq --no-trunc | xargs docker rm"
 alias drmd="docker images -q --filter dangling=true | xargs docker rmi"
 # hub alias
 eval "$(hub alias -s)"
-# tools alias
-alias gpb="gpsup"
-alias gprco="git pr checkout"
 # bat > cat
 alias cat="bat"
-# docker console
-alias lzd='lazydocker'
-# prefer ripgrep, but I always type ag
-alias ag='rg'
 # spotify
 alias sp="spotify"
 alias spn="spotify next"

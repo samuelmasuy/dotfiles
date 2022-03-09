@@ -7,10 +7,7 @@ function chpwd() {
 function my_ip() {
     ifconfig | grep 'broadcast' | awk '{print $6}'
 }
-# Display latest files commited.
-function latest() {
-    ls -t $1/* | head -n 1
-}
+
 # Display neatly formatted path of the system.
 function path() {
     echo $PATH | tr ":" "\n" | \
@@ -58,10 +55,6 @@ function mvd() {
               /*) cd / ;;
         esac
     fi
-}
-# Higlight the matching pattern in a file.
-function highlight () {
-    grep --color -E "$1|$" "$@"
 }
 
 function rawurlencode() {
@@ -126,7 +119,7 @@ function kube-switch() {
 }
 
 function e() {
-  vim $(which $1)
+  nvim $(which $1)
 }
 
 zsh_kubectl_minor_version() {

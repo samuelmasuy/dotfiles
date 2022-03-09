@@ -45,6 +45,7 @@ export PATH="$PATH:${HOME}/.krew/bin"
 export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 # export PATH="$PATH:/usr/local/opt/node@14/bin"
 
+export MANPAGER='nvim +Man!'
 export MANPATH="/usr/local/man:$MANPATH"
 
 export MAVEN_OPTS="-Xmx1024m -Xms512m"
