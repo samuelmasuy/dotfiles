@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # cd in the previous directory.
 alias cdp="cd ~-"
 alias ..='cd -- ..'
@@ -12,7 +14,7 @@ alias l='exa -a --git-ignore'
 alias ll='exa -la --git-ignore --git --sort modified'
 # or not
 alias ls='ls -G'
-alias la='ls -larth'
+alias la='ls -lArth'
 # alias la='exa -la --sort modified'
 # alias l='exa -a --git-ignore'
 # alias ll='exa -la --git-ignore --sort modified'
@@ -70,3 +72,23 @@ alias j11='export JAVA_HOME=$(/usr/libexec/java_home -v 11); java -version'
 
 # Symlink all dotfiles like magic
 alias dotfilesInstall="$DOTFILES_HOME/install"
+
+# +-----+
+# | Git |
+# +-----+
+alias g='git'
+alias gco='git checkout'
+alias gl='git pull'
+alias gst='git status'
+alias ga='git add'
+alias gc='git commit -v'
+alias gc!='git commit -v --amend'
+alias gcn!='git commit -v --no-edit --amend'
+alias gp='git push'
+
+# +-----+
+# | k8s |
+# +-----+
+alias k=kubectl
+alias kn=kubens
+alias kx=kubectx

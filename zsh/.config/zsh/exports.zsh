@@ -1,14 +1,3 @@
-# Location of history file.
-export HISTFILE="$XDG_DATA_HOME"/zsh/history
-# Number of lines kept in history.
-export HISTSIZE=50000
-# Number of lines saved in the history after logout.
-export SAVEHIST=10000
-export EDITOR=nvim
-export VISUAL=nvim
-
-export ZSH_CACHE_DIR="${XDG_CACHE_HOME}/zsh"
-
 export GOPATH=$HOME
 export DOTFILES_HOME=$HOME/.dotfiles
 export IDEA_HOME="/Applications/IntelliJ IDEA CE.app/Contents"

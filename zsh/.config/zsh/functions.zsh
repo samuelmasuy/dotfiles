@@ -1,7 +1,7 @@
 # Change cd to do a ls right after executing.
 function chpwd() {
     emulate -L zsh
-    ls
+    ls -A
 }
 # Display ip adress.
 function my_ip() {
@@ -122,19 +122,39 @@ function e() {
   nvim $(which $1)
 }
 
+function git_current_branch() {
+  local ref
+  ref=$(__git_prompt_git symbolic-ref --quiet HEAD 2> /dev/null)
+  local ret=$?
+  if [[ $ret != 0 ]]; then
+    [[ $ret == 128 ]] && return  # no git repo.
+    ref=$(__git_prompt_git rev-parse --short HEAD 2> /dev/null) || return
+  fi
+  echo ${ref#refs/heads/}
+}
+
+function ggf() {
+  [[ "$#" != 1 ]] && local b="$(git_current_branch)"
+  git push --force origin "${b:=$1}"
+}
+
+function gpsup() {
+  git push --set-upstream origin $(git_current_branch)
+}
+
 zsh_kubectl_minor_version() {
   local kubectl_minor_version=$(kubectl version --client --output=json | jq -r .clientVersion.minor)
   echo -n "($kubectl_minor_version)"
 }
 
 src() {
-	local cache="$ZSH_CACHE_DIR"
-	autoload -U compinit zrecompile
-	compinit -i -d "$cache/zcomp-$HOST"
+	# local cache="$ZSH_CACHE_DIR"
+	# autoload -U compinit zrecompile
+	# compinit -i -d "$cache/zcomp-$HOST"
 
-	for f in ${ZDOTDIR:-~}/.zshrc "$cache/zcomp-$HOST"; do
-		zrecompile -p $f && command rm -f $f.zwc.old
-	done
+	# for f in ${ZDOTDIR:-~}/.zshrc "$cache/zcomp-$HOST"; do
+	# 	zrecompile -p $f && command rm -f $f.zwc.old
+	# done
 
 	# Use $SHELL if it's available and a zsh shell
 	local shell="$ZSH_ARGZERO"

@@ -30,7 +30,7 @@ command -v git >/dev/null 2>&1 || brew install git
 echo "**************************************************************************"
 echo "******************Dotfiles Install...*************************************"
 echo "**************************************************************************"
-[ ! -d "$DOTFILES_HOME" ] && git clone --recursive git@github.com:samuelmasuy/dotfiles.git $DOTFILES_HOME
+[ ! -d "$DOTFILES_HOME" ] && git clone --recurse-submodules -j8 git@github.com:samuelmasuy/dotfiles.git $DOTFILES_HOME
 
 echo "**************************************************************************"
 echo "******************Application and tool installation...********************"
