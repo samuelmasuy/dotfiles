@@ -1,11 +1,12 @@
 # +---------+
 # | General |
 # +---------+
-
+# Ref: https://thevaluable.dev/zsh-completion-guide-examples/
+#
 # Load more completions
 # (kubectl > 1.22) kubectl completion zsh > ${DOTFILES_HOME}/zsh/.config/zsh/plugins/kubectl-completion/_kubectl
 fpath=(${DOTFILES_HOME}/zsh/.config/zsh/plugins/kubectl-completion $fpath)
-fpath=(${DOTFILES_HOME}/zsh/.config/zsh/plugins/zsh-completions/src $fpath)
+# fpath=(${DOTFILES_HOME}/zsh/.config/zsh/plugins/zsh-completions/src $fpath) # is it really needed?
 
 # complist give access to the keymap menuselect (should be loaded before compinit)
 zmodload zsh/complist
@@ -21,25 +22,23 @@ bindkey -M menuselect 'l' vi-forward-char
 # To find this file, Zsh will look in the directories of the Zsh file search path,
 # defined in the variable $fpath, and search a file called compinit.
 # It doesn’t expand aliases thanks to the -U option.
-# autoload -Uz compinit && compinit
-autoload -U compinit; compinit
+# The flags -z mark the function to be autoloaded using the zsh style.
+# Checking the cached .zcompdump file to see if it must be regenerated adds a noticable
+# delay to zsh startup. This restricts it to once a day.
+# https://carlosbecker.com/posts/speeding-up-zsh/
+autoload -Uz compinit
+if [ $(date +'%j') != $(stat -f '%Sm' -t '%j' ${ZDOTDIR}/.zcompdump) ]; then
+  compinit
+else
+  compinit -C
+fi
 _comp_options+=(globdots) # With hidden files
 
 autoload -U bashcompinit; bashcompinit
 
-# autoload -U compinit; compinit
-# # https://gist.github.com/ctechols/ca1035271ad134841284
-# autoload -Uz compinit
-# if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
-# 	compinit;
-# else
-# 	compinit -C;
-# fi;
-
 # +---------+
 # | Options |
 # +---------+
-
 # setopt GLOB_COMPLETE      # Show autocompletion menu with globs
 setopt MENU_COMPLETE        # Automatically highlight first element of completion menu
 setopt AUTO_LIST            # Automatically list choices on ambiguous completion.
@@ -48,7 +47,6 @@ setopt COMPLETE_IN_WORD     # Complete from both ends of a word.
 # +---------+
 # | zstyles |
 # +---------+
-
 # Ztyle pattern
 # :completion:<function>:<completer>:<command>:<argument>:<tag>
 
@@ -83,20 +81,9 @@ zstyle ':completion:*:*:*:*:warnings' format ' %F{red}-- no matches found --%f'
 
 # zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
-# source <(kubectl completion zsh)
-# source <(helm completion zsh)
-
-# source <(command kubectl completion zsh)
-# complete -F __start_kubectl k
-
-# function k() {
-#     if ! type __start_kubectl >/dev/null 2>&1; then
-#       complete -F __start_kubectl k
-#     fi
-
-#     command k "$@"
-# }
-
+# +---------------+
+# | custom setups |
+# +---------------+
 function helm() {
     if ! type __start_helm >/dev/null 2>&1; then
         source <(command helm completion zsh)
