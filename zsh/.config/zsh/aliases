@@ -57,8 +57,6 @@ alias dpsa="docker ps -aq -f status=exited"
 alias drms="docker ps -aq --no-trunc | xargs docker rm"
 # Remove dangling/untagged images
 alias drmd="docker images -q --filter dangling=true | xargs docker rmi"
-# hub alias
-eval "$(hub alias -s)"
 # bat > cat
 alias cat="bat"
 # spotify
@@ -85,6 +83,12 @@ alias gc='git commit -v'
 alias gc!='git commit -v --amend'
 alias gcn!='git commit -v --no-edit --amend'
 alias gp='git push'
+
+# hub alias
+eval "$(hub alias -s)"
+alias gprm="git pull-request -a samuelmasuy"
+
+alias gpr="gh prs"
 
 # +-----+
 # | k8s |
