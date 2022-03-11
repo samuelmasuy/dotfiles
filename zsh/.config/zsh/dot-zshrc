@@ -20,16 +20,20 @@ setopt EXTENDED_GLOB        # Use extended globbing syntax.
 # +---------+
 # | HISTORY |
 # +---------+
-setopt EXTENDED_HISTORY          # Write the history file in the ':start:elapsed;command' format.
-setopt SHARE_HISTORY             # Share history between all sessions.
-setopt HIST_EXPIRE_DUPS_FIRST    # Expire a duplicate event first when trimming history.
-setopt HIST_IGNORE_DUPS          # Do not record an event that was just recorded again.
-setopt HIST_IGNORE_ALL_DUPS      # Delete an old recorded event if a new event is a duplicate.
-setopt HIST_FIND_NO_DUPS         # Do not display a previously found event.
-setopt HIST_IGNORE_SPACE         # Do not record an event starting with a space.
-setopt HIST_SAVE_NO_DUPS         # Do not write a duplicate event to the history file.
-setopt HIST_VERIFY               # Do not execute immediately upon history expansion.
-setopt INC_APPEND_HISTORY        # Add commands to HISTFILE in order of execution
+# Do not put those exports in zshenv! (MacOS fault)
+export HISTFILE="$XDG_DATA_HOME"/zsh/history # Location of history file.
+export HISTSIZE=500000         # Number of lines kept in history.
+export SAVEHIST=100000         # Number of lines saved in the history after logout.
+setopt EXTENDED_HISTORY        # Write the history file in the ':start:elapsed;command' format.
+setopt SHARE_HISTORY           # Share history between all sessions.
+setopt HIST_EXPIRE_DUPS_FIRST  # Expire a duplicate event first when trimming history.
+setopt HIST_IGNORE_DUPS        # Do not record an event that was just recorded again.
+setopt HIST_IGNORE_ALL_DUPS    # Delete an old recorded event if a new event is a duplicate.
+setopt HIST_FIND_NO_DUPS       # Do not display a previously found event.
+setopt HIST_IGNORE_SPACE       # Do not record an event starting with a space.
+setopt HIST_SAVE_NO_DUPS       # Do not write a duplicate event to the history file.
+setopt HIST_VERIFY             # Do not execute immediately upon history expansion.
+setopt INC_APPEND_HISTORY      # Add commands to HISTFILE in order of execution
 
 # +---------+
 # | ALIASES |
@@ -91,13 +95,15 @@ eval "$(zoxide init zsh)"
 # +---------------------+
 source ${DOTFILES_HOME}/zsh/.config/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh #1
 
-# +---------+
-# | HISTORY |
-# +---------+
+# +----------------+
+# | HISTORY SEARCH |
+# +----------------+
 source ${DOTFILES_HOME}/zsh/.config/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh #2
 # bindkey '^[OA' history-substring-search-up
 # bindkey '^[OB' history-substring-search-down
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
+# bindkey '^[[A' history-substring-search-up
+# bindkey '^[[B' history-substring-search-down
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
 
 # zprof

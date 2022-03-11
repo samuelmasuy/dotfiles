@@ -11,16 +11,7 @@ export VISUAL=nvim
 
 # Needs to be set here, so Zsh can find other dotfiles.
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
-
 export ZSH_CACHE_DIR="${XDG_CACHE_HOME}/zsh"
-
-# Location of history file.
-export HISTFILE="$XDG_DATA_HOME"/zsh/history
-# Number of lines kept in history.
-export HISTSIZE=50000
-# Number of lines saved in the history after logout.
-export SAVEHIST=10000
-
 # Simlink it all
 # export STOW_FOLDERS="zsh"
 export STOW_FOLDERS="zsh,nvim,tmux,vim,git,fd,npm,yamllint,iterm,ripgrep,starship"

@@ -69,6 +69,7 @@ mkdir -p $XDG_DATA_HOME/zsh
 mkdir -p $XDG_CACHE_HOME/gem
 
 
+defaults write org.hammerspoon.Hammerspoon MJConfigFile "~/.config/hammerspoon/init.lua"
 echo "Almost Done! Run ./install and Just do that: https://blog.birkhoff.me/make-sudo-authenticate-with-touch-id-in-a-tmux/"
 
 # echo "**************************************************************************"
@@ -77,26 +78,3 @@ echo "Almost Done! Run ./install and Just do that: https://blog.birkhoff.me/make
 # sudo pip3 install --upgrade neovim
 # sudo gem install neovim
 # npm install -g neovim
-
-# TODO: check for stow https://www.gnu.org/software/stow/ for a better symlink management
-# ln -s $DOTFILES_HOME/zsh/zshenv $HOME/.zshenv
-
-# mkdir -p $XDG_CONFIG_HOME/vim && \
-#   ln -s $DOTFILES_HOME/basic_vimrc $XDG_CONFIG_HOME/vim/.vimrc
-# mkdir -p $XDG_CONFIG_HOME/git && \
-#   ln -s $DOTFILES_HOME/gitignore $XDG_CONFIG_HOME/git/ignore
-# mkdir -p $XDG_CONFIG_HOME/fd && \
-#   ln -s $DOTFILES_HOME/gitignore $XDG_CONFIG_HOME/fd/ignore
-# mkdir -p $XDG_CONFIG_HOME/zsh && \
-#   ln -s $DOTFILES_HOME/zsh/.zshrc $XDG_CONFIG_HOME/zsh/.zshrc && \
-#   ln -s $DOTFILES_HOME/zsh/config $XDG_CONFIG_HOME/zsh/config
-# mkdir -p $XDG_CONFIG_HOME/npm && \
-#   ln -s $DOTFILES_HOME/npmrc $XDG_CONFIG_HOME/npm/npmrc && \
-# mkdir -p $XDG_CONFIG_HOME/yamllint && \
-#   ln -s $DOTFILES_HOME/yamllint.yaml $XDG_CONFIG_HOME/yamllint/config
-# ln -s $DOTFILES_HOME/nvim $XDG_CONFIG_HOME/nvim
-# ln -s $DOTFILES_HOME/tmux $XDG_CONFIG_HOME/tmux
-# ln -s $DOTFILES_HOME/ideavimrc $HOME/.ideavimrc
-# ln -s $DOTFILES_HOME/iterm/mysnazzy.itermcolors $HOME/Documents/mysnazzy.itermcolors
-
-# cp $DOTFILES_HOME/asdf/tool-versions $HOME/.tool-versions
