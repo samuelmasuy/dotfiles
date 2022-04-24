@@ -1,57 +1,56 @@
-local api = vim.api
 -- General Mappings
 -- try to use ZZ
-api.nvim_set_keymap("c", "wq", ":echo 'Use ZZ or :x'<CR>", {noremap = true})
+vim.keymap.set("c", "wq", ":echo 'Use ZZ or :x'<CR>")
 
 -- Disable un-VI keys.
--- api.nvim_set_keymap("n", "<up>", "<nop>", {noremap = true})
--- api.nvim_set_keymap("n", "<down>", "<nop>", {noremap = true})
-api.nvim_set_keymap("i", "<up>", "<nop>", {noremap = true})
-api.nvim_set_keymap("i", "<down>", "<nop>", {noremap = true})
-api.nvim_set_keymap("i", "<left>", "<nop>", {noremap = true})
-api.nvim_set_keymap("i", "<right>", "<nop>", {noremap = true})
+-- vim.keymap.set("n", "<up>", "<nop>")
+-- vim.keymap.set("n", "<down>", "<nop>")
+vim.keymap.set("i", "<up>", "<nop>")
+vim.keymap.set("i", "<down>", "<nop>")
+vim.keymap.set("i", "<left>", "<nop>")
+vim.keymap.set("i", "<right>", "<nop>")
 
 -- Left and right can switch buffers
-api.nvim_set_keymap("n", "<left>", ":bprevious<CR>", {noremap = true})
-api.nvim_set_keymap("n", "<right>", ":bnext<CR>", {noremap = true})
+vim.keymap.set("n", "<left>", ":bprevious<CR>")
+vim.keymap.set("n", "<right>", ":bnext<CR>")
 
 -- Up and down can switch quickfix list
-api.nvim_set_keymap("n", "<up>", ":cprevious<CR>", {noremap = true})
-api.nvim_set_keymap("n", "<down>", ":cnext<CR>", {noremap = true})
+vim.keymap.set("n", "<up>", ":cprevious<CR>")
+vim.keymap.set("n", "<down>", ":cnext<CR>")
 
 -- Quick Fold and Unfold.
--- api.nvim_set_keymap("n", "<space>", "za", {noremap = true})
--- api.nvim_set_keymap("v", "<space>", "zf", {noremap = true})
+-- vim.keymap.set("n", "<space>", "za")
+-- vim.keymap.set("v", "<space>", "zf")
 
 -- Make sure to be in the middle of the screen when searching
-api.nvim_set_keymap("n", "n", "nzzzv", {noremap = true})
-api.nvim_set_keymap("n", "N", "Nzzzv", {noremap = true})
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "Nzzzv")
 -- Make sure to stay at current cursor position when joining
-api.nvim_set_keymap("n", "J", "mzJ`v", {noremap = true})
+vim.keymap.set("n", "J", "mzJ`v")
 
 -- Easier indentation of code blocks.
-api.nvim_set_keymap("v", "<", "<gv", {noremap = true})
-api.nvim_set_keymap("v", ">", ">gv", {noremap = true})
+vim.keymap.set("v", "<", "<gv")
+vim.keymap.set("v", ">", ">gv")
 
 -- basic, why not before
-api.nvim_set_keymap("n", ";", ":", {noremap = true})
-api.nvim_set_keymap("n", ":", ";", {noremap = true})
-api.nvim_set_keymap("v", ";", ":", {noremap = true})
-api.nvim_set_keymap("v", ":", ";", {noremap = true})
+vim.keymap.set("n", ";", ":")
+vim.keymap.set("n", ":", ";")
+vim.keymap.set("v", ";", ":")
+vim.keymap.set("v", ":", ";")
 
 -- logical, why vi
-api.nvim_set_keymap("n", "Y", "y$", {noremap = true})
+vim.keymap.set("n", "Y", "y$")
 
 -- Switch marks
--- api.nvim_set_keymap("n", "'", "`", {noremap = true})
--- api.nvim_set_keymap("n", "`", "'", {noremap = true})
+-- vim.keymap.set("n", "'", "`")
+-- vim.keymap.set("n", "`", "'")
 
 -- Don't move on *
-api.nvim_set_keymap("n", "*", ":let stay_star_view = winsaveview()<cr>*:call winrestview(stay_star_view)<cr>", {noremap = true, silent = true})
+vim.keymap.set("n", "*", ":let stay_star_view = winsaveview()<cr>*:call winrestview(stay_star_view)<cr>", {noremap = true, silent = true})
 
 -- Terminal mode
-api.nvim_set_keymap("t", "<Esc>", "<C-\\><C-n>", {noremap = true})
-api.nvim_set_keymap("t", "<C-h>", "<C-\\><C-n><C-w>h", {noremap = true})
-api.nvim_set_keymap("t", "<C-j>", "<C-\\><C-n><C-w>j", {noremap = true})
-api.nvim_set_keymap("t", "<C-k>", "<C-\\><C-n><C-w>k", {noremap = true})
-api.nvim_set_keymap("t", "<C-l>", "<C-\\><C-n><C-w>l", {noremap = true})
+vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
+vim.keymap.set("t", "<C-h>", "<C-\\><C-n><C-w>h")
+vim.keymap.set("t", "<C-j>", "<C-\\><C-n><C-w>j")
+vim.keymap.set("t", "<C-k>", "<C-\\><C-n><C-w>k")
+vim.keymap.set("t", "<C-l>", "<C-\\><C-n><C-w>l")
