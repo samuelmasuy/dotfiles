@@ -55,7 +55,7 @@ local function install_missing_servers()
     'bashls',
     'gopls',
     'yamlls',
-    -- 'pyright', // wont' die
+    'pyright', -- wont' die
     'html',
     'jsonls',
     'vimls',
@@ -103,7 +103,7 @@ lsp_installer.on_server_ready(
           --   },
           --   require('schemastore').json.schemas()
           -- ),
-          schemas = { kubernetes = "/*.yaml" },
+          -- schemas = { kubernetes = "/*.yaml" },
           -- schemaStore = {  enable = true, url = "https://json.schemastore.org/schema-catalog.json" },
 
         }

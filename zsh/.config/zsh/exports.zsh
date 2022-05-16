@@ -15,6 +15,7 @@ export AZURE_CONFIG_DIR=$XDG_DATA_HOME/azure
 export _RESURRECT_DIR=$XDG_DATA_HOME/tmux/resurrect
 export GRADLE_USER_HOME="$XDG_DATA_HOME"/gradle
 export SHPOTIFY_CONFIG_FILE="$XDG_CONFIG_HOME"/shpotify/config
+export ASDF_DIR="$(brew --prefix asdf)/libexec"
 export ASDF_CONFIG_FILE="$XDG_CONFIG_HOME"/asdf/config
 export ASDF_DATA_DIR="$XDG_DATA_HOME"/asdf
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/ripgreprc"

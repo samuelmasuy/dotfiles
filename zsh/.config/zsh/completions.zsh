@@ -66,6 +66,9 @@ zstyle ':completion:*' file-sort modification
 # Required for completion to be in good groups (named after the tags)
 zstyle ':completion:*' group-name ''
 
+# smart-case
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+
 # Autocomplete options for cd instead of directory stack
 zstyle ':completion:*:*:*:cd:*' complete-options true
 zstyle ':completion:*:*:*:cd:*' file-sort modification reverse
@@ -80,6 +83,8 @@ zstyle ':completion:*:*:*:*:warnings' format ' %F{red}-- no matches found --%f'
 # zstyle ':completion:*:*:*:*:descriptions' format '%F{green}-- %d --%f'
 
 # zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+#
+
 
 # +---------------+
 # | custom setups |
