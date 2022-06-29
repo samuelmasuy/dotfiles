@@ -32,6 +32,7 @@ export PATH="$PATH:/usr/local/opt/curl-openssl/bin"
 export PATH="$PATH:/usr/local/opt/curl-openssl/bin"
 export PATH="$PATH:$CARGO_HOME/bin"
 export PATH="$PATH:${HOME}/.krew/bin"
+# export PATH="$PATH:${XDG_DATA_HOME}/nvim/lsp_servers"
 export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 # export PATH="$PATH:/usr/local/opt/node@14/bin"
 

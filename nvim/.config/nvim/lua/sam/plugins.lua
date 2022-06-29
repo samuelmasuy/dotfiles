@@ -151,7 +151,7 @@ return require('packer').startup {
 
     use 'tpope/vim-vinegar' -- Enhance netrw
     use 'tpope/vim-eunuch' -- Adds Unix commands to vim.
-    use 'justinmk/vim-dirvish' -- minimalist directory viewer -
+    -- use 'justinmk/vim-dirvish' -- minimalist directory viewer -
     -- use 'Valloric/MatchTagAlways'
     -- use 'Valloric/ListToggle' -- quick*fix* *l*ocation
     use 'vim-scripts/DirDiff.vim' -- :DirDiff <A:Src Directory> <B:Src Directory>

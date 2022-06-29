@@ -79,9 +79,9 @@ alias gco='git checkout'
 alias gl='git pull'
 alias gst='git status'
 alias ga='git add'
-alias gc='git commit -v'
-alias gc!='git commit -v --amend'
-alias gcn!='git commit -v --no-edit --amend'
+alias gc='git commit -v -s'
+alias gc!='git commit -v -s --amend'
+alias gcn!='git commit -v -s --no-edit --amend'
 alias gp='git push'
 
 # hub alias

@@ -13,10 +13,10 @@ zmodload zsh/complist
 
 # Use hjlk in menu selection (during completion)
 # Doesn't work well with interactive mode
-bindkey -M menuselect 'h' vi-backward-char
-bindkey -M menuselect 'k' vi-up-line-or-history
-bindkey -M menuselect 'j' vi-down-line-or-history
-bindkey -M menuselect 'l' vi-forward-char
+# bindkey -M menuselect 'h' vi-backward-char
+# bindkey -M menuselect 'k' vi-up-line-or-history
+# bindkey -M menuselect 'j' vi-down-line-or-history
+# bindkey -M menuselect 'l' vi-forward-char
 
 # The autoload command load a file containing shell commands.
 # To find this file, Zsh will look in the directories of the Zsh file search path,
