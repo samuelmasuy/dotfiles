@@ -1,10 +1,8 @@
+local lspconfig = require('lspconfig')
+
 local M = {}
 
--- local nvim_lsp = require('lspconfig')
--- vim.lsp.set_log_level("trace")
--- Use an on_attach function to only map the following keys
--- after the language server attaches to the current buffer
-local on_attach = function(_, bufnr)
+function M.on_attach(_, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
@@ -35,132 +33,111 @@ local on_attach = function(_, bufnr)
   buf_set_keymap('n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
 
   local filetype = vim.api.nvim_buf_get_option(0, "filetype")
-  -- if filetype == "go" then
-  --   vim.cmd [[
-  --     augroup lsp_buf_format
-  --       au! BufWritePre <buffer>
-  --       autocmd BufWritePre <buffer> :lua vim.lsp.buf.formatting()
-  --     augroup END
-  --   ]]
-  -- end
   if filetype == "helm" then
     vim.b.lsp_shown = 0
     vim.diagnostic.disable()
   end
 end
 
-local lsp_installer = require'nvim-lsp-installer'
-local function install_missing_servers()
-  local lsps = {
-    'bashls',
-    'gopls',
-    'yamlls',
-    -- 'pyright', // wont' die
-    'html',
-    'jsonls',
-    'vimls',
-    'tsserver',
-    'terraformls',
-    'sumneko_lua',
-    'dockerls',
+require("nvim-lsp-installer").setup({
+  automatic_installation = true
+})
+
+-- lspservers with default config
+local servers = {
+  'bashls',
+  'gopls',
+  'yamlls',
+  'pyright', -- wont' die
+  'html',
+  'jsonls',
+  'vimls',
+  'tsserver',
+  'terraformls',
+  'sumneko_lua',
+  'dockerls',
+}
+
+for _, lsp in ipairs(servers) do
+  local opts = {
+    on_attach = M.on_attach,
+    flags = {
+      debounce_text_changes = 150,
+    },
+    settings = {},
+    capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
   }
 
-  for _, lsp_name in ipairs(lsps) do
-    local ok, lsp_server = lsp_installer.get_server(lsp_name)
-    if ok then
-      if not lsp_server:is_installed() then
-        lsp_installer.install(lsp_name)
-      end
-    end
-  end
-end
-install_missing_servers()
+  if lsp == "yamlls" then
+    -- local schemas = require("schemastore").json.schemas()
 
-lsp_installer.on_server_ready(
-  function(server)
-    local opts = {
-      on_attach = on_attach,
-      flags = {
-        debounce_text_changes = 150,
-      },
-      settings = {},
-      capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+    opts.settings = {
+      yaml = {
+        validate = true,
+        completion = true,
+        -- schemas = vim.list_extend(
+        --   {
+        --     {
+        --       kubernetes = '/*.yaml',
+        --       name = 'kubernetes',
+        --     },
+        --   },
+        --   require('schemastore').json.schemas()
+        -- ),
+        -- schemas = { kubernetes = "/*.yaml" },
+        -- schemaStore = {  enable = true, url = "https://json.schemastore.org/schema-catalog.json" },
+
+      }
     }
 
-    if server.name == "yamlls" then
-      -- local schemas = require("schemastore").json.schemas()
-
-      opts.settings = {
-        yaml = {
-          validate = true,
-          completion = true,
-          -- schemas = vim.list_extend(
-          --   {
-          --     {
-          --       kubernetes = '/*.yaml',
-          --       name = 'kubernetes',
-          --     },
-          --   },
-          --   require('schemastore').json.schemas()
-          -- ),
-          schemas = { kubernetes = "/*.yaml" },
-          -- schemaStore = {  enable = true, url = "https://json.schemastore.org/schema-catalog.json" },
-
-        }
-      }
-
-          -- trace = {
-          --   server = "verbose"
-          -- },
-          -- validate = true,
-      -- print(vim.inspect(opts))
-    end
-
-    if server.name == "jsonls" then
-      opts = {
-        settings = {
-          json = {
-            schemas = require("schemastore").json.schemas(),
-          },
-        },
-        setup = {
-          commands = {
-            Format = {
-              function()
-                vim.lsp.buf.range_formatting({}, { 0, 0 }, { vim.fn.line "$", 0 })
-              end,
-            },
-          },
-        },
-      }
-    end
-    if server.name == "sumneko_lua" then
-      opts.settings = {
-        Lua = {
-          -- runtime = {
-          --   version = 'LuaJit',
-          --   path = vim.split(package.path, ';')
-          -- },
-          diagnostics = {
-            globals = { 'vim', 'use' }
-          },
-          workspace = {
-            library = vim.api.nvim_get_runtime_file("", true),
-            checkThirdParty = false
-          },
-          telemetry = {
-            enable = false
-          },
-        }
-      }
-    end
-
-    -- server:setup(require("coq").lsp_ensure_capabilities(opts))
-    server:setup(opts)
-    vim.cmd [[ do User LspAttachBuffers ]]
+        -- trace = {
+        --   server = "verbose"
+        -- },
+        -- validate = true,
+    -- print(vim.inspect(opts))
   end
-)
--- require"fidget".setup{}
+
+  if lsp == "jsonls" then
+    opts = {
+      settings = {
+        json = {
+          schemas = require("schemastore").json.schemas(),
+        },
+      },
+      setup = {
+        commands = {
+          Format = {
+            function()
+              vim.lsp.buf.range_formatting({}, { 0, 0 }, { vim.fn.line "$", 0 })
+            end,
+          },
+        },
+      },
+    }
+  end
+  if lsp == "sumneko_lua" then
+    opts.settings = {
+      Lua = {
+        -- runtime = {
+        --   version = 'LuaJit',
+        --   path = vim.split(package.path, ';')
+        -- },
+        diagnostics = {
+          globals = { 'vim', 'use' }
+        },
+        workspace = {
+          library = vim.api.nvim_get_runtime_file("", true),
+          checkThirdParty = false
+        },
+        telemetry = {
+          enable = false
+        },
+      }
+    }
+  end
+  lspconfig[lsp].setup(opts)
+  vim.cmd [[ do User LspAttachBuffers ]]
+end
 
 function M.LspHide()
     if #vim.lsp.buf_get_clients() > 0 then

@@ -13,10 +13,10 @@ zmodload zsh/complist
 
 # Use hjlk in menu selection (during completion)
 # Doesn't work well with interactive mode
-bindkey -M menuselect 'h' vi-backward-char
-bindkey -M menuselect 'k' vi-up-line-or-history
-bindkey -M menuselect 'j' vi-down-line-or-history
-bindkey -M menuselect 'l' vi-forward-char
+# bindkey -M menuselect 'h' vi-backward-char
+# bindkey -M menuselect 'k' vi-up-line-or-history
+# bindkey -M menuselect 'j' vi-down-line-or-history
+# bindkey -M menuselect 'l' vi-forward-char
 
 # The autoload command load a file containing shell commands.
 # To find this file, Zsh will look in the directories of the Zsh file search path,
@@ -66,6 +66,9 @@ zstyle ':completion:*' file-sort modification
 # Required for completion to be in good groups (named after the tags)
 zstyle ':completion:*' group-name ''
 
+# smart-case
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+
 # Autocomplete options for cd instead of directory stack
 zstyle ':completion:*:*:*:cd:*' complete-options true
 zstyle ':completion:*:*:*:cd:*' file-sort modification reverse
@@ -80,6 +83,8 @@ zstyle ':completion:*:*:*:*:warnings' format ' %F{red}-- no matches found --%f'
 # zstyle ':completion:*:*:*:*:descriptions' format '%F{green}-- %d --%f'
 
 # zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+#
+
 
 # +---------------+
 # | custom setups |

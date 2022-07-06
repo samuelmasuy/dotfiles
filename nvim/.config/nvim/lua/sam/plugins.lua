@@ -62,13 +62,13 @@ return require('packer').startup {
     use 'junegunn/vim-peekaboo' -- what's in @ and \"
     use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim', 'nvim-lua/popup.nvim' } }
     use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-    use {
-      "nvim-telescope/telescope-frecency.nvim",
-      config = function()
-        require"telescope".load_extension("frecency")
-      end,
-      requires = {"tami5/sqlite.lua"}
-    }
+    -- use {
+    --   "nvim-telescope/telescope-frecency.nvim",
+    --   config = function()
+    --     require"telescope".load_extension("frecency")
+    --   end,
+    --   requires = {"tami5/sqlite.lua"}
+    -- }
 
     -- TREE SITTER:
     use {
@@ -158,7 +158,7 @@ return require('packer').startup {
 
     use 'tpope/vim-vinegar' -- Enhance netrw
     use 'tpope/vim-eunuch' -- Adds Unix commands to vim.
-    use 'justinmk/vim-dirvish' -- minimalist directory viewer -
+    -- use 'justinmk/vim-dirvish' -- minimalist directory viewer -
     -- use 'Valloric/MatchTagAlways'
     -- use 'Valloric/ListToggle' -- quick*fix* *l*ocation
     use 'vim-scripts/DirDiff.vim' -- :DirDiff <A:Src Directory> <B:Src Directory>
