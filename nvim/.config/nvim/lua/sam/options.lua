@@ -80,6 +80,10 @@ opt.diffopt:append {
   'indent-heuristic',
 }
 
+opt.spelllang:append {
+  'fr',
+}
+
 -- gnupg
 opt.modeline = true
 opt.modelines = 5
@@ -94,7 +98,3 @@ opt.shortmess = opt.shortmess + 'c'
 
 -- " always show signcolumns
 opt.signcolumn = 'yes'
-
--- Colorize the 100th column if goes over.
-cmd 'highlight ColorColumn ctermbg=magenta'
-vim.fn.matchadd('ColorColumn', '\\%101v', 100)

@@ -1,5 +1,5 @@
 local opt = vim.opt
--- local cmd = vim.cmd
+local cmd = vim.cmd
 
 opt.background = 'dark'
 opt.termguicolors = true
@@ -11,6 +11,18 @@ opt.termguicolors = true
 -- cmd [[colorscheme gruvbox]]
 
 require('onedark').setup {
-    style = 'dark'
+    style = 'dark',
+    diagnostics = {
+        undercurl = true,   -- use undercurl instead of underline for diagnostics
+    },
 }
 require('onedark').load()
+
+-- Colorize the 100th column if goes over.
+cmd 'highlight ColorColumn ctermbg=magenta'
+vim.fn.matchadd('ColorColumn', '\\%101v', 100)
+
+-- undercurl
+cmd [[
+  hi SpellBad     gui=undercurl guisp=red term=undercurl cterm=undercurl
+]]

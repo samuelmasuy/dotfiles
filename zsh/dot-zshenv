@@ -14,4 +14,4 @@ export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export ZSH_CACHE_DIR="${XDG_CACHE_HOME}/zsh"
 # Simlink it all
 # export STOW_FOLDERS="zsh"
-export STOW_FOLDERS="zsh,nvim,tmux,vim,git,fd,npm,yamllint,iterm,ripgrep,starship"
+export STOW_FOLDERS="zsh,nvim,tmux,vim,git,fd,npm,yamllint,iterm,ripgrep,starship,kitty"

@@ -89,6 +89,12 @@ return require('packer').startup {
         'nvim-treesitter/playground',
       },
     }
+    use {
+      'lewis6991/spellsitter.nvim',
+      config = function()
+        require('spellsitter').setup()
+      end
+    }
 
     -- Syntax
     use 'kyazdani42/nvim-web-devicons'
@@ -113,12 +119,13 @@ return require('packer').startup {
     use 'justinmk/vim-syntax-extra'
 
     -- all go
-    use {
-      'crispgm/nvim-go',
-      run = ':GoInstallBinaries',
-      requires = { 'nvim-lua/plenary.nvim', 'nvim-lua/popup.nvim' }
-      -- ft = 'go',
-    }
+    -- use {
+    --   'crispgm/nvim-go',
+    --   run = ':GoInstallBinaries',
+    --   requires = { 'nvim-lua/plenary.nvim', 'nvim-lua/popup.nvim' }
+    --   -- ft = 'go',
+    -- }
+    -- use 'ray-x/go.nvim'
     use { 'buoto/gotests-vim', ft = 'go',  run = ':!go install github.com/cweill/gotests/...' }
 
     -- express yourself well
