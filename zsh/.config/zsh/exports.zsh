@@ -1,4 +1,3 @@
-export TERM=xterm-kitty
 export GOPATH=$HOME
 export DOTFILES_HOME=$HOME/.dotfiles
 export IDEA_HOME="/Applications/IntelliJ IDEA CE.app/Contents"
