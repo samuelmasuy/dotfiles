@@ -1,0 +1,13 @@
+@-moz-document domain("github.com") {
+  .line-data, #gist-form .file .input textarea, .blob-code-inner {
+      font-size: /*[[fontsize]]*/px !important;
+      font-family: JetBrainsMono Nerd Font Regular;
+
+  }
+
+  code, pre {
+      font-size: /*[[fontsize]]*/px !important;
+      font-family: JetBrainsMono Nerd Font Regular;
+
+  }
+}

@@ -1,4 +1,3 @@
-export TERM=xterm-kitty
 export GOPATH=$HOME
 export GOBIN="$HOME/.local/bin"
 export DOTFILES_HOME="$HOME/.dotfiles"
@@ -28,8 +27,6 @@ export PATH="$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export PATH="$PATH:$JAVA_HOME/bin"
 export PATH="$PATH:$XDG_DATA_HOME/yarn/bin"
 export PATH="$PATH:$XDG_DATA_HOME/npm/bin"
-export PATH="$PATH:$HOME/src/github.com/jive/jh/helper"
-export PATH="$PATH:$HOME/src/github.com/jive/jh"
 export PATH="$PATH:/usr/local/opt/curl-openssl/bin"
 export PATH="$PATH:/usr/local/opt/curl-openssl/bin"
 export PATH="$PATH:$CARGO_HOME/bin"
