@@ -24,5 +24,5 @@ vim.fn.matchadd('ColorColumn', '\\%101v', 100)
 
 -- undercurl
 cmd [[
-  hi SpellBad     gui=undercurl guisp=red term=undercurl cterm=undercurl
+  hi SpellBad     gui=undercurl term=undercurl cterm=undercurl
 ]]

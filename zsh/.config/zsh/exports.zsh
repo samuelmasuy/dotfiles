@@ -1,10 +1,11 @@
 export TERM=xterm-kitty
 export GOPATH=$HOME
-export DOTFILES_HOME=$HOME/.dotfiles
+export GOBIN="$HOME/.local/bin"
+export DOTFILES_HOME="$HOME/.dotfiles"
 export IDEA_HOME="/Applications/IntelliJ IDEA CE.app/Contents"
 export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
-export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
 export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
 export _ZO_DATA_DIR="$XDG_DATA_HOME/zoxide"
@@ -21,7 +22,7 @@ export ASDF_CONFIG_FILE="$XDG_CONFIG_HOME"/asdf/config
 export ASDF_DATA_DIR="$XDG_DATA_HOME"/asdf
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/ripgreprc"
 
-export PATH="$PATH:$HOME/bin/:$HOME/bin/aws/:$HOME/bin/git-toolbelt/"
+export PATH="$PATH:$HOME/.local/bin/:$HOME/.local/bin/aws/:$HOME/.local/bin/git-toolbelt/"
 export PATH="$PATH:/usr/local/sbin:/Applications/VirtualBox.app/Contents/MacOS"
 export PATH="$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export PATH="$PATH:$JAVA_HOME/bin"
