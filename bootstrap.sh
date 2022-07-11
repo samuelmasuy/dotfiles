@@ -8,8 +8,12 @@ echo "**************************************************************************
 echo "********************Home directories setup...*****************************"
 echo "**************************************************************************"
 mkdir -p "$HOME/src/github.com"
-mkdir -p "$HOME/bin"
 mkdir -p "$HOME/pkg"
+mkdir -p "$HOME/.config"
+mkdir -p "$HOME/.local/share"
+mkdir -p "$HOME/.local/bin"
+mkdir -p "$HOME/.local/state"
+mkdir -p "$HOME/.cache"
 
 echo "**************************************************************************"
 echo "******************Command line tooling install...***********************************"
@@ -20,7 +24,7 @@ command -v gcc >/dev/null 2>&1 || { echo >&2 "I require gcc, but it's not instal
 echo "**************************************************************************"
 echo "******************Homebrew Install...*************************************"
 echo "**************************************************************************"
-command -v brew >/dev/null 2>&1 || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+command -v brew >/dev/null 2>&1 || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 echo "**************************************************************************"
 echo "******************Git Install...******************************************"
@@ -35,7 +39,6 @@ echo "**************************************************************************
 echo "**************************************************************************"
 echo "******************Application and tool installation...********************"
 echo "**************************************************************************"
-brew tap Homebrew/bundle
 brew bundle --file="$DOTFILES_HOME/Brewfile"
 
 echo "**************************************************************************"
@@ -47,11 +50,6 @@ asdf plugin add terraform https://github.com/Banno/asdf-hashicorp.git
 asdf plugin add packer https://github.com/Banno/asdf-hashicorp.git
 asdf plugin add helm https://github.com/Antiarchitect/asdf-helm.git
 asdf install
-echo "**************************************************************************"
-echo "*********************Change shell to zsh...*******************************"
-echo "**************************************************************************"
-command -v zsh | sudo tee -a /etc/shells
-sudo chsh -s "$(command -v zsh)" "${USER}"
 
 # defaults write org.hammerspoon.Hammerspoon MJConfigFile "~/.config/hammerspoon/init.lua"
 
