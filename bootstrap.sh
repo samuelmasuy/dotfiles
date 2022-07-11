@@ -44,9 +44,6 @@ echo "**************************************************************************
 echo "******************ASDF Installation...************************************"
 echo "**************************************************************************"
 asdf plugin add kubectl https://github.com/Banno/asdf-kubectl.git
-asdf plugin add vault https://github.com/Banno/asdf-hashicorp.git
-asdf plugin add terraform https://github.com/Banno/asdf-hashicorp.git
-asdf plugin add packer https://github.com/Banno/asdf-hashicorp.git
 asdf plugin add helm https://github.com/Antiarchitect/asdf-helm.git
 asdf install
 

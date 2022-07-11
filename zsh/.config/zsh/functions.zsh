@@ -113,11 +113,6 @@ function brew-switch() {
   brew switch $formulae $version
 }
 
-function kube-switch() {
-  local version=$(asdf list kubectl | fzf)
-  asdf global kubectl $(echo $version | awk '{$1=$1};1')
-}
-
 function e() {
   nvim $(which $1)
 }
@@ -175,4 +170,20 @@ src() {
 	else
 		exec "$shell"
 	fi
+}
+
+function kl() {
+  local verb="${1}"
+  local resource="${2}"
+  local labelKeyValue="${3}"
+  local rest=("${@:4}")
+  kubectl ${verb} ${resource} -l "${labelKeyValue}" ${rest}
+}
+
+function kln() {
+  local verb="${1}"
+  local resource="${2}"
+  local label="${3}"
+  local rest=("${@:4}")
+  kubectl ${verb} ${resource} -l "app.kubernetes.io/name=${label}" ${rest}
 }
