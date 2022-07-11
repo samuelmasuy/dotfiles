@@ -8,7 +8,6 @@ echo "**************************************************************************
 echo "********************Home directories setup...*****************************"
 echo "**************************************************************************"
 mkdir -p "$HOME/src/github.com"
-mkdir -p "$HOME/pkg"
 mkdir -p "$HOME/.config"
 mkdir -p "$HOME/.local/share"
 mkdir -p "$HOME/.local/bin"
