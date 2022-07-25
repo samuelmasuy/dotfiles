@@ -1,8 +1,8 @@
 local opt = vim.opt
 local cmd = vim.cmd
 
-cmd 'syntax enable'
-cmd 'filetype plugin indent on'
+cmd("syntax enable")
+cmd("filetype plugin indent on")
 opt.clipboard = "unnamed"
 
 opt.expandtab = true
@@ -10,21 +10,21 @@ opt.shiftwidth = 4
 opt.softtabstop = 4
 
 opt.autowrite = true
-opt.inccommand = 'nosplit'
+opt.inccommand = "nosplit"
 
 opt.laststatus = 2
 opt.showcmd = true
 -- Show the line that have been wrapped.
-opt.showbreak = '↪ '
+opt.showbreak = "↪ "
 -- Completion options (select longest + show menu even if a single match is found)
 -- opt.completeopt = 'menuone,noselect'
-cmd 'autocmd CompleteDone * pclose'
+cmd("autocmd CompleteDone * pclose")
 -- Make Esc work faster.
 opt.ttimeoutlen = 40
 -- Always shows 5 lines above/below the cursor.
 opt.scrolloff = 5
 -- " Increment decimal not octal numbers.
-opt.nrformats=''
+opt.nrformats = ""
 -- Horizontal split goes to the bottom.
 opt.splitbelow = true
 -- Vertical split goes to the right.
@@ -44,9 +44,9 @@ opt.tw = 79
 -- Don't automatically wrap on load.
 opt.wrap = false
 opt.formatoptions:remove({
-  't',                       -- Don't auto wrap text
-  'o',                       -- Do not continue comments with 'o' or 'O'
-  '2',                       -- ... that's just weird
+	"t", -- Don't auto wrap text
+	"o", -- Do not continue comments with 'o' or 'O'
+	"2", -- ... that's just weird
 })
 
 -- How many undos
@@ -58,7 +58,7 @@ opt.ignorecase = true
 opt.smartcase = true
 
 -- Wildmode aka tab-completion options.
-opt.wildmode = 'full'
+opt.wildmode = "full"
 
 -- for argdo and bufdo without a trailing bang.
 opt.hidden = true
@@ -69,20 +69,20 @@ opt.writebackup = false
 opt.swapfile = false
 
 opt.mouse:remove({
-  'a', -- Disable mouse click to go to position
+	"a", -- Disable mouse click to go to position
 })
 
 opt.showmode = false
 
-opt.diffopt:append {
-  'vertical',           -- Gdiff vertical split
-  'algorithm:patience', -- Make diffing better: https://vimways.org/2018/the-power-of-diff/
-  'indent-heuristic',
-}
+opt.diffopt:append({
+	"vertical", -- Gdiff vertical split
+	"algorithm:patience", -- Make diffing better: https://vimways.org/2018/the-power-of-diff/
+	"indent-heuristic",
+})
 
-opt.spelllang:append {
-  'fr',
-}
+opt.spelllang:append({
+	"fr",
+})
 
 -- gnupg
 opt.modeline = true
@@ -93,8 +93,8 @@ opt.modelines = 5
 -- Smaller updatetime for CursorHold & CursorHoldI
 opt.updatetime = 300
 
- -- don't give |ins-completion-menu| messages.
-opt.shortmess = opt.shortmess + 'c'
+-- don't give |ins-completion-menu| messages.
+opt.shortmess = opt.shortmess + "c"
 
 -- " always show signcolumns
-opt.signcolumn = 'yes'
+opt.signcolumn = "yes"

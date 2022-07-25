@@ -18,7 +18,10 @@ echo "**************************************************************************
 echo "******************Command line tooling install...***********************************"
 echo "**************************************************************************"
 command -v gcc >/dev/null 2>&1 && xcode-select --install || true
-command -v gcc >/dev/null 2>&1 || { echo >&2 "I require gcc, but it's not installed. Aborting."; exit 1; }
+command -v gcc >/dev/null 2>&1 || {
+	echo >&2 "I require gcc, but it's not installed. Aborting."
+	exit 1
+}
 
 echo "**************************************************************************"
 echo "******************Homebrew Install...*************************************"

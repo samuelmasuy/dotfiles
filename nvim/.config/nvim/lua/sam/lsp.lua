@@ -1,170 +1,150 @@
-local lspconfig = require('lspconfig')
+local nnoremap = require("sam.keymap").nnoremap
 
 local M = {}
 
 function M.on_attach(_, bufnr)
-  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+	local function buf_set_option(...)
+		vim.api.nvim_buf_set_option(bufnr, ...)
+	end
+	local function buf_nmap(rhs, lhs)
+		nnoremap(rhs, lhs, { silent = true, buffer = true })
+	end
 
-  --Enable completion triggered by <c-x><c-o>
-  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+	--Enable completion triggered by <c-x><c-o>
+	buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 
-  -- Mappings.
-  local opts = { noremap=true, silent=true }
+	-- Mappings.
+	-- See `:help vim.lsp.*` for documentation on any of the below functions
+	buf_nmap("gD", vim.lsp.buf.declaration)
+	buf_nmap("gd", vim.lsp.buf.definition)
+	buf_nmap("K", vim.lsp.buf.hover)
+	buf_nmap("gi", vim.lsp.buf.implementation)
+	buf_nmap("gs", vim.lsp.buf.signature_help)
+	buf_nmap("gr", vim.lsp.buf.references)
+	buf_nmap("<leader>wa", vim.lsp.buf.add_workspace_folder)
+	buf_nmap("<leader>wr", vim.lsp.buf.remove_workspace_folder)
+	buf_nmap("<leader>wl", function()
+		print(vim.inspect(vim.lsp.buf.list_workspace_folders))
+	end)
+	buf_nmap("<leader>d", vim.lsp.buf.type_definition)
+	buf_nmap("<leader>rn", vim.lsp.buf.rename)
+	buf_nmap("<leader>ca", vim.lsp.buf.code_action)
+	buf_nmap("<leader>di", vim.diagnostic.open_float)
+	buf_nmap("[d", vim.diagnostic.goto_prev)
+	buf_nmap("]d", vim.diagnostic.goto_next)
+	buf_nmap("<leader>q", vim.diagnostic.setloclist)
+	buf_nmap("<leader>r", vim.lsp.buf.format)
 
-  -- See `:help vim.lsp.*` for documentation on any of the below functions
-  buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  buf_set_keymap('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  buf_set_keymap('n', '<leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-  buf_set_keymap('n', '<leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-  buf_set_keymap('n', '<leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-  buf_set_keymap('n', '<leader>d', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-  buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  buf_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  buf_set_keymap("n", "<leader>r", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+	local filetype = vim.api.nvim_buf_get_option(0, "filetype")
+	if filetype == "helm" then
+		vim.b.lsp_shown = 0
+		vim.diagnostic.disable()
+	end
+end
 
-  buf_set_keymap('n', '<leader>di', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-  buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-  buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-  buf_set_keymap('n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
-
-  local filetype = vim.api.nvim_buf_get_option(0, "filetype")
-  if filetype == "helm" then
-    vim.b.lsp_shown = 0
-    vim.diagnostic.disable()
-  end
+local function config(_config)
+	return vim.tbl_deep_extend("force", {
+		on_attach = M.on_attach,
+		capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+		flags = {
+			debounce_text_changes = 150,
+		},
+	}, _config or {})
 end
 
 require("nvim-lsp-installer").setup({
-  automatic_installation = true
+	automatic_installation = true,
 })
 
--- lspservers with default config
-local servers = {
-  'bashls',
-  'gopls',
-  'yamlls',
-  'pyright', -- wont' die
-  'html',
-  'jsonls',
-  'vimls',
-  'tsserver',
-  'terraformls',
-  'sumneko_lua',
-  'dockerls',
-}
+require("lspconfig").gopls.setup(config())
+require("lspconfig").pyright.setup(config())
+require("lspconfig").html.setup(config())
+require("lspconfig").vimls.setup(config())
+require("lspconfig").tsserver.setup(config())
+require("lspconfig").terraformls.setup(config())
+require("lspconfig").dockerls.setup(config())
+require("lspconfig").bashls.setup(config())
 
-for _, lsp in ipairs(servers) do
-  local opts = {
-    on_attach = M.on_attach,
-    flags = {
-      debounce_text_changes = 150,
-    },
-    settings = {},
-    capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
-  }
+require("lspconfig").yamlls.setup(config({
+	settings = {
+		yaml = {
+			validate = true,
+			completion = true,
+		},
+	},
+}))
 
-  if lsp == "yamlls" then
-    -- local schemas = require("schemastore").json.schemas()
+require("lspconfig").jsonls.setup(config({
+	settings = {
+		json = {
+			schemas = require("schemastore").json.schemas(),
+		},
+	},
+}))
 
-    opts.settings = {
-      yaml = {
-        validate = true,
-        completion = true,
-        -- schemas = vim.list_extend(
-        --   {
-        --     {
-        --       kubernetes = '/*.yaml',
-        --       name = 'kubernetes',
-        --     },
-        --   },
-        --   require('schemastore').json.schemas()
-        -- ),
-        -- schemas = { kubernetes = "/*.yaml" },
-        -- schemaStore = {  enable = true, url = "https://json.schemastore.org/schema-catalog.json" },
+require("lspconfig").sumneko_lua.setup(config({
+	settings = {
+		Lua = {
+			-- runtime = {
+			--   version = 'LuaJit',
+			--   path = vim.split(package.path, ';')
+			-- },
+			diagnostics = {
+				globals = { "vim", "use" },
+			},
+			workspace = {
+				library = vim.api.nvim_get_runtime_file("", true),
+				checkThirdParty = false,
+			},
+			telemetry = {
+				enable = false,
+			},
+		},
+	},
+}))
 
-      }
-    }
+local null_ls = require("null-ls")
+null_ls.setup({
+	on_attach = M.on_attach,
+	sources = {
+		null_ls.builtins.formatting.stylua,
+		null_ls.builtins.completion.spell,
+		null_ls.builtins.formatting.prettier,
+		-- null_ls.builtins.code_actions.refactoring,
+		null_ls.builtins.diagnostics.hadolint,
+		null_ls.builtins.formatting.shfmt,
+		null_ls.builtins.hover.dictionary,
+	},
+})
 
-        -- trace = {
-        --   server = "verbose"
-        -- },
-        -- validate = true,
-    -- print(vim.inspect(opts))
-  end
-
-  if lsp == "jsonls" then
-    opts = {
-      settings = {
-        json = {
-          schemas = require("schemastore").json.schemas(),
-        },
-      },
-      setup = {
-        commands = {
-          Format = {
-            function()
-              vim.lsp.buf.range_formatting({}, { 0, 0 }, { vim.fn.line "$", 0 })
-            end,
-          },
-        },
-      },
-    }
-  end
-  if lsp == "sumneko_lua" then
-    opts.settings = {
-      Lua = {
-        -- runtime = {
-        --   version = 'LuaJit',
-        --   path = vim.split(package.path, ';')
-        -- },
-        diagnostics = {
-          globals = { 'vim', 'use' }
-        },
-        workspace = {
-          library = vim.api.nvim_get_runtime_file("", true),
-          checkThirdParty = false
-        },
-        telemetry = {
-          enable = false
-        },
-      }
-    }
-  end
-  lspconfig[lsp].setup(opts)
-  vim.cmd [[ do User LspAttachBuffers ]]
-end
+-- vim.cmd([[ do User LspAttachBuffers ]])
 
 function M.LspHide()
-    if #vim.lsp.buf_get_clients() > 0 then
-        vim.b.lsp_shown = 0
-        vim.diagnostic.hide()
-        print("Diagnostic Disabled.")
-    else
-        error('Diagnostic not enabled in this buffer.')
-    end
+	if #vim.lsp.buf_get_clients() > 0 then
+		vim.b.lsp_shown = 0
+		vim.diagnostic.hide()
+		print("Diagnostic Disabled.")
+	else
+		error("Diagnostic not enabled in this buffer.")
+	end
 end
 
 function M.LspShow()
-    if #vim.lsp.buf_get_clients() > 0 then
-        vim.b.lsp_shown = 1
-        vim.diagnostic.show()
-        print('Diagnostic Enabled.')
-    else
-        error('Diagnostic not enabled in this buffer.')
-    end
+	if #vim.lsp.buf_get_clients() > 0 then
+		vim.b.lsp_shown = 1
+		vim.diagnostic.show()
+		print("Diagnostic Enabled.")
+	else
+		error("Diagnostic not enabled in this buffer.")
+	end
 end
 
 function M.LspSwap()
-    if vim.b.lsp_shown == 0 then
-        M.LspShow()
-    else
-        M.LspHide()
-    end
+	if vim.b.lsp_shown == 0 then
+		M.LspShow()
+	else
+		M.LspHide()
+	end
 end
 
 return M

@@ -9,12 +9,12 @@
 -- switch to last place edited: ''
 -- <C-o> in insert mode is awesome
 
-if require 'sam.first_load'() then
-  return
+if require("sam.first_load")() then
+	return
 end
 
 -- Rebind <leader> key.
-vim.g.mapleader = ','
+vim.g.mapleader = ","
 vim.g.disable_toggle_style = true
 
-require('sam')
+require("sam")

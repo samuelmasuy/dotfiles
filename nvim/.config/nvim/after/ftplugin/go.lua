@@ -1,7 +1,6 @@
-vim.cmd [[ setlocal noexpandtab tabstop=4 shiftwidth=4 ]]
+vim.cmd([[ setlocal noexpandtab tabstop=4 shiftwidth=4 ]])
 
 -- vim.api.nvim_exec([[ autocmd BufWritePre *.go :silent! lua require('go.format').goimport() ]], false)
-
 
 --require('go').setup{
 --  go='go', -- go command, can be go[default] or go1.18beta1

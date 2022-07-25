@@ -1,46 +1,49 @@
-local keymap = vim.keymap
+local Remap = require("sam.keymap")
+local nnoremap = Remap.nnoremap
+local vnoremap = Remap.vnoremap
+local noremap = Remap.noremap
 
-keymap.set("", "\\", ",", {noremap = true})
+noremap("\\", ",")
 -- Open in a new tab .vimrc
--- keymap.set("n", "<leader>e", ":tabedit $MYVIMRC<CR>", {noremap = true})
+-- keymap.set("n", "<leader>e", ":tabedit $MYVIMRC<CR>")
 -- Remap visual block select.
--- keymap.set("n", "<leader>v", "<c-v>", {noremap = true})
+-- keymap.set("n", "<leader>v", "<c-v>")
 -- Open new vertical split
-keymap.set("n", "<leader>v", ":vsplit<CR>", {noremap = true})
+nnoremap("<leader>v", ":vsplit<CR>")
 -- Map sort function to a key
--- keymap.set("v", "<leader>s", ":sort<CR>", {noremap = true})
+-- keymap.set("v", "<leader>s", ":sort<CR>")
 -- Remove trailing whitespace on <leader>S
-keymap.set("n", "<leader>S", ":%s/\\s\\+$//<cr>:let @/=''<CR>", {noremap = true})
+nnoremap("<leader>S", ":%s/\\s\\+$//<cr>:let @/=''<CR>")
 -- Reset space-tab
--- keymap.set("n", "<leader>reta", ":retab<CR>", {noremap = true})
+-- keymap.set("n", "<leader>reta", ":retab<CR>")
 
 -- cd to where the file is currently located
-keymap.set("n", "<leader>.", ":lcd %:p:h<CR>", {noremap = true})
+nnoremap("<leader>.", ":lcd %:p:h<CR>")
 
 -- Google search word under cursor from http://www.vimbits.com/bits/551
-keymap.set("n", "<leader>is", ":let @p=@\"<cr>yiw:!open \"https://www.google.com/search?q=\"\"<cr><cr>:let @\"=@p<cr>", {noremap = true})
-keymap.set("v", "<leader>is", "y:!open \"https://www.google.com/search?q=\"\"<cr><cr>", {noremap = true})
+nnoremap("<leader>is", ':let @p=@"<cr>yiw:!open "https://www.google.com/search?q=""<cr><cr>:let @"=@p<cr>')
+vnoremap("<leader>is", 'y:!open "https://www.google.com/search?q=""<cr><cr>')
 -- Google search the definition of the word under cursor
-keymap.set("n", "<leader>id", ":let @p=@\"<cr>yiw:!open \"https://www.google.com/search?q=define \"\"<cr><cr>:let @\"=@p<cr>", {noremap = true})
+nnoremap("<leader>id", ':let @p=@"<cr>yiw:!open "https://www.google.com/search?q=define ""<cr><cr>:let @"=@p<cr>')
 
 -- urlencode selection
-keymap.set("v", "<leader>en", ":!python -c 'import sys,urllib;print urllib.quote(sys.stdin.read().strip())'<cr>", {noremap = true})
+vnoremap("<leader>en", ":!python -c 'import sys,urllib;print urllib.quote(sys.stdin.read().strip())'<cr>")
 
 -- Easy substitution
-keymap.set("n", "<leader>;", ":%s::cg<Left><Left><Left>", {noremap = true})
-keymap.set("v", "<leader>;", ":s::g<Left><Left>", {noremap = true})
+nnoremap("<leader>;", ":%s::cg<Left><Left><Left>")
+vnoremap("<leader>;", ":s::g<Left><Left>")
 
 -- Don't lose what's in "" register
-keymap.set("v", "<leader>p", '"_dp', {noremap = true})
+vnoremap("<leader>p", '"_dp')
 
 -- redraw screen
--- keymap.set("n", "<leader>1", ":redraw!<CR>", {noremap = true})
+-- keymap.set("n", "<leader>1", ":redraw!<CR>")
 
 -- use <Leader>H,J,K,L to resize windows
-keymap.set("", "<leader>H", ":vertical :resize +5<CR>", {noremap = true, silent = true})
-keymap.set("", "<leader>J", ":resize -5<CR>", {noremap = true, silent = true})
-keymap.set("", "<leader>K", ":resize +5<CR>", {noremap = true, silent = true})
-keymap.set("", "<leader>L", ":vertical :resize -5<CR>", {noremap = true, silent = true})
+noremap("<leader>H", ":vertical :resize +5<CR>", { silent = true })
+noremap("<leader>J", ":resize -5<CR>", { silent = true })
+noremap("<leader>K", ":resize +5<CR>", { silent = true })
+noremap("<leader>L", ":vertical :resize -5<CR>", { silent = true })
 
-keymap.set("n", "<leader>tn", ":TestNearest<CR>", {noremap = true})
-keymap.set("n", "<leader>tf", ":TestFile<CR>", {noremap = true})
+nnoremap("<leader>tn", ":TestNearest<CR>")
+nnoremap("<leader>tf", ":TestFile<CR>")
