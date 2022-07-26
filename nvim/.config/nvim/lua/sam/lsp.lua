@@ -6,6 +6,7 @@ function M.on_attach(_, bufnr)
 	local function buf_set_option(...)
 		vim.api.nvim_buf_set_option(bufnr, ...)
 	end
+
 	local function buf_nmap(rhs, lhs)
 		nnoremap(rhs, lhs, { silent = true, buffer = true })
 	end

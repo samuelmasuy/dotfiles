@@ -100,7 +100,7 @@ return require("packer").startup({
 
 		-- Syntax
 		use("kyazdani42/nvim-web-devicons")
-		use({ "tpope/vim-markdown", ft = { "markdown", "md" } })
+		-- use({ "tpope/vim-markdown", ft = { "markdown", "md" } })
 		use("ajorgensen/vim-markdown-toc")
 		use({ "pangloss/vim-javascript", ft = { "javascript", "typescript" } })
 		use({ "leafgarland/typescript-vim", ft = "typescript" })
