@@ -30,7 +30,7 @@ function M.on_attach(_, bufnr)
 	buf_nmap("<leader>d", vim.lsp.buf.type_definition)
 	buf_nmap("<leader>rn", vim.lsp.buf.rename)
 	buf_nmap("<leader>ca", vim.lsp.buf.code_action)
-	buf_nmap("<leader>di", vim.diagnostic.open_float)
+	buf_nmap("gl", vim.diagnostic.open_float)
 	buf_nmap("[d", vim.diagnostic.goto_prev)
 	buf_nmap("]d", vim.diagnostic.goto_next)
 	buf_nmap("<leader>q", vim.diagnostic.setloclist)
@@ -69,6 +69,7 @@ require("lspconfig").bashls.setup(config())
 require("lspconfig").yamlls.setup(config({
 	settings = {
 		yaml = {
+			schemas = { kubernetes = "/*.yaml" },
 			validate = true,
 			completion = true,
 		},
@@ -112,10 +113,13 @@ null_ls.setup({
 		null_ls.builtins.formatting.stylua,
 		null_ls.builtins.completion.spell,
 		null_ls.builtins.formatting.prettier,
+		null_ls.builtins.diagnostics.markdownlint,
+		null_ls.builtins.formatting.markdownlint,
 		-- null_ls.builtins.code_actions.refactoring,
 		null_ls.builtins.diagnostics.hadolint,
 		null_ls.builtins.formatting.shfmt,
 		null_ls.builtins.formatting.goimports,
+		-- null_ls.builtins.diagnostics.checkmake,
 		null_ls.builtins.hover.dictionary,
 	},
 })
