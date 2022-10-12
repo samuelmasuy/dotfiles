@@ -34,7 +34,7 @@ nnoremap("<leader>;", ":%s::cg<Left><Left><Left>")
 vnoremap("<leader>;", ":s::g<Left><Left>")
 
 -- Don't lose what's in "" register
-vnoremap("<leader>p", '"_dp')
+vnoremap("<leader>p", '"_dP')
 
 -- redraw screen
 -- keymap.set("n", "<leader>1", ":redraw!<CR>")

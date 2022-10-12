@@ -11,6 +11,8 @@ return require("packer").startup({
 			-- 'tjdevries/astronauta.nvim', -- Lua ftplugins & lua plugin
 			"nvim-lua/plenary.nvim", -- lua utils
 		})
+		-- Speed up loading Lua modules in Neovim to improve startup time.
+		use("lewis6991/impatient.nvim")
 
 		-- Better profiling output for startup.
 		use({
@@ -147,7 +149,7 @@ return require("packer").startup({
 		-- use { 'Th3Whit3Wolf/one-nvim' }
 		-- use { 'yashguptaz/calvera-dark.nvim' }
 		-- use { 'marko-cerovac/material.nvim' }
-		-- use { 'folke/tokyonight.nvim' }
+		-- use({ "folke/tokyonight.nvim" })
 		-- use { 'tjdevries/colorbuddy.vim' }
 		-- use { 'tjdevries/gruvbuddy.nvim' }
 

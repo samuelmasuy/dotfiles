@@ -13,6 +13,8 @@ if require("sam.first_load")() then
 	return
 end
 
+require("impatient")
+
 -- Rebind <leader> key.
 vim.g.mapleader = ","
 vim.g.disable_toggle_style = true

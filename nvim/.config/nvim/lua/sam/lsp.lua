@@ -106,6 +106,7 @@ require("lspconfig").sumneko_lua.setup(config({
 
 local null_ls = require("null-ls")
 null_ls.setup({
+	debounce = 150,
 	on_attach = M.on_attach,
 	sources = {
 		null_ls.builtins.formatting.stylua,
@@ -114,6 +115,7 @@ null_ls.setup({
 		-- null_ls.builtins.code_actions.refactoring,
 		null_ls.builtins.diagnostics.hadolint,
 		null_ls.builtins.formatting.shfmt,
+		null_ls.builtins.formatting.goimports,
 		null_ls.builtins.hover.dictionary,
 	},
 })
