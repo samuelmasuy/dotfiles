@@ -50,14 +50,43 @@ cmp.setup({
 	},
 
 	-- The order of your sources matter (by default). That gives them priority
-	sources = {
+	sources = cmp.config.sources({
 		{ name = "nvim_lua" }, -- only applies this on lua buffers
 		{ name = "nvim_lsp" },
 		{ name = "path" },
-		{ name = "buffer", keyword_lenghth = 4 },
-	},
+	}, {
+		{
+			name = "buffer",
+			option = {
+				keyword_lenghth = 4,
+				get_bufnrs = function()
+					local bufs = {}
+					for _, win in ipairs(vim.api.nvim_list_wins()) do
+						bufs[vim.api.nvim_win_get_buf(win)] = true
+					end
+					return vim.tbl_keys(bufs)
+				end,
+			},
+		},
+	}),
 
 	experimental = {
 		native_menu = false,
 	},
+})
+
+cmp.setup.cmdline({ "/", "?" }, {
+	mapping = cmp.mapping.preset.cmdline(),
+	sources = {
+		{ name = "buffer" },
+	},
+})
+
+cmp.setup.cmdline(":", {
+	mapping = cmp.mapping.preset.cmdline(),
+	sources = cmp.config.sources({
+		{ name = "path" },
+	}, {
+		{ name = "cmdline" },
+	}),
 })

@@ -69,7 +69,7 @@ require("lspconfig").bashls.setup(config())
 require("lspconfig").yamlls.setup(config({
 	settings = {
 		yaml = {
-			schemas = { kubernetes = "/*.yaml" },
+			-- schemas = { kubernetes = "/*.yaml" },
 			validate = true,
 			completion = true,
 		},
