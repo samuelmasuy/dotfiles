@@ -46,7 +46,7 @@ end
 local function config(_config)
 	return vim.tbl_deep_extend("force", {
 		on_attach = M.on_attach,
-		capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+		capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
 		flags = {
 			debounce_text_changes = 150,
 		},
@@ -65,6 +65,7 @@ require("lspconfig").tsserver.setup(config())
 require("lspconfig").terraformls.setup(config())
 require("lspconfig").dockerls.setup(config())
 require("lspconfig").bashls.setup(config())
+require("lspconfig").jsonls.setup(config())
 
 require("lspconfig").yamlls.setup(config({
 	settings = {
@@ -72,14 +73,6 @@ require("lspconfig").yamlls.setup(config({
 			-- schemas = { kubernetes = "/*.yaml" },
 			validate = true,
 			completion = true,
-		},
-	},
-}))
-
-require("lspconfig").jsonls.setup(config({
-	settings = {
-		json = {
-			schemas = require("schemastore").json.schemas(),
 		},
 	},
 }))

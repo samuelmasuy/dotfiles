@@ -26,21 +26,21 @@ return require("packer").startup({
 		-- use 'nvim-lua/lsp_extensions.nvim'
 
 		-- Completion
-		use("hrsh7th/nvim-cmp")
-		use("hrsh7th/cmp-buffer")
-		use("hrsh7th/cmp-path")
-		use("hrsh7th/cmp-nvim-lua") -- for vim.api
-		use("hrsh7th/cmp-nvim-lsp")
-		use("b0o/SchemaStore.nvim")
-		-- Snip
-		-- use 'L3MON4D3/LuaSnip'
-		-- use 'saadparwaiz1/cmp_luasnip'
-		-- main
-		-- use { 'ms-jpq/coq_nvim', branch = 'coq' }
-		-- -- 9000+ Snippets
-		-- use { 'ms-jpq/coq.artifacts', branch = 'artifacts' }
-		-- -- lua & third party sources -- See https://github.com/ms-jpq/coq.thirdparty
-		-- use { 'ms-jpq/coq.thirdparty', branch = '3p' }
+		use({
+			"hrsh7th/nvim-cmp",
+			requires = {
+				"hrsh7th/cmp-buffer",
+				"hrsh7th/cmp-path",
+				"hrsh7th/cmp-nvim-lua", -- for vim.api
+				"hrsh7th/cmp-nvim-lsp",
+				"hrsh7th/cmp-nvim-lsp-signature-help",
+				"hrsh7th/cmp-cmdline",
+				"lukas-reineke/cmp-rg",
+				"andersevenrud/cmp-tmux",
+				"L3MON4D3/LuaSnip",
+				"saadparwaiz1/cmp_luasnip",
+			},
+		})
 
 		-- when lsp format does not work
 		-- use({ "mhartington/formatter.nvim" })

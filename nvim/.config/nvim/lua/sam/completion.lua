@@ -2,6 +2,11 @@ local cmp = require("cmp")
 
 cmp.setup({
 	preselect = cmp.PreselectMode.None,
+	snippet = {
+		expand = function(args)
+			require("luasnip").lsp_expand(args.body)
+		end,
+	},
 	mapping = {
 		["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
 		["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
@@ -50,11 +55,12 @@ cmp.setup({
 	},
 
 	-- The order of your sources matter (by default). That gives them priority
-	sources = cmp.config.sources({
-		{ name = "nvim_lua" }, -- only applies this on lua buffers
+	sources = {
 		{ name = "nvim_lsp" },
+		{ name = "nvim_lsp_signature_help" },
+		{ name = "nvim_lua" }, -- only applies this on lua buffers
+		{ name = "luasnip" },
 		{ name = "path" },
-	}, {
 		{
 			name = "buffer",
 			option = {
@@ -68,7 +74,9 @@ cmp.setup({
 				end,
 			},
 		},
-	}),
+		{ name = "rg" },
+		{ name = "tmux" },
+	},
 
 	experimental = {
 		native_menu = false,
