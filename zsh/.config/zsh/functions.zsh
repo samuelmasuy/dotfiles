@@ -187,3 +187,7 @@ function kln() {
   local rest=("${@:4}")
   kubectl ${verb} ${resource} -l "app.kubernetes.io/name=${label}" ${rest}
 }
+
+function ktime() {
+  while read line ; do echo -e "$(gdate +"%Y-%m-%d %H:%M:%S.%3N")\t $line" ; done
+}

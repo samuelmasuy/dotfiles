@@ -14,11 +14,6 @@ return require("packer").startup({
 		-- Speed up loading Lua modules in Neovim to improve startup time.
 		use("lewis6991/impatient.nvim")
 
-		-- Better profiling output for startup.
-		use({
-			"dstein64/vim-startuptime",
-			cmd = "StartupTime",
-		})
 		-- LSP
 		use("neovim/nvim-lspconfig")
 		use("williamboman/nvim-lsp-installer")
@@ -60,7 +55,14 @@ return require("packer").startup({
 		use("tpope/vim-rhubarb") -- Companion of fugitive for integration with Github
 
 		-- search
-		use("airblade/vim-rooter") -- auto cwd in root git repo
+		use({
+			"ahmedkhalf/project.nvim", -- auto cwd in root git repo
+			config = function()
+				require("project_nvim").setup({
+					-- manual_mode = true,
+				})
+			end,
+		})
 		-- use '/usr/local/opt/fzf'
 		-- use 'junegunn/fzf.vim'
 		use("junegunn/vim-peekaboo") -- what's in @ and \"
@@ -90,27 +92,20 @@ return require("packer").startup({
 				"nvim-treesitter/nvim-treesitter-textobjects",
 				"RRethy/nvim-treesitter-textsubjects",
 				"RRethy/nvim-treesitter-textsubjects",
-				"nvim-treesitter/playground",
+				-- "nvim-treesitter/playground",
 			},
-		})
-		use({
-			"lewis6991/spellsitter.nvim",
-			config = function()
-				require("spellsitter").setup()
-			end,
 		})
 
 		-- Syntax
-		use("kyazdani42/nvim-web-devicons")
 		-- use({ "tpope/vim-markdown", ft = { "markdown", "md" } })
 		use("ajorgensen/vim-markdown-toc")
-		use({ "pangloss/vim-javascript", ft = { "javascript", "typescript" } })
-		use({ "leafgarland/typescript-vim", ft = "typescript" })
+		-- use({ "pangloss/vim-javascript", ft = { "javascript", "typescript" } })
+		-- use({ "leafgarland/typescript-vim", ft = "typescript" })
 		use({ "modille/groovy.vim", ft = { "groovy", "Jenkinsfile" } })
 		use({ "vim-scripts/haproxy", ft = "haproxy*" })
 		-- use { 'cespare/vim-toml', ft = '*.toml' }
 		use({ "tjdevries/nlua.nvim" })
-		use({ "elzr/vim-json", ft = "json" })
+		-- use({ "elzr/vim-json", ft = "json" })
 		use("towolf/vim-helm")
 		use("chr4/nginx.vim")
 		use("mustache/vim-mustache-handlebars")
@@ -129,7 +124,7 @@ return require("packer").startup({
 		--   -- ft = 'go',
 		-- }
 		-- use 'ray-x/go.nvim'
-		use({ "buoto/gotests-vim", ft = "go", run = ":!go install github.com/cweill/gotests/..." })
+		-- use({ "buoto/gotests-vim", ft = "go", run = ":!go install github.com/cweill/gotests/..." })
 
 		-- express yourself well
 		use({ "rhysd/vim-grammarous", ft = { "text", "markdown" } })
@@ -157,7 +152,23 @@ return require("packer").startup({
 		use({ "hoob3rt/lualine.nvim" })
 
 		-- utils
-		use("mhinz/vim-startify") -- Startup Screen
+		-- use("kyazdani42/nvim-web-devicons")
+		-- use("mhinz/vim-startify") -- Startup Screen
+
+		use({
+			"goolord/alpha-nvim",
+			requires = {
+				"kyazdani42/nvim-web-devicons",
+			},
+		})
+
+		-- use({
+		-- 	"goolord/alpha-nvim",
+		-- 	requires = { "kyazdani42/nvim-web-devicons" },
+		-- 	config = function()
+		-- 		require("alpha").setup(require("alpha.themes.startify").config)
+		-- 	end,
+		-- })
 
 		use("tpope/vim-vinegar") -- Enhance netrw
 		use("tpope/vim-eunuch") -- Adds Unix commands to vim.
@@ -177,9 +188,9 @@ return require("packer").startup({
 
 		-- all hashicorp goodies
 		use({
-			"hashivim/vim-packer",
+			-- "hashivim/vim-packer",
 			"hashivim/vim-terraform",
-			"hashivim/vim-vaultproject",
+			-- "hashivim/vim-vaultproject",
 		})
 
 		-- tmux
