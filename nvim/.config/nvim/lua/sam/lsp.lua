@@ -151,10 +151,6 @@ null_ls.setup({
 	},
 })
 
--- Turn on lsp status information
--- require("fidget").setup()
--- vim.cmd([[ do User LspAttachBuffers ]])
-
 function M.LspHide()
 	if #vim.lsp.buf_get_clients() > 0 then
 		vim.b.lsp_shown = 0
