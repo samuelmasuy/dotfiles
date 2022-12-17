@@ -35,23 +35,6 @@ cmp.setup({
 			end,
 		}),
 		["<tab>"] = cmp.config.disable,
-		-- If you want tab completion :'(
-		--  First you have to just promise to read `:help ins-completion`.
-		--
-		-- ["<Tab>"] = function(fallback)
-		--   if cmp.visible() then
-		--     cmp.select_next_item()
-		--   else
-		--     fallback()
-		--   end
-		-- end,
-		-- ["<S-Tab>"] = function(fallback)
-		--   if cmp.visible() then
-		--     cmp.select_prev_item()
-		--   else
-		--     fallback()
-		--   end
-		-- end,
 	},
 
 	-- The order of your sources matter (by default). That gives them priority

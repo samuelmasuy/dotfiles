@@ -4,6 +4,7 @@ local vnoremap = Remap.vnoremap
 local inoremap = Remap.inoremap
 local tnoremap = Remap.tnoremap
 local cnoremap = Remap.cnoremap
+local xnoremap = Remap.xnoremap
 -- General Mappings
 -- try to use ZZ
 cnoremap("wq", ":echo 'Use ZZ or :x'<CR>")
@@ -30,11 +31,14 @@ nnoremap("<down>", "<cmd>cnext<CR>")
 -- nnoremap("<space>", "za")
 -- vnoremap("<space>", "zf")
 
+-- Make sure to be in the middle of the screen when navigating half page
+nnoremap("<C-d>", "<C-d>zz")
+nnoremap("<C-u>", "<C-u>zz")
 -- Make sure to be in the middle of the screen when searching
 nnoremap("n", "nzzzv")
 nnoremap("N", "Nzzzv")
 -- Make sure to stay at current cursor position when joining
-nnoremap("J", "mzJ`v")
+nnoremap("J", "mzJ`z")
 
 -- Easier indentation of code blocks.
 vnoremap("<", "<gv")
@@ -53,6 +57,10 @@ nnoremap("Y", "y$")
 -- vim.keymap.set("n", "'", "`")
 -- vim.keymap.set("n", "`", "'")
 
+-- Move with visuals
+xnoremap("K", ":m-2<CR>gv=gv")
+xnoremap("J", ":m'>+<CR>gv=gv")
+
 -- Don't move on *
 nnoremap(
 	"*",
@@ -66,3 +74,6 @@ tnoremap("<C-h>", "<C-\\><C-n><C-w>h")
 tnoremap("<C-j>", "<C-\\><C-n><C-w>j")
 tnoremap("<C-k>", "<C-\\><C-n><C-w>k")
 tnoremap("<C-l>", "<C-\\><C-n><C-w>l")
+
+-- Ex
+nnoremap("-", vim.cmd.Ex)

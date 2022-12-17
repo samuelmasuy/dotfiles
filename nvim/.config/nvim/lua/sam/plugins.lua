@@ -15,9 +15,20 @@ return require("packer").startup({
 		use("lewis6991/impatient.nvim")
 
 		-- LSP
-		use("neovim/nvim-lspconfig")
-		use("williamboman/nvim-lsp-installer")
-		-- use 'j-hui/fidget.nvim'
+		-- use {  'VonHeikemen/lsp-zero.nvim',
+		use({ -- LSP Configuration & Plugins
+			"neovim/nvim-lspconfig",
+			requires = {
+				-- Automatically install LSPs to stdpath for neovim
+				"williamboman/mason.nvim",
+				"williamboman/mason-lspconfig.nvim",
+
+				-- Useful status updates for LSP
+				-- "j-hui/fidget.nvim",
+			},
+		})
+		-- when lsp format does not work
+		use({ "jose-elias-alvarez/null-ls.nvim" })
 		-- use 'nvim-lua/lsp_extensions.nvim'
 
 		-- Completion
@@ -32,23 +43,33 @@ return require("packer").startup({
 				"hrsh7th/cmp-cmdline",
 				"lukas-reineke/cmp-rg",
 				"andersevenrud/cmp-tmux",
-				"L3MON4D3/LuaSnip",
-				"saadparwaiz1/cmp_luasnip",
+				-- "L3MON4D3/LuaSnip",
+				-- "rafamadriz/friendly-snippets",
+				-- "saadparwaiz1/cmp_luasnip",
 			},
 		})
 
-		-- when lsp format does not work
-		-- use({ "mhartington/formatter.nvim" })
-		use({ "jose-elias-alvarez/null-ls.nvim" })
+		-- TREE SITTER:
+		use({ -- Highlight, edit, and navigate code
+			"nvim-treesitter/nvim-treesitter",
+			run = function()
+				pcall(require("nvim-treesitter.install").update({ with_sync = true }))
+			end,
+		})
+		use({ -- Additional text objects via treesitter
+			"nvim-treesitter/nvim-treesitter-textobjects",
+			after = "nvim-treesitter",
+		})
 
 		-- Text Maniuplation
 		use("godlygeek/tabular") -- Quickly align text by pattern :'<,'>Tabularize /:
-		use("tpope/vim-commentary") -- Easily comment out lines or objects
+		use("numToStr/Comment.nvim") -- "gc" to comment visual regions/lines
 		use("tpope/vim-repeat") -- Repeat actions better
 		use("tpope/vim-abolish") -- Camel case, snake crc
 		use("tpope/vim-surround") -- To change surrounding quote: cs(' ;tag cst<th> ;to add quote ysW'
 		use("monaqa/dial.nvim") -- Better increment/decrement
 		use("tpope/vim-unimpaired")
+		-- use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
 
 		-- GIT
 		use("tpope/vim-fugitive") -- awesome git
@@ -63,11 +84,11 @@ return require("packer").startup({
 				})
 			end,
 		})
-		-- use '/usr/local/opt/fzf'
-		-- use 'junegunn/fzf.vim'
+
 		use("junegunn/vim-peekaboo") -- what's in @ and \"
-		use({ "nvim-telescope/telescope.nvim", requires = { "nvim-lua/plenary.nvim", "nvim-lua/popup.nvim" } })
-		use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
+		use({ "nvim-telescope/telescope.nvim", branch = "0.1.x", requires = { "nvim-lua/plenary.nvim" } })
+		use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make", cond = vim.fn.executable("make") == 1 })
+
 		-- use {
 		--   "nvim-telescope/telescope-frecency.nvim",
 		--   config = function()
@@ -75,26 +96,6 @@ return require("packer").startup({
 		--   end,
 		--   requires = {"tami5/sqlite.lua"}
 		-- }
-
-		-- TREE SITTER:
-		use({
-			"nvim-treesitter/nvim-treesitter",
-			run = ":TSUpdate",
-			config = function()
-				require("nvim-treesitter.configs").setup({
-					highlight = {
-						enable = true,
-					},
-				})
-			end,
-			requires = {
-				"nvim-treesitter/nvim-treesitter-refactor",
-				"nvim-treesitter/nvim-treesitter-textobjects",
-				"RRethy/nvim-treesitter-textsubjects",
-				"RRethy/nvim-treesitter-textsubjects",
-				-- "nvim-treesitter/playground",
-			},
-		})
 
 		-- Syntax
 		-- use({ "tpope/vim-markdown", ft = { "markdown", "md" } })
@@ -135,6 +136,10 @@ return require("packer").startup({
 		-- use { 'joshdick/onedark.vim' }
 		-- use 'ful1e5/onedark.nvim'
 		use({ "navarasu/onedark.nvim" })
+		-- use({
+		--   'rose-pine/neovim',
+		--   as = 'rose-pine',
+		-- })
 		-- use {
 		--   'npxbr/gruvbox.nvim',
 		--   requires = {
@@ -149,7 +154,7 @@ return require("packer").startup({
 		-- use { 'tjdevries/gruvbuddy.nvim' }
 
 		-- line
-		use({ "hoob3rt/lualine.nvim" })
+		use("nvim-lualine/lualine.nvim") -- Fancier statusline
 
 		-- utils
 		-- use("kyazdani42/nvim-web-devicons")
@@ -170,7 +175,7 @@ return require("packer").startup({
 		-- 	end,
 		-- })
 
-		use("tpope/vim-vinegar") -- Enhance netrw
+		-- use("tpope/vim-vinegar") -- Enhance netrw
 		use("tpope/vim-eunuch") -- Adds Unix commands to vim.
 		-- use 'justinmk/vim-dirvish' -- minimalist directory viewer -
 		-- use 'Valloric/MatchTagAlways'
