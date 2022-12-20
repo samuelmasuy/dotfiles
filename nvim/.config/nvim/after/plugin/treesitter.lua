@@ -3,11 +3,13 @@
 require("nvim-treesitter.configs").setup({
 	-- Add languages to be installed here that you want installed for treesitter
 	ensure_installed = "all",
+	-- ignore_install = { "gitcommit" },
 	sync_install = false,
 
 	highlight = {
 		enable = true,
 		additional_vim_regex_highlighting = false,
+		disable = { "gitcommit" },
 	},
 	indent = { enable = true },
 	incremental_selection = {
