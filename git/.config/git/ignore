@@ -3,6 +3,7 @@
 *.DS_Store
 .DS_Store
 
+.pnpm-debug.log
 scratch/
 .rgignore
 foo.groovy
