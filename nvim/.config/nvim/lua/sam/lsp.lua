@@ -73,6 +73,7 @@ local servers = {
 	"dockerls",
 	"bashls",
 	"jsonls",
+	"yamlls",
 	"sumneko_lua",
 }
 
