@@ -160,20 +160,16 @@ return require("packer").startup({
 		-- use("kyazdani42/nvim-web-devicons")
 		-- use("mhinz/vim-startify") -- Startup Screen
 
+		-- Startup screen
 		use({
 			"goolord/alpha-nvim",
 			requires = {
 				"kyazdani42/nvim-web-devicons",
 			},
+			-- 	config = function()
+			-- 		require("alpha").setup(require("alpha.themes.startify").config)
+			-- 	end,
 		})
-
-		-- use({
-		-- 	"goolord/alpha-nvim",
-		-- 	requires = { "kyazdani42/nvim-web-devicons" },
-		-- 	config = function()
-		-- 		require("alpha").setup(require("alpha.themes.startify").config)
-		-- 	end,
-		-- })
 
 		-- use("tpope/vim-vinegar") -- Enhance netrw
 		use("tpope/vim-eunuch") -- Adds Unix commands to vim.
