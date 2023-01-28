@@ -154,7 +154,7 @@ local section = {
 		val = {
 			button("e", "  New file", "<cmd>ene<CR>"),
 			button("p", "  Projects", "<cmd>Telescope projects<CR>"),
-			button("u", "  Update plugins", "<cmd>PackerSync<CR>"),
+			button("u", "  Update plugins", "<cmd>Lazy sync<CR>"),
 			button("q", "  Quit", "<cmd>qa<CR>"),
 		},
 	},
