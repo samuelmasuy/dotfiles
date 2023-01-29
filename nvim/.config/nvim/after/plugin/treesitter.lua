@@ -19,10 +19,9 @@ require("nvim-treesitter.configs").setup({
 		"json",
 		"make",
 		"terraform",
-		-- "all",
 	},
 	-- ignore_install = { "gitcommit" },
-	sync_install = false,
+	sync_install = true,
 
 	highlight = {
 		enable = true,
