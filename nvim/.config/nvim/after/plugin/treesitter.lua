@@ -2,7 +2,25 @@
 -- See `:help nvim-treesitter`
 require("nvim-treesitter.configs").setup({
 	-- Add languages to be installed here that you want installed for treesitter
-	ensure_installed = "all",
+	ensure_installed = {
+		"python",
+		"markdown",
+		"markdown_inline",
+		"yaml",
+		"lua",
+		"vim",
+		"query",
+		"help",
+		"go",
+		"bash",
+		"dockerfile",
+		"gitignore",
+		"gomod",
+		"json",
+		"make",
+		"terraform",
+		-- "all",
+	},
 	-- ignore_install = { "gitcommit" },
 	sync_install = false,
 
