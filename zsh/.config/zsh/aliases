@@ -65,8 +65,7 @@ alias spn="spotify next"
 alias spp="spotify prev"
 alias spst="spotify status"
 
-alias j8='export JAVA_HOME=$(/usr/libexec/java_home -v 1.8); java -version'
-alias j11='export JAVA_HOME=$(/usr/libexec/java_home -v 11); java -version'
+alias tldrf='tldr --list | fzf --preview "tldr {1} --color=always" --preview-window=right,70% | xargs tldr'
 
 # Symlink all dotfiles like magic
 alias dotfilesInstall="$DOTFILES_HOME/install"
@@ -83,6 +82,8 @@ alias gc='git commit -v -s'
 alias gc!='git commit -v -s --amend'
 alias gcn!='git commit -v -s --no-edit --amend'
 alias gp='git push'
+alias gbr='git branch --sort=-committerdate | fzf --header "Checkout Recent Branch" --preview "git diff {1} --color=always" --pointer="" | xargs git checkout'
+
 
 # hub alias
 eval "$(hub alias -s)"
