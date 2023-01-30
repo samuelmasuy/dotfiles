@@ -7,16 +7,6 @@ return {
 	"chr4/nginx.vim",
 	"mustache/vim-mustache-handlebars",
 	"justinmk/vim-syntax-extra",
-	-- all go
-	-- {
-	--   'crispgm/nvim-go',
-	--   build = ':GoInstallBinaries',
-	--   dependencies = { 'nvim-lua/plenary.nvim', 'nvim-lua/popup.nvim' }
-	--   -- ft = 'go',
-	-- },
-	-- 'ray-x/go.nvim',
-	-- { "buoto/gotests-vim", ft = "go", build = ":!go install github.com/cweill/gotests/..." },
-
 	-- express yourself well
 	{ "rhysd/vim-grammarous", ft = { "text", "markdown" } },
 	{
