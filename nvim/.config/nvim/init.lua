@@ -22,6 +22,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require 'config.global'
-require 'config.lazy'
-require("sam")
+require("config.global")
+require("config.lazy")
+require("config.mappings")
+require("config.leader")
