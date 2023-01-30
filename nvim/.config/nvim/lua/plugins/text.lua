@@ -1,5 +1,8 @@
 return {
-	"godlygeek/tabular", -- Quickly align text by pattern :'<,'>Tabularize /:
+	{
+		"godlygeek/tabular", -- Quickly align text by pattern :'<,'>Tabularize /:
+		cmd = "Tabularize",
+	},
 	{
 		"numToStr/Comment.nvim", -- "gc" to comment visual regions/lines
 		config = function()

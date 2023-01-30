@@ -4,7 +4,7 @@ return {
 		event = "BufReadPre",
 		dependencies = {
 			{ "williamboman/mason.nvim" },
-			{ "williamboman/mason-lspconfig.nvim", config = { automatic_installation = true } },
+			{ "williamboman/mason-lspconfig.nvim" },
 			{ "jose-elias-alvarez/null-ls.nvim" },
 			-- 'nvim-lua/lsp_extensions.nvim',
 			"hrsh7th/cmp-nvim-lsp",
@@ -83,6 +83,7 @@ return {
 
 			-- Ensure the servers above are installed
 			require("mason-lspconfig").setup({
+				automatic_installation = true,
 				ensure_installed = servers,
 			})
 
