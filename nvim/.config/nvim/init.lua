@@ -22,10 +22,6 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
---require("impatient")
-
--- Rebind <leader> key.
-vim.g.mapleader = ","
-vim.g.disable_toggle_style = true
-
+require 'config.global'
+require 'config.lazy'
 require("sam")

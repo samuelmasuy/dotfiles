@@ -9,6 +9,11 @@ opt.expandtab = true
 opt.shiftwidth = 4
 opt.softtabstop = 4
 
+-- Rebind <leader> key.
+vim.g.mapleader = ","
+vim.g.maplocalleader = ","
+vim.g.disable_toggle_style = true
+
 opt.autowrite = true
 opt.inccommand = "nosplit"
 
@@ -44,9 +49,9 @@ opt.tw = 79
 -- Don't automatically wrap on load.
 opt.wrap = false
 opt.formatoptions:remove({
-	"t", -- Don't auto wrap text
-	"o", -- Do not continue comments with 'o' or 'O'
-	"2", -- ... that's just weird
+  "t", -- Don't auto wrap text
+  "o", -- Do not continue comments with 'o' or 'O'
+  "2", -- ... that's just weird
 })
 
 -- How many undos
@@ -69,19 +74,19 @@ opt.writebackup = false
 opt.swapfile = false
 
 opt.mouse:remove({
-	"a", -- Disable mouse click to go to position
+  "a", -- Disable mouse click to go to position
 })
 
 opt.showmode = false
 
 opt.diffopt:append({
-	"vertical", -- Gdiff vertical split
-	"algorithm:patience", -- Make diffing better: https://vimways.org/2018/the-power-of-diff/
-	"indent-heuristic",
+  "vertical", -- Gdiff vertical split
+  "algorithm:patience", -- Make diffing better: https://vimways.org/2018/the-power-of-diff/
+  "indent-heuristic",
 })
 
 opt.spelllang:append({
-	"fr",
+  "fr",
 })
 
 -- gnupg
@@ -98,3 +103,8 @@ opt.shortmess = opt.shortmess + "c"
 
 -- " always show signcolumns
 opt.signcolumn = "yes"
+
+if vim.fn.executable("rg") == 1 then
+  opt.grepprg = "rg --vimgrep"
+  opt.grepformat = "%f:%l:%c:%m,%f:%l:%m"
+end
