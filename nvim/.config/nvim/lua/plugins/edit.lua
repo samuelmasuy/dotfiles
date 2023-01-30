@@ -4,7 +4,7 @@ return {
 		cmd = "Tabularize",
 	},
 	{
-		"numToStr/Comment.nvim", -- "gc" to comment visual regions/lines
+		"numToStr/Comment.nvim", -- commenting with e.g. `gcc` or `gcip`
 		config = function()
 			require("Comment").setup()
 		end,

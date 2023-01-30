@@ -3,11 +3,9 @@ return {
 	{ "ajorgensen/vim-markdown-toc", ft = "markdown" },
 	{ "modille/groovy.vim", ft = { "groovy", "Jenkinsfile" } },
 	{ "vim-scripts/haproxy", ft = "haproxy*" },
-	{ "folke/neodev.nvim", ft = "lua" },
 	"towolf/vim-helm",
 	"chr4/nginx.vim",
 	"mustache/vim-mustache-handlebars",
-
 	"justinmk/vim-syntax-extra",
 	-- all go
 	-- {

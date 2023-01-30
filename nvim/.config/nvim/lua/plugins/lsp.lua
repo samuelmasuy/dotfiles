@@ -3,6 +3,7 @@ return {
 		"neovim/nvim-lspconfig",
 		event = "BufReadPre",
 		dependencies = {
+			{ "folke/neodev.nvim", ft = "lua", config = true },
 			{ "williamboman/mason.nvim" },
 			{ "williamboman/mason-lspconfig.nvim" },
 			{ "jose-elias-alvarez/null-ls.nvim" },
@@ -10,14 +11,15 @@ return {
 			"hrsh7th/cmp-nvim-lsp",
 		},
 		config = function()
+			local lspconfig = require("lspconfig")
 			local nnoremap = require("sam.keymap").nnoremap
 
-			local function on_attach(_, bufnr)
+			local on_attach = function(_, bufnr)
 				local function buf_set_option(...)
 					vim.api.nvim_buf_set_option(bufnr, ...)
 				end
 
-				local function nmap(rhs, lhs, desc)
+				local nmap = function(rhs, lhs, desc)
 					if desc then
 						desc = "LSP: " .. desc
 					end
@@ -46,6 +48,7 @@ return {
 				end, "[W]orkspace [L]ist Folders")
 				nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
 				nmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
+				nmap("<leader>ll", vim.lsp.codelens.run, "Code[L]ens")
 
 				-- Create a command `:Format` local to the LSP buffer
 				vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
@@ -64,8 +67,15 @@ return {
 				end
 			end
 
-			require("mason").setup()
+			vim.lsp.handlers["textDocument/publishDiagnostics"] =
+				vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+					virtual_text = true,
+					signs = true,
+					underline = true,
+					update_in_insert = false,
+				})
 
+			require("mason").setup()
 			-- Enable the following language servers
 			local servers = {
 				"gopls",
@@ -94,22 +104,23 @@ return {
 						vim.lsp.protocol.make_client_capabilities()
 					),
 					flags = {
+						allow_incremental_sync = true,
 						debounce_text_changes = 150,
 					},
 				}, _config or {})
 			end
 
-			require("lspconfig").gopls.setup(config())
-			require("lspconfig").pyright.setup(config())
-			require("lspconfig").html.setup(config())
-			require("lspconfig").vimls.setup(config())
-			require("lspconfig").tsserver.setup(config())
-			require("lspconfig").terraformls.setup(config())
-			require("lspconfig").dockerls.setup(config())
-			require("lspconfig").bashls.setup(config())
-			require("lspconfig").jsonls.setup(config())
+			lspconfig.gopls.setup(config())
+			lspconfig.pyright.setup(config())
+			lspconfig.html.setup(config())
+			lspconfig.vimls.setup(config())
+			lspconfig.tsserver.setup(config())
+			lspconfig.terraformls.setup(config())
+			lspconfig.dockerls.setup(config())
+			lspconfig.bashls.setup(config())
+			lspconfig.jsonls.setup(config())
 
-			require("lspconfig").yamlls.setup(config({
+			lspconfig.yamlls.setup(config({
 				settings = {
 					yaml = {
 						-- schemas = { kubernetes = "/*.yaml" },
@@ -119,7 +130,7 @@ return {
 				},
 			}))
 
-			require("lspconfig").sumneko_lua.setup(config({
+			lspconfig.sumneko_lua.setup(config({
 				settings = {
 					Lua = {
 						-- runtime = {

@@ -20,12 +20,12 @@ inoremap("<left>", "<nop>")
 inoremap("<right>", "<nop>")
 
 -- Left and right can switch buffers
-nnoremap("<left>", "<cmd>bprevious<CR>")
-nnoremap("<right>", "<cmd>bnext<CR>")
+nnoremap("<left>", "<cmd>bprevious<CR>", { desc = "Previous buffer" })
+nnoremap("<right>", "<cmd>bnext<CR>", { desc = "next buffer" })
 
 -- Up and down can switch quickfix list
-nnoremap("<up>", "<cmd>cprevious<CR>")
-nnoremap("<down>", "<cmd>cnext<CR>")
+nnoremap("<up>", "<cmd>cprevious<CR>", { desc = "Previous quickfix" })
+nnoremap("<down>", "<cmd>cnext<CR>", { desc = "Next quickfix" })
 
 -- Quick Fold and Unfold.
 -- nnoremap("<space>", "za")
@@ -76,7 +76,7 @@ tnoremap("<C-k>", "<C-\\><C-n><C-w>k")
 tnoremap("<C-l>", "<C-\\><C-n><C-w>l")
 
 -- Ex
-nnoremap("-", vim.cmd.Ex)
+nnoremap("-", vim.cmd.Ex, { desc = "Open netrw" })
 
 -- Telescope
 nnoremap("<leader>t", "<cmd>Telescope<cr>", { desc = "[t]elescope" })
@@ -102,10 +102,10 @@ nnoremap("<leader>sw", require("telescope.builtin").grep_string, { desc = "[S]ea
 nnoremap("<leader>sd", require("telescope.builtin").diagnostics, { desc = "[S]earch [D]iagnostics" })
 
 -- LSP
--- Diagnostic keymaps
-nnoremap("[d", vim.diagnostic.goto_prev)
-nnoremap("]d", vim.diagnostic.goto_next)
-nnoremap("gl", vim.diagnostic.open_float)
-nnoremap("<leader>q", vim.diagnostic.setloclist)
+nnoremap("<space>d", require("sam.lsp").LspSwap, { desc = "Swap LSP" })
 
-nnoremap("<space>d", require("sam.lsp").LspSwap)
+-- Diagnostic keymaps
+nnoremap("[d", vim.diagnostic.goto_prev, { desc = "Previous [d]iagnostic" })
+nnoremap("]d", vim.diagnostic.goto_next, { desc = "Next [d]iagnostic" })
+nnoremap("gl", vim.diagnostic.open_float, { desc = "Open diagnostic" })
+nnoremap("<leader>q", vim.diagnostic.setloclist, { desc = "Diagnostic to location list" })
