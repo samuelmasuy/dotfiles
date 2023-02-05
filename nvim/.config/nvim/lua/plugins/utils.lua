@@ -9,22 +9,13 @@ return {
 		end,
 	},
 
-	"junegunn/vim-peekaboo", -- what's in @ and \"
-	-- {
-	--   "nvim-telescope/telescope-frecency.nvim",
-	--   config = function()
-	--     require"telescope".load_extension("frecency")
-	--   end,
-	--   dependencies = {"tami5/sqlite.lua"}
-	-- }
-
-	-- utils
-	-- "kyazdani42/nvim-web-devicons"
 	-- "mhinz/vim-startify" -- Startup Screen
-
 	-- "tpope/vim-vinegar" -- Enhance netrw
-	"tpope/vim-eunuch", -- Adds Unix commands to vim.
 	-- 'justinmk/vim-dirvish' -- minimalist directory viewer -
+	{
+		"tpope/vim-eunuch", -- Adds Unix commands to vim.
+		event = "VeryLazy",
+	},
 	-- 'Valloric/MatchTagAlways'
 	-- 'Valloric/ListToggle' -- quick*fix* *l*ocation
 	{
@@ -32,7 +23,10 @@ return {
 		cmd = "DirDiff",
 	},
 
-	"bronson/vim-trailing-whitespace", -- show them
+	{
+		"bronson/vim-trailing-whitespace", -- show them
+		event = "VeryLazy",
+	},
 	-- 'vim-scripts/visSum.vim' -- <leader>su
 	-- 'vim-scripts/VisIncr' -- Increment all the things v-select jan\njan\njan :IM.
 	-- 'mbbill/undotree'

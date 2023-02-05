@@ -4,7 +4,7 @@ return {
 	{ "modille/groovy.vim", ft = { "groovy", "Jenkinsfile" } },
 	{ "vim-scripts/haproxy", ft = "haproxy*" },
 	"towolf/vim-helm",
-	"chr4/nginx.vim",
+	{ "chr4/nginx.vim", ft = { "nginx" } },
 	"mustache/vim-mustache-handlebars",
 	"justinmk/vim-syntax-extra",
 	-- express yourself well
@@ -24,5 +24,8 @@ return {
 
 	-- tmux
 	"tmux-plugins/vim-tmux", -- tmux.conf
-	"christoomey/vim-tmux-navigator",
+	{
+		"christoomey/vim-tmux-navigator",
+		event = "BufEnter",
+	},
 }

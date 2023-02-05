@@ -1,6 +1,7 @@
 return {
 	{
 		"goolord/alpha-nvim",
+		event = "BufEnter",
 		dependencies = {
 			"nvim-tree/nvim-web-devicons",
 		},
