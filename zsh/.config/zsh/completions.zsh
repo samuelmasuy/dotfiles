@@ -67,11 +67,11 @@ zstyle ':completion:*' file-sort modification
 zstyle ':completion:*' group-name ''
 
 # smart-case
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*'
 
 # Autocomplete options for cd instead of directory stack
-zstyle ':completion:*:*:*:cd:*' complete-options true
-zstyle ':completion:*:*:*:cd:*' file-sort modification reverse
+# zstyle ':completion:*:*:*:cd:*' complete-options true
+# zstyle ':completion:*:*:*:cd:*' file-sort modification reverse
 # cd will never select the parent directory
 zstyle ':completion:*:*:*:cd:*' ignore-parents parent pwd
 
