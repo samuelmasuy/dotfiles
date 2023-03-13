@@ -11,6 +11,22 @@ fpath=(${DOTFILES_HOME}/zsh/.config/zsh/plugins/kubectl-completion $fpath)
 # complist give access to the keymap menuselect (should be loaded before compinit)
 zmodload zsh/complist
 
+# source ${DOTFILES_HOME}/zsh/.config/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+
+# # Up arrow:
+# #   
+# bindkey '^p' up-line-or-search
+# bindkey '^p' up-line-or-search
+# # up-line-or-search:  Open history menu.
+# # up-line-or-history: Cycle to previous history line.
+#
+# # Down arrow:
+# bindkey '^n' down-line-or-select
+# bindkey '^n' down-line-or-select
+#
+# zle -A {.,}history-incremental-search-forward
+# zle -A {.,}history-incremental-search-backward
+
 # Use hjlk in menu selection (during completion)
 # Doesn't work well with interactive mode
 # bindkey -M menuselect 'h' vi-backward-char
@@ -67,24 +83,25 @@ zstyle ':completion:*' file-sort modification
 zstyle ':completion:*' group-name ''
 
 # smart-case
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+# zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
 # Autocomplete options for cd instead of directory stack
-zstyle ':completion:*:*:*:cd:*' complete-options true
+zstyle ':completion:*:*:*:cd:*' complete-options false
 zstyle ':completion:*:*:*:cd:*' file-sort modification reverse
 # cd will never select the parent directory
 zstyle ':completion:*:*:*:cd:*' ignore-parents parent pwd
+# zstyle ':completion:*:*:cd:*:*' group-order alias builtins functions commands
 
 # tag format
-zstyle ':completion:*:*:*:*:corrections' format '%F{yellow}!- %d (errors: %e) -!%f'
-zstyle ':completion:*:*:*:*:descriptions' format '%F{blue}-- %D %d --%f'
-zstyle ':completion:*:*:*:*:messages' format ' %F{purple} -- %d --%f'
-zstyle ':completion:*:*:*:*:warnings' format ' %F{red}-- no matches found --%f'
+# zstyle ':completion:*:*:*:*:corrections' format '%F{yellow}!- %d (errors: %e) -!%f'
+# zstyle ':completion:*:*:*:*:descriptions' format '%F{blue}-- %D %d --%f'
+# zstyle ':completion:*:*:*:*:messages' format ' %F{purple} -- %d --%f'
+# zstyle ':completion:*:*:*:*:warnings' format ' %F{red}-- no matches found --%f'
 # zstyle ':completion:*:*:*:*:descriptions' format '%F{green}-- %d --%f'
 
 # zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 #
-
 
 # +---------------+
 # | custom setups |
