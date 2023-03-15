@@ -63,9 +63,9 @@ xnoremap("J", ":m'>+<CR>gv=gv")
 
 -- Don't move on *
 nnoremap(
-	"*",
-	"<cmd>let stay_star_view = winsaveview()<cr>*<cmd>call winrestview(stay_star_view)<cr>",
-	{ noremap = true, silent = true }
+  "*",
+  "<cmd>let stay_star_view = winsaveview()<cr>*<cmd>call winrestview(stay_star_view)<cr>",
+  { noremap = true, silent = true }
 )
 
 -- Terminal mode
@@ -77,6 +77,9 @@ tnoremap("<C-l>", "<C-\\><C-n><C-w>l")
 
 -- Ex
 nnoremap("-", vim.cmd.Ex, { desc = "Open netrw" })
+
+-- Git
+nnoremap("<leader>g", "<cmd>G<cr>", { desc = "[g]git" })
 
 -- Telescope
 nnoremap("<leader>t", "<cmd>Telescope<cr>", { desc = "[t]elescope" })

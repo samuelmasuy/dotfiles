@@ -12,16 +12,16 @@ return {
 			-- vim.cmd.delcommand("Gsdiff") -- Superseded by |:Ghdiffsplit|
 			-- vim.cmd.delcommand("Gvdiff") -- Superseded by |:Gvdiffsplit| or |:vert| |:Gdiffsplit|.
 			vim.cmd.delcommand("Gblame") -- Superseded by |:Git_blame|.
-			vim.api.nvim_create_user_command("GBlame", ":G blame<CR>", {})
+			vim.api.nvim_create_user_command("GBlame", "G blame", {})
 			vim.cmd.delcommand("Gcommit") -- Superseded by |:Git| commit.
-			vim.api.nvim_create_user_command("GCommit", ":G commit<CR>", {})
+			vim.api.nvim_create_user_command("GCommit", "G commit", {})
 			vim.cmd.delcommand("Gmerge") -- Superseded by |:Git| merge and |:Git_mergetool|.
 			vim.cmd.delcommand("Gpull") -- Superseded by |:Git| pull.
-			vim.api.nvim_create_user_command("GPull", ":G pull<CR>", {})
+			vim.api.nvim_create_user_command("GPull", "G pull", {})
 			vim.cmd.delcommand("Grebase") -- Superseded by |:Git| rebase.
 			vim.cmd.delcommand("Grevert") -- Superseded by |:Git| revert.
 			vim.cmd.delcommand("Gpush") -- Superseded by |:Git| push.
-			vim.api.nvim_create_user_command("GPush", ":G push<CR>", {})
+			vim.api.nvim_create_user_command("GPush", "G push", {})
 			vim.cmd.delcommand("Gfetch") -- Superseded by |:Git| fetch.
 			vim.cmd.delcommand("Glog") -- Superseded by |:Gclog|.
 			vim.cmd.delcommand("Gstatus") --Superseded by |:Git| (with no arguments).
