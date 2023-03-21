@@ -42,6 +42,7 @@ zmodload zsh/complist
 # Checking the cached .zcompdump file to see if it must be regenerated adds a noticable
 # delay to zsh startup. This restricts it to once a day.
 # https://carlosbecker.com/posts/speeding-up-zsh/
+autoload -U bashcompinit; bashcompinit
 autoload -Uz compinit
 if [ $(date +'%j') != $(stat -f '%Sm' -t '%j' ${ZDOTDIR}/.zcompdump) ]; then
   compinit
@@ -49,8 +50,6 @@ else
   compinit -C
 fi
 _comp_options+=(globdots) # With hidden files
-
-autoload -U bashcompinit; bashcompinit
 
 # +---------+
 # | Options |

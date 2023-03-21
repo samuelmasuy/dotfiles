@@ -150,14 +150,6 @@ zsh_kubectl_minor_version() {
 }
 
 src() {
-	# local cache="$ZSH_CACHE_DIR"
-	# autoload -U compinit zrecompile
-	# compinit -i -d "$cache/zcomp-$HOST"
-
-	# for f in ${ZDOTDIR:-~}/.zshrc "$cache/zcomp-$HOST"; do
-	# 	zrecompile -p $f && command rm -f $f.zwc.old
-	# done
-
 	# Use $SHELL if it's available and a zsh shell
 	local shell="$ZSH_ARGZERO"
 	if [[ "${${SHELL:t}#-}" = zsh ]]; then
