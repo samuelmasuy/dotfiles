@@ -8,6 +8,10 @@ function my_ip() {
     ifconfig | grep 'broadcast' | awk '{print $6}'
 }
 
+function rgit() {
+  find . -type d -name .git -execdir git "$@" \;
+}
+
 # Display neatly formatted path of the system.
 function path() {
     echo $PATH | tr ":" "\n" | \
