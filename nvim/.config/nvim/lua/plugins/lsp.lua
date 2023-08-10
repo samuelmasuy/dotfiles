@@ -88,7 +88,7 @@ return {
 				"bashls",
 				"jsonls",
 				"yamlls",
-				"sumneko_lua",
+				"lua_ls",
 			}
 
 			-- Ensure the servers above are installed
@@ -130,7 +130,7 @@ return {
 				},
 			}))
 
-			lspconfig.sumneko_lua.setup(config({
+			lspconfig.lua_ls.setup(config({
 				settings = {
 					Lua = {
 						-- runtime = {

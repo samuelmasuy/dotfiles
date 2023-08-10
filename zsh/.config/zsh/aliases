@@ -64,6 +64,8 @@ alias sp="spotify"
 alias spn="spotify next"
 alias spp="spotify prev"
 alias spst="spotify status"
+# kill
+alias killseg="kill -s SIGSEGV $$"
 
 alias tldrf='tldr --list | fzf --preview "tldr --color=always {1}" --preview-window=right,70% | xargs tldr'
 
@@ -99,4 +101,4 @@ alias gprc="gh pr checks -w"
 # +-----+
 alias k=kubectl
 alias kn=kubens
-alias kx=kubectx
+alias kx=kubeswap

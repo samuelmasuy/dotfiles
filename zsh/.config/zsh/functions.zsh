@@ -183,3 +183,9 @@ function kln() {
 function ktime() {
   while read line ; do echo -e "$(gdate +"%Y-%m-%d %H:%M:%S.%3N")\t $line" ; done
 }
+
+function kall() {
+  local rest=("${@:1}")
+  kubectl api-resources --verbs=list --namespaced -o name \
+    | xargs -n 1 kubectl get --show-kind --ignore-not-found ${rest}
+}

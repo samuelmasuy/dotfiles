@@ -14,9 +14,9 @@ end
 vim.opt.runtimepath:prepend(lazypath)
 
 require("lazy").setup("plugins", {
-	defaults = {
-		version = "*",
-	},
+	-- defaults = {
+	-- 	version = "*",
+	-- },
 	-- dev = { },
 	-- install = { colorscheme = { "catppuccin", "habamax" } },
 	-- checker = { enabled = true },
