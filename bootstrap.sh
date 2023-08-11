@@ -57,6 +57,6 @@ echo "Almost Done! Run ./install and Just do that: https://blog.birkhoff.me/make
 # echo "**************************************************************************"
 # echo "**********************neovim stuff...*************************************"
 # echo "**************************************************************************"
-# sudo pip3 install --upgrade neovim
-# sudo gem install neovim
-# npm install -g neovim
+sudo pip3 install --upgrade neovim
+sudo gem install neovim
+npm install -g neovim

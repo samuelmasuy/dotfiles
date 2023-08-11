@@ -19,7 +19,6 @@ return {
 					"go",
 					"gomod",
 					"hcl",
-					"help",
 					"html",
 					"http",
 					"javascript",
