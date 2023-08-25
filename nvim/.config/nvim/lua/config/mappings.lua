@@ -76,7 +76,7 @@ tnoremap("<C-k>", "<C-\\><C-n><C-w>k")
 tnoremap("<C-l>", "<C-\\><C-n><C-w>l")
 
 -- Ex
-nnoremap("-", vim.cmd.Ex, { desc = "Open netrw" })
+-- nnoremap("-", vim.cmd.Ex, { desc = "Open netrw" })
 
 -- Git
 nnoremap("<leader>g", "<cmd>G<cr>", { desc = "[g]git" })

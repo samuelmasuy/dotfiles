@@ -20,6 +20,7 @@ export ASDF_DIR="$(brew --prefix asdf)/libexec"
 export ASDF_CONFIG_FILE="$XDG_CONFIG_HOME"/asdf/config
 export ASDF_DATA_DIR="$XDG_DATA_HOME"/asdf
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/ripgreprc"
+export KREW_ROOT="$XDG_DATA_HOME"/krew
 
 export PATH="$PATH:$HOME/.local/bin/:$HOME/.local/bin/aws/:$HOME/.local/bin/git-toolbelt/"
 export PATH="$PATH:/usr/local/sbin:/Applications/VirtualBox.app/Contents/MacOS"
@@ -27,14 +28,10 @@ export PATH="$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export PATH="$PATH:$JAVA_HOME/bin"
 export PATH="$PATH:$XDG_DATA_HOME/yarn/bin"
 export PATH="$PATH:$XDG_DATA_HOME/npm/bin"
-export PATH="$PATH:/usr/local/opt/curl-openssl/bin"
-export PATH="$PATH:/usr/local/opt/curl-openssl/bin"
 export PATH="$PATH:$CARGO_HOME/bin"
-export PATH="$PATH:${HOME}/.krew/bin"
-# export PATH="$PATH:${XDG_DATA_HOME}/nvim/lsp_servers"
-export PATH="/usr/local/opt/python/libexec/bin:$PATH"
-export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
-# export PATH="$PATH:/usr/local/opt/node@14/bin"
+export PATH="${KREW_ROOT}/bin:$PATH"
+
+export DOCKER_DEFAULT_PLATFORM=linux/amd64
 
 export MANPAGER='nvim +Man!'
 export MANPATH="/usr/local/man:$MANPATH"
@@ -45,8 +42,6 @@ export MAVEN_OPTS="-Xmx1024m -Xms512m"
 autoload colors; colors;
 
 export NODE_PATH='/usr/local/lib/node_modules'
-# export LDFLAGS="-L/usr/local/opt/node@14/lib"
-# export CPPFLAGS="-I/usr/local/opt/node@14/include"
 
 export PROMPT_COMMAND='history -a'
 # ignore storing commands prefixed by a space
@@ -68,4 +63,3 @@ export BAT_THEME="OneHalfDark"
 export BAT_STYLE="changes"
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
-

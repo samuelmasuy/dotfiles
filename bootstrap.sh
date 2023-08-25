@@ -60,3 +60,6 @@ echo "Almost Done! Run ./install and Just do that: https://blog.birkhoff.me/make
 sudo pip3 install --upgrade neovim
 sudo gem install neovim
 npm install -g neovim
+
+# hide bluesnooze, unhide: defaults delete com.oliverpeate.Bluesnooze hideIcon && killall Bluesnooze
+defaults write com.oliverpeate.Bluesnooze hideIcon -bool true && killall Bluesnooze

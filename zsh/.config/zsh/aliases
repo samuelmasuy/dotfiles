@@ -101,4 +101,5 @@ alias gprc="gh pr checks -w"
 # +-----+
 alias k=kubectl
 alias kn=kubens
-alias kx=kubeswap
+alias kx=kubectx
+# alias kx=kubeswap

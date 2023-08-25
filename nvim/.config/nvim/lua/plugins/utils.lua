@@ -10,8 +10,6 @@ return {
   },
 
   -- "mhinz/vim-startify" -- Startup Screen
-  -- "tpope/vim-vinegar" -- Enhance netrw
-  -- 'justinmk/vim-dirvish' -- minimalist directory viewer -
   {
     "tpope/vim-eunuch", -- Adds Unix commands to vim.
     event = "VeryLazy",
