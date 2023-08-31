@@ -63,9 +63,9 @@ xnoremap("J", ":m'>+<CR>gv=gv")
 
 -- Don't move on *
 nnoremap(
-  "*",
-  "<cmd>let stay_star_view = winsaveview()<cr>*<cmd>call winrestview(stay_star_view)<cr>",
-  { noremap = true, silent = true }
+	"*",
+	"<cmd>let stay_star_view = winsaveview()<cr>*<cmd>call winrestview(stay_star_view)<cr>",
+	{ noremap = true, silent = true }
 )
 
 -- Terminal mode
@@ -104,6 +104,11 @@ nnoremap("<leader>sh", require("telescope.builtin").help_tags, { desc = "[S]earc
 nnoremap("<leader>sw", require("telescope.builtin").grep_string, { desc = "[S]earch current [W]ord" })
 nnoremap("<leader>sd", require("telescope.builtin").diagnostics, { desc = "[S]earch [D]iagnostics" })
 
+-- Git worktree
+nnoremap("<leader>wt", require("telescope").extensions.git_worktree.git_worktrees, { desc = "Git [W]ork[t]rees" })
+nnoremap("<leader>wc", require("telescope").extensions.git_worktree.git_worktrees, { desc = "Git [W]orktree [C]reate" })
+
+--
 -- LSP
 nnoremap("<space>d", require("sam.lsp").LspSwap, { desc = "Swap LSP" })
 
