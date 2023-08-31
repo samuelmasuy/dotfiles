@@ -105,8 +105,16 @@ nnoremap("<leader>sw", require("telescope.builtin").grep_string, { desc = "[S]ea
 nnoremap("<leader>sd", require("telescope.builtin").diagnostics, { desc = "[S]earch [D]iagnostics" })
 
 -- Git worktree
-nnoremap("<leader>wt", require("telescope").extensions.git_worktree.git_worktrees, { desc = "Git [W]ork[t]rees" })
-nnoremap("<leader>wc", require("telescope").extensions.git_worktree.git_worktrees, { desc = "Git [W]orktree [C]reate" })
+nnoremap(
+	"<leader>sw",
+	require("telescope").extensions.git_worktree.git_worktrees,
+	{ desc = "[S]earch Git [W]orktrees", noremap = true, silent = true }
+)
+nnoremap(
+	"<leader>wt",
+	require("telescope").extensions.git_worktree.create_git_worktree,
+	{ desc = "Create Git [W]ork[t]ree", noremap = true, silent = true }
+)
 
 --
 -- LSP

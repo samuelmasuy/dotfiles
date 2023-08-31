@@ -34,6 +34,6 @@ return {
 	"tpope/vim-rhubarb", -- Companion of fugitive for integration with Github
 	{
 		"ThePrimeagen/git-worktree.nvim",
-		config = function() end,
+		config = true,
 	},
 }
