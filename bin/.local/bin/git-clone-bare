@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+set -e
+
+usage() {
+  cat <<-EOF
+		Usage: $(basename "$0") <repo> [<dir>]
+	EOF
+  exit 1
+}
+
+if [ "$#" -lt 1 ]; then
+  echo "fatal: You must specify a repository to clone."
+  echo
+  usage
+fi
+
+repo=$1
+basename=${repo##*/}
+name=${2:-${basename%.*}}.git
+
+git clone --bare "$repo" "$name"
+cd "$name"
+git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
+git fetch
+# git for-each-ref --format='%(refname:short)' refs/heads | xargs -n1 -I{} git branch --set-upstream-to=origin/{} {}
+git for-each-ref --format='%(refname:short)' refs/heads | xargs git branch -D
+cd ..

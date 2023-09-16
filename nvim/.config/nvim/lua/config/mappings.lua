@@ -63,9 +63,9 @@ xnoremap("J", ":m'>+<CR>gv=gv")
 
 -- Don't move on *
 nnoremap(
-	"*",
-	"<cmd>let stay_star_view = winsaveview()<cr>*<cmd>call winrestview(stay_star_view)<cr>",
-	{ noremap = true, silent = true }
+  "*",
+  "<cmd>let stay_star_view = winsaveview()<cr>*<cmd>call winrestview(stay_star_view)<cr>",
+  { noremap = true, silent = true }
 )
 
 -- Terminal mode
@@ -77,9 +77,6 @@ tnoremap("<C-l>", "<C-\\><C-n><C-w>l")
 
 -- Ex
 -- nnoremap("-", vim.cmd.Ex, { desc = "Open netrw" })
-
--- Git
-nnoremap("<leader>g", "<cmd>G<cr>", { desc = "[g]git" })
 
 -- Telescope
 nnoremap("<leader>t", "<cmd>Telescope<cr>", { desc = "[t]elescope" })
@@ -104,16 +101,21 @@ nnoremap("<leader>sh", require("telescope.builtin").help_tags, { desc = "[S]earc
 nnoremap("<leader>sw", require("telescope.builtin").grep_string, { desc = "[S]earch current [W]ord" })
 nnoremap("<leader>sd", require("telescope.builtin").diagnostics, { desc = "[S]earch [D]iagnostics" })
 
+-- Git
+nnoremap("<leader>g", "<cmd>G<cr>", { desc = "[g]it" })
+nnoremap("<leader>gp", "<cmd>GPush<cr>", { desc = "[g]it [p]ush" })
+nnoremap("<leader>gl", "<cmd>GPull<cr>", { desc = "[g]it pu[l]l" })
+
 -- Git worktree
 nnoremap(
-	"<leader>sw",
-	require("telescope").extensions.git_worktree.git_worktrees,
-	{ desc = "[S]earch Git [W]orktrees", noremap = true, silent = true }
+  "<leader>sw",
+  require("telescope").extensions.git_worktree.git_worktrees,
+  { desc = "[S]earch Git [W]orktrees", noremap = true, silent = true }
 )
 nnoremap(
-	"<leader>wt",
-	require("telescope").extensions.git_worktree.create_git_worktree,
-	{ desc = "Create Git [W]ork[t]ree", noremap = true, silent = true }
+  "<leader>wt",
+  require("telescope").extensions.git_worktree.create_git_worktree,
+  { desc = "Create Git [W]ork[t]ree", noremap = true, silent = true }
 )
 
 --
