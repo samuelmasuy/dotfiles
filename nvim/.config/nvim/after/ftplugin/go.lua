@@ -2,11 +2,11 @@ vim.opt_local.expandtab = false
 vim.opt_local.shiftwidth = 4
 vim.opt_local.tabstop = 4
 vim.api.nvim_create_autocmd("BufWritePre", {
-	group = vim.api.nvim_create_augroup("Go", { clear = true }),
-	pattern = "*.go",
-	callback = function()
-		vim.lsp.buf.format()
-	end,
+  group = vim.api.nvim_create_augroup("Go", { clear = true }),
+  pattern = "*.go",
+  callback = function()
+    vim.lsp.buf.format()
+  end,
 })
 -- [[ autocmd BufWritePre <buffer> go vim.lsp.buf.format() ]]
 -- vim.api.nvim_exec([[ autocmd BufWritePre *.go :silent! lua require('go.format').goimport() ]], false)

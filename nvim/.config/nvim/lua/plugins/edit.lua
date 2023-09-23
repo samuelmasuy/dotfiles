@@ -14,7 +14,7 @@ return {
     "tpope/vim-repeat", -- Repeat actions better
     event = "InsertEnter",
   },
-  "tpope/vim-abolish",    -- Camel case, snake crc
+  "tpope/vim-abolish", -- Camel case, snake crc
   {
     "tpope/vim-surround", -- To change surrounding quote: cs(' ;tag cst<th> ;to add quote ysW'
     event = "InsertEnter",

@@ -5,6 +5,10 @@ return {
     config = function()
       require("hardtime").setup({
         restricted_keys = {
+          ["<Left>"] = {},
+          ["<Right>"] = {},
+          ["<Up>"] = {},
+          ["<Down>"] = {},
           ["-"] = {},
           ["j"] = {},
           ["k"] = {},
