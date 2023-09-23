@@ -24,8 +24,14 @@ nnoremap("<left>", "<cmd>bprevious<CR>", { desc = "Previous buffer" })
 nnoremap("<right>", "<cmd>bnext<CR>", { desc = "next buffer" })
 
 -- Up and down can switch quickfix list
-nnoremap("<up>", "<cmd>cprevious<CR>", { desc = "Previous quickfix" })
-nnoremap("<down>", "<cmd>cnext<CR>", { desc = "Next quickfix" })
+nnoremap("<leader>qp", "<cmd>cprevious<CR>", { desc = "Previous quickfix" })
+nnoremap("<leader>qn", "<cmd>cnext<CR>", { desc = "Next quickfix" })
+
+nnoremap("<space>q", function()
+  local qf_winid = vim.fn.getqflist({ winid = 0 }).winid
+  local action = qf_winid > 0 and "cclose" or "copen"
+  vim.cmd("botright " .. action)
+end, { desc = "Toggle quickfix", noremap = true, silent = true })
 
 -- Quick Fold and Unfold.
 -- nnoremap("<space>", "za")
@@ -127,3 +133,8 @@ nnoremap("[d", vim.diagnostic.goto_prev, { desc = "Previous [d]iagnostic" })
 nnoremap("]d", vim.diagnostic.goto_next, { desc = "Next [d]iagnostic" })
 nnoremap("gl", vim.diagnostic.open_float, { desc = "Open diagnostic" })
 nnoremap("<leader>q", vim.diagnostic.setloclist, { desc = "Diagnostic to location list" })
+
+-- Mini
+nnoremap("-", function()
+  require("mini.files").open(vim.api.nvim_buf_get_name(0))
+end, { desc = "Open mini.files" })

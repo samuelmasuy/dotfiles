@@ -28,13 +28,6 @@ return {
           preview = false,
         },
       })
-
-      local Remap = require("sam.keymap")
-      local mini = require("mini.files")
-      local nnoremap = Remap.nnoremap
-      nnoremap("-", function()
-        mini.open(vim.api.nvim_buf_get_name(0))
-      end, { desc = "Open mini.files" })
     end,
   },
 }
