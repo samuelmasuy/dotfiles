@@ -3,7 +3,7 @@ return {
     "neovim/nvim-lspconfig",
     event = "BufReadPre",
     dependencies = {
-      { "folke/neodev.nvim", ft = "lua", config = true },
+      { "folke/neodev.nvim",                ft = "lua", config = true },
       { "williamboman/mason.nvim" },
       { "williamboman/mason-lspconfig.nvim" },
       { "jose-elias-alvarez/null-ls.nvim" },
@@ -35,7 +35,7 @@ return {
         nmap("gd", vim.lsp.buf.definition, "[g]oto [d]efinition")
         nmap("gr", require("telescope.builtin").lsp_references, "[g]oto [r]eferences")
         nmap("K", vim.lsp.buf.hover, "Hover Documentation")
-        nmap("gs", vim.lsp.buf.signature_help, "[s]ignature documentation")
+        nmap("gs", vim.lsp.buf.signature_help, "[g]oto [s]ignature documentation")
         nmap("gi", vim.lsp.buf.implementation, "[g]oto [i]mplementation")
         nmap("<leader>d", vim.lsp.buf.type_definition, "Type [d]efinition")
         nmap("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")

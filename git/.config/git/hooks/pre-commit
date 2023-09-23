@@ -1,0 +1,3 @@
+#!/bin/sh
+
+trufflehog git --fail --since-commit=HEAD --only-verified file://. 2>/dev/null
