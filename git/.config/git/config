@@ -18,7 +18,7 @@
 [alias]
     co = checkout
     up = pull --rebase --autostash
-    lp = log --pretty='%C(red)%h%Creset%C(yellow)%d%Creset %s %C(cyan)(%ar)%Creset'
+    lp = log --pretty='%C(red)%h%Creset%C(yellow)%d%Creset %s %C(cyan)(%ar)%Creset' --graph
     new = lp master..HEAD
     missing = lp HEAD..master
 [push]
