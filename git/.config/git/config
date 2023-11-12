@@ -18,6 +18,9 @@
 [alias]
     co = checkout
     up = pull --rebase --autostash
+    lp = log --pretty='%C(red)%h%Creset%C(yellow)%d%Creset %s %C(cyan)(%ar)%Creset'
+    new = lp master..HEAD
+    missing = lp HEAD..master
 [push]
     default = simple
 [pull]
@@ -25,6 +28,9 @@
 [merge]
     conflictstyle = diff3
     tool = nvim -d
+[rebase]
+    autosquash = true
+    autoStash = true
 [credential]
     helper = osxkeychain
 [interactive]
