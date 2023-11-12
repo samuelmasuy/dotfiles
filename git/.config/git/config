@@ -29,7 +29,7 @@
     conflictstyle = diff3
     tool = nvim -d
 [rebase]
-    autosquash = true
+    autoSquash = true
     autoStash = true
 [rerere]
     enabled = true
