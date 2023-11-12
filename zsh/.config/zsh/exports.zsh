@@ -62,4 +62,6 @@ export GROOVY_HOME=/usr/local/opt/groovy/libexec
 export BAT_THEME="OneHalfDark"
 export BAT_STYLE="changes"
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
+if [[ $(uname -m) == 'arm64' ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
