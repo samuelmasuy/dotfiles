@@ -1,0 +1,54 @@
+[include]
+    path = ~/.config/git/self-config
+[core]
+    editor = nvim
+    excludesfile = ~/.config/git/ignore
+    whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+    pager = delta
+[color]
+    ui = auto
+[color "branch"]
+    current = yellow bold
+    local = green bold
+    remote = cyan bold
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+    whitespace = red reverse
+[color "status"]
+    added = green
+    changed = yellow
+    untracked = red
+[alias]
+    co = checkout
+    up = pull --rebase --autostash
+    exclude = !sh -c 'echo "$1" >> .git/info/exclude' -
+    lp = log --pretty='%C(red)%h%Creset%C(yellow)%d%Creset %s %C(cyan)(%ar)%Creset'
+    new = lp master..HEAD
+    missing = lp HEAD..master
+[push]
+    autoSetupRemote = true
+    default = simple
+[pull]
+    rebase = true
+[merge]
+    conflictstyle = diff3
+    tool = nvim -d
+[rebase]
+    autoSquash = true
+    autoStash = true
+[rerere]
+    enabled = true
+[init]
+    defaultBranch = master
+[credential]
+    helper = osxkeychain
+[interactive]
+    diffFilter = delta --color-only
+[delta]
+    navigate = true    # use n and N to move between diff sections
+    light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)       pager = delta
+[diff]
+    colorMoved = default
