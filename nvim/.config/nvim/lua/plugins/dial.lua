@@ -2,16 +2,15 @@ return {
   {
     "monaqa/dial.nvim", -- Better increment/decrement
     config = function()
-      local Remap = require("sam.keymap")
-      local nnoremap = Remap.nnoremap
-      local vnoremap = Remap.vnoremap
-
-      nnoremap("<C-a>", require("dial.map").inc_normal())
-      nnoremap("<C-x>", require("dial.map").dec_normal())
-      vnoremap("<C-a>", require("dial.map").inc_visual())
-      vnoremap("<C-x>", require("dial.map").dec_visual())
-      vnoremap("g<C-a>", require("dial.map").inc_gvisual())
-      vnoremap("g<C-x>", require("dial.map").dec_gvisual())
+      local augend = require("dial.augend")
+      require("dial.config").augends:register_group({
+        -- default augends used when no group name is specified
+        default = {
+          augend.integer.alias.decimal, -- nonnegative decimal number (0, 1, 2, 3, ...)
+          augend.constant.alias.bool, -- boolean value (true <-> false)
+          augend.date.alias["%d/%m/%Y"], -- date (31/01/1999, etc.)
+        },
+      })
     end,
   },
 }

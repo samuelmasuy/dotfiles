@@ -100,3 +100,12 @@ repositories:
   password: ""
   url: https://openclustermanagement.blob.core.windows.net/releases/
   username: ""
+- caFile: ""
+  certFile: ""
+  insecure_skip_tls_verify: false
+  keyFile: ""
+  name: kubeshop
+  pass_credentials_all: false
+  password: ""
+  url: https://kubeshop.github.io/helm-charts
+  username: ""

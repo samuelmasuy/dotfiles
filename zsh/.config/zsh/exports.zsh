@@ -30,6 +30,7 @@ export PATH="$PATH:$XDG_DATA_HOME/yarn/bin"
 export PATH="$PATH:$XDG_DATA_HOME/npm/bin"
 export PATH="$PATH:$CARGO_HOME/bin"
 export PATH="${KREW_ROOT}/bin:$PATH"
+export PATH="/opt/homebrew/opt/curl/bin:$PATH"
 
 export DOCKER_DEFAULT_PLATFORM=linux/amd64
 
