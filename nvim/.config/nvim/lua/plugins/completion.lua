@@ -10,9 +10,9 @@ return {
       "hrsh7th/cmp-cmdline",
       "lukas-reineke/cmp-rg",
       "andersevenrud/cmp-tmux",
-      -- "L3MON4D3/LuaSnip",
+      "L3MON4D3/LuaSnip",
       -- "rafamadriz/friendly-snippets",
-      -- "saadparwaiz1/cmp_luasnip",
+      "saadparwaiz1/cmp_luasnip",
     },
     config = function()
       local cmp = require("cmp")
@@ -30,7 +30,7 @@ return {
           ["<C-d>"] = cmp.mapping.scroll_docs(-4),
           ["<C-f>"] = cmp.mapping.scroll_docs(4),
           ["<C-e>"] = cmp.mapping.abort(),
-          ["<c-y>"] = cmp.mapping(
+          ["<C-y>"] = cmp.mapping(
             cmp.mapping.confirm({
               behavior = cmp.ConfirmBehavior.Insert,
               select = true,

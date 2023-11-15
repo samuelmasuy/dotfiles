@@ -11,6 +11,12 @@
     current = yellow bold
     local = green bold
     remote = cyan bold
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+    whitespace = red reverse
 [color "status"]
     added = green
     changed = yellow
@@ -19,9 +25,11 @@
     co = checkout
     up = pull --rebase --autostash
     lp = log --pretty='%C(red)%h%Creset%C(yellow)%d%Creset %s %C(cyan)(%ar)%Creset' --graph
+    exclude = !sh -c 'echo "$1" >> .git/info/exclude' -
     new = lp master..HEAD
     missing = lp HEAD..master
 [push]
+    autoSetupRemote = true
     default = simple
 [pull]
     rebase = true
@@ -33,6 +41,8 @@
     autoStash = true
 [rerere]
     enabled = true
+[init]
+    defaultBranch = master
 [credential]
     helper = osxkeychain
 [interactive]

@@ -14,7 +14,15 @@ return {
       local lspconfig = require("lspconfig")
       local nnoremap = require("sam.keymap").nnoremap
 
-      local on_attach = function(_, bufnr)
+      local on_attach = function(client, bufnr)
+        local filetype = vim.api.nvim_buf_get_option(0, "filetype")
+        if client.name == "yamlls" and filetype == "helm" then
+          -- vim.b.lsp_shown = 0
+          -- vim.diagnostic.disable()
+          -- disable the lsp yaml server for helm files
+          vim.lsp.stop_client(client.id)
+        end
+
         local function buf_set_option(...)
           vim.api.nvim_buf_set_option(bufnr, ...)
         end
@@ -36,7 +44,7 @@ return {
         nmap("gr", require("telescope.builtin").lsp_references, "[g]oto [r]eferences")
         nmap("K", vim.lsp.buf.hover, "Hover Documentation")
         nmap("gs", vim.lsp.buf.signature_help, "[g]oto [s]ignature documentation")
-        nmap("gi", vim.lsp.buf.implementation, "[g]oto [i]mplementation")
+        nmap("gi", require("telescope.builtin").lsp_implementations, "[g]oto [i]mplementation")
         nmap("<leader>d", vim.lsp.buf.type_definition, "Type [d]efinition")
         nmap("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
         nmap("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
@@ -59,12 +67,6 @@ return {
           end
         end, { desc = "Format current buffer with LSP" })
         nmap("<leader>r", ":Format<CR>", "Fo[r]mat")
-
-        local filetype = vim.api.nvim_buf_get_option(0, "filetype")
-        if filetype == "helm" then
-          vim.b.lsp_shown = 0
-          vim.diagnostic.disable()
-        end
       end
 
       vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -116,6 +118,22 @@ return {
       lspconfig.dockerls.setup(config())
       lspconfig.bashls.setup(config())
       lspconfig.jsonls.setup(config())
+
+      if not lspconfig.helm_ls then
+        lspconfig.helm_ls = {
+          default_config = {
+            cmd = { "helm_ls", "serve" },
+            filetypes = { "helm" },
+            root_dir = function(fname)
+              return require("lspconfig.util").root_pattern("Chart.yaml")(fname)
+            end,
+          },
+        }
+      end
+      lspconfig.helm_ls.setup({
+        filetypes = { "helm" },
+        cmd = { "helm_ls", "serve" },
+      })
 
       lspconfig.yamlls.setup(config({
         settings = {
