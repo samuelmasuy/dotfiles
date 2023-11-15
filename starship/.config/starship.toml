@@ -22,16 +22,16 @@ $character"""
 # """
 
 [directory]
-style = "blue"
+style = 'blue'
 # truncation_length = 2
 truncate_to_repo = true
 fish_style_pwd_dir_length = 1
-repo_root_style = "bold blue"
+repo_root_style = 'bold blue'
 # use_logical_path = true
 
 [fill]
-symbol = " "
-style = "None"
+symbol = ' '
+style = 'None'
 
 [terraform]
 format = ' [\($workspace\)](65) '
@@ -42,21 +42,21 @@ disabled = false
 format = '[$status]($style) '
 
 [character]
-success_symbol = "[❯](green)"
-error_symbol = "[❯](red)"
-vicmd_symbol = "[❮](green)"
+success_symbol = '[❯](green)'
+error_symbol = '[❯](red)'
+vicmd_symbol = '[❮](green)'
 
 [git_branch]
-symbol = " "
-format = "[$symbol$branch ]($style)"
-style = "#889D66"
+symbol = ' '
+format = '[$symbol$branch ]($style)'
+style = '#889D66'
 
 [git_status]
 format = '([\[$all_status$ahead_behind\]]($style) )'
-deleted = "✗"
-untracked = ""
+deleted = '✗'
+untracked = '?'
 staged = '[++\($count\)](green)'
-stashed = ""
+stashed = ''
 ahead = '⇡${count}'
 diverged = '⇕⇡${ahead_count}⇣${behind_count}'
 behind = '⇣${count}'
@@ -67,28 +67,29 @@ format = '\([$state( $progress_current/$progress_total)]($style)\) '
 
 [time]
 disabled = false
-time_format = "%H:%M"
-format = " [$time](242)"
+time_format = '%H:%M'
+format = ' [$time](242)'
 
 [cmd_duration]
-format = "[$duration]($style) "
-style = "yellow"
+format = '[$duration]($style) '
+style = 'yellow'
 
 [python]
-format = "[$virtualenv]($style) "
-style = "bright-black"
+format = '[$symbol$virtualenv]($style) '
+symbol = '󰌠 '
+style = 'bright-black'
 
 [kubernetes]
 disabled = false
 format = '[$context([@](blue)$namespace)]($style)'
-style = "cyan bold"
+style = 'cyan bold'
 [kubernetes.context_aliases]
-".+:(?P<cluster>.+)" = "$cluster"
+'.+:(?P<cluster>.+)' = '$cluster'
 
 # [custom.kube_version]
-# command = "kubectl version --client --output=json | jq -r .clientVersion.minor"
-# # when = "kubectl config current-context"
-# when = "exit 0"
+# command = 'kubectl version --client --output=json | jq -r .clientVersion.minor'
+# # when = 'kubectl config current-context'
+# when = 'exit 0'
 # format = '[(:$output)]($style)'
-# style = "cyan"
+# style = 'cyan'
 # ignore_timeout = true
