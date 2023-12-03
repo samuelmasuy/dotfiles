@@ -102,5 +102,8 @@ alias gprc="gh pr checks -w"
 alias k=kubectl
 alias kn=kubens
 alias kx=kubectx
+alias kgp=kubectl get po | fzf | awk '{print $1}'
+alias kd=kgp | xargs -n 1 kubetl describe po
+alias kl=kgp | xargs -n 1 kubectl logs
 # alias kx=kubeswap
 alias minikube='DOCKER_DEFAULT_PLATFORM=linux/arm64/v8 minikube'
