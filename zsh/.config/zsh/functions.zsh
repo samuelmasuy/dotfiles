@@ -193,3 +193,15 @@ function kall() {
   kubectl api-resources --verbs=list --namespaced -o name \
     | xargs -n 1 kubectl get --show-kind --ignore-not-found ${rest}
 }
+
+function kgp() {
+  kubectl get po --no-headers | fzf | awk '{print $1}'
+}
+
+function kd() {
+  kgp | xargs -n 1 kubectl describe po
+}
+
+function klo() {
+  kgp | xargs -n 1 kubectl logs -f
+}
