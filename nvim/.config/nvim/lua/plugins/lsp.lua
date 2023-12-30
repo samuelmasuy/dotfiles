@@ -6,7 +6,7 @@ return {
       { "folke/neodev.nvim", ft = "lua", config = true },
       { "williamboman/mason.nvim" },
       { "williamboman/mason-lspconfig.nvim" },
-      { "jose-elias-alvarez/null-ls.nvim" },
+      { "nvimtools/none-ls.nvim" },
       -- 'nvim-lua/lsp_extensions.nvim',
       "hrsh7th/cmp-nvim-lsp",
     },
