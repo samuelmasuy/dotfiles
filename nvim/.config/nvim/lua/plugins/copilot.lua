@@ -4,7 +4,11 @@ return {
     cmd = "Copilot",
     event = "InsertEnter",
     config = function()
-      require("copilot").setup({})
+      require("copilot").setup({
+        filetypes = {
+          ["*"] = false,
+        },
+      })
       local copilot_on = true
       vim.api.nvim_create_user_command("CopilotToggle", function()
         if copilot_on then

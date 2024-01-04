@@ -1,9 +1,10 @@
 return {
   {
     "nvim-lualine/lualine.nvim", -- inspired from evil_lualine: https://gist.github.com/hoob3rt/b200435a765ca18f09f83580a606b878
-    -- dependencies = {
-    -- 	"navarasu/onedark.nvim",
-    -- },
+    dependencies = {
+      "AndreM222/copilot-lualine",
+      -- 	"navarasu/onedark.nvim",
+    },
     config = function()
       local lualine = require("lualine")
 
@@ -65,7 +66,11 @@ return {
         },
         sections = {
           lualine_c = { filename, diagnostics },
-          lualine_x = { lsp, filetype },
+          lualine_x = {
+            { "copilot", show_colors = false },
+            lsp,
+            filetype,
+          },
           lualine_y = {},
           lualine_z = { location },
         },
