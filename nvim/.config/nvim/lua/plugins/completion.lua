@@ -36,7 +36,7 @@ return {
           format = require("lspkind").cmp_format({
             maxwidth = 50,
             ellipsis_char = "...",
-            mode = "symbol_text",
+            mode = "symbol",
             symbol_map = { Copilot = "" },
           }),
         },
@@ -75,7 +75,7 @@ return {
           { name = "copilot" },
           { name = "nvim_lsp" },
           { name = "nvim_lua" }, -- only applies this on lua buffers
-          -- { name = "nvim_lsp_signature_help" },
+          { name = "nvim_lsp_signature_help" },
           -- { name = "luasnip" },
           { name = "path", option = { trailing_slash = true } },
           {
