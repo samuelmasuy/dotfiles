@@ -6,6 +6,7 @@ return {
       "nvim-treesitter/nvim-treesitter-textobjects",
     },
     build = ":TSUpdate",
+
     config = function()
       -- [[ Configure Treesitter ]]
       -- See `:help nvim-treesitter`
@@ -35,7 +36,8 @@ return {
           "vim",
           "yaml",
         },
-        -- ignore_install = { "gitcommit" },
+        ignore_install = {},
+        auto_install = true,
         sync_install = false,
 
         highlight = {

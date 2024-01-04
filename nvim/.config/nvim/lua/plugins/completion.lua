@@ -10,19 +10,35 @@ return {
       "hrsh7th/cmp-cmdline",
       "lukas-reineke/cmp-rg",
       "andersevenrud/cmp-tmux",
-      "L3MON4D3/LuaSnip",
+      "zbirenbaum/copilot-cmp",
+      "onsails/lspkind.nvim",
+      -- "L3MON4D3/LuaSnip",
       -- "rafamadriz/friendly-snippets",
-      "saadparwaiz1/cmp_luasnip",
+      -- "saadparwaiz1/cmp_luasnip",
     },
     config = function()
       local cmp = require("cmp")
 
       cmp.setup({
         preselect = cmp.PreselectMode.None,
-        snippet = {
-          expand = function(args)
-            require("luasnip").lsp_expand(args.body)
-          end,
+        -- snippet = {
+        --   expand = function(args)
+        --     require("luasnip").lsp_expand(args.body)
+        --   end,
+        -- },
+        window = {
+          completion = cmp.config.window.bordered(),
+          documentation = cmp.config.window.bordered(),
+        },
+        formatting = {
+          fields = { "abbr", "kind", "menu" },
+          expandable_indicator = true,
+          format = require("lspkind").cmp_format({
+            maxwidth = 50,
+            ellipsis_char = "...",
+            mode = "symbol_text",
+            symbol_map = { Copilot = "" },
+          }),
         },
         mapping = {
           ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
@@ -56,11 +72,12 @@ return {
 
         -- The order of your sources matter (by default). That gives them priority
         sources = {
+          { name = "copilot" },
           { name = "nvim_lsp" },
-          { name = "nvim_lsp_signature_help" },
           { name = "nvim_lua" }, -- only applies this on lua buffers
-          { name = "luasnip" },
-          { name = "path" },
+          -- { name = "nvim_lsp_signature_help" },
+          -- { name = "luasnip" },
+          { name = "path", option = { trailing_slash = true } },
           {
             name = "buffer",
             option = {
@@ -76,10 +93,6 @@ return {
           },
           { name = "rg" },
           { name = "tmux" },
-        },
-
-        experimental = {
-          native_menu = false,
         },
       })
 
