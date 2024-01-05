@@ -21,11 +21,4 @@ return {
 
     -- "hashivim/vim-vaultproject",
   },
-
-  -- tmux
-  "tmux-plugins/vim-tmux", -- tmux.conf
-  {
-    "christoomey/vim-tmux-navigator",
-    event = "BufEnter",
-  },
 }

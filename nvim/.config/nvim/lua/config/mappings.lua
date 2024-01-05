@@ -1,4 +1,4 @@
-local Remap = require("sam.keymap")
+local Remap = require("sam.utilities")
 local nnoremap = Remap.nnoremap
 local vnoremap = Remap.vnoremap
 local inoremap = Remap.inoremap
@@ -124,14 +124,6 @@ nnoremap(
   { desc = "Create Git [W]ork[t]ree", noremap = true, silent = true }
 )
 
---
--- LSP
--- Diagnostic keymaps
-nnoremap("[d", vim.diagnostic.goto_prev, { desc = "Previous [d]iagnostic" })
-nnoremap("]d", vim.diagnostic.goto_next, { desc = "Next [d]iagnostic" })
-nnoremap("gl", vim.diagnostic.open_float, { desc = "Open diagnostic" })
-nnoremap("<leader>q", vim.diagnostic.setloclist, { desc = "Diagnostic to location list" })
-
 -- Mini
 nnoremap("-", function()
   require("mini.files").open(vim.api.nvim_buf_get_name(0))
@@ -150,30 +142,6 @@ end, { desc = "Dial Up" })
 vnoremap("<C-x>", function()
   require("dial.map").manipulate("decrement", "visual")
 end, { desc = "Dial down" })
-
--- --- luasnip
--- local ls = require("luasnip")
--- vim.keymap.set({ "i", "s" }, "<c-k>", function()
---   if ls.expand_or_jumpable() then
---     ls.expand_or_jump()
---   end
--- end, { silent = true })
---
--- -- <c-j> is my jump backwards key.
--- -- this always moves to the previous item within the snippet
--- vim.keymap.set({ "i", "s" }, "<c-j>", function()
---   if ls.jumpable(-1) then
---     ls.jump(-1)
---   end
--- end, { silent = true })
---
--- -- <c-l> is selecting within a list of options.
--- -- This is useful for choice nodes (introduced in the forthcoming episode 2)
--- vim.keymap.set("i", "<c-l>", function()
---   if ls.choice_active() then
---     ls.change_choice(1)
---   end
--- end)
 
 -- Copilot
 nnoremap("<leader>cp", "<cmd>CopilotToggle<CR>", { desc = "Enable [C]o[p]ilot", silent = true })

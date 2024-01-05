@@ -1,4 +1,4 @@
-local Remap = require("sam.keymap")
+local Remap = require("sam.utilities")
 local nnoremap = Remap.nnoremap
 local vnoremap = Remap.vnoremap
 local noremap = Remap.noremap

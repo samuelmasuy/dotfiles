@@ -1,10 +1,13 @@
+local has_words_before = require("sam.utilities").has_words_before
+
 return {
   {
     "hrsh7th/nvim-cmp",
+    event = "InsertEnter",
     dependencies = {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
-      "hrsh7th/cmp-nvim-lua", -- for vim.api
+      -- "hrsh7th/cmp-nvim-lua", -- for vim.api
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-nvim-lsp-signature-help",
       "hrsh7th/cmp-cmdline",
@@ -12,24 +15,33 @@ return {
       "andersevenrud/cmp-tmux",
       "zbirenbaum/copilot-cmp",
       "onsails/lspkind.nvim",
-      -- "L3MON4D3/LuaSnip",
-      -- "rafamadriz/friendly-snippets",
-      -- "saadparwaiz1/cmp_luasnip",
+      "L3MON4D3/LuaSnip",
+      "rafamadriz/friendly-snippets",
+      "saadparwaiz1/cmp_luasnip",
     },
     config = function()
+      local lsp_zero = require("lsp-zero")
       local cmp = require("cmp")
+      local cmp_action = lsp_zero.cmp_action()
+      local luasnip = require("luasnip")
+      require("luasnip.loaders.from_vscode").lazy_load()
+      require("copilot_cmp").setup()
 
       cmp.setup({
         preselect = cmp.PreselectMode.None,
-        -- snippet = {
-        --   expand = function(args)
-        --     require("luasnip").lsp_expand(args.body)
-        --   end,
-        -- },
-        window = {
-          completion = cmp.config.window.bordered(),
-          documentation = cmp.config.window.bordered(),
+        completion = {
+          keyword_length = 1,
+          completeopt = "menu,menuone,noinsert,noselect",
         },
+        snippet = {
+          expand = function(args)
+            require("luasnip").lsp_expand(args.body)
+          end,
+        },
+        -- window = {
+        --   completion = cmp.config.window.bordered(),
+        --   documentation = cmp.config.window.bordered(),
+        -- },
         formatting = {
           fields = { "abbr", "kind", "menu" },
           expandable_indicator = true,
@@ -37,23 +49,38 @@ return {
             maxwidth = 50,
             ellipsis_char = "...",
             mode = "symbol",
-            symbol_map = { Copilot = "" },
+            symbol_map = { Copilot = "" },
           }),
         },
+        experimental = {
+          ghost_text = true,
+        },
         mapping = {
-          ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-          ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-          ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-          ["<C-f>"] = cmp.mapping.scroll_docs(4),
-          ["<C-e>"] = cmp.mapping.abort(),
-          ["<C-y>"] = cmp.mapping(
-            cmp.mapping.confirm({
-              behavior = cmp.ConfirmBehavior.Insert,
-              select = true,
-            }),
-            { "i", "c" }
-          ),
-          ["<c-space>"] = cmp.mapping({
+          ["<CR>"] = cmp.mapping.confirm({ select = false }),
+          ["<C-n>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+            elseif luasnip.expand_or_jumpable() then
+              luasnip.expand_or_jump()
+            elseif has_words_before() then
+              cmp.complete()
+            else
+              fallback()
+            end
+          end, { "i", "s" }),
+          ["<C-p>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
+            elseif luasnip.jumpable(-1) then
+              luasnip.jump(-1)
+            else
+              fallback()
+            end
+          end, { "i", "s" }),
+          ["<C-k>"] = cmp.mapping.scroll_docs(-4),
+          ["<C-j>"] = cmp.mapping.scroll_docs(4),
+          ["<C-c>"] = cmp.mapping.abort(),
+          ["<C-Space>"] = cmp.mapping({
             i = cmp.mapping.complete(),
             c = function(
               _ --[[fallback]]
@@ -67,14 +94,15 @@ return {
               end
             end,
           }),
-          ["<tab>"] = cmp.config.disable,
+          ["<C-f>"] = cmp_action.luasnip_jump_forward(),
+          ["<C-b>"] = cmp_action.luasnip_jump_backward(),
         },
 
         -- The order of your sources matter (by default). That gives them priority
         sources = {
           { name = "copilot" },
           { name = "nvim_lsp" },
-          { name = "nvim_lua" }, -- only applies this on lua buffers
+          -- { name = "nvim_lua" }, -- only applies this on lua buffers
           { name = "nvim_lsp_signature_help" },
           -- { name = "luasnip" },
           { name = "path", option = { trailing_slash = true } },

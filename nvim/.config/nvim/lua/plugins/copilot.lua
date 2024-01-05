@@ -6,8 +6,10 @@ return {
     config = function()
       require("copilot").setup({
         filetypes = {
-          ["*"] = false,
+          ["*"] = true,
         },
+        suggestion = { enabled = false },
+        panel = { enabled = false },
       })
       local copilot_on = true
       vim.api.nvim_create_user_command("CopilotToggle", function()

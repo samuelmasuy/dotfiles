@@ -1,1 +1,1 @@
-nnoremap <buffer> <C-l> :TmuxNavigateRight<cr>
+nnoremap <silent> <C-l> <Cmd>NvimTmuxNavigateRight<CR>
