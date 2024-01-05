@@ -7,13 +7,17 @@ return {
     },
     build = ":TSUpdate",
 
+    -- [[ Config ]]
+    -- See `:help nvim-treesitter`
     config = function()
       -- [[ Configure Treesitter ]]
       -- See `:help nvim-treesitter`
       require("nvim-treesitter.configs").setup({
+        modules = {},
         -- Add languages to be installed here that you want installed for treesitter
         ensure_installed = {
           "bash",
+          "cmake",
           "dockerfile",
           "gitcommit",
           "gitignore",
@@ -25,6 +29,7 @@ return {
           "javascript",
           "jq",
           "json",
+          "json5",
           "lua",
           "make",
           "markdown",
@@ -34,6 +39,7 @@ return {
           "toml",
           "typescript",
           "vim",
+          "vimdoc",
           "yaml",
         },
         ignore_install = {},

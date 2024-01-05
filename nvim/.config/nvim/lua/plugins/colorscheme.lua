@@ -21,6 +21,7 @@ return {
 
   {
     "rebelot/kanagawa.nvim",
+    enabled = true,
     config = function()
       require("kanagawa").setup({
         compile = true, -- enable compiling the colorscheme
@@ -42,6 +43,13 @@ return {
           dark = "wave", -- try "dragon" !
           light = "lotus",
         },
+        -- overrides = function(_)
+        --   return {
+        --     FloatBorder = { bg = "none" },
+        --     NormalFloat = { bg = "none" },
+        --     FloatTitle = { bg = "none" },
+        --   }
+        -- end,
       })
 
       local opt = vim.opt

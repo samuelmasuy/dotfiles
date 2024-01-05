@@ -38,10 +38,16 @@ return {
             require("luasnip").lsp_expand(args.body)
           end,
         },
+
         -- window = {
-        --   completion = cmp.config.window.bordered(),
-        --   documentation = cmp.config.window.bordered(),
+        --   completion = cmp.config.window.bordered({
+        --     winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
+        --   }),
+        --   documentation = cmp.config.window.bordered({
+        --     winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
+        --   }),
         -- },
+
         formatting = {
           fields = { "abbr", "kind", "menu" },
           expandable_indicator = true,
@@ -56,7 +62,7 @@ return {
           ghost_text = true,
         },
         mapping = {
-          ["<CR>"] = cmp.mapping.confirm({ select = false }),
+          ["<Tab>"] = cmp.mapping.confirm({ select = true }),
           ["<C-n>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
@@ -104,7 +110,7 @@ return {
           { name = "nvim_lsp" },
           -- { name = "nvim_lua" }, -- only applies this on lua buffers
           { name = "nvim_lsp_signature_help" },
-          -- { name = "luasnip" },
+          { name = "luasnip" },
           { name = "path", option = { trailing_slash = true } },
           {
             name = "buffer",
