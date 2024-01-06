@@ -1,24 +1,4 @@
 return {
-  -- colorschemes
-  -- 'joshdick/onedark.vim',
-  -- 'ful1e5/onedark.nvim',
-  -- {
-  --   'rose-pine/neovim',
-  --   name = 'rose-pine',
-  -- },
-  -- {
-  --   'npxbr/gruvbox.nvim',
-  --   dependencies = {
-  --     'rktjmp/lush.nvim',
-  --   }
-  -- },
-  -- 'Th3Whit3Wolf/one-nvim'
-  -- 'yashguptaz/calvera-dark.nvim'
-  -- 'marko-cerovac/material.nvim'
-  -- "folke/tokyonight.nvim"
-  -- 'tjdevries/colorbuddy.vim'
-  -- 'tjdevries/gruvbuddy.nvim'
-
   {
     "rebelot/kanagawa.nvim",
     enabled = true,
