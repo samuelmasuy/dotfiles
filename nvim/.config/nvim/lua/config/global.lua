@@ -38,12 +38,15 @@ opt.splitright = true
 opt.autoread = true
 -- speed up syntax highlighting
 opt.cursorcolumn = false
-opt.cursorline = false
+-- highlight cursor line
+opt.cursorline = true
+opt.cursorlineopt = "number"
 
 --Showing line numbers and length.
--- opt.relativenumber = true
+opt.relativenumber = true
 -- Show current line numbers.
 opt.number = true
+cmd("highlight ColorColumn ctermbg=magenta")
 -- Width of document.
 opt.tw = 79
 -- Don't automatically wrap on load.

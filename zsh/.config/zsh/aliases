@@ -44,6 +44,8 @@ alias vimdiff="nvim -d"
 alias ivm="nvim"
 # load vim with very basic settings (way faster)
 alias vi="vi -u ${XDG_CONFIG_HOME:-$HOME/.config}/vim/.vimrc"
+# upgrade neovim nightly
+alias upgrade-neovim-nightly='asdf uninstall neovim nightly && asdf install neovim nightly'
 # dotfiles
 alias cdd="cd $HOME/.dotfiles"
 # weather
