@@ -1,16 +1,5 @@
 return {
   {
-    "VonHeikemen/lsp-zero.nvim",
-    branch = "v3.x",
-    lazy = true,
-    config = false,
-    init = function()
-      -- Disable automatic setup, we are doing it manually
-      vim.g.lsp_zero_extend_cmp = 0
-      vim.g.lsp_zero_extend_lspconfig = 0
-    end,
-  },
-  {
     "williamboman/mason.nvim",
     lazy = false,
     config = true,
@@ -31,13 +20,9 @@ return {
     },
     config = function()
       require("neodev").setup({})
-      -- This is where all the LSP shenanigans will live
-      local lsp_zero = require("lsp-zero")
-      lsp_zero.extend_lspconfig()
 
       local on_attach = function(client, bufnr)
-        local filetype = vim.api.nvim_buf_get_option(0, "filetype")
-        if client.name == "yamlls" and filetype == "helm" then
+        if client.name == "yamlls" and vim.bo.filetype == "helm" then
           vim.lsp.stop_client(client.id)
         end
 
@@ -68,8 +53,6 @@ return {
         end, "Fo[r]mat")
       end
 
-      lsp_zero.on_attach(on_attach)
-
       -- Diagnostics
       local nnoremap = require("sam.utilities").nnoremap
       nnoremap("[d", vim.diagnostic.goto_prev, { desc = "Previous [d]iagnostic" })
@@ -85,6 +68,19 @@ return {
       })
 
       local lspconfig = require("lspconfig")
+      local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+      local default_setup = function(server)
+        require("lspconfig")[server].setup({
+          capabilities = lsp_capabilities,
+          on_attach = on_attach,
+          flags = {
+            allow_incremental_sync = true,
+            debounce_text_changes = 150,
+          },
+        })
+      end
+
       if not lspconfig.helm_ls then
         lspconfig.helm_ls = {
           default_config = {
@@ -99,20 +95,21 @@ return {
       require("mason-lspconfig").setup({
         automatic_installation = true,
         ensure_installed = {
-          "gopls",
-          "pyright",
-          "html",
-          "vimls",
-          "tsserver",
-          "terraformls",
-          "dockerls",
           "bashls",
+          "dockerls",
+          "gopls",
+          "helm_ls",
+          "html",
           "jsonls",
-          "yamlls",
           "lua_ls",
+          "pyright",
+          "terraformls",
+          "tsserver",
+          "vimls",
+          "yamlls",
         },
         handlers = {
-          lsp_zero.default_setup,
+          default_setup,
           lua_ls = function()
             lspconfig.lua_ls.setup({
               settings = {
@@ -150,6 +147,7 @@ return {
       local null_ls = require("null-ls")
       null_ls.setup({
         debounce = 150,
+        on_attach = on_attach,
         sources = {
           null_ls.builtins.formatting.stylua,
           null_ls.builtins.completion.spell,
