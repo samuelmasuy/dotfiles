@@ -30,22 +30,47 @@ return {
         end,
         icon = " ",
         color = { fg = "#577171", bg = colors.sumiInk5 },
-        condition = function()
-          return #vim.lsp.get_clients() > 0 and vim.fn.winwidth(0) > 40
+        cond = function()
+          return #vim.lsp.get_clients() > 0 and vim.fn.winwidth(0) > 70
         end,
       }
 
       local filename = { "filename", color = { fg = colors.fujiWhite, gui = "bold" } }
-      local copilot =
-        { "copilot", show_colors = false, padding = 2, color = { bg = colors.sumiInk4, fg = colors.fujiWhite } }
+      local copilot = {
+        "copilot",
+        show_colors = false,
+        padding = 2,
+        color = { bg = colors.sumiInk4, fg = colors.fujiWhite },
+      }
+
+      local codeium = {
+        padding = 1,
+        color = { bg = colors.sumiInk4, fg = colors.fujiWhite },
+        'vim.fn["codeium#GetStatusString"]()',
+        fmt = function(_)
+          return "{…}" .. vim.fn["codeium#GetStatusString"]()
+        end,
+      }
+
       local filetype = {
         "filetype",
-        condition = function()
-          return vim.fn.winwidth(0) > 50
-        end,
         color = { bg = colors.sumiInk5 },
+        cond = function()
+          return vim.fn.winwidth(0) > 60
+        end,
       }
       local location = { "location", color = { fg = "#d3bc84", gui = "bold" } }
+
+      local lualine_x = {
+        lsp,
+        filetype,
+      }
+      if require("lazy.core.config").plugins["copilot.lua"] then
+        table.insert(lualine_x, 1, copilot)
+      end
+      if require("lazy.core.config").plugins["codeium.vim"] then
+        table.insert(lualine_x, 1, codeium)
+      end
 
       local config = {
         options = {
@@ -56,11 +81,7 @@ return {
         },
         sections = {
           lualine_c = { filename },
-          lualine_x = {
-            copilot,
-            lsp,
-            filetype,
-          },
+          lualine_x = lualine_x,
           lualine_y = {},
           lualine_z = { location },
         },

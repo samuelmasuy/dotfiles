@@ -46,7 +46,7 @@ opt.cursorlineopt = "number"
 opt.relativenumber = true
 -- Show current line numbers.
 opt.number = true
-cmd("highlight ColorColumn ctermbg=magenta")
+-- cmd("highlight ColorColumn ctermbg=magenta")
 -- Width of document.
 opt.tw = 79
 -- Don't automatically wrap on load.
