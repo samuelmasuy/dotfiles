@@ -108,9 +108,14 @@ nnoremap("<leader>sw", require("telescope.builtin").grep_string, { desc = "[S]ea
 nnoremap("<leader>sd", require("telescope.builtin").diagnostics, { desc = "[S]earch [D]iagnostics" })
 
 -- Git
-nnoremap("<leader>g", "<cmd>G<cr>", { desc = "[g]it" })
+nnoremap("<leader>g", "<cmd>G<cr>gu", { desc = "[g]it" })
 nnoremap("<leader>gp", "<cmd>GPush<cr>", { desc = "[g]it [p]ush" })
 nnoremap("<leader>gl", "<cmd>GPull<cr>", { desc = "[g]it pu[l]l" })
+
+-- Diff
+nnoremap("<leader>dor", "<cmd>diffget REMOTE<CR>", { desc = "[d]iff [o]btain [r]emote" })
+nnoremap("<leader>dol", "<cmd>diffget LOCAL<CR>", { desc = "[d]iff [o]btain [l]ocal" })
+nnoremap("<leader>dob", "<cmd>diffget BASE<CR>", { desc = "[d]iff [o]btain [b]ase" })
 
 -- Git worktree
 nnoremap(
@@ -142,6 +147,3 @@ end, { desc = "Dial Up" })
 vnoremap("<C-x>", function()
   require("dial.map").manipulate("decrement", "visual")
 end, { desc = "Dial down" })
-
--- Copilot
-nnoremap("<leader>cp", "<cmd>CopilotToggle<CR>", { desc = "Enable [C]o[p]ilot", silent = true })
