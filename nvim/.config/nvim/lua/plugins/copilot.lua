@@ -52,7 +52,6 @@ return {
       return vim.fn.isdirectory(vim.fn.expand("$WORKPATH")) == 0
     end,
     config = function()
-      -- Change '<C-g>' here to any keycode you like.
       vim.keymap.set("i", copilot_maps.accept, function()
         return vim.fn["codeium#Accept"]()
       end, { expr = true, silent = true })
@@ -68,21 +67,3 @@ return {
     end,
   },
 }
--- return {
---   {
---     "github/copilot.vim",
---     config = function()
---       local copilot_on = true
---       vim.api.nvim_create_user_command("CopilotToggle", function()
---         if copilot_on then
---           vim.cmd("Copilot disable")
---           print("Copilot OFF")
---         else
---           vim.cmd("Copilot enable")
---           print("Copilot ON")
---         end
---         copilot_on = not copilot_on
---       end, { nargs = 0 })
---     end,
---   },
--- }
