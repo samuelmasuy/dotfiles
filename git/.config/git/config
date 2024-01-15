@@ -45,8 +45,6 @@
     enabled = true
 [init]
     defaultBranch = master
-[credential]
-    helper = osxkeychain
 [interactive]
     diffFilter = delta --color-only
 [delta]

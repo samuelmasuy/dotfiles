@@ -181,7 +181,7 @@ function kln() {
   local resource="${2}"
   local label="${3}"
   local rest=("${@:4}")
-  kubectl ${verb} ${resource} -l "app.kubernetes.io/name=${label}" ${rest}
+  kubectl ${verb} ${resource} -l "app.kubernetes.io/instance=${label}" ${rest}
 }
 
 function ktime() {
@@ -203,5 +203,9 @@ function kd() {
 }
 
 function klo() {
-  kgp | xargs -n 1 kubectl logs -f
+  kgp | xargs kubectl logs -f
+}
+
+function ko() {
+  kgp | xargs kubectl get po -o yaml
 }

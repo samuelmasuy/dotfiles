@@ -14,7 +14,7 @@ alias l='exa -a --git-ignore'
 alias ll='exa -la --git-ignore --git --sort modified'
 # or not
 alias ls='ls -AG'
-alias la='ls -lArth'
+alias -g la='ls -lArth'
 # alias la='exa -la --sort modified'
 # alias l='exa -a --git-ignore'
 # alias ll='exa -la --git-ignore --sort modified'
@@ -39,8 +39,8 @@ alias mvim='open -a macvim'
 alias tmux="tmux -f ${XDG_CONFIG_HOME:-$HOME/.config}/tmux/tmux.conf"
 # alias mux="tmuxinator"
 # Using neovim
-alias vim="nvim"
-alias vimdiff="nvim -d"
+alias -g vim="nvim"
+alias -g vimdiff="nvim -d"
 alias ivm="nvim"
 # load vim with very basic settings (way faster)
 alias vi="vi -u ${XDG_CONFIG_HOME:-$HOME/.config}/vim/.vimrc"
@@ -61,11 +61,6 @@ alias drms="docker ps -aq --no-trunc | xargs docker rm"
 alias drmd="docker images -q --filter dangling=true | xargs docker rmi"
 # bat > cat
 alias cat="bat"
-# spotify
-alias sp="spotify"
-alias spn="spotify next"
-alias spp="spotify prev"
-alias spst="spotify status"
 # kill
 alias killseg="kill -s SIGSEGV $$"
 
@@ -100,7 +95,7 @@ alias gprc="gh pr checks -w"
 # +-----+
 # | k8s |
 # +-----+
-alias k=kubectl
+alias -g k=kubectl
 alias kn=kubens
 alias kx=kubectx
 # alias kx=kubeswap
