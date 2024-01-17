@@ -38,6 +38,8 @@
 [merge]
     conflictstyle = diff3
     tool = nvimdiff4
+[mergetool]
+    keepBackup = false
 [mergetool "nvimdiff4"]
     cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 [rebase]
