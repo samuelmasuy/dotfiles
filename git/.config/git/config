@@ -23,6 +23,7 @@
     untracked = red
 [alias]
     co = checkout
+    sw = switch
     up = pull --rebase --autostash
     lp = log --pretty='%C(red)%h%Creset%C(yellow)%d%Creset %s %C(cyan)(%ar)%Creset' --graph
     exclude = !sh -c 'echo "$1" >> .git/info/exclude' -
