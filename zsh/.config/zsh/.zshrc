@@ -94,6 +94,7 @@ eval "$(zoxide init zsh)"
 # | SYNTAX HIGHLIGHTING |
 # +---------------------+
 source ${DOTFILES_HOME}/zsh/.config/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh #1
+fast-theme -q XDG:overlay
 
 # +----------------+
 # | HISTORY SEARCH |
