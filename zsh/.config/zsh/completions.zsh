@@ -5,7 +5,7 @@
 #
 # Load more completions
 # (kubectl > 1.22) kubectl completion zsh > ${DOTFILES_HOME}/zsh/.config/zsh/plugins/kubectl-completion/_kubectl
-fpath=(${DOTFILES_HOME}/zsh/.config/zsh/plugins/kubectl-completion $fpath)
+# fpath=(${DOTFILES_HOME}/zsh/.config/zsh/plugins/kubectl-completion $fpath)
 # fpath=(${DOTFILES_HOME}/zsh/.config/zsh/plugins/zsh-completions/src $fpath) # is it really needed?
 
 # complist give access to the keymap menuselect (should be loaded before compinit)
@@ -105,6 +105,10 @@ zstyle ':completion:*:*:*:cd:*' ignore-parents parent pwd
 # +---------------+
 # | custom setups |
 # +---------------+
+source <(kubectl completion zsh)
+compdef kubecolor=kubectl
+compdef k=kubectl
+
 function helm() {
     if ! type __start_helm >/dev/null 2>&1; then
         source <(command helm completion zsh)

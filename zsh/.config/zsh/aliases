@@ -95,6 +95,7 @@ alias gprc="gh pr checks -w"
 # +-----+
 # | k8s |
 # +-----+
+command -v kubecolor >/dev/null 2>&1 && alias kubectl="kubecolor"
 alias -g k=kubectl
 alias kn=kubens
 alias kx=kubectx
