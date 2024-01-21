@@ -48,7 +48,7 @@ source ${XDG_CONFIG_HOME}/zsh/functions.zsh
 # +-----------+
 # | PROFILING |
 # +-----------+
-zmodload zsh/zprof
+# zmodload zsh/zprof
 
 # +--------+
 # | PROMPT |
@@ -119,5 +119,5 @@ bindkey '^[[B' history-substring-search-down
 bindkey -M vicmd 'gk' history-substring-search-up
 bindkey -M vicmd 'gj' history-substring-search-down
 
-zprof
+# zprof
 # Load and initialise completion system
