@@ -47,7 +47,9 @@ alias vi="vi -u ${XDG_CONFIG_HOME:-$HOME/.config}/vim/.vimrc"
 # upgrade neovim nightly
 alias upgrade-neovim-nightly='asdf uninstall neovim nightly && asdf install neovim nightly'
 # dotfiles
-alias cdd="cd $HOME/.dotfiles"
+alias cdd="cd $HOME/.dotfiles.git/master"
+alias dot='/usr/bin/git --git-dir=$HOME/.dotfiles.git/bare --work-tree=$HOME'
+
 # weather
 alias weather="curl wttr.in/montreal"
 # suffix alias
@@ -65,9 +67,6 @@ alias cat="bat"
 alias killseg="kill -s SIGSEGV $$"
 
 alias tldrf='tldr --list | fzf --preview "tldr --color=always {1}" --preview-window=right,70% | xargs tldr'
-
-# Symlink all dotfiles like magic
-alias dotfilesInstall="$DOTFILES_HOME/install"
 
 # +-----+
 # | Git |

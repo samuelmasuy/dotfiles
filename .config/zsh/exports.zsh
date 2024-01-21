@@ -1,6 +1,5 @@
 export GOPATH=$HOME
 export GOBIN="$HOME/.local/bin"
-export DOTFILES_HOME="$HOME/.dotfiles"
 export IDEA_HOME="/Applications/IntelliJ IDEA CE.app/Contents"
 export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
 export CARGO_HOME="$XDG_DATA_HOME"/cargo

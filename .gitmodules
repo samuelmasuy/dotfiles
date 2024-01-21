@@ -1,12 +1,12 @@
-[submodule "zsh/.config/zsh/plugins/zsh-completions"]
-	path = zsh/.config/zsh/plugins/zsh-completions
+[submodule "zsh-completions"]
+	path = .local/share/zsh/plugins/zsh-completions
 	url = https://github.com/zsh-users/zsh-completions
-[submodule "zsh/.config/zsh/plugins/zsh-history-substring-search"]
-	path = zsh/.config/zsh/plugins/zsh-history-substring-search
+[submodule "zsh-history-substring-search"]
+	path = .local/share/zsh/plugins/zsh-history-substring-search
 	url = https://github.com/zsh-users/zsh-history-substring-search
-[submodule "zsh/.config/zsh/plugins/fast-syntax-highlighting"]
-	path = zsh/.config/zsh/plugins/fast-syntax-highlighting
+[submodule "fast-syntax-highlighting"]
+	path = .local/share/zsh/plugins/fast-syntax-highlighting
 	url = https://github.com/zdharma-continuum/fast-syntax-highlighting
-[submodule "zsh/.config/zsh/plugins/zsh-autocomplete"]
-	path = zsh/.config/zsh/plugins/zsh-autocomplete
+[submodule "zsh-autocomplete"]
+	path = .local/share/zsh/plugins/zsh-autocomplete
 	url = https://github.com/marlonrichert/zsh-autocomplete.git

@@ -93,13 +93,13 @@ eval "$(zoxide init zsh)"
 # +---------------------+
 # | SYNTAX HIGHLIGHTING |
 # +---------------------+
-source ${DOTFILES_HOME}/zsh/.config/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh #1
+source ${XDG_DATA_HOME}/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh #1
 fast-theme -q XDG:overlay
 
 # +----------------+
 # | HISTORY SEARCH |
 # +----------------+
-source ${DOTFILES_HOME}/zsh/.config/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh #2
+source ${XDG_DATA_HOME}/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh #2
 # bindkey '^[OA' history-substring-search-up
 # bindkey '^[OB' history-substring-search-down
 bindkey '^[[A' history-substring-search-up
