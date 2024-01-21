@@ -119,5 +119,5 @@ bindkey '^[[B' history-substring-search-down
 bindkey -M vicmd 'gk' history-substring-search-up
 bindkey -M vicmd 'gj' history-substring-search-down
 
-# zprof
+zprof
 # Load and initialise completion system
