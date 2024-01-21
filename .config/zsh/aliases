@@ -48,7 +48,7 @@ alias vi="vi -u ${XDG_CONFIG_HOME:-$HOME/.config}/vim/.vimrc"
 alias upgrade-neovim-nightly='asdf uninstall neovim nightly && asdf install neovim nightly'
 # dotfiles
 alias cdd="cd $HOME/.dotfiles.git/master"
-alias dot='/usr/bin/git --git-dir=$HOME/.dotfiles.git/worktrees/bare --work-tree=$HOME'
+alias dot='/usr/bin/git --git-dir=$HOME/.dotfiles.git/worktrees/master --work-tree=$HOME'
 
 # weather
 alias weather="curl wttr.in/montreal"
