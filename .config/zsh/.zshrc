@@ -75,6 +75,18 @@ source $ASDF_DIR/asdf.sh
 [[ -f ${XDG_CONFIG_HOME}/zsh/secrets.zsh ]] && source ${XDG_CONFIG_HOME}/zsh/secrets.zsh
 [[ -f ${XDG_CONFIG_HOME}/zsh/work.zsh ]] && source ${XDG_CONFIG_HOME}/zsh/work.zsh
 
+# +-----+
+# | ZAP |
+# +-----+
+if ! [ -f $HOME/.local/share/zap/zap.zsh ]; then
+  zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1 --keep
+fi
+[ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
+plug "zsh-users/zsh-completions"
+# plug "marlonrichert/zsh-autocomplete"
+plug "zdharma-continuum/fast-syntax-highlighting"
+plug "zsh-users/zsh-history-substring-search"
+
 # +------------+
 # | COMPLETION |
 # +------------+
@@ -93,13 +105,11 @@ eval "$(zoxide init zsh)"
 # +---------------------+
 # | SYNTAX HIGHLIGHTING |
 # +---------------------+
-source ${XDG_DATA_HOME}/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh #1
 fast-theme -q XDG:overlay
 
 # +----------------+
 # | HISTORY SEARCH |
 # +----------------+
-source ${XDG_DATA_HOME}/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh #2
 # bindkey '^[OA' history-substring-search-up
 # bindkey '^[OB' history-substring-search-down
 bindkey '^[[A' history-substring-search-up
@@ -110,3 +120,4 @@ bindkey -M vicmd 'gk' history-substring-search-up
 bindkey -M vicmd 'gj' history-substring-search-down
 
 # zprof
+# Load and initialise completion system
