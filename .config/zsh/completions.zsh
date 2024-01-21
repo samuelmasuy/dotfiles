@@ -10,9 +10,6 @@
 
 # complist give access to the keymap menuselect (should be loaded before compinit)
 zmodload zsh/complist
-
-# source ${DOTFILES_HOME}/zsh/.config/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
-
 # # Up arrow:
 # #   
 # bindkey '^p' up-line-or-search

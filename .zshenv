@@ -12,7 +12,3 @@ export VISUAL=nvim
 # Needs to be set here, so Zsh can find other dotfiles.
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export ZSH_CACHE_DIR="${XDG_CACHE_HOME}/zsh"
-# Simlink it all
-# export STOW_FOLDERS="zsh"
-export STOW_FOLDERS="zsh,fsh,nvim,tmux,vim,git,fd,npm,yamllint,ripgrep,starship,kitty,asdf,bin,gh,helm,karabiner,markdownlint,stylua"
-

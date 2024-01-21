@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 set -e
 
-DOTFILES_HOME=$HOME/.dotfiles
 source zsh/dot-zshenv
 
 echo "**************************************************************************"
@@ -36,12 +35,31 @@ command -v git >/dev/null 2>&1 || brew install git
 echo "**************************************************************************"
 echo "******************Dotfiles Install...*************************************"
 echo "**************************************************************************"
-[ ! -d "$DOTFILES_HOME" ] && git clone --recurse-submodules -j8 git@github.com:samuelmasuy/dotfiles.git "$DOTFILES_HOME"
+git clone --bare git@github.com:samuelmasuy/dotfiles.git $HOME/.dotfiles.git
+pushd $HOME/.dotfiles.git
+git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
+git fetch
+git for-each-ref --format='%(refname:short)' refs/heads | xargs git branch -D
+git worktree add master master
+popd
+function config {
+   git --git-dir=$HOME/.dotfiles.git/master --work-tree=$HOME $@
+}
+mkdir -p .config-backup
+config checkout
+if [ $? = 0 ]; then
+  echo "Checked out config.";
+  else
+    echo "Backing up pre-existing dot files.";
+    config checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} .config-backup/{}
+fi;
+config checkout
+config config status.showUntrackedFiles no
 
 echo "**************************************************************************"
 echo "******************Application and tool installation...********************"
 echo "**************************************************************************"
-brew bundle --file="$DOTFILES_HOME/Brewfile"
+brew bundle --file="$HOME/.local/share/brewfile/Brewfile"
 
 echo "**************************************************************************"
 echo "******************ASDF Installation...************************************"
