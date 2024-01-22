@@ -109,3 +109,30 @@ repositories:
   password: ""
   url: https://kubeshop.github.io/helm-charts
   username: ""
+- caFile: ""
+  certFile: ""
+  insecure_skip_tls_verify: false
+  keyFile: ""
+  name: kubelet-csr-approver
+  pass_credentials_all: false
+  password: ""
+  url: https://postfinance.github.io/kubelet-csr-approver
+  username: ""
+- caFile: ""
+  certFile: ""
+  insecure_skip_tls_verify: false
+  keyFile: ""
+  name: nvdp
+  pass_credentials_all: false
+  password: ""
+  url: https://nvidia.github.io/k8s-device-plugin
+  username: ""
+- caFile: ""
+  certFile: ""
+  insecure_skip_tls_verify: false
+  keyFile: ""
+  name: kedacore
+  pass_credentials_all: false
+  password: ""
+  url: https://kedacore.github.io/charts
+  username: ""

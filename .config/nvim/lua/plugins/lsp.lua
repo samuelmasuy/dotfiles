@@ -7,7 +7,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     cmd = { "LspInfo", "LspInstall", "LspStart" },
-    event = { "BufReadPre", "BufNewFile" },
+    event = { "BufReadPre", "BufNewFile", "BufEnter" },
     dependencies = {
       {
         "folke/neodev.nvim",
@@ -81,17 +81,6 @@ return {
         })
       end
 
-      if not lspconfig.helm_ls then
-        lspconfig.helm_ls = {
-          default_config = {
-            cmd = { "helm_ls", "serve" },
-            filetypes = { "helm" },
-            root_dir = function(fname)
-              return require("lspconfig.util").root_pattern("Chart.yaml")(fname)
-            end,
-          },
-        }
-      end
       require("mason-lspconfig").setup({
         automatic_installation = true,
         ensure_installed = {
@@ -102,7 +91,10 @@ return {
           "html",
           "jsonls",
           "lua_ls",
+          "hadolint",
+          "prettier",
           "pyright",
+          "stylua",
           "terraformls",
           "tsserver",
           "vimls",
@@ -126,17 +118,11 @@ return {
           end,
           helm_ls = function()
             lspconfig.helm_ls.setup({
-              filetypes = { "helm" },
-              cmd = { "helm_ls", "serve" },
-            })
-          end,
-          yamlls = function()
-            lspconfig.yamlls.setup({
               settings = {
-                yaml = {
-                  -- schemas = { kubernetes = "/*.yaml" },
-                  validate = true,
-                  completion = true,
+                ["helm-ls"] = {
+                  yamlls = {
+                    path = "yaml-language-server",
+                  },
                 },
               },
             })
@@ -164,10 +150,4 @@ return {
       })
     end,
   },
-  -- {
-  --   "folke/neodev.nvim",
-  --   event = "VeryLazy",
-  --   ft = "lua",
-  --   opts = {},
-  -- },
 }

@@ -83,8 +83,10 @@ style = 'bright-black'
 disabled = false
 format = '[$context([@](blue)$namespace)]($style)'
 style = 'cyan bold'
-[kubernetes.context_aliases]
-'.+:(?P<cluster>.+)' = '$cluster'
+
+[[kubernetes.contexts]]
+context_pattern = '.+:(?P<cluster>.+)'
+context_alias = '$cluster'
 
 # [custom.kube_version]
 # command = 'kubectl version --client --output=json | jq -r .clientVersion.minor'

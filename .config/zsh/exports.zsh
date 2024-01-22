@@ -1,5 +1,6 @@
 export GOPATH=$HOME
 export GOBIN="$HOME/.local/bin"
+export DOTFILES_HOME="$HOME/.dotfiles"
 export IDEA_HOME="/Applications/IntelliJ IDEA CE.app/Contents"
 export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
@@ -17,6 +18,7 @@ export GRADLE_USER_HOME="$XDG_DATA_HOME"/gradle
 export SHPOTIFY_CONFIG_FILE="$XDG_CONFIG_HOME"/shpotify/config
 export ASDF_DIR="$(brew --prefix asdf)/libexec"
 export ASDF_CONFIG_FILE="$XDG_CONFIG_HOME"/asdf/config
+export ADSF_DEFAULT_TOOL_VERSIONS_FILENAME="$XDG_CONFIG_HOME"/asdf/tool-versions
 export ASDF_DATA_DIR="$XDG_DATA_HOME"/asdf
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/ripgreprc"
 export KREW_ROOT="$XDG_DATA_HOME"/krew
