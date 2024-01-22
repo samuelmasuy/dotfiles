@@ -16,7 +16,7 @@ return {
       { "hrsh7th/cmp-nvim-lsp" },
       { "williamboman/mason-lspconfig.nvim" },
       { "nvimtools/none-ls.nvim" },
-      -- { "jay-babu/mason-null-ls.nvim"},
+      { "jay-babu/mason-null-ls.nvim" },
     },
     config = function()
       require("neodev").setup({})
@@ -91,10 +91,7 @@ return {
           "html",
           "jsonls",
           "lua_ls",
-          "hadolint",
-          "prettier",
           "pyright",
-          "stylua",
           "terraformls",
           "tsserver",
           "vimls",
@@ -130,22 +127,35 @@ return {
         },
       })
 
+      require("mason-null-ls").setup({
+        ensure_installed = {
+          "stylua",
+          "hadolint",
+          "prettier",
+          "markdownlint",
+          "shfmt",
+          "goimports",
+        },
+        automatic_installation = false,
+        handlers = {},
+      })
       local null_ls = require("null-ls")
       null_ls.setup({
         debounce = 150,
         on_attach = on_attach,
         sources = {
-          null_ls.builtins.formatting.stylua,
+          -- null_ls.builtins.formatting.stylua,
           null_ls.builtins.completion.spell,
-          null_ls.builtins.formatting.prettier,
-          null_ls.builtins.diagnostics.markdownlint,
-          null_ls.builtins.formatting.markdownlint,
-          -- null_ls.builtins.code_actions.refactoring,
-          null_ls.builtins.diagnostics.hadolint,
-          null_ls.builtins.formatting.shfmt,
-          null_ls.builtins.formatting.goimports,
-          -- null_ls.builtins.diagnostics.checkmake,
+          -- null_ls.builtins.formatting.prettier,
+          -- null_ls.builtins.diagnostics.markdownlint,
+          -- null_ls.builtins.formatting.markdownlint,
+          -- null_ls.builtins.diagnostics.hadolint,
+          -- null_ls.builtins.formatting.shfmt,
+          -- null_ls.builtins.formatting.goimports,
           null_ls.builtins.hover.dictionary,
+
+          -- null_ls.builtins.code_actions.refactoring,
+          -- null_ls.builtins.diagnostics.checkmake,
         },
       })
     end,
