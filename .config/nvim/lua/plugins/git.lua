@@ -87,7 +87,7 @@ return {
             gs.blame_line({ full = true })
           end, { desc = "Blame line" })
           map("n", "<leader>tb", gs.toggle_current_line_blame, { desc = "Toggle blame line" })
-          map("n", "<leader>hd", gs.diffthis)
+          map("n", "<leader>hd", gs.diffthis, { desc = "Diff this against index" })
           map("n", "<leader>hD", function()
             gs.diffthis("~")
           end, { desc = "Diff this against ancestor" })
