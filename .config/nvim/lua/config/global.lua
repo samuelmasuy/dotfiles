@@ -83,7 +83,7 @@ opt.mouse:remove({
 opt.showmode = false
 
 opt.diffopt:append({
-  "vertical", -- Gdiff vertical split
+  "vertical",           -- Gdiff vertical split
   "algorithm:patience", -- Make diffing better: https://vimways.org/2018/the-power-of-diff/
   "indent-heuristic",
 })
