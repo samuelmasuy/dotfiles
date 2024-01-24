@@ -108,8 +108,8 @@ nnoremap("<leader>sh", require("telescope.builtin").help_tags, { desc = "[S]earc
 nnoremap("<leader>sw", require("telescope.builtin").grep_string, { desc = "[S]earch current [W]ord" })
 nnoremap("<leader>sd", require("telescope.builtin").diagnostics, { desc = "[S]earch [D]iagnostics" })
 
--- Git
-nnoremap("<leader>g", "<cmd>G<cr>]]", { desc = "[g]it" })
+-- Git fugitive
+nnoremap("<leader>g", "<cmd>G<cr>", { desc = "[g]it" })
 nnoremap("<leader>gp", "<cmd>GPush<cr>", { desc = "[g]it [p]ush" })
 nnoremap("<leader>gl", "<cmd>GPull<cr>", { desc = "[g]it pu[l]l" })
 
