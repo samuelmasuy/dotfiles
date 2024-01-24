@@ -85,7 +85,7 @@ format = '[$context([@](blue)$namespace)]($style)'
 style = 'cyan bold'
 
 [[kubernetes.contexts]]
-context_pattern = '.+\/(?P<cluster>.+)'
+context_pattern = '.+:(?P<cluster>.+)'
 context_alias = '$cluster'
 
 # [custom.kube_version]
