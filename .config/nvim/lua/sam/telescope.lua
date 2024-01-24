@@ -9,12 +9,21 @@ local finders = require("telescope.finders")
 local builtin = require("telescope.builtin")
 
 local M = {}
+M.search_dotfiles = function()
+  require("telescope.builtin").find_files({
+    hidden = true,
+    follow = true,
+    prompt_title = "< Dotfiles >",
+    cwd = "$DOTFILES_HOME/",
+  })
+end
+
 M.search_configs = function()
   require("telescope.builtin").find_files({
     hidden = true,
     follow = true,
     prompt_title = "< Config >",
-    cwd = "$DOTFILES_HOME/",
+    cwd = "$XDG_CONFIG_HOME/",
   })
 end
 
@@ -61,19 +70,19 @@ M.search_work_dirs = function()
   opts.entry_maker = opts.entry_maker or make_entry.gen_from_file(opts)
 
   pickers
-      .new(opts, {
-        finder = finders.new_oneshot_job(opts.find_command, opts),
-        previewer = conf.file_previewer(opts),
-        sorter = conf.file_sorter(opts),
-        attach_mappings = function(prompt_bufnr, _)
-          local on_project_selected = function()
-            find_project_files(prompt_bufnr)
-          end
-          actions.select_default:replace(on_project_selected)
-          return true
-        end,
-      })
-      :find()
+    .new(opts, {
+      finder = finders.new_oneshot_job(opts.find_command, opts),
+      previewer = conf.file_previewer(opts),
+      sorter = conf.file_sorter(opts),
+      attach_mappings = function(prompt_bufnr, _)
+        local on_project_selected = function()
+          find_project_files(prompt_bufnr)
+        end
+        actions.select_default:replace(on_project_selected)
+        return true
+      end,
+    })
+    :find()
 
   -- require("telescope.builtin").find_files({
   -- 	find_command = { "exa", "-L", "1", "-D", "-s", "modified", "-1", "-r" },

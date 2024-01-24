@@ -90,7 +90,8 @@ nnoremap("<leader>t", "<cmd>Telescope<cr>", { desc = "[t]elescope" })
 -- search
 nnoremap("<C-p>", require("sam.telescope").search_files, { desc = "Search Files" })
 nnoremap("<leader><leader>", require("telescope.builtin").git_files, { desc = "Search Git files" })
-nnoremap("<leader>z", require("sam.telescope").search_configs, { desc = "Config[z]" })
+nnoremap("<leader>x", require("sam.telescope").search_configs, { desc = "Config[x]" })
+nnoremap("<leader>z", require("sam.telescope").search_dotfiles, { desc = "Dotfile[z]" })
 nnoremap("<leader>j", require("sam.telescope").search_work_dirs, { desc = "Work dirs" })
 nnoremap("<leader>?", require("telescope.builtin").oldfiles, { desc = "[?] Find recently opened files" })
 
