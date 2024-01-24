@@ -125,7 +125,7 @@ vim.filetype.add({
   },
   pattern = {
     ["Jenkinsfile.*"] = "groovy",
-    ["%.kube/config"] = "yaml",
+    [".kube/config"] = "yaml",
     ["requirements-.*%.txt"] = "requirements",
     [".*/templates/.*%.ya?ml"] = "helm",
     [".*/templates/.*%.tpl"] = "helm",
