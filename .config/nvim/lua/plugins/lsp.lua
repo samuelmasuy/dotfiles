@@ -22,6 +22,7 @@ return {
       require("neodev").setup({})
 
       local on_attach = function(client, bufnr)
+        -- vim.notify(client.name .. " lsp client on ft: " .. vim.bo.filetype)
         if client.name == "yamlls" and vim.bo.filetype == "helm" then
           vim.lsp.stop_client(client.id)
         end

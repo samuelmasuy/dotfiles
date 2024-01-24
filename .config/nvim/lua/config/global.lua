@@ -111,3 +111,29 @@ if vim.fn.executable("rg") == 1 then
   opt.grepprg = "rg --vimgrep"
   opt.grepformat = "%f:%l:%c:%m,%f:%l:%m"
 end
+
+-- Filetype detection
+-- ===
+
+vim.filetype.add({
+  filename = {
+    Brewfile = "ruby",
+    ["dev-requirements.txt"] = "requirements",
+    ["helmfile.yaml"] = "yaml",
+    ["PULLREQ_EDITMSG"] = "gitcommit",
+    ["Tugfile"] = "terraform",
+  },
+  pattern = {
+    ["Jenkinsfile.*"] = "groovy",
+    ["%.kube/config"] = "yaml",
+    ["requirements-.*%.txt"] = "requirements",
+    [".*/templates/.*%.ya?ml"] = "helm",
+    [".*/templates/.*%.tpl"] = "helm",
+    [".*/playbooks/.*%.ya?ml"] = "yaml.ansible",
+    [".*/roles/.*/tasks/.*%.ya?ml"] = "yaml.ansible",
+    [".*/roles/.*/handlers/.*%.ya?ml"] = "yaml.ansible",
+    [".*/inventory/.*%.ini"] = "ansible_hosts",
+    ["*.Tugfile"] = "terraform",
+    ["haproxy*"] = "haproxy",
+  },
+})

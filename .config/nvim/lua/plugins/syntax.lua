@@ -3,7 +3,6 @@ return {
   { "ajorgensen/vim-markdown-toc", ft = "markdown" },
   { "modille/groovy.vim", ft = { "groovy", "Jenkinsfile" } },
   { "vim-scripts/haproxy", ft = "haproxy*" },
-  { "towolf/vim-helm", ft = "helm" },
   { "chr4/nginx.vim", ft = { "nginx" } },
   "mustache/vim-mustache-handlebars",
   "justinmk/vim-syntax-extra",
