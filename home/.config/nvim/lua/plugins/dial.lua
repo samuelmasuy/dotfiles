@@ -1,6 +1,7 @@
 return {
   {
     "monaqa/dial.nvim", -- Better increment/decrement
+    event = "VeryLazy",
     config = function()
       local augend = require("dial.augend")
       require("dial.config").augends:register_group({

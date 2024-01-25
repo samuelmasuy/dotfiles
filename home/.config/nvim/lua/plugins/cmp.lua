@@ -2,11 +2,15 @@ return {
   {
     -- "hrsh7th/nvim-cmp",
     "llllvvuu/nvim-cmp",
+    event = { "BufRead", "BufNewFile", "InsertEnter" },
     branch = "feat/above",
     dependencies = {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
-      "hrsh7th/cmp-nvim-lua", -- for vim.api
+      {
+        "hrsh7th/cmp-nvim-lua", -- for vim.api
+        ft = "lua",
+      },
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-nvim-lsp-signature-help",
       "hrsh7th/cmp-cmdline",

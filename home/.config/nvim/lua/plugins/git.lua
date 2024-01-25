@@ -2,6 +2,7 @@ return {
 
   {
     "tpope/vim-fugitive", -- awesome git
+    event = "VeryLazy",
     config = function()
       vim.cmd.delcommand("Gremove") -- Superseded by |:GRemove|.
       vim.cmd.delcommand("Gdelete") -- Superseded by |:GDelete|.
@@ -31,13 +32,18 @@ return {
       -- vim.cmd.delcommand("Gpedit!") -- Superseded by :Git! --paginate.
     end,
   },
-  "tpope/vim-rhubarb", -- Companion of fugitive for integration with Github
+  {
+    "tpope/vim-rhubarb", -- Companion of fugitive for integration with Github
+    event = "VeryLazy",
+  },
   {
     "ThePrimeagen/git-worktree.nvim",
+    event = "VeryLazy",
     config = true,
   },
   {
     "lewis6991/gitsigns.nvim",
+    event = "VeryLazy",
     config = function()
       require("gitsigns").setup({
         on_attach = function(bufnr)

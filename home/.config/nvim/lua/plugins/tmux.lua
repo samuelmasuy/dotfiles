@@ -1,7 +1,11 @@
 return {
-  "tmux-plugins/vim-tmux", -- tmux.conf
+  {
+    "tmux-plugins/vim-tmux", -- tmux.conf
+    event = "VeryLazy",
+  },
   {
     "alexghergh/nvim-tmux-navigation",
+    event = "BufEnter",
     config = function()
       local nvim_tmux_nav = require("nvim-tmux-navigation")
 

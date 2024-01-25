@@ -3,7 +3,10 @@ return {
   { -- Highlight, edit, and navigate code
     "nvim-treesitter/nvim-treesitter",
     dependencies = {
-      "nvim-treesitter/nvim-treesitter-textobjects",
+      {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        event = "BufEnter",
+      },
     },
     build = ":TSUpdate",
 
@@ -108,6 +111,8 @@ return {
       })
     end,
   },
-  "nvim-treesitter/nvim-treesitter-textobjects",
-  "nvim-treesitter/playground",
+  {
+    "nvim-treesitter/playground",
+    event = "VeryLazy",
+  },
 }
