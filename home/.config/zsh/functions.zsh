@@ -148,15 +148,6 @@ function gpsup() {
   git push --set-upstream origin $(git_current_branch)
 }
 
-# dotfiles
-function dot() {
-  git --git-dir="$HOME/.dotfiles.git/worktrees/master" --work-tree="$HOME" "$@"
-}
-
-function dots() {
-  dot checkout "$HOME"
-}
-
 zsh_kubectl_minor_version() {
   local kubectl_minor_version=$(kubectl version --client --output=json | jq -r .clientVersion.minor)
   echo -n "($kubectl_minor_version)"

@@ -9,15 +9,6 @@ local finders = require("telescope.finders")
 local builtin = require("telescope.builtin")
 
 local M = {}
-M.search_dotfiles = function()
-  require("telescope.builtin").find_files({
-    hidden = true,
-    follow = true,
-    prompt_title = "< Dotfiles >",
-    cwd = "$DOTFILES_HOME/",
-  })
-end
-
 M.search_configs = function()
   require("telescope.builtin").find_files({
     hidden = true,

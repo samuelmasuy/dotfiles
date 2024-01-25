@@ -39,13 +39,8 @@ git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
 git fetch
 git for-each-ref --format='%(refname:short)' refs/heads | xargs git branch -D
 git worktree add master master
-popd
-pushd "$HOME"
-function config {
-   git --git-dir="$HOME/.dotfiles.git/worktrees/master" --work-tree="$HOME" "$@"
-}
-config checkout .
-config config status.showUntrackedFiles no
+cd master
+./install
 popd
 
 echo "**************************************************************************"
