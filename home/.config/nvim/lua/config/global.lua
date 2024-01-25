@@ -6,8 +6,9 @@ cmd("filetype plugin indent on")
 opt.clipboard = "unnamed"
 
 opt.expandtab = true
-opt.shiftwidth = 4
-opt.softtabstop = 4
+opt.shiftwidth = 2
+opt.softtabstop = 2
+opt.tabstop = 2
 
 -- Rebind <leader> key.
 vim.g.mapleader = ","
@@ -135,5 +136,6 @@ vim.filetype.add({
     [".*/inventory/.*%.ini"] = "ansible_hosts",
     ["*.Tugfile"] = "terraform",
     ["haproxy*"] = "haproxy",
+    ["*.hcl"] = "conf",
   },
 })
