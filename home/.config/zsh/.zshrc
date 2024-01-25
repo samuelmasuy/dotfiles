@@ -72,8 +72,7 @@ bindkey -M vicmd '^v' edit-command-line
 source ${XDG_CONFIG_HOME}/zsh/exports.zsh #1
 source $ASDF_DIR/asdf.sh
 
-[[ -f ${XDG_CONFIG_HOME}/zsh/secrets.zsh ]] && source ${XDG_CONFIG_HOME}/zsh/secrets.zsh
-[[ -f ${XDG_CONFIG_HOME}/zsh/work.zsh ]] && source ${XDG_CONFIG_HOME}/zsh/work.zsh
+[[ -d ${XDG_CONFIG_HOME}/zsh/work ]] && source ${XDG_CONFIG_HOME}/zsh/work/*.zsh
 
 # +-----+
 # | ZAP |

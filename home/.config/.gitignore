@@ -1,0 +1,4 @@
+git/self-config
+nvim/spell/*.spl
+nvim/spell/*.sug
+zsh/work/
