@@ -59,7 +59,7 @@ return {
       nnoremap("[d", vim.diagnostic.goto_prev, { desc = "Previous [d]iagnostic" })
       nnoremap("]d", vim.diagnostic.goto_next, { desc = "Next [d]iagnostic" })
       nnoremap("gl", vim.diagnostic.open_float, { desc = "Open diagnostic" })
-      nnoremap("<leader>q", vim.diagnostic.setloclist, { desc = "Diagnostic to location list" })
+      nnoremap("<leader>d", vim.diagnostic.setloclist, { desc = "Diagnostic to location list" })
 
       vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
         virtual_text = true,

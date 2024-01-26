@@ -107,6 +107,7 @@ function M.edit_neovim()
 
   opts_with_preview = {
     prompt_title = "~ nvim ~",
+    follow = true,
     shorten_path = false,
     cwd = "$XDG_CONFIG_HOME/nvim",
 

@@ -27,7 +27,7 @@ nnoremap("<right>", "<cmd>bnext<CR>", { desc = "next buffer" })
 nnoremap("<leader>qp", "<cmd>cprevious<CR>", { desc = "Previous quickfix" })
 nnoremap("<leader>qn", "<cmd>cnext<CR>", { desc = "Next quickfix" })
 
-nnoremap("<space>q", function()
+nnoremap("<leader>q", function()
   local qf_winid = vim.fn.getqflist({ winid = 0 }).winid
   local action = qf_winid > 0 and "cclose" or "copen"
   vim.cmd("botright " .. action)
@@ -90,7 +90,7 @@ nnoremap("<leader>t", "<cmd>Telescope<cr>", { desc = "[t]elescope" })
 -- search
 nnoremap("<C-p>", require("sam.telescope").search_files, { desc = "Search Files" })
 nnoremap("<leader><leader>", require("telescope.builtin").git_files, { desc = "Search Git files" })
-nnoremap("<leader>z", require("sam.telescope").search_configs, { desc = "Config[x]" })
+nnoremap("<leader>z", require("sam.telescope").search_configs, { desc = "Config[z]" })
 nnoremap("<leader>j", require("sam.telescope").search_work_dirs, { desc = "Work dirs" })
 nnoremap("<leader>?", require("telescope.builtin").oldfiles, { desc = "[?] Find recently opened files" })
 
