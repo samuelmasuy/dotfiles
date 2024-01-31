@@ -20,12 +20,12 @@ inoremap("<left>", "<nop>")
 inoremap("<right>", "<nop>")
 
 -- Left and right can switch buffers
-nnoremap("<left>", "<cmd>bprevious<CR>", { desc = "Previous buffer" })
-nnoremap("<right>", "<cmd>bnext<CR>", { desc = "next buffer" })
+nnoremap("[b", "<cmd>bprevious<CR>", { desc = "Previous [b]uffer" })
+nnoremap("]b", "<cmd>bnext<CR>", { desc = "Next [b]uffer" })
 
 -- Up and down can switch quickfix list
-nnoremap("<leader>qp", "<cmd>cprevious<CR>", { desc = "Previous quickfix" })
-nnoremap("<leader>qn", "<cmd>cnext<CR>", { desc = "Next quickfix" })
+nnoremap("[q", "<cmd>cprevious<CR>", { desc = "Previous [q]uickfix" })
+nnoremap("]q", "<cmd>cnext<CR>", { desc = "Next [q]uickfix" })
 
 nnoremap("<leader>q", function()
   local qf_winid = vim.fn.getqflist({ winid = 0 }).winid
