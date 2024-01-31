@@ -13,5 +13,39 @@ return {
         },
       })
     end,
+    keys = {
+      {
+        "<C-a>",
+        function()
+          require("dial.map").manipulate("increment", "normal")
+        end,
+        desc = "Dial Up",
+      },
+
+      {
+        "<C-x>",
+        function()
+          require("dial.map").manipulate("decrement", "normal")
+        end,
+        desc = "Dial down",
+      },
+
+      {
+        "<C-a>",
+        function()
+          require("dial.map").manipulate("increment", "visual")
+        end,
+        mode = "v",
+        desc = "Dial Up",
+      },
+      {
+        "<C-x>",
+        function()
+          require("dial.map").manipulate("decrement", "visual")
+        end,
+        mode = "v",
+        desc = "Dial down",
+      },
+    },
   },
 }

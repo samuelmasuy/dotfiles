@@ -7,6 +7,135 @@ return {
       "nvim-lua/plenary.nvim",
       { "nvim-telescope/telescope-fzf-native.nvim", build = "make", cond = vim.fn.executable("make") == 1 },
     },
+    keys = {
+      {
+        "<leader>t",
+        function()
+          vim.cmd("Telescope")
+        end,
+        desc = "[t]elescope",
+      },
+      -- search
+      {
+        "<C-p",
+        function()
+          require("sam.telescope").search_files()
+        end,
+        desc = "Search Files",
+      },
+      {
+        "<leader><leader>",
+        function()
+          require("telescope.builtin").git_files()
+        end,
+        desc = "Search Git files",
+      },
+      {
+        "<leader>z",
+        function()
+          require("sam.telescope").search_configs()
+        end,
+        desc = "Config[z]",
+      },
+      {
+        "<leader>j",
+        function()
+          require("sam.telescope").search_work_dirs()
+        end,
+        desc = "Work dirs",
+      },
+      {
+        "<leader>?",
+        function()
+          require("telescope.builtin").oldfiles()
+        end,
+        desc = "[?] Find recently opened files",
+      },
+      {
+        "<leader>sg",
+        function()
+          require("telescope.builtin").live_grep()
+        end,
+        desc = "[S]earch by [G]rep",
+      },
+      {
+        "<leader>e",
+        function()
+          require("sam.telescope").edit_neovim()
+        end,
+        desc = "[e]dit Neovim configs",
+      },
+      -- utils
+      {
+        "<leader>c",
+        function()
+          require("telescope.builtin").colorscheme()
+        end,
+        desc = "[c]olorscheme",
+      },
+      {
+        "<leader><CR>",
+        function()
+          require("telescope.builtin").buffers()
+        end,
+        desc = "[<CR>] Find existing buffers",
+      },
+      {
+        "<leader>m",
+        function()
+          require("telescope.builtin").keymaps()
+        end,
+        desc = "Key[m]aps",
+      },
+      {
+        "<leader><space>",
+        function()
+          require("telescope").extensions.projects.projects()
+        end,
+        desc = "[ ] Search projects",
+      },
+      {
+        "<leader>sh",
+        function()
+          require("telescope.builtin").help_tags()
+        end,
+        desc = "[S]earch [H]elp",
+      },
+      {
+        "<leader>sw",
+        function()
+          require("telescope.builtin").grep_string()
+        end,
+        desc = "[S]earch current [W]ord",
+      },
+      {
+        "<leader>sd",
+        function()
+          require("telescope.builtin").diagnostics()
+        end,
+        desc = "[S]earch [D]iagnostics",
+      },
+      -- Git worktree
+      {
+        "<leader>sw",
+        function()
+          require("telescope").extensions.git_worktree.git_worktrees()
+        end,
+        desc = "[S]earch Git [W]orktrees",
+        noremap = true,
+        silent = true,
+      },
+
+      {
+        "<leader>wt",
+        function()
+          require("telescope").extensions.git_worktree.create_git_worktree()
+        end,
+        desc = "Create Git [W]orktree",
+        noremap = true,
+        silent = true,
+      },
+    },
     config = function()
       local actions = require("telescope.actions")
 

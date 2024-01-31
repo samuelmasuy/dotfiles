@@ -1,5 +1,4 @@
 return {
-
   {
     "tpope/vim-fugitive", -- awesome git
     event = "VeryLazy",
@@ -31,6 +30,29 @@ return {
       -- vim.cmd.delcommand("Gtabsplit!") -- Superseded by :tab Git --paginate.
       -- vim.cmd.delcommand("Gpedit!") -- Superseded by :Git! --paginate.
     end,
+    keys = {
+      {
+        "<leader>g",
+        function()
+          vim.cmd.Git()
+        end,
+        desc = "[g]it",
+      },
+      {
+        "<leader>gp",
+        function()
+          vim.cmd.Git("push")
+        end,
+        desc = "[g]it [p]ush",
+      },
+      {
+        "<leader>gl",
+        function()
+          vim.cmd.Git("pull")
+        end,
+        desc = "[g]it pul[l]",
+      },
+    },
   },
   {
     "tpope/vim-rhubarb", -- Companion of fugitive for integration with Github
