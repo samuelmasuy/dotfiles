@@ -46,6 +46,30 @@ return {
     end,
   },
   {
+    -- https://github.com/jellydn/CopilotChat.nvim/blob/main/README.md
+    -- pip install python-dotenv requests pynvim==0.5.0 prompt-toolkit
+    "jellydn/CopilotChat.nvim",
+    branch = "canary",
+    enabled = function()
+      return vim.fn.isdirectory(vim.fn.expand("$WORKPATH")) ~= 0
+    end,
+    opts = {
+      mode = "split", -- newbuffer or split  , default: newbuffer
+    },
+    build = function()
+      vim.defer_fn(function()
+        vim.cmd("UpdateRemotePlugins")
+        vim.notify("CopilotChat - Updated remote plugins. Please restart Neovim.")
+      end, 3000)
+    end,
+    event = "VeryLazy",
+    cmd = "Copilot",
+    keys = {
+      { "<leader>cce", "<cmd>CopilotChatExplain<cr>", desc = "CopilotChat - Explain code" },
+      { "<leader>cct", "<cmd>CopilotChatTests<cr>", desc = "CopilotChat - Generate tests" },
+    },
+  },
+  {
     "Exafunction/codeium.vim",
     event = "BufEnter",
     enabled = function()
