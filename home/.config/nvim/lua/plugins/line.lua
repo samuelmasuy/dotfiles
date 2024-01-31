@@ -1,7 +1,7 @@
 return {
   {
     "nvim-lualine/lualine.nvim", -- inspired from evil_lualine: https://gist.github.com/hoob3rt/b200435a765ca18f09f83580a606b878
-    event = "VeryLazy",
+    event = "BufReadPre",
     dependencies = {
       "AndreM222/copilot-lualine",
     },

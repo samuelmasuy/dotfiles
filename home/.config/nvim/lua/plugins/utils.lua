@@ -1,14 +1,4 @@
 return {
-  -- search
-  {
-    "ahmedkhalf/project.nvim", -- auto cwd in root git repo
-    config = function()
-      require("project_nvim").setup({
-        -- manual_mode = true,
-      })
-    end,
-  },
-
   -- "mhinz/vim-startify" -- Startup Screen
   {
     "tpope/vim-eunuch", -- Adds Unix commands to vim.

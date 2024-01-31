@@ -6,7 +6,16 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
       { "nvim-telescope/telescope-fzf-native.nvim", build = "make", cond = vim.fn.executable("make") == 1 },
+      {
+        "ahmedkhalf/project.nvim", -- auto cwd in root git repo
+        config = function()
+          require("project_nvim").setup({
+            -- manual_mode = true,
+          })
+        end,
+      },
     },
+    cmd = "Telescope",
     keys = {
       {
         "<leader>t",

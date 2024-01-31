@@ -21,7 +21,11 @@ return {
         ensure_installed = {
           "bash",
           "cmake",
+          "csv",
           "dockerfile",
+          "git_config",
+          "git_rebase",
+          "gitattributes",
           "gitcommit",
           "gitignore",
           "go",
@@ -99,13 +103,13 @@ return {
             },
           },
           swap = {
-            enable = true,
-            swap_next = {
-              ["<leader>a"] = "@parameter.inner",
-            },
-            swap_previous = {
-              ["<leader>A"] = "@parameter.inner",
-            },
+            enable = false,
+            -- swap_next = {
+            --   ["<leader>p"] = "@parameter.inner",
+            -- },
+            -- swap_previous = {
+            --   ["<leader>P"] = "@parameter.inner",
+            -- },
           },
         },
       })
