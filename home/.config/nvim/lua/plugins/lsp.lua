@@ -21,12 +21,14 @@ return {
     config = function()
       require("neodev").setup({})
 
-      local on_attach = function(client, bufnr)
+      local disable_lsp_on_attach = function(client, bufnr)
         -- vim.notify(client.name .. " lsp client on ft: " .. vim.bo.filetype)
         if client.name == "yamlls" and vim.bo.filetype == "helm" then
           vim.lsp.stop_client(client.id)
         end
+      end
 
+      local keys_on_attach = function(client, bufnr)
         local nmap = function(lhs, rhs, desc)
           vim.keymap.set("n", lhs, rhs, { noremap = true, silent = true, buffer = bufnr, desc = "LSP: " .. desc })
         end
@@ -52,6 +54,35 @@ return {
         nmap("<leader>r", function()
           vim.lsp.buf.format({ async = true })
         end, "Fo[r]mat")
+      end
+
+      local lsp_formatting = function(bufnr)
+        vim.lsp.buf.format({
+          filter = function(client)
+            return client.name == "null-ls"
+          end,
+          bufnr = bufnr,
+        })
+      end
+
+      local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+      local format_on_attach = function(client, bufnr)
+        if client.supports_method("textDocument/formatting") then
+          vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+          vim.api.nvim_create_autocmd("BufWritePre", {
+            group = augroup,
+            buffer = bufnr,
+            callback = function()
+              lsp_formatting(bufnr)
+            end,
+          })
+        end
+      end
+
+      local on_attach = function(client, bufnr)
+        disable_lsp_on_attach(client, bufnr)
+        keys_on_attach(client, bufnr)
+        format_on_attach(client, bufnr)
       end
 
       -- Diagnostics
