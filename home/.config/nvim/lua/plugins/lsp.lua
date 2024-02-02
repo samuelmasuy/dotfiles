@@ -11,7 +11,7 @@ return {
     dependencies = {
       {
         "folke/neodev.nvim",
-        ft = "lua",
+        ft = { "lua", "vim" },
       },
       { "hrsh7th/cmp-nvim-lsp" },
       { "williamboman/mason-lspconfig.nvim" },

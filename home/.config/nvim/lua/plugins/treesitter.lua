@@ -2,10 +2,10 @@ return {
   -- TREE SITTER:
   { -- Highlight, edit, and navigate code
     "nvim-treesitter/nvim-treesitter",
+    event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       {
         "nvim-treesitter/nvim-treesitter-textobjects",
-        event = "BufEnter",
       },
     },
     build = ":TSUpdate",
