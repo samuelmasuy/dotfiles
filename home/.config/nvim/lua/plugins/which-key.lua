@@ -4,7 +4,7 @@ return {
     event = "VeryLazy",
     config = function()
       vim.o.timeout = true
-      vim.o.timeoutlen = 200
+      vim.o.timeoutlen = 350
       require("which-key").setup({
         -- your configuration comes here
         -- or leave it empty to use the default settings
