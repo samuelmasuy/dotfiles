@@ -1,19 +1,17 @@
 local Remap = require("sam.utilities")
+local noremap = Remap.noremap
 local nnoremap = Remap.nnoremap
 local vnoremap = Remap.vnoremap
 local inoremap = Remap.inoremap
 local tnoremap = Remap.tnoremap
 local cnoremap = Remap.cnoremap
 local xnoremap = Remap.xnoremap
+
 -- General Mappings
 -- try to use ZZ
 cnoremap("wq", ":echo 'Use ZZ or :x'<CR>")
--- vim.keymap.set("c", "wq", ":echo 'Use ZZ or :x'<CR>")
--- vim.keymap.set(op, lhs, rhs, opts)
 
 -- Disable un-VI keys.
--- vim.keymap.set("n", "<up>", "<nop>")
--- vim.keymap.set("n", "<down>", "<nop>")
 inoremap("<up>", "<nop>")
 inoremap("<down>", "<nop>")
 inoremap("<left>", "<nop>")
@@ -59,10 +57,6 @@ vnoremap(":", ";")
 -- logical, why vi
 nnoremap("Y", "y$")
 
--- Switch marks
--- vim.keymap.set("n", "'", "`")
--- vim.keymap.set("n", "`", "'")
-
 -- Move with visuals
 xnoremap("K", ":m-2<CR>gv=gv")
 xnoremap("J", ":m'>+<CR>gv=gv")
@@ -76,10 +70,6 @@ nnoremap(
 
 -- Terminal mode
 tnoremap("<Esc>", "<C-\\><C-n>")
-tnoremap("<C-h>", "<C-\\><C-n><C-w>h")
-tnoremap("<C-j>", "<C-\\><C-n><C-w>j")
-tnoremap("<C-k>", "<C-\\><C-n><C-w>k")
-tnoremap("<C-l>", "<C-\\><C-n><C-w>l")
 
 -- Ex
 -- nnoremap("-", vim.cmd.Ex, { desc = "Open netrw" })
@@ -88,3 +78,38 @@ tnoremap("<C-l>", "<C-\\><C-n><C-w>l")
 nnoremap("<leader>dor", "<cmd>diffget REMOTE<CR>", { desc = "[d]iff [o]btain [r]emote" })
 nnoremap("<leader>dol", "<cmd>diffget LOCAL<CR>", { desc = "[d]iff [o]btain [l]ocal" })
 nnoremap("<leader>dob", "<cmd>diffget BASE<CR>", { desc = "[d]iff [o]btain [b]ase" })
+
+-- Leader Key
+noremap("\\", ",")
+
+-- Open new vertical split
+nnoremap("<leader>v", ":vsplit<CR>", { desc = "Open [v]ertical split" })
+
+-- Remove trailing whitespace on <leader>S
+nnoremap("<leader>S", ":%s/\\s\\+$//<cr>:let @/=''<CR>", { desc = "Remove trailing whitespace" })
+
+-- cd to where the file is currently located
+nnoremap("<leader>.", ":lcd %:p:h<CR>", { desc = "Change directory to current file" })
+
+-- Google search word under cursor from http://www.vimbits.com/bits/551
+nnoremap("<leader>is", ':let @p=@"<cr>yiw:!open "https://www.google.com/search?q=""<cr><cr>:let @"=@p<cr>')
+vnoremap("<leader>is", 'y:!open "https://www.google.com/search?q=""<cr><cr>')
+-- Google search the definition of the word under cursor
+nnoremap("<leader>id", ':let @p=@"<cr>yiw:!open "https://www.google.com/search?q=define ""<cr><cr>:let @"=@p<cr>')
+
+-- urlencode selection
+vnoremap(
+  "<leader>en",
+  ":!python -c 'import sys,urllib;print urllib.quote(sys.stdin.read().strip())'<cr>",
+  { desc = "URLEncode selection" }
+)
+
+-- Easy substitution
+nnoremap("<leader>;", ":%s::cg<Left><Left><Left>")
+vnoremap("<leader>;", ":s::g<Left><Left>")
+
+-- Don't lose what's in "" register
+vnoremap("<leader>p", '"_dP', { desc = "Paste without losing register" })
+
+-- redraw screen
+-- keymap.set("n", "<leader>1", ":redraw!<CR>", { desc = "Redraw screen" })
