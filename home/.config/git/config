@@ -5,6 +5,8 @@
     excludesfile = ~/.config/git/ignore
     whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
     pager = delta
+[commit]
+    gpgSign = true
 [color]
     ui = auto
 [color "branch"]
