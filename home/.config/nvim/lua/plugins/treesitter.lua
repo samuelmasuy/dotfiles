@@ -30,6 +30,7 @@ return {
           "gitignore",
           "go",
           "gomod",
+          "groovy",
           "hcl",
           "html",
           "http",
@@ -56,7 +57,7 @@ return {
         highlight = {
           enable = true,
           additional_vim_regex_highlighting = false,
-          disable = { "gitcommit" },
+          disable = { "gitcommit", "groovy" },
         },
         indent = { enable = true },
         incremental_selection = {
