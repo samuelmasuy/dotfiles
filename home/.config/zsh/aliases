@@ -81,10 +81,8 @@ alias gcn!='git commit -v -s --no-edit --amend'
 alias gp='git push'
 alias gbr='git branch --sort=-committerdate | fzf --header "Checkout Recent Branch" --preview "git diff --color=always {1}" --pointer="" | xargs git checkout'
 
-# hub alias
-eval "$(hub alias -s)"
-alias gprm="git pull-request -a samuelmasuy"
-alias ci="git ci-status"
+alias gprm="hub pull-request -a samuelmasuy"
+alias ci="hub ci-status"
 
 alias gpr="gh prs"
 alias gprc="gh pr checks -w"
@@ -95,6 +93,7 @@ alias gprc="gh pr checks -w"
 # +-----+
 command -v kubecolor >/dev/null 2>&1 && alias kubectl="kubecolor"
 alias -g k=kubectl
+alias ks='kubectl -n kube-system'
 alias kn=kubens
 alias kx=kubectx
 # alias kx=kubeswap

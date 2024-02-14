@@ -33,6 +33,8 @@
     missing = lp HEAD..master
     root = rev-parse --show-toplevel
     prefix = rev-parse --show-prefix
+    browse = !gh browse
+    pr = !gh pr view --web
 [push]
     autoSetupRemote = true
     default = simple
