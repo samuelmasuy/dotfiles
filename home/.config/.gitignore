@@ -2,3 +2,6 @@ git/self-config
 nvim/spell/*.spl
 nvim/spell/*.sug
 zsh/work/
+zsh/.zsh_sessions/
+zsh/.zcompdump
+zsh/.zsh_history
