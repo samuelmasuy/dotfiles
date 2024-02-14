@@ -36,7 +36,7 @@ echo "**************************************************************************
 git clone --bare git@github.com:samuelmasuy/dotfiles.git "$HOME/.dotfiles.git"
 pushd "$HOME/.dotfiles.git"
 git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
-read -sp "Enter the email for dotfiles : " email
+read -rsp "Enter the email for dotfiles : " email
 git config user.email "$email"
 git fetch
 git for-each-ref --format='%(refname:short)' refs/heads | xargs git branch -D
