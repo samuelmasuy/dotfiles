@@ -26,7 +26,7 @@ return {
       },
       -- search
       {
-        "<C-p",
+        "<C-p>",
         function()
           require("sam.telescope").search_files()
         end,
