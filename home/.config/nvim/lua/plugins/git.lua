@@ -43,7 +43,7 @@ return {
   },
   {
     "tpope/vim-rhubarb", -- Companion of fugitive for integration with Github
-    event = "VeryLazy",
+    cmd = { "GBrowse" },
   },
   {
     "ThePrimeagen/git-worktree.nvim",
