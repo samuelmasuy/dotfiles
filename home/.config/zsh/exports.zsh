@@ -61,7 +61,7 @@ export DISABLE_AUTO_TITLE=true
 
 export GROOVY_HOME=/usr/local/opt/groovy/libexec
 
-export BAT_THEME="OneHalfDark"
+export BAT_THEME="kanagawa"
 export BAT_STYLE="changes"
 
 if [[ $(uname -m) == 'arm64' ]]; then
