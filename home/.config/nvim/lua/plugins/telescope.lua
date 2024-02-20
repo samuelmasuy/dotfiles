@@ -76,7 +76,7 @@ return {
       },
       -- utils
       {
-        "<leader>c",
+        "<leader>co",
         function()
           require("telescope.builtin").colorscheme()
         end,
