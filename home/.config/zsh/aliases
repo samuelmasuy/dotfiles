@@ -21,7 +21,7 @@ alias -g la='ls -lArth'
 
 # confirm && verbose
 # alias	cp="cp -i"
-alias	mv="mv -i"
+alias mv="mv -i"
 # alias	rm="rm -v"
 # Open the given directory in finder.
 alias f='open .'
@@ -86,7 +86,6 @@ alias ci="hub ci-status"
 
 alias gpr="gh prs"
 alias gprc="gh pr checks -w"
-
 
 # +-----+
 # | k8s |
