@@ -2,6 +2,7 @@ return {
   {
     "tpope/vim-fugitive", -- awesome git
     event = "VeryLazy",
+    dependencies = { "tpope/vim-rhubarb", cmd = "Gbrowse" },
     config = function()
       vim.cmd.delcommand("Gremove") -- Superseded by |:GRemove|.
       vim.cmd.delcommand("Gdelete") -- Superseded by |:GDelete|.
@@ -40,10 +41,6 @@ return {
         desc = "[g]it [c]ommit",
       },
     },
-  },
-  {
-    "tpope/vim-rhubarb", -- Companion of fugitive for integration with Github
-    cmd = { "GBrowse" },
   },
   {
     "ThePrimeagen/git-worktree.nvim",
