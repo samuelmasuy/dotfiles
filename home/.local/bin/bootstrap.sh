@@ -53,8 +53,9 @@ brew bundle --file="$HOME/.local/share/brewfile/Brewfile"
 echo "**************************************************************************"
 echo "******************ASDF Installation...************************************"
 echo "**************************************************************************"
-asdf plugin add kubectl https://github.com/Banno/asdf-kubectl.git
-asdf plugin add helm https://github.com/Antiarchitect/asdf-helm.git
+while read -r plugin_line; do
+	asdf plugin-add $(awk '{print $1}' <<<"$plugin_line")
+done <"$HOME/.tool-versions"
 asdf install
 
 # defaults write org.hammerspoon.Hammerspoon MJConfigFile "~/.config/hammerspoon/init.lua"
