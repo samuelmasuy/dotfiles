@@ -50,14 +50,6 @@ echo "******************Application and tool installation...********************
 echo "**************************************************************************"
 brew bundle --file="$HOME/.local/share/brewfile/Brewfile"
 
-echo "**************************************************************************"
-echo "******************ASDF Installation...************************************"
-echo "**************************************************************************"
-while read -r plugin_line; do
-	asdf plugin-add $(awk '{print $1}' <<<"$plugin_line")
-done <"$HOME/.tool-versions"
-asdf install
-
 # defaults write org.hammerspoon.Hammerspoon MJConfigFile "~/.config/hammerspoon/init.lua"
 
 echo "Almost Done! Run ./install and Just do that: https://blog.birkhoff.me/make-sudo-authenticate-with-touch-id-in-a-tmux/"

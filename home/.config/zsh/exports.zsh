@@ -18,7 +18,7 @@ export GRADLE_USER_HOME="$XDG_DATA_HOME"/gradle
 export SHPOTIFY_CONFIG_FILE="$XDG_CONFIG_HOME"/shpotify/config
 export ASDF_DIR="$(brew --prefix asdf)/libexec"
 export ASDF_CONFIG_FILE="$XDG_CONFIG_HOME"/asdf/config
-export ADSF_DEFAULT_TOOL_VERSIONS_FILENAME="$XDG_CONFIG_HOME"/asdf/tool-versions
+export ASDF_PLUGINS="$XDG_CONFIG_HOME"/asdf/.asdf-plugins
 export ASDF_DATA_DIR="$XDG_DATA_HOME"/asdf
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/ripgreprc"
 export KREW_ROOT="$XDG_DATA_HOME"/krew
@@ -31,7 +31,7 @@ export PATH="$PATH:$XDG_DATA_HOME/yarn/bin"
 export PATH="$PATH:$XDG_DATA_HOME/npm/bin"
 export PATH="$PATH:$CARGO_HOME/bin"
 export PATH="${KREW_ROOT}/bin:$PATH"
-export PATH="/opt/homebrew/opt/curl/bin:$PATH"
+# export PATH="/opt/homebrew/opt/curl/bin:$PATH"
 
 export DOCKER_DEFAULT_PLATFORM=linux/amd64
 

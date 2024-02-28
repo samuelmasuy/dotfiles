@@ -70,7 +70,17 @@ bindkey -M vicmd '^v' edit-command-line
 # |  ETC       |
 # +------------+
 source ${XDG_CONFIG_HOME}/zsh/exports.zsh #1
-source $ASDF_DIR/asdf.sh
+
+source ${ASDF_DIR}/asdf.sh
+
+if [ -f $XDG_CONFIG_HOME/asdf/.asdf-plugins ]; then
+  for plugin in $(cat $XDG_CONFIG_HOME/asdf/.asdf-plugins); do
+      asdf plugin-list | grep $plugin > /dev/null 2>&1
+      if [ $? -ne 0 ]; then
+          asdf plugin-add $plugin
+      fi
+  done
+fi
 
 if [[ -d ${XDG_CONFIG_HOME}/zsh/work ]]; then
   for file in ${XDG_CONFIG_HOME}/zsh/work/*.zsh; do
