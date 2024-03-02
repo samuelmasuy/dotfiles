@@ -7,14 +7,14 @@ alias ...='cd -- ../..'
 # Display all files and directories including the hidden ones, with precision.
 # Make the terminal say all the files and directories.
 alias lt="/bin/ls | say -va"
-# exa love
-# alias ls='exa'
-# alias la='exa -la --sort modified'
-alias l='exa -a --git-ignore'
-alias ll='exa -la --git-ignore --git --sort modified'
+alias l='eza -a --git-ignore'
+alias ll='eza -la --git-ignore --git --sort modified'
+alias lf='eza -lF --color=always | grep -v /'
+alias lh='eza -dl .* --group-directories-first'
 # or not
 alias ls='ls -AG'
 alias -g la='ls -lArth'
+
 # alias la='exa -la --sort modified'
 # alias l='exa -a --git-ignore'
 # alias ll='exa -la --git-ignore --sort modified'
