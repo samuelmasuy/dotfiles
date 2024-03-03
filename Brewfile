@@ -58,7 +58,7 @@ cask "docker"
 cask "font-jetbrains-mono"
 cask "font-jetbrains-mono-nerd-font"
 cask "font-jetbrainsmono-nerd-font"
-cask "font-symbols-only-nerd-font
+cask "font-symbols-only-nerd-font"
 cask "hammerspoon"
 cask "kitty"
 cask "spotify"
