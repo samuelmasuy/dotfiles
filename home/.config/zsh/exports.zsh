@@ -22,6 +22,7 @@ export ASDF_PLUGINS="$XDG_CONFIG_HOME"/asdf/.asdf-plugins
 export ASDF_DATA_DIR="$XDG_DATA_HOME"/asdf
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/ripgreprc"
 export KREW_ROOT="$XDG_DATA_HOME"/krew
+export TEALDEER_CONFIG_DIR=$XDG_CONFIG_HOME/tealdeer
 
 export PATH="$PATH:$HOME/.local/bin/:$HOME/.local/bin/aws/:$HOME/.local/bin/git-toolbelt/"
 export PATH="$PATH:/usr/local/sbin:/Applications/VirtualBox.app/Contents/MacOS"
