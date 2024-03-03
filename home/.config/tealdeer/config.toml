@@ -14,7 +14,7 @@ foreground = "cyan"
 underline = true
 
 [display]
-compact = false
+compact = true
 use_pager = true
 
 [updates]
