@@ -2,6 +2,7 @@ return {
   {
     "nvim-neotest/neotest",
     ft = "go",
+    enabled = false,
     dependencies = {
       "nvim-neotest/neotest-go",
     },
