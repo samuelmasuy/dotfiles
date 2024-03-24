@@ -15,6 +15,7 @@ echo "**************************************************************************
 echo "******************Homebrew Install...*************************************"
 echo "**************************************************************************"
 command -v brew >/dev/null 2>&1 || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 echo "**************************************************************************"
 echo "******************Deps Install...*****************************************"
@@ -27,7 +28,7 @@ echo "**************************************************************************
 git clone --bare git@github.com:samuelmasuy/dotfiles.git "$HOME/.dotfiles.git"
 pushd "$HOME/.dotfiles.git"
 git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
-read -rsp "Enter the email for dotfiles : " email
+read -rp "Enter the email for dotfiles : " email
 git config user.email "$email"
 git fetch
 git for-each-ref --format='%(refname:short)' refs/heads | xargs git branch -D

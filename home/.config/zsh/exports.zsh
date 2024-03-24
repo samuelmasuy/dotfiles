@@ -51,11 +51,6 @@ setopt hist_ignore_space
 
 export LESSHISTFILE=-
 
-#export WORKON_HOME=$HOME/.virtualenvs
-#source /usr/local/bin/virtualenvwrapper.sh
-#VIRTUAL_ENV_DISABLE_PROMPT=1
-# pip cache.
-export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache
 # Tmux config.
 export DISABLE_AUTO_TITLE=true
 
