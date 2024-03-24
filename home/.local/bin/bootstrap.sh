@@ -12,23 +12,14 @@ mkdir -p "$HOME/.local/state"
 mkdir -p "$HOME/.cache"
 
 echo "**************************************************************************"
-echo "******************Command line tooling install...***********************************"
-echo "**************************************************************************"
-command -v gcc >/dev/null 2>&1 && xcode-select --install || true
-command -v gcc >/dev/null 2>&1 || {
-	echo >&2 "I require gcc, but it's not installed. Aborting."
-	exit 1
-}
-
-echo "**************************************************************************"
 echo "******************Homebrew Install...*************************************"
 echo "**************************************************************************"
 command -v brew >/dev/null 2>&1 || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 echo "**************************************************************************"
-echo "******************Git Install...******************************************"
+echo "******************Deps Install...*****************************************"
 echo "**************************************************************************"
-command -v git >/dev/null 2>&1 || brew install git
+brew install git stow
 
 echo "**************************************************************************"
 echo "******************Dotfiles Install...*************************************"
@@ -48,7 +39,9 @@ popd
 echo "**************************************************************************"
 echo "******************Application and tool installation...********************"
 echo "**************************************************************************"
-brew bundle --file="$HOME/.local/share/brewfile/Brewfile"
+pushd "$HOME/.dotfiles.git/master"
+brew bundle
+popd
 
 # defaults write org.hammerspoon.Hammerspoon MJConfigFile "~/.config/hammerspoon/init.lua"
 
@@ -57,9 +50,8 @@ echo "Almost Done! Run ./install and Just do that: https://blog.birkhoff.me/make
 # echo "**************************************************************************"
 # echo "**********************neovim stuff...*************************************"
 # echo "**************************************************************************"
-sudo pip3 install --upgrade neovim
 sudo gem install neovim
 npm install -g neovim
 
 # hide bluesnooze, unhide: defaults delete com.oliverpeate.Bluesnooze hideIcon && killall Bluesnooze
-defaults write com.oliverpeate.Bluesnooze hideIcon -bool true && killall Bluesnooze
+# defaults write com.oliverpeate.Bluesnooze hideIcon -bool true && killall Bluesnooze

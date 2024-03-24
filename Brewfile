@@ -1,12 +1,9 @@
 cask_args appdir: '/Applications'
 tap "homebrew/bundle"
-tap "homebrew/cask"
 tap "homebrew/cask-fonts"
 tap "homebrew/cask-versions"
-tap "homebrew/core"
 tap "homebrew/services"
 tap "kubecolor/tap"
-tap "jive/brew", "git@github.com:jive/brew.git"
 brew "asdf"
 brew "awscli"
 brew "azure-cli"
