@@ -5,3 +5,4 @@ zsh/work/
 zsh/.zsh_sessions/
 zsh/.zcompdump
 zsh/.zsh_history
+helm/repositories.lock
