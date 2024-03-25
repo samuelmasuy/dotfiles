@@ -8,6 +8,9 @@
 # fpath=(${DOTFILES_HOME}/zsh/.config/zsh/plugins/kubectl-completion $fpath)
 # fpath=(${DOTFILES_HOME}/zsh/.config/zsh/plugins/zsh-completions/src $fpath) # is it really needed?
 
+# Add zsh-completions to $fpath.
+fpath=(${0:h}/external/src $fpath)
+
 # complist give access to the keymap menuselect (should be loaded before compinit)
 zmodload zsh/complist
 # # Up arrow:
@@ -30,6 +33,17 @@ zmodload zsh/complist
 # bindkey -M menuselect 'k' vi-up-line-or-history
 # bindkey -M menuselect 'j' vi-down-line-or-history
 # bindkey -M menuselect 'l' vi-forward-char
+
+# Add completion for keg-only brewed curl on macOS when available.
+if (( $+commands[brew] )); then
+  brew_prefix=${HOMEBREW_PREFIX:-${HOMEBREW_REPOSITORY:-$commands[brew]:A:h:h}}
+  # $HOMEBREW_PREFIX defaults to $HOMEBREW_REPOSITORY but is explicitly set to
+  # /usr/local when $HOMEBREW_REPOSITORY is /usr/local/Homebrew.
+  # https://github.com/Homebrew/brew/blob/2a850e02d8f2dedcad7164c2f4b95d340a7200bb/bin/brew#L66-L69
+  [[ $brew_prefix == '/usr/local/Homebrew' ]] && brew_prefix=$brew_prefix:h
+  fpath=($brew_prefix/opt/curl/share/zsh/site-functions(/N) $fpath)
+  unset brew_prefix
+fi
 
 # The autoload command load a file containing shell commands.
 # To find this file, Zsh will look in the directories of the Zsh file search path,
@@ -80,7 +94,8 @@ zstyle ':completion:*' group-name ''
 
 # smart-case
 # zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
-zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+# zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}' '+l:|=* r:|=*'
 
 # Autocomplete options for cd instead of directory stack
 zstyle ':completion:*:*:*:cd:*' complete-options false
