@@ -44,13 +44,9 @@ pushd "$HOME/.dotfiles.git/master"
 brew bundle
 popd
 
-# defaults write org.hammerspoon.Hammerspoon MJConfigFile "~/.config/hammerspoon/init.lua"
-
-echo "Almost Done! Run ./install and Just do that: https://blog.birkhoff.me/make-sudo-authenticate-with-touch-id-in-a-tmux/"
-
-# echo "**************************************************************************"
-# echo "**********************neovim stuff...*************************************"
-# echo "**************************************************************************"
+echo "**************************************************************************"
+echo "**********************Neovim stuff...*************************************"
+echo "**************************************************************************"
 sudo gem install neovim
 npm install -g neovim
 
@@ -58,3 +54,5 @@ bat cache --build
 
 # hide bluesnooze, unhide: defaults delete com.oliverpeate.Bluesnooze hideIcon && killall Bluesnooze
 # defaults write com.oliverpeate.Bluesnooze hideIcon -bool true && killall Bluesnooze
+
+echo "Almost Done! Just do that: https://github.com/fabianishere/pam_reattach"
