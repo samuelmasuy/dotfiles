@@ -21,14 +21,14 @@ return {
     config = function()
       require("neodev").setup({})
 
-      local disable_lsp_on_attach = function(client, bufnr)
+      local disable_lsp_on_attach = function(client, _)
         -- vim.notify(client.name .. " lsp client on ft: " .. vim.bo.filetype)
         if client.name == "yamlls" and vim.bo.filetype == "helm" then
           vim.lsp.stop_client(client.id)
         end
       end
 
-      local keys_on_attach = function(client, bufnr)
+      local keys_on_attach = function(_, bufnr)
         local nmap = function(lhs, rhs, desc)
           vim.keymap.set("n", lhs, rhs, { noremap = true, silent = true, buffer = bufnr, desc = "LSP: " .. desc })
         end
@@ -67,7 +67,7 @@ return {
 
       local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
       local format_on_attach = function(client, bufnr)
-        if vim.bo.filetype == "yaml" then
+        if vim.bo.filetype == "yaml" or vim.bo.filetype == "sh" then
           return
         end
         if client.supports_method("textDocument/formatting") then
