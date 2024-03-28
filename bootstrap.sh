@@ -54,5 +54,7 @@ echo "Almost Done! Run ./install and Just do that: https://blog.birkhoff.me/make
 sudo gem install neovim
 npm install -g neovim
 
+bat cache --build
+
 # hide bluesnooze, unhide: defaults delete com.oliverpeate.Bluesnooze hideIcon && killall Bluesnooze
 # defaults write com.oliverpeate.Bluesnooze hideIcon -bool true && killall Bluesnooze
