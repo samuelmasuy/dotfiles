@@ -52,7 +52,7 @@ end
 
 M.search_work_dirs = function()
   local opts = {
-    find_command = { "exa", "-L", "1", "-D", "-s", "modified", "-1", "-r" },
+    find_command = { "eza", "-L", "1", "-D", "-s", "modified", "-1", "-r" },
     prompt_title = "< Work Dirs >",
     cwd = "$WORKPATH",
   }
