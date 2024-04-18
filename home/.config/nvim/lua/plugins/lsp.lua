@@ -66,8 +66,14 @@ return {
       end
 
       local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+      local disable_autoformat_filetypes = {
+        "yaml",
+        "json",
+        "html",
+        "sh",
+      }
       local format_on_attach = function(client, bufnr)
-        if vim.bo.filetype == "yaml" or vim.bo.filetype == "sh" then
+        if vim.tbl_contains(disable_autoformat_filetypes, vim.bo.filetype) then
           return
         end
         if client.supports_method("textDocument/formatting") then
