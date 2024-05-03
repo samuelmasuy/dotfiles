@@ -46,34 +46,55 @@ return {
     end,
   },
   {
-    -- https://github.com/jellydn/CopilotChat.nvim/blob/main/README.md
-    -- pip install python-dotenv requests pynvim==0.5.0 prompt-toolkit
-    "jellydn/CopilotChat.nvim",
+    -- sudo luarocks install --lua-version 5.1 tiktoken_core
+    "CopilotC-Nvim/CopilotChat.nvim", -- depends on copilot.lua and plenary
     branch = "canary",
     enabled = function()
       return vim.fn.isdirectory(vim.fn.expand("$WORKPATH")) ~= 0
     end,
     opts = {
       mode = "split", -- newbuffer or split  , default: newbuffer
-      prompts = {
-        Explain = "Explain how it works.",
-        Review = "Review the following code and provide concise suggestions.",
-        Tests = "Briefly explain how the selected code works, then generate unit tests.",
-        Refactor = "Refactor the code to improve clarity and readability.",
+      window = {
+        layout = "float",
+        relative = "cursor",
+        width = 1,
+        height = 0.4,
+        row = 1,
       },
     },
-    build = function()
-      vim.defer_fn(function()
-        vim.cmd("UpdateRemotePlugins")
-        vim.notify("CopilotChat - Updated remote plugins. Please restart Neovim.")
-      end, 3000)
-    end,
     event = "VeryLazy",
     keys = {
-      { "<leader>cce", "<cmd>CopilotChatExplain<cr>",  desc = "CopilotChat - Explain code" },
-      { "<leader>cct", "<cmd>CopilotChatTests<cr>",    desc = "CopilotChat - Generate tests" },
-      { "<leader>ccr", "<cmd>CopilotChatReview<cr>",   desc = "CopilotChat - Review code" },
-      { "<leader>ccR", "<cmd>CopilotChatRefactor<cr>", desc = "CopilotChat - Refactor code" },
+      { "<leader>cce", "<cmd>CopilotChatExplain<cr>", desc = "CopilotChat - Explain code" },
+      { "<leader>cct", "<cmd>CopilotChatTests<cr>", desc = "CopilotChat - Generate tests" },
+      { "<leader>ccf", "<cmd>CopilotChatFix<cr>", desc = "CopilotChat - Fix code" },
+      { "<leader>ccr", "<cmd>CopilotChatReview<cr>", desc = "CopilotChat - Review code" },
+      { "<leader>ccc", "<cmd>CopilotChatCommit<cr>", desc = "CopilotChat - Commit code" },
+      {
+        "<leader>ccq",
+        function()
+          local input = vim.fn.input("Quick Chat: ")
+          if input ~= "" then
+            require("CopilotChat").ask(input, { selection = require("CopilotChat.select").buffer })
+          end
+        end,
+        desc = "CopilotChat - Quick chat",
+      },
+      {
+        "<leader>cch",
+        function()
+          local actions = require("CopilotChat.actions")
+          require("CopilotChat.integrations.telescope").pick(actions.help_actions())
+        end,
+        desc = "CopilotChat - Help actions",
+      },
+      {
+        "<leader>ccp",
+        function()
+          local actions = require("CopilotChat.actions")
+          require("CopilotChat.integrations.telescope").pick(actions.prompt_actions())
+        end,
+        desc = "CopilotChat - Prompt actions",
+      },
     },
   },
   {
