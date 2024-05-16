@@ -3,6 +3,7 @@ return {
     "echasnovski/mini.files",
     lazy = false,
     version = false,
+    -- enabled = false,
     config = function()
       require("mini.files").setup({
         mappings = {
@@ -32,7 +33,7 @@ return {
     end,
     keys = {
       {
-        "-",
+        "<leader>-",
         function()
           require("mini.files").open(vim.api.nvim_buf_get_name(0))
         end,
