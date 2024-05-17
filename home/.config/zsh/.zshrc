@@ -99,7 +99,7 @@ plug "zsh-users/zsh-completions"
 # plug "marlonrichert/zsh-autocomplete"
 plug "zdharma-continuum/fast-syntax-highlighting"
 plug "zsh-users/zsh-history-substring-search"
-
+plug "loiccoyle/zsh-github-copilot"
 # +------------+
 # | COMPLETION |
 # +------------+
@@ -131,6 +131,12 @@ bindkey '^[[B' history-substring-search-down
 # bindkey -M vicmd 'j' history-substring-search-down
 bindkey -M vicmd 'gk' history-substring-search-up
 bindkey -M vicmd 'gj' history-substring-search-down
+
+# +---------+
+# | COPILOT |
+# +---------+
+bindkey '^e' zsh_gh_copilot_explain  # bind Ctrl+e to explain
+bindkey '^s' zsh_gh_copilot_suggest  # bind Alt+\ to suggest
 
 # zprof
 # Load and initialise completion system

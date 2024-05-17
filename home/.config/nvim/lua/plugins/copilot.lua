@@ -10,9 +10,9 @@ return {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
     event = "InsertEnter",
-    enabled = function()
-      return vim.fn.isdirectory(vim.fn.expand("$WORKPATH")) ~= 0
-    end,
+    -- enabled = function()
+    --   return vim.fn.isdirectory(vim.fn.expand("$WORKPATH")) ~= 0
+    -- end,
     config = function()
       require("copilot").setup({
         filetypes = {
@@ -49,16 +49,16 @@ return {
     -- sudo luarocks install --lua-version 5.1 tiktoken_core
     "CopilotC-Nvim/CopilotChat.nvim", -- depends on copilot.lua and plenary
     branch = "canary",
-    enabled = function()
-      return vim.fn.isdirectory(vim.fn.expand("$WORKPATH")) ~= 0
-    end,
+    -- enabled = function()
+    --   return vim.fn.isdirectory(vim.fn.expand("$WORKPATH")) ~= 0
+    -- end,
     opts = {
       mode = "split", -- newbuffer or split  , default: newbuffer
       window = {
         layout = "float",
         relative = "cursor",
         width = 1,
-        height = 0.4,
+        height = 0.6,
         row = 1,
       },
     },
@@ -100,9 +100,10 @@ return {
   {
     "Exafunction/codeium.vim",
     event = "BufEnter",
-    enabled = function()
-      return vim.fn.isdirectory(vim.fn.expand("$WORKPATH")) == 0
-    end,
+    enabled = false,
+    -- enabled = function()
+    --   return vim.fn.isdirectory(vim.fn.expand("$WORKPATH")) == 0
+    -- end,
     config = function()
       vim.keymap.set("i", copilot_maps.accept, function()
         return vim.fn["codeium#Accept"]()
