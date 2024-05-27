@@ -1,7 +1,7 @@
 return {
   {
     -- "hrsh7th/nvim-cmp",
-    "llllvvuu/nvim-cmp",
+    "samuelmasuy/nvim-cmp",
     event = { "BufRead", "BufNewFile", "InsertEnter" },
     branch = "feat/above",
     dependencies = {

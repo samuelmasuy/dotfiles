@@ -35,21 +35,22 @@ return {
 
         nmap("gD", vim.lsp.buf.declaration, "[g]oto [D]eclaration")
         nmap("gd", vim.lsp.buf.definition, "[g]oto [d]efinition")
-        nmap("gr", require("telescope.builtin").lsp_references, "[g]oto [r]eferences")
         nmap("K", vim.lsp.buf.hover, "Hover Documentation")
-        nmap("gs", vim.lsp.buf.signature_help, "[g]oto [s]ignature documentation")
         nmap("gi", require("telescope.builtin").lsp_implementations, "[g]oto [i]mplementation")
         nmap("go", vim.lsp.buf.type_definition, "Type [d]efinition")
         nmap("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
         nmap("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
+        -- Keymaps with default in neovim 0.11
+        -- nmap("grr", require("telescope.builtin").lsp_references, "[g]oto [r]eferences")
+        -- nmap("grn", vim.lsp.buf.rename, "[R]e[n]ame")
+        -- nmap("gra", vim.lsp.buf.code_action, "[C]ode [A]ction")
+        nmap("gss", vim.lsp.buf.signature_help, "[g]oto [s]ignature documentation") -- <C-s> in insert mode (neovim 0.11)
 
         nmap("<leader>wa", vim.lsp.buf.add_workspace_folder, "[W]orkspace [A]dd Folder")
         nmap("<leader>wr", vim.lsp.buf.remove_workspace_folder, "[W]orkspace [R]emove Folder")
         nmap("<leader>wl", function()
           print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
         end, "[W]orkspace [L]ist Folders")
-        nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
-        nmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
         nmap("<leader>ll", vim.lsp.codelens.run, "Code[L]ens")
         nmap("<leader>r", function()
           vim.lsp.buf.format({ async = true })
@@ -96,8 +97,8 @@ return {
 
       -- Diagnostics
       local nnoremap = require("sam.utilities").nnoremap
-      nnoremap("[d", vim.diagnostic.goto_prev, { desc = "Previous [d]iagnostic" })
-      nnoremap("]d", vim.diagnostic.goto_next, { desc = "Next [d]iagnostic" })
+      vim.keymap.del("n", "<C-w>d") -- Disable default keymap added in nvim 0.10 to diagnostic.open_float
+      vim.keymap.del("n", "<C-W><C-D>")
       nnoremap("gl", vim.diagnostic.open_float, { desc = "Open diagnostic" })
       nnoremap("<leader>d", vim.diagnostic.setloclist, { desc = "Diagnostic to location list" })
 
@@ -107,6 +108,9 @@ return {
         underline = true,
         update_in_insert = false,
       })
+
+      -- Inlay hints
+      vim.lsp.inlay_hint.enable()
 
       local lspconfig = require("lspconfig")
       local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()

@@ -5,23 +5,11 @@ return {
     cmd = "Tabularize",
   },
   {
-    "numToStr/Comment.nvim", -- commenting with e.g. `gcc` or `gcip`
-    event = "VeryLazy",
-    config = function()
-      require("Comment").setup()
-    end,
-    keys = {
-      { "gcc", mode = "n" },
-      { "gc", mode = "v" },
-    },
-  },
-  {
     "tpope/vim-abolish", -- Camel case, snake crc
     event = "VeryLazy",
   },
   {
     "kylechui/nvim-surround",
-    event = "VeryLazy",
     keys = {
       { "ys", mode = { "n", "v" } },
       { "S", mode = { "n", "v" } },

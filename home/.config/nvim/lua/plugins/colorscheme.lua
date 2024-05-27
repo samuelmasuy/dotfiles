@@ -35,7 +35,7 @@ return {
       })
 
       vim.opt.background = "dark"
-      vim.opt.termguicolors = true
+      -- vim.opt.termguicolors = true -- nvim 0.10 autodetects it
 
       vim.cmd.highlight("ColorColumn ctermbg=magenta")
       vim.fn.matchadd("ColorColumn", "\\%101v", 100)

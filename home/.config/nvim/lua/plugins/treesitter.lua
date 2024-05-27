@@ -56,8 +56,8 @@ return {
 
         highlight = {
           enable = true,
-          additional_vim_regex_highlighting = false,
-          disable = { "gitcommit", "groovy" },
+          additional_vim_regex_highlighting = true,
+          disable = { "gitcommit" },
         },
         indent = { enable = true },
         incremental_selection = {

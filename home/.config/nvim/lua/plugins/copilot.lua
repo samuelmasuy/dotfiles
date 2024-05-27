@@ -17,6 +17,7 @@ return {
       require("copilot").setup({
         filetypes = {
           ["*"] = true,
+          ["go"] = true,
         },
         suggestion = {
           enabled = true,
