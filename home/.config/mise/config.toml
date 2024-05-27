@@ -1,0 +1,21 @@
+[tools]
+kubectx = '0.9.5'
+kubectl = "1.29.5"
+helm = '3.14.3'
+vault = '1.16.0'
+terraform = '1.7.5'
+packer = '1.9.2'
+argocd = '2.10.4'
+neovim = "nightly"
+golang = '1.22.1'
+nodejs = '21.6.2'
+"" = ""
+usage = "latest"
+go = "1.22.1"
+
+[settings]
+# plugins can read the versions files used by other version managers (if enabled by the plugin)
+# for example, .nvmrc in the case of node's nvm
+legacy_version_file = false
+
+experimental = true # enable experimental features

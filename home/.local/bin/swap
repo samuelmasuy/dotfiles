@@ -3,11 +3,14 @@
 set -euo pipefail
 
 __list_installed_plugins() {
-    asdf plugin-list 2>/dev/null | sort
+    # asdf plugin-list 2>/dev/null | sort
+    # mise plugins 2>/dev/null | sort
+    mise ls --json 2>/dev/null | jq -r 'keys|.[]|select(length > 0)' | sort
 }
 
 __list_installed_versions() {
-    asdf list $1 2>/dev/null
+    # asdf list $1 2>/dev/null
+    mise ls $1 -i 2>/dev/null | awk '{print $2}'
 }
 
 __select_installed_version() {
@@ -17,8 +20,18 @@ __select_installed_version() {
 }
 
 main() {
-    plugin=`__list_installed_plugins | fzf`
-    __select_installed_version $plugin | xargs -t -r -n 1 asdf global $plugin
+    local plugin=`__list_installed_plugins | fzf`
+    if [ -z "$plugin" ]; then
+        echo "No plugin selected"
+        exit 1
+    fi
+    # __select_installed_version $plugin | xargs -t -r -n 1 asdf global $plugin
+    local selected=`__select_installed_version $plugin`
+    if [ -z "$selected" ]; then
+        echo "No version selected"
+        exit 1
+    fi
+    mise use -g $plugin@${selected}
 }
 
 main
