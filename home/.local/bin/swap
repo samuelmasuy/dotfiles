@@ -18,7 +18,16 @@ __select_installed_version() {
 
 main() {
     plugin=`__list_installed_plugins | fzf`
-    __select_installed_version $plugin | xargs -t -r -n 1 asdf global $plugin
+    if [[ -z "$plugin" ]]; then
+        echo "No plugin selected"
+        exit 1
+    fi
+    version=$(__select_installed_version $plugin)
+    if [[ -z "$version" ]]; then
+        echo "No version selected for $plugin"
+        exit 1
+    fi
+    asdf global $plugin $version
 }
 
 main
