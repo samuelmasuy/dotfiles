@@ -6,7 +6,10 @@ echo "********************Home directories setup...*****************************
 echo "**************************************************************************"
 mkdir -p "$HOME/src/github.com"
 mkdir -p "$HOME/.config"
+mkdir -p "$HOME/.config/git"
+mkdir -p "$HOME/.config/nvim"
 mkdir -p "$HOME/.local/share"
+mkdir -p "$HOME/.local/share/zsh"
 mkdir -p "$HOME/.local/bin"
 mkdir -p "$HOME/.local/state"
 mkdir -p "$HOME/.cache"
@@ -41,8 +44,11 @@ echo "**************************************************************************
 echo "******************Application and tool installation...********************"
 echo "**************************************************************************"
 pushd "$HOME/.dotfiles.git/master"
-brew bundle
+brew bundle || true
 popd
+
+asdf install
+gh extension install github/gh-copilot
 
 echo "**************************************************************************"
 echo "**********************Neovim stuff...*************************************"
