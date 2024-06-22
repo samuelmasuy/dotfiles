@@ -1,5 +1,6 @@
 return {
   "ThePrimeagen/harpoon",
+  event = "VeryLazy",
   opts = {
     settings = {
       sync_on_ui_close = true,
