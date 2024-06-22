@@ -19,9 +19,8 @@ basename=${repo##*/}
 name=${2:-${basename%.*}}.git
 
 git clone --bare "$repo" "$name"
-cd "$name"
+pushd "$name"
 git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
 git fetch
-# git for-each-ref --format='%(refname:short)' refs/heads | xargs -n1 -I{} git branch --set-upstream-to=origin/{} {}
 git for-each-ref --format='%(refname:short)' refs/heads | xargs git branch -D
-cd ..
+popd
