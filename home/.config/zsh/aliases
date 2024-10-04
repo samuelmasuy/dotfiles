@@ -60,8 +60,6 @@ alias dpsa="docker ps -aq -f status=exited"
 alias drms="docker ps -aq --no-trunc | xargs docker rm"
 # Remove dangling/untagged images
 alias drmd="docker images -q --filter dangling=true | xargs docker rmi"
-# bat > cat
-alias cat="bat"
 # kill
 alias killseg="kill -s SIGSEGV $$"
 
