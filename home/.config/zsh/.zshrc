@@ -100,6 +100,7 @@ plug "zsh-users/zsh-completions"
 plug "zdharma-continuum/fast-syntax-highlighting"
 plug "zsh-users/zsh-history-substring-search"
 plug "loiccoyle/zsh-github-copilot"
+plug "jeffreytse/zsh-vi-mode"
 # +------------+
 # | COMPLETION |
 # +------------+
