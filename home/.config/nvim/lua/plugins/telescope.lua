@@ -6,14 +6,6 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
       { "nvim-telescope/telescope-fzf-native.nvim", build = "make", cond = vim.fn.executable("make") == 1 },
-      {
-        "ahmedkhalf/project.nvim", -- auto cwd in root git repo
-        config = function()
-          require("project_nvim").setup({
-            -- manual_mode = true,
-          })
-        end,
-      },
     },
     cmd = "Telescope",
     keys = {
@@ -97,13 +89,6 @@ return {
         desc = "Key[m]aps",
       },
       {
-        "<leader><space>",
-        function()
-          require("telescope").extensions.projects.projects()
-        end,
-        desc = "[ ] Search projects",
-      },
-      {
         "<leader>sh",
         function()
           require("telescope.builtin").help_tags()
@@ -149,7 +134,6 @@ return {
       local actions = require("telescope.actions")
 
       require("telescope").load_extension("fzf")
-      require("telescope").load_extension("projects")
       require("telescope").load_extension("git_worktree")
 
       require("telescope").setup({
