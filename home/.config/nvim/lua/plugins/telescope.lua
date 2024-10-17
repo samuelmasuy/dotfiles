@@ -7,7 +7,8 @@ return {
       "nvim-lua/plenary.nvim",
       { "nvim-telescope/telescope-fzf-native.nvim", build = "make", cond = vim.fn.executable("make") == 1 },
       {
-        "ahmedkhalf/project.nvim", -- auto cwd in root git repo
+        "LennyPhoenix/project.nvim", -- instead of ahmedkhalf/project.nvim, -- auto cwd in root git repo
+        branch = "fix-get_clients",
         config = function()
           require("project_nvim").setup({
             -- manual_mode = true,
