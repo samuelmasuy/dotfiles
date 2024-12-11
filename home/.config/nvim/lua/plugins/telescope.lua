@@ -28,73 +28,53 @@ return {
       -- search
       {
         "<C-p>",
-        function()
-          require("sam.telescope").search_files()
-        end,
+        require("sam.telescope").search_files,
         desc = "Search Files",
       },
       {
         "<leader><leader>",
-        function()
-          require("telescope.builtin").git_files()
-        end,
+        require("telescope.builtin").git_files,
         desc = "Search Git files",
       },
       {
         "<leader>z",
-        function()
-          require("sam.telescope").search_configs()
-        end,
+        require("sam.telescope").search_configs,
         desc = "Config[z]",
       },
       {
         "<leader>j",
-        function()
-          require("sam.telescope").search_work_dirs()
-        end,
+        require("sam.telescope").search_work_dirs,
         desc = "Work dirs",
       },
       {
         "<leader>?",
-        function()
-          require("telescope.builtin").oldfiles()
-        end,
+        require("telescope.builtin").oldfiles,
         desc = "[?] Find recently opened files",
       },
       {
         "<leader>sg",
-        function()
-          require("telescope.builtin").live_grep()
-        end,
+        require("sam.telescope").live_multigrep,
         desc = "[S]earch by [G]rep",
       },
       {
         "<leader>e",
-        function()
-          require("sam.telescope").edit_neovim()
-        end,
+        require("sam.telescope").edit_neovim,
         desc = "[e]dit Neovim configs",
       },
       -- utils
       {
         "<leader>co",
-        function()
-          require("telescope.builtin").colorscheme()
-        end,
+        require("telescope.builtin").colorscheme,
         desc = "[c]olorscheme",
       },
       {
         "<leader><CR>",
-        function()
-          require("telescope.builtin").buffers()
-        end,
+        require("telescope.builtin").buffers,
         desc = "[<CR>] Find existing buffers",
       },
       {
         "<leader>m",
-        function()
-          require("telescope.builtin").keymaps()
-        end,
+        require("telescope.builtin").keymaps,
         desc = "Key[m]aps",
       },
       {
@@ -106,31 +86,23 @@ return {
       },
       {
         "<leader>sh",
-        function()
-          require("telescope.builtin").help_tags()
-        end,
+        require("telescope.builtin").help_tags,
         desc = "[S]earch [H]elp",
       },
       {
         "<leader>sw",
-        function()
-          require("telescope.builtin").grep_string()
-        end,
+        require("telescope.builtin").grep_string,
         desc = "[S]earch current [W]ord",
       },
       {
         "<leader>sd",
-        function()
-          require("telescope.builtin").diagnostics()
-        end,
+        require("telescope.builtin").diagnostics,
         desc = "[S]earch [D]iagnostics",
       },
       -- Git worktree
       {
         "<leader>sw",
-        function()
-          require("telescope").extensions.git_worktree.git_worktrees()
-        end,
+        require("telescope").extensions.git_worktree.git_worktrees,
         desc = "[S]earch Git [W]orktrees",
         noremap = true,
         silent = true,
@@ -138,9 +110,7 @@ return {
 
       {
         "<leader>wt",
-        function()
-          require("telescope").extensions.git_worktree.create_git_worktree()
-        end,
+        require("telescope").extensions.git_worktree.create_git_worktree,
         desc = "Create Git [W]orktree",
         noremap = true,
         silent = true,
@@ -175,10 +145,10 @@ return {
         },
         extensions = {
           fzf = {
-            fuzzy = true, -- false will only do exact matching
+            fuzzy = true,                   -- false will only do exact matching
             override_generic_sorter = true, -- override the generic sorter
-            override_file_sorter = true, -- override the file sorter
-            case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+            override_file_sorter = true,    -- override the file sorter
+            case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
           },
         },
       })
