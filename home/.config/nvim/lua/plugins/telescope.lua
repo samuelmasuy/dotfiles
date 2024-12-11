@@ -28,53 +28,73 @@ return {
       -- search
       {
         "<C-p>",
-        require("sam.telescope").search_files,
+        function()
+          require("sam.telescope").search_files()
+        end,
         desc = "Search Files",
       },
       {
         "<leader><leader>",
-        require("telescope.builtin").git_files,
+        function()
+          require("telescope.builtin").git_files()
+        end,
         desc = "Search Git files",
       },
       {
         "<leader>z",
-        require("sam.telescope").search_configs,
+        function()
+          require("sam.telescope").search_configs()
+        end,
         desc = "Config[z]",
       },
       {
         "<leader>j",
-        require("sam.telescope").search_work_dirs,
+        function()
+          require("sam.telescope").search_work_dirs()
+        end,
         desc = "Work dirs",
       },
       {
         "<leader>?",
-        require("telescope.builtin").oldfiles,
+        function()
+          require("telescope.builtin").oldfiles()
+        end,
         desc = "[?] Find recently opened files",
       },
       {
         "<leader>sg",
-        require("sam.telescope").live_multigrep,
+        function()
+          require("sam.telescope").live_multigrep()
+        end,
         desc = "[S]earch by [G]rep",
       },
       {
         "<leader>e",
-        require("sam.telescope").edit_neovim,
+        function()
+          require("sam.telescope").edit_neovim()
+        end,
         desc = "[e]dit Neovim configs",
       },
       -- utils
       {
         "<leader>co",
-        require("telescope.builtin").colorscheme,
+        function()
+          require("telescope.builtin").colorscheme()
+        end,
         desc = "[c]olorscheme",
       },
       {
         "<leader><CR>",
-        require("telescope.builtin").buffers,
+        function()
+          require("telescope.builtin").buffers()
+        end,
         desc = "[<CR>] Find existing buffers",
       },
       {
         "<leader>m",
-        require("telescope.builtin").keymaps,
+        function()
+          require("telescope.builtin").keymaps()
+        end,
         desc = "Key[m]aps",
       },
       {
@@ -86,23 +106,31 @@ return {
       },
       {
         "<leader>sh",
-        require("telescope.builtin").help_tags,
+        function()
+          require("telescope.builtin").help_tags()
+        end,
         desc = "[S]earch [H]elp",
       },
       {
         "<leader>sw",
-        require("telescope.builtin").grep_string,
+        function()
+          require("telescope.builtin").grep_string()
+        end,
         desc = "[S]earch current [W]ord",
       },
       {
         "<leader>sd",
-        require("telescope.builtin").diagnostics,
+        function()
+          require("telescope.builtin").diagnostics()
+        end,
         desc = "[S]earch [D]iagnostics",
       },
       -- Git worktree
       {
         "<leader>sw",
-        require("telescope").extensions.git_worktree.git_worktrees,
+        function()
+          require("telescope").extensions.git_worktree.git_worktrees()
+        end,
         desc = "[S]earch Git [W]orktrees",
         noremap = true,
         silent = true,
@@ -110,7 +138,9 @@ return {
 
       {
         "<leader>wt",
-        require("telescope").extensions.git_worktree.create_git_worktree,
+        function()
+          require("telescope").extensions.git_worktree.create_git_worktree()
+        end,
         desc = "Create Git [W]orktree",
         noremap = true,
         silent = true,
