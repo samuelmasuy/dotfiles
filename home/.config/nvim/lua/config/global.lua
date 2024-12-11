@@ -10,7 +10,6 @@ opt.shiftwidth = 2
 opt.softtabstop = 2
 opt.tabstop = 2
 
--- Rebind <leader> key.
 vim.g.mapleader = ","
 vim.g.maplocalleader = ","
 vim.g.disable_toggle_style = true

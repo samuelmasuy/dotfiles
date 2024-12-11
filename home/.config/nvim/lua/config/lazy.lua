@@ -1,3 +1,4 @@
+-- Setup lazy.nvim
 require("lazy").setup("plugins", {
   -- defaults = {
   --   lazy = true,
@@ -16,11 +17,10 @@ require("lazy").setup("plugins", {
       },
     },
   },
+  -- Configure any other settings here. See the documentation for more details.
+  -- colorscheme that will be used when installing plugins.
+  install = { colorscheme = { "kanagawa", "habamax" } },
+  -- automatically check for plugin updates
+  checker = { enabled = true },
   -- dev = { },
-  -- install = { colorscheme = { "catppuccin", "habamax" } },
-  -- checker = { enabled = true },
-  -- rtp = {
-  -- 	disabled_plugins = {
-  -- 	},
-  -- },
 })
