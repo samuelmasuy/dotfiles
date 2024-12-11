@@ -49,7 +49,7 @@ return {
   {
     -- sudo luarocks install --lua-version 5.1 tiktoken_core
     "CopilotC-Nvim/CopilotChat.nvim", -- depends on copilot.lua and plenary
-    branch = "canary",
+    branch = "main",
     -- enabled = function()
     --   return vim.fn.isdirectory(vim.fn.expand("$WORKPATH")) ~= 0
     -- end,
@@ -79,14 +79,6 @@ return {
           end
         end,
         desc = "CopilotChat - Quick chat",
-      },
-      {
-        "<leader>cch",
-        function()
-          local actions = require("CopilotChat.actions")
-          require("CopilotChat.integrations.telescope").pick(actions.help_actions())
-        end,
-        desc = "CopilotChat - Help actions",
       },
       {
         "<leader>ccp",
