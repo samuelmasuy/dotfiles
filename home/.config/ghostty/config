@@ -1,0 +1,157 @@
+# The font families to use.
+# You can generate the list of valid values using the CLI:
+#     ghostty +list-fonts
+font-family = JetBrains Mono
+
+# Changing this configuration at runtime will only affect new terminals,
+# i.e. new windows, tabs, etc. Note that you may still not see the change
+# depending on your `window-inherit-font-size` setting. If that setting is
+# true, only the first window will be affected by this change since all
+# subsequent windows will inherit the font size of the previous window.
+font-size = 22.0
+
+# There are some known bugs with light/dark mode theming. These will
+# be fixed in a future update:
+# 
+#   - macOS: titlebar tabs style is not updated when switching themes.
+# 
+theme = kanagawa
+
+# The opacity level (opposite of transparency) of the cursor. A value of 1
+# is fully opaque and a value of 0 is fully transparent. A value less than 0
+# or greater than 1 will be clamped to the nearest valid value. Note that a
+# sufficiently small value such as 0.3 may be effectively invisible and may
+# make it difficult to find the cursor.
+cursor-opacity = 1
+
+# The style of the cursor. This sets the default style. A running program can
+# still request an explicit cursor style using escape sequences (such as `CSI
+# q`). Shell configurations will often request specific cursor styles.
+# 
+# Note that shell integration will automatically set the cursor to a bar at
+# a prompt, regardless of this configuration. You can disable that behavior
+# by specifying `shell-integration-features = no-cursor` or disabling shell
+# integration entirely.
+# 
+# Valid values are:
+# 
+#   * `block`
+#   * `bar`
+#   * `underline`
+#   * `block_hollow`
+# 
+cursor-style = block
+
+# Start new windows in fullscreen. This setting applies to new windows and
+# does not apply to tabs, splits, etc. However, this setting will apply to all
+# new windows, not just the first one.
+# 
+# On macOS, this setting does not work if window-decoration is set to
+# "false", because native fullscreen on macOS requires window decorations
+# to be set.
+fullscreen = true
+
+# The "toggle_window_decoration" keybind action can be used to create
+# a keybinding to toggle this setting at runtime.
+# 
+# Changing this configuration in your configuration and reloading will
+# only affect new windows. Existing windows will not be affected.
+# 
+# macOS: To hide the titlebar without removing the native window borders
+#        or rounded corners, use `macos-titlebar-style = hidden` instead.
+window-decoration = true
+
+# Whether to enable shell integration auto-injection or not. Shell integration
+# greatly enhances the terminal experience by enabling a number of features:
+# 
+#   * Working directory reporting so new tabs, splits inherit the
+#     previous terminal's working directory.
+# 
+#   * Prompt marking that enables the "jump_to_prompt" keybinding.
+# 
+#   * If you're sitting at a prompt, closing a terminal will not ask
+#     for confirmation.
+# 
+#   * Resizing the window with a complex prompt usually paints much
+#     better.
+# 
+# Allowable values are:
+# 
+#   * `none` - Do not do any automatic injection. You can still manually
+#     configure your shell to enable the integration.
+# 
+#   * `detect` - Detect the shell based on the filename.
+# 
+#   * `bash`, `elvish`, `fish`, `zsh` - Use this specific shell injection scheme.
+# 
+# The default value is `detect`.
+shell-integration = detect
+
+# macOS doesn't have a distinct "alt" key and instead has the "option"
+# key which behaves slightly differently. On macOS by default, the
+# option key plus a character will sometimes produces a Unicode character.
+# For example, on US standard layouts option-b produces "∫". This may be
+# undesirable if you want to use "option" as an "alt" key for keybindings
+# in terminal programs or shells.
+# 
+# This configuration lets you change the behavior so that option is treated
+# as alt.
+# 
+# The default behavior (unset) will depend on your active keyboard
+# layout. If your keyboard layout is one of the keyboard layouts listed
+# below, then the default value is "true". Otherwise, the default
+# value is "false". Keyboard layouts with a default value of "true" are:
+# 
+#   - U.S. Standard
+#   - U.S. International
+# 
+# Note that if an *Option*-sequence doesn't produce a printable character, it
+# will be treated as *Alt* regardless of this setting. (i.e. `alt+ctrl+a`).
+# 
+# Explicit values that can be set:
+# 
+# If `true`, the *Option* key will be treated as *Alt*. This makes terminal
+# sequences expecting *Alt* to work properly, but will break Unicode input
+# sequences on macOS if you use them via the *Alt* key.
+# 
+# You may set this to `false` to restore the macOS *Alt* key unicode
+# sequences but this will break terminal sequences expecting *Alt* to work.
+# 
+# The values `left` or `right` enable this for the left or right *Option*
+# key, respectively.
+# 
+# This does not work with GLFW builds.
+macos-option-as-alt = true
+
+# This will be used to set the `TERM` environment variable.
+# HACK: We set this with an `xterm` prefix because vim uses that to enable key
+# protocols (specifically this will enable `modifyOtherKeys`), among other
+# features. An option exists in vim to modify this: `:set
+# keyprotocol=ghostty:kitty`, however a bug in the implementation prevents it
+# from working properly. https://github.com/vim/vim/pull/13211 fixes this.
+term = xterm-ghostty
+
+# Control the auto-update functionality of Ghostty. This is only supported
+# on macOS currently, since Linux builds are distributed via package
+# managers that are not centrally controlled by Ghostty.
+# 
+# Checking or downloading an update does not send any information to
+# the project beyond standard network information mandated by the
+# underlying protocols. To put it another way: Ghostty doesn't explicitly
+# add any tracking to the update process. The update process works by
+# downloading information about the latest version and comparing it
+# client-side to the current version.
+# 
+# Valid values are:
+# 
+#  * `off` - Disable auto-updates.
+#  * `check` - Check for updates and notify the user if an update is
+#    available, but do not automatically download or install the update.
+#  * `download` - Check for updates, automatically download the update,
+#    notify the user, but do not automatically install the update.
+# 
+# The default value is `check`.
+# 
+# Changing this value at runtime works after a small delay.
+auto-update = download
+
