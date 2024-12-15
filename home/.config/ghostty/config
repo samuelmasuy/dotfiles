@@ -1,8 +1,15 @@
 # vim: ft=ghostty
+# NOTE:
+# docs:
+# ghostty +show-config --default --docs | nvim
+# examples:
+# https://github.com/search?q=path%3Aghostty%2Fconfig&type=code
+
 # The font families to use.
 # You can generate the list of valid values using the CLI:
 #     ghostty +list-fonts
 font-family = JetBrains Mono
+font-family-italic = "Maple Mono"
 
 # Changing this configuration at runtime will only affect new terminals,
 # i.e. new windows, tabs, etc. Note that you may still not see the change
@@ -11,11 +18,7 @@ font-family = JetBrains Mono
 # subsequent windows will inherit the font size of the previous window.
 font-size = 22.0
 
-# There are some known bugs with light/dark mode theming. These will
-# be fixed in a future update:
-# 
-#   - macOS: titlebar tabs style is not updated when switching themes.
-# 
+# Theme in $XDG_CONFIG_HOME/ghostty/themes.
 theme = kanagawa
 
 # The opacity level (opposite of transparency) of the cursor. A value of 1
@@ -24,24 +27,6 @@ theme = kanagawa
 # sufficiently small value such as 0.3 may be effectively invisible and may
 # make it difficult to find the cursor.
 cursor-opacity = 0.8
-
-# The style of the cursor. This sets the default style. A running program can
-# still request an explicit cursor style using escape sequences (such as `CSI
-# q`). Shell configurations will often request specific cursor styles.
-# 
-# Note that shell integration will automatically set the cursor to a bar at
-# a prompt, regardless of this configuration. You can disable that behavior
-# by specifying `shell-integration-features = no-cursor` or disabling shell
-# integration entirely.
-# 
-# Valid values are:
-# 
-#   * `block`
-#   * `bar`
-#   * `underline`
-#   * `block_hollow`
-# 
-cursor-style = block
 
 # Start new windows in fullscreen. This setting applies to new windows and
 # does not apply to tabs, splits, etc. However, this setting will apply to all
@@ -97,31 +82,6 @@ shell-integration = detect
 # 
 # This configuration lets you change the behavior so that option is treated
 # as alt.
-# 
-# The default behavior (unset) will depend on your active keyboard
-# layout. If your keyboard layout is one of the keyboard layouts listed
-# below, then the default value is "true". Otherwise, the default
-# value is "false". Keyboard layouts with a default value of "true" are:
-# 
-#   - U.S. Standard
-#   - U.S. International
-# 
-# Note that if an *Option*-sequence doesn't produce a printable character, it
-# will be treated as *Alt* regardless of this setting. (i.e. `alt+ctrl+a`).
-# 
-# Explicit values that can be set:
-# 
-# If `true`, the *Option* key will be treated as *Alt*. This makes terminal
-# sequences expecting *Alt* to work properly, but will break Unicode input
-# sequences on macOS if you use them via the *Alt* key.
-# 
-# You may set this to `false` to restore the macOS *Alt* key unicode
-# sequences but this will break terminal sequences expecting *Alt* to work.
-# 
-# The values `left` or `right` enable this for the left or right *Option*
-# key, respectively.
-# 
-# This does not work with GLFW builds.
 macos-option-as-alt = true
 
 # This will be used to set the `TERM` environment variable.
@@ -155,3 +115,6 @@ term = xterm-ghostty
 # 
 # Changing this value at runtime works after a small delay.
 auto-update = download
+
+# keymaps
+keybind = global:cmd+`=toggle_quick_terminal
