@@ -122,7 +122,6 @@ vim.filetype.add({
     ["helmfile.yaml"] = "yaml",
     ["PULLREQ_EDITMSG"] = "gitcommit",
     ["Tugfile"] = "terraform",
-    ["ghostty.conf"] = "ghostty",
   },
   pattern = {
     ["Jenkinsfile.*"] = "groovy",
