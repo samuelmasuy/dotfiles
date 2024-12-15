@@ -1,22 +1,31 @@
-palette = 0=#090618
-palette = 1=#c34043
-palette = 2=#76946a
-palette = 3=#c0a36e
-palette = 4=#7e9cd8
-palette = 5=#957fb8
-palette = 6=#6a9589
-palette = 7=#c8c093
-palette = 8=#727169
-palette = 9=#e82424
-palette = 10=#98bb6c
-palette = 11=#e6c384
-palette = 12=#7fb4ca
-palette = 13=#938aa9
-palette = 14=#7aa89f
-palette = 15=#dcd7ba
-background = 1f1f28
-foreground = dcd7ba
-cursor-color = c8c093
-selection-background = 2d4f67
-selection-foreground = c8c093
+# vim: ft=ghostty
+# # black
+palette = 0=#1F1F28
+palette = 8=#3C3C51
+# # red
+palette = 1=#E46A78
+palette = 9=#EC818C
+# green
+palette = 2=#98BC6D
+palette = 10=#9EC967
+# yellow
+palette = 3=#E5C283
+palette = 11=#F1C982
+# blue
+palette = 4=#7EB3C9
+palette = 12=#7BC2DF
+# # magenta
+palette = 5=#957FB8
+palette = 13=#A98FD2
+# cyan
+palette = 6=#7EB3C9
+palette = 14=#7BC2DF
+# # white
+palette = 7=#DDD8BB
+palette = 15=#A8A48D
 
+background = 1F1F28
+foreground = DDD8BB
+cursor-color = E6E0C2
+selection-background = DDD8BB
+selection-foreground = 49473E

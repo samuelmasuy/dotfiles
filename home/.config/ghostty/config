@@ -1,3 +1,4 @@
+# vim: ft=ghostty
 # The font families to use.
 # You can generate the list of valid values using the CLI:
 #     ghostty +list-fonts
@@ -22,7 +23,7 @@ theme = kanagawa
 # or greater than 1 will be clamped to the nearest valid value. Note that a
 # sufficiently small value such as 0.3 may be effectively invisible and may
 # make it difficult to find the cursor.
-cursor-opacity = 1
+cursor-opacity = 0.8
 
 # The style of the cursor. This sets the default style. A running program can
 # still request an explicit cursor style using escape sequences (such as `CSI
@@ -154,4 +155,3 @@ term = xterm-ghostty
 # 
 # Changing this value at runtime works after a small delay.
 auto-update = download
-
