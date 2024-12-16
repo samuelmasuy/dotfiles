@@ -33,11 +33,11 @@ cursor-style-blink = false
 # does not apply to tabs, splits, etc. However, this setting will apply to all
 # new windows, not just the first one.
 fullscreen = true
-window-decoration = true
 
 # Whether to enable shell integration auto-injection or not. Shell integration
 # greatly enhances the terminal experience by enabling a number of features:
 shell-integration = detect
+window-decoration = true
 # Available features:
 # 
 #   * `cursor` - Set the cursor to a blinking bar at the prompt.
