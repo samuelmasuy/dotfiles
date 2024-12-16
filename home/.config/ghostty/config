@@ -117,3 +117,10 @@ auto-update = download
 
 # keymaps
 keybind = global:cmd+`=toggle_quick_terminal
+
+# The initial window height and width in character cells.
+# Absurdly large values will be clamped to the maximum size of the window
+# which is usefull to get out of the fullscreen mode and not have to lose
+# the context of the terminal.
+window-height = 80
+window-width = 160
