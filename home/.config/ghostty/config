@@ -1,21 +1,20 @@
 # NOTE:
 # docs:
 # ghostty +show-config --default --docs | nvim
-# examples:
-# https://github.com/search?q=path%3Aghostty%2Fconfig&type=code
 
 # The font families to use.
-# You can generate the list of valid values using the CLI:
 #     ghostty +list-fonts
 font-family = JetBrains Mono
 font-family-italic = "Maple Mono"
 
-# Changing this configuration at runtime will only affect new terminals,
-# i.e. new windows, tabs, etc. Note that you may still not see the change
-# depending on your `window-inherit-font-size` setting. If that setting is
-# true, only the first window will be affected by this change since all
-# subsequent windows will inherit the font size of the previous window.
 font-size = 22.0
+
+# The initial window height and width in character cells.
+# Absurdly large values will be clamped to the maximum size of the window
+# which is usefull to get out of the fullscreen mode and not have to lose
+# the context of the terminal.
+window-height = 80
+window-width = 160
 
 # Theme in $XDG_CONFIG_HOME/ghostty/themes.
 theme = kanagawa
@@ -27,60 +26,28 @@ theme = kanagawa
 # make it difficult to find the cursor.
 cursor-opacity = 0.8
 
+# has no effect: https://github.com/ghostty-org/ghostty/discussions/2812
+cursor-style-blink = false
+
 # Start new windows in fullscreen. This setting applies to new windows and
 # does not apply to tabs, splits, etc. However, this setting will apply to all
 # new windows, not just the first one.
-# 
-# On macOS, this setting does not work if window-decoration is set to
-# "false", because native fullscreen on macOS requires window decorations
-# to be set.
 fullscreen = true
-
-# The "toggle_window_decoration" keybind action can be used to create
-# a keybinding to toggle this setting at runtime.
-# 
-# Changing this configuration in your configuration and reloading will
-# only affect new windows. Existing windows will not be affected.
-# 
-# macOS: To hide the titlebar without removing the native window borders
-#        or rounded corners, use `macos-titlebar-style = hidden` instead.
 window-decoration = true
 
 # Whether to enable shell integration auto-injection or not. Shell integration
 # greatly enhances the terminal experience by enabling a number of features:
-# 
-#   * Working directory reporting so new tabs, splits inherit the
-#     previous terminal's working directory.
-# 
-#   * Prompt marking that enables the "jump_to_prompt" keybinding.
-# 
-#   * If you're sitting at a prompt, closing a terminal will not ask
-#     for confirmation.
-# 
-#   * Resizing the window with a complex prompt usually paints much
-#     better.
-# 
-# Allowable values are:
-# 
-#   * `none` - Do not do any automatic injection. You can still manually
-#     configure your shell to enable the integration.
-# 
-#   * `detect` - Detect the shell based on the filename.
-# 
-#   * `bash`, `elvish`, `fish`, `zsh` - Use this specific shell injection scheme.
-# 
-# The default value is `detect`.
 shell-integration = detect
-
-# macOS doesn't have a distinct "alt" key and instead has the "option"
-# key which behaves slightly differently. On macOS by default, the
-# option key plus a character will sometimes produces a Unicode character.
-# For example, on US standard layouts option-b produces "∫". This may be
-# undesirable if you want to use "option" as an "alt" key for keybindings
-# in terminal programs or shells.
+# Available features:
 # 
-# This configuration lets you change the behavior so that option is treated
-# as alt.
+#   * `cursor` - Set the cursor to a blinking bar at the prompt.
+# 
+#   * `sudo` - Set sudo wrapper to preserve terminfo.
+# 
+#   * `title` - Set the window title via shell integration.
+# 
+shell-integration-features = cursor,sudo,title
+
 macos-option-as-alt = true
 
 # This will be used to set the `TERM` environment variable.
@@ -94,33 +61,7 @@ term = xterm-ghostty
 # Control the auto-update functionality of Ghostty. This is only supported
 # on macOS currently, since Linux builds are distributed via package
 # managers that are not centrally controlled by Ghostty.
-# 
-# Checking or downloading an update does not send any information to
-# the project beyond standard network information mandated by the
-# underlying protocols. To put it another way: Ghostty doesn't explicitly
-# add any tracking to the update process. The update process works by
-# downloading information about the latest version and comparing it
-# client-side to the current version.
-# 
-# Valid values are:
-# 
-#  * `off` - Disable auto-updates.
-#  * `check` - Check for updates and notify the user if an update is
-#    available, but do not automatically download or install the update.
-#  * `download` - Check for updates, automatically download the update,
-#    notify the user, but do not automatically install the update.
-# 
-# The default value is `check`.
-# 
-# Changing this value at runtime works after a small delay.
 auto-update = download
 
 # keymaps
 keybind = global:cmd+`=toggle_quick_terminal
-
-# The initial window height and width in character cells.
-# Absurdly large values will be clamped to the maximum size of the window
-# which is usefull to get out of the fullscreen mode and not have to lose
-# the context of the terminal.
-window-height = 80
-window-width = 160
