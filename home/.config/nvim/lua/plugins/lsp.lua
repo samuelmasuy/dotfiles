@@ -27,7 +27,7 @@ return {
       local lspconfig = require("lspconfig")
       local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
       local default_setup = function(server)
-        require("lspconfig")[server].setup({
+        lspconfig[server].setup({
           capabilities = lsp_capabilities,
           flags = {
             allow_incremental_sync = true,
@@ -98,18 +98,8 @@ return {
       null_ls.setup({
         debounce = 150,
         sources = {
-          -- null_ls.builtins.formatting.stylua,
           null_ls.builtins.completion.spell,
-          -- null_ls.builtins.formatting.prettier,
-          -- null_ls.builtins.diagnostics.markdownlint,
-          -- null_ls.builtins.formatting.markdownlint,
-          -- null_ls.builtins.diagnostics.hadolint,
-          -- null_ls.builtins.formatting.shfmt,
-          -- null_ls.builtins.formatting.goimports,
           null_ls.builtins.hover.dictionary,
-
-          -- null_ls.builtins.code_actions.refactoring,
-          -- null_ls.builtins.diagnostics.checkmake,
         },
       })
 
@@ -133,7 +123,7 @@ return {
         nmap("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
         nmap("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
         -- Keymaps with default in neovim 0.11
-        -- nmap("grr", require("telescope.builtin").lsp_references, "[g]oto [r]eferences")
+        nmap("grr", require("telescope.builtin").lsp_references, "[g]oto [r]eferences")
         -- nmap("grn", vim.lsp.buf.rename, "[R]e[n]ame")
         -- nmap("gra", vim.lsp.buf.code_action, "[C]ode [A]ction")
         nmap("gss", vim.lsp.buf.signature_help, "[g]oto [s]ignature documentation") -- <C-s> in insert mode (neovim 0.11)
