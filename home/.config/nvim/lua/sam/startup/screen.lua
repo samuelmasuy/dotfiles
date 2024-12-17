@@ -155,7 +155,6 @@ local section = {
       button("e", "  New file", "<cmd>ene<CR>"),
       button("p", "  Projects", "<cmd>Telescope projects<CR>"),
       button("u", "  Update plugins", "<cmd>Lazy sync<CR>"),
-      button("q", "  Quit", "<cmd>qa<CR>"),
     },
   },
   -- note about MRU: currently this is a function,
@@ -169,7 +168,7 @@ local section = {
     type = "group",
     val = {
       { type = "padding", val = 1 },
-      { type = "text", val = "MRU", opts = { hl = "SpecialComment" } },
+      { type = "text",    val = "MRU", opts = { hl = "SpecialComment" } },
       { type = "padding", val = 1 },
       {
         type = "group",
@@ -183,7 +182,7 @@ local section = {
     type = "group",
     val = {
       { type = "padding", val = 1 },
-      { type = "text", val = mru_title, opts = { hl = "SpecialComment", shrink_margin = false } },
+      { type = "text",    val = mru_title, opts = { hl = "SpecialComment", shrink_margin = false } },
       { type = "padding", val = 1 },
       {
         type = "group",
