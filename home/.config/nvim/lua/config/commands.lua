@@ -10,3 +10,15 @@ vim.api.nvim_create_user_command("MasonUpgrade", function()
   end
   vim.cmd("doautocmd User MasonUpgradeComplete")
 end, { force = true })
+
+vim.api.nvim_create_autocmd("User", {
+  pattern = "LazyCheck",
+  -- pattern = "LazyVimStarted",
+  desc = "Update lazy.nvim plugins",
+  callback = function(event)
+    local start_time = os.clock()
+    require("lazy").sync({ wait = false, show = false })
+    local end_time = os.clock()
+    print("Lazy plugins synced in " .. (end_time - start_time) * 1000 .. "ms")
+  end,
+})
