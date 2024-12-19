@@ -7,7 +7,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     cmd = { "LspInfo", "LspInstall", "LspStart" },
-    event = { "BufReadPre", "BufNewFile", "BufEnter" },
+    event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       {
         "folke/neodev.nvim",
