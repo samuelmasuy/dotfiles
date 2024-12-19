@@ -25,13 +25,6 @@ return {
           dark = "wave", -- try "dragon" !
           light = "lotus",
         },
-        -- overrides = function(_)
-        --   return {
-        --     FloatBorder = { bg = "none" },
-        --     NormalFloat = { bg = "none" },
-        --     FloatTitle = { bg = "none" },
-        --   }
-        -- end,
       })
 
       vim.opt.background = "dark"
@@ -47,15 +40,14 @@ return {
       vim.cmd.colorscheme("kanagawa")
 
       vim.diagnostic.config({
-        virtual_text = {
-          -- source = "always",  -- Or "if_many"
-          -- prefix = "●", -- Could be '■', '▎', 'x'
-        },
+        -- virtual_text = {
+        --   source = true, -- Or "if_many"
+        --   prefix = "●", -- Could be '■', '▎', 'x'
+        -- },
         severity_sort = true,
         float = {
-          source = "always",
+          source = true,
           border = "rounded",
-          -- source = "always", -- Or "if_many"
         },
       })
     end,
