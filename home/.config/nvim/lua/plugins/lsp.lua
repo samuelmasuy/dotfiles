@@ -13,7 +13,7 @@ return {
         "folke/neodev.nvim",
         ft = { "lua", "vim" },
       },
-      { "hrsh7th/cmp-nvim-lsp" },
+      { "saghen/blink.cmp" },
       { "williamboman/mason-lspconfig.nvim" },
       { "nvimtools/none-ls.nvim" },
       { "jay-babu/mason-null-ls.nvim" },
@@ -25,7 +25,7 @@ return {
       vim.lsp.inlay_hint.enable()
 
       local lspconfig = require("lspconfig")
-      local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
+      local lsp_capabilities = require("blink.cmp").get_lsp_capabilities()
       local default_setup = function(server)
         lspconfig[server].setup({
           capabilities = lsp_capabilities,
