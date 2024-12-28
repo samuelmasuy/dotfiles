@@ -12,20 +12,21 @@ return {
       {
         "folke/neodev.nvim",
         ft = { "lua", "vim" },
+        opts = {},
       },
-      { "saghen/blink.cmp" },
+      { "iguanacucumber/mag-nvim-lsp",      name = "cmp-nvim-lsp", opts = {} },
+      -- { "saghen/blink.cmp" },
       { "williamboman/mason-lspconfig.nvim" },
       { "nvimtools/none-ls.nvim" },
       { "jay-babu/mason-null-ls.nvim" },
     },
     config = function()
-      require("neodev").setup({})
-
       -- Inlay hints
       vim.lsp.inlay_hint.enable()
 
       local lspconfig = require("lspconfig")
-      local lsp_capabilities = require("blink.cmp").get_lsp_capabilities()
+      -- local lsp_capabilities = require("blink.cmp").get_lsp_capabilities()
+      local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
       local default_setup = function(server)
         lspconfig[server].setup({
           capabilities = lsp_capabilities,
