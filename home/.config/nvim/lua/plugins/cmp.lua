@@ -44,7 +44,7 @@ return {
           { name = "nvim_lsp_signature_help" },
           { name = "nvim_lua" }, -- only applies this on lua buffers
           -- { name = "luasnip" },
-          { name = "path" },
+          { name = "async_path" },
           {
             name = "buffer",
             option = {
@@ -107,7 +107,7 @@ return {
       cmp.setup.cmdline(":", {
         mapping = cmp.mapping.preset.cmdline(),
         sources = cmp.config.sources({
-          { name = "path" },
+          { name = "async_path" },
         }, {
           { name = "cmdline" },
         }),
