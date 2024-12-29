@@ -17,7 +17,7 @@ window-height = 80
 window-width = 160
 
 # Theme in $XDG_CONFIG_HOME/ghostty/themes.
-theme = kanagawa
+theme = kanagawabones
 
 # The opacity level (opposite of transparency) of the cursor. A value of 1
 # is fully opaque and a value of 0 is fully transparent. A value less than 0

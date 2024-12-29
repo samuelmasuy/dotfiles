@@ -7,8 +7,8 @@ return {
     dependencies = {
       { "iguanacucumber/mag-nvim-lsp", name = "cmp-nvim-lsp", opts = {} },
       { "iguanacucumber/mag-nvim-lua", name = "cmp-nvim-lua", ft = "lua" },
-      { "iguanacucumber/mag-buffer", name = "cmp-buffer" },
-      { "iguanacucumber/mag-cmdline", name = "cmp-cmdline" },
+      { "iguanacucumber/mag-buffer",   name = "cmp-buffer" },
+      { "iguanacucumber/mag-cmdline",  name = "cmp-cmdline" },
       "https://codeberg.org/FelipeLema/cmp-async-path",
       "hrsh7th/cmp-nvim-lsp-signature-help",
       "lukas-reineke/cmp-rg",
