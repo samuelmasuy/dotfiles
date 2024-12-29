@@ -5,7 +5,7 @@
 # The font families to use.
 #     ghostty +list-fonts
 font-family = JetBrains Mono
-font-family-italic = "Monaspace Radon"
+font-family-italic = "Monaspace Neon"
 
 font-size = 22.0
 
