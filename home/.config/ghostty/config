@@ -29,6 +29,9 @@ cursor-opacity = 0.8
 # has no effect: https://github.com/ghostty-org/ghostty/discussions/2812
 cursor-style-blink = false
 
+# Hides mouse while typing
+mouse-hide-while-typing = true
+
 # Start new windows in fullscreen. This setting applies to new windows and
 # does not apply to tabs, splits, etc. However, this setting will apply to all
 # new windows, not just the first one.
@@ -49,6 +52,9 @@ window-decoration = true
 shell-integration-features = cursor,sudo,title
 
 macos-option-as-alt = true
+
+# MacOS only: more vibrant colorspace
+window-colorspace = "display-p3"
 
 # This will be used to set the `TERM` environment variable.
 # HACK: We set this with an `xterm` prefix because vim uses that to enable key
