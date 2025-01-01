@@ -1,5 +1,6 @@
 return {
   "johmsalas/text-case.nvim",
+  event = "VeryLazy",
   dependencies = { "nvim-telescope/telescope.nvim" },
   config = function()
     require("textcase").setup({})
@@ -34,9 +35,4 @@ return {
     -- NOTE: The Subs command name can be customized via the option "substitude_command_name"
     "Subs",
   },
-  -- If you want to use the interactive feature of the `Subs` command right away, text-case.nvim
-  -- has to be loaded on startup. Otherwise, the interactive feature of the `Subs` will only be
-  -- available after the first executing of it or after a keymap of text-case.nvim has been used.
-  -- lazy = false,
-  event = "VeryLazy",
 }
