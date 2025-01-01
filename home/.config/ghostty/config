@@ -68,6 +68,7 @@ term = xterm-ghostty
 # on macOS currently, since Linux builds are distributed via package
 # managers that are not centrally controlled by Ghostty.
 auto-update = download
+auto-update-channel = stable
 
 # keymaps
 keybind = global:cmd+`=toggle_quick_terminal
