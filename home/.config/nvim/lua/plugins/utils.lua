@@ -21,7 +21,7 @@ return {
   -- 'machakann/vim-highlightedyank'
   {
     "christoomey/vim-sort-motion", -- sort lines characters arguments etc
-    config = function()
+    init = function()
       vim.g.sort_motion = "gso"
       vim.g.sort_motion_lines = "gsos"
       vim.g.sort_motion_visual = "gso"

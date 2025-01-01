@@ -10,9 +10,5 @@ return {
     { "yS", mode = { "n", "v" } },
     { "ySS", mode = { "n", "v" } },
   },
-  config = function()
-    require("nvim-surround").setup({
-      -- Configuration here, or leave empty to use defaults
-    })
-  end,
+  opts = {},
 }

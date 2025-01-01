@@ -56,11 +56,9 @@ return {
         end,
       },
     },
-    config = function()
-      require("smart-splits").setup({
-        disable_multiplexer_nav_when_zoomed = false,
-      })
-    end,
+    opts = {
+      disable_multiplexer_nav_when_zoomed = false,
+    },
   },
   -- {
   --

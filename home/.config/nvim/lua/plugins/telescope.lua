@@ -5,15 +5,15 @@ return {
     branch = "0.1.x",
     dependencies = {
       "nvim-lua/plenary.nvim",
-      { "nvim-telescope/telescope-fzf-native.nvim", build = "make", cond = vim.fn.executable("make") == 1 },
+      {
+        "nvim-telescope/telescope-fzf-native.nvim",
+        build = "make",
+        cond = vim.fn.executable("make") == 1,
+      },
       {
         "LennyPhoenix/project.nvim", -- instead of ahmedkhalf/project.nvim, -- auto cwd in root git repo
         branch = "fix-get_clients",
-        config = function()
-          require("project_nvim").setup({
-            -- manual_mode = true,
-          })
-        end,
+        opts = {},
       },
     },
     cmd = "Telescope",
