@@ -38,7 +38,11 @@ syn keyword ghosttyConfigKeyword
 	\ adjust-underline-thickness
 	\ adjust-strikethrough-position
 	\ adjust-strikethrough-thickness
+	\ adjust-overline-position
+	\ adjust-overline-thickness
 	\ adjust-cursor-thickness
+	\ adjust-cursor-height
+	\ adjust-box-thickness
 	\ grapheme-width-method
 	\ freetype-load-flags
 	\ theme
@@ -92,6 +96,8 @@ syn keyword ghosttyConfigKeyword
 	\ window-save-state
 	\ window-step-resize
 	\ window-new-tab-position
+	\ window-titlebar-background
+	\ window-titlebar-foreground
 	\ resize-overlay
 	\ resize-overlay-position
 	\ resize-overlay-duration
@@ -101,6 +107,7 @@ syn keyword ghosttyConfigKeyword
 	\ clipboard-trim-trailing-spaces
 	\ clipboard-paste-protection
 	\ clipboard-paste-bracketed-safe
+	\ title-report
 	\ image-storage-limit
 	\ copy-on-select
 	\ click-repeat-interval
@@ -113,6 +120,7 @@ syn keyword ghosttyConfigKeyword
 	\ quick-terminal-position
 	\ quick-terminal-screen
 	\ quick-terminal-animation-duration
+	\ quick-terminal-autohide
 	\ shell-integration
 	\ shell-integration-features
 	\ osc-color-report-format
@@ -126,6 +134,10 @@ syn keyword ghosttyConfigKeyword
 	\ macos-window-shadow
 	\ macos-auto-secure-input
 	\ macos-secure-input-indication
+	\ macos-icon
+	\ macos-icon-frame
+	\ macos-icon-ghost-color
+	\ macos-icon-screen-color
 	\ linux-cgroup
 	\ linux-cgroup-memory-limit
 	\ linux-cgroup-processes-limit
@@ -141,6 +153,7 @@ syn keyword ghosttyConfigKeyword
 	\ term
 	\ enquiry-response
 	\ auto-update
+	\ auto-update-channel
 
 syn match ghosttyConfigComment /^\s*#.*/ contains=@Spell
 
