@@ -4,20 +4,18 @@
 alias cdp="cd ~-"
 alias ..='cd -- ..'
 alias ...='cd -- ../..'
-# Display all files and directories including the hidden ones, with precision.
-# Make the terminal say all the files and directories.
-alias lt="/bin/ls | say -va"
+alias ....='cd -- ../../..'
+
+# eza for ls
 alias l='eza -a --git-ignore'
-alias ll='eza -la --git-ignore --git --sort modified'
 alias lf='eza -lF --color=always | grep -v /'
 alias lh='eza -dl .* --group-directories-first'
+alias ll='eza -la --no-permissions --no-user --git-ignore --git --sort modified --icons always'
+alias la='eza -la --git --sort modified --icons always'
 # or not
-alias ls='ls -AG'
-alias -g la='ls -lArth'
-
-# alias la='exa -la --sort modified'
-# alias l='exa -a --git-ignore'
-# alias ll='exa -la --git-ignore --sort modified'
+alias ls='/bin/ls -AG'
+# Make the terminal say all the files and directories.
+alias lt="/bin/ls | say -va"
 
 # confirm && verbose
 # alias	cp="cp -i"
@@ -31,18 +29,13 @@ alias c='clear'
 # alias cat='colorize'
 # Prevent the system from sleeping for one hour.
 alias cafe='caffeinate -t 3600 &'
-# Display a clock on the upper right hand side of the terminal.
-alias clock='while sleep 1;do tput sc;tput cup 0 $(($(tput cols)-29));date;tput rc;done &'
-# Open mac vim
-alias mvim='open -a macvim'
 # Open tmux
 alias tmux='tmux -f ${XDG_CONFIG_HOME:-$HOME/.config}/tmux/tmux.conf'
-# alias mux="tmuxinator"
 # Using neovim
 alias -g vim="nvim"
 alias -g vimdiff="nvim -d"
 alias ivm="nvim"
-# load vim with very basic settings (way faster)
+# load vim with very basic settings
 alias vi='vi -u ${XDG_CONFIG_HOME:-$HOME/.config}/vim/.vimrc'
 # upgrade neovim nightly
 alias upgrade-neovim-nightly='asdf uninstall neovim nightly && asdf install neovim nightly'
@@ -53,23 +46,16 @@ alias cdd='cd $DOTFILES_HOME'
 alias weather="curl wttr.in/montreal"
 # suffix alias
 alias -s md=nvim
-#docker
-# List all exited containers
-alias dpsa="docker ps -aq -f status=exited"
-# Remove stopped containers
-alias drms="docker ps -aq --no-trunc | xargs docker rm"
-# Remove dangling/untagged images
-alias drmd="docker images -q --filter dangling=true | xargs docker rmi"
 # kill
 alias killseg="kill -s SIGSEGV $$"
 
+# tldr with fzf
 alias tldrf='tldr --list | fzf --preview "tldr --color=always {1}" --preview-window=right,70% | xargs tldr'
 
 # +-----+
 # | Git |
 # +-----+
 alias g='git'
-alias gco='git checkout'
 alias gl='git pull'
 alias gst='git status'
 alias ga='git add'
