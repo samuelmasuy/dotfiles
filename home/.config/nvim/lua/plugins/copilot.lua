@@ -65,10 +65,10 @@ return {
     },
     event = "VeryLazy",
     keys = {
-      { "<leader>cce", "<cmd>CopilotChatExplain<cr>", desc = "CopilotChat - Explain code" },
-      { "<leader>cct", "<cmd>CopilotChatTests<cr>", desc = "CopilotChat - Generate tests" },
-      { "<leader>ccf", "<cmd>CopilotChatFix<cr>", desc = "CopilotChat - Fix code" },
-      { "<leader>ccr", "<cmd>CopilotChatReview<cr>", desc = "CopilotChat - Review code" },
+      { "<leader>cce", "<cmd>CopilotChatExplain<cr>",      desc = "CopilotChat - Explain code" },
+      { "<leader>cct", "<cmd>CopilotChatTests<cr>",        desc = "CopilotChat - Generate tests" },
+      { "<leader>ccf", "<cmd>CopilotChatFix<cr>",          desc = "CopilotChat - Fix code" },
+      { "<leader>ccr", "<cmd>CopilotChatReview<cr>",       desc = "CopilotChat - Review code" },
       { "<leader>ccc", "<cmd>CopilotChatCommitStaged<cr>", desc = "CopilotChat - Commit code" },
       {
         "<leader>ccq",
