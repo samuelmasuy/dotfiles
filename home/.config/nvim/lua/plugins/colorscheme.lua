@@ -5,6 +5,7 @@ return {
     lazy = false,
     enabled = true,
     config = function()
+      ---@diagnostic disable-next-line: missing-fields
       require("kanagawa").setup({
         compile = true,   -- enable compiling the colorscheme
         undercurl = true, -- enable undercurls
