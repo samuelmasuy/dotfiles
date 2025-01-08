@@ -10,7 +10,7 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       {
-        "folke/neodev.nvim",
+        "folke/lazydev.nvim",
         ft = { "lua", "vim" },
         opts = {},
       },

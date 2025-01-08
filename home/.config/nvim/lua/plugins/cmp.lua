@@ -6,9 +6,9 @@ return {
     event = { "BufRead", "BufNewFile", "InsertEnter" },
     dependencies = {
       { "iguanacucumber/mag-nvim-lsp", name = "cmp-nvim-lsp", opts = {} },
-      { "iguanacucumber/mag-nvim-lua", name = "cmp-nvim-lua", ft = "lua" },
-      { "iguanacucumber/mag-buffer", name = "cmp-buffer" },
-      { "iguanacucumber/mag-cmdline", name = "cmp-cmdline" },
+      { "folke/lazydev.nvim",          ft = { "lua" },        opts = {} },
+      { "iguanacucumber/mag-buffer",   name = "cmp-buffer" },
+      { "iguanacucumber/mag-cmdline",  name = "cmp-cmdline" },
       "https://codeberg.org/FelipeLema/cmp-async-path",
       "hrsh7th/cmp-nvim-lsp-signature-help",
       "lukas-reineke/cmp-rg",
@@ -40,9 +40,12 @@ return {
 
         -- The order of your sources matter (by default). That gives them priority
         sources = {
+          {
+            name = "lazydev",
+            group_index = 0,
+          },
           { name = "nvim_lsp" },
           { name = "nvim_lsp_signature_help" },
-          { name = "nvim_lua" }, -- only applies this on lua buffers
           -- { name = "luasnip" },
           { name = "async_path" },
           {
