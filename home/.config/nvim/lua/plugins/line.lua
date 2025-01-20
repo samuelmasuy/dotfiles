@@ -8,7 +8,7 @@ return {
     config = function()
       local lualine = require("lualine")
 
-      local colors = require("kanagawa.colors").setup().palette
+      local colors = require("kanagawa.colors").setup({ theme = "wave" }).palette
 
       local theme = "kanagawa"
 
