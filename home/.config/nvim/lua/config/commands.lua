@@ -15,10 +15,12 @@ vim.api.nvim_create_autocmd("User", {
   pattern = "LazyCheck",
   -- pattern = "LazyVimStarted",
   desc = "Update lazy.nvim plugins",
-  callback = function(event)
+  callback = function(_)
     local start_time = os.clock()
     require("lazy").sync({ wait = false, show = false })
     local end_time = os.clock()
-    print("Lazy plugins synced in " .. (end_time - start_time) * 1000 .. "ms")
+    -- total time in ms (end_time - start_time) where there are 4 decimal places
+    local total_time = string.format("%.4f", (end_time - start_time) * 1000)
+    print("Lazy plugins synced in " .. total_time .. "ms")
   end,
 })
