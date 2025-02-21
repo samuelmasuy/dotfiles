@@ -1,9 +1,9 @@
-#!/usr/bin/env bash
+#global!/usr/bin/env bash
 
 set -euo pipefail
 
 __list_installed_plugins() {
-    asdf plugin-list 2>/dev/null | sort
+    asdf plugin list 2>/dev/null | sort
 }
 
 __list_installed_versions() {
@@ -27,7 +27,7 @@ main() {
         echo "No version selected for $plugin"
         exit 1
     fi
-    asdf global $plugin $version
+    asdf set --home $plugin $version
 }
 
 main

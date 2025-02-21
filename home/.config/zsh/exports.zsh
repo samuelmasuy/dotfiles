@@ -15,7 +15,6 @@ export AZURE_CONFIG_DIR=$XDG_DATA_HOME/azure
 export _RESURRECT_DIR=$XDG_DATA_HOME/tmux/resurrect
 export GRADLE_USER_HOME="$XDG_DATA_HOME"/gradle
 export SHPOTIFY_CONFIG_FILE="$XDG_CONFIG_HOME"/shpotify/config
-export ASDF_DIR="$(brew --prefix asdf)/libexec"
 export ASDF_CONFIG_FILE="$XDG_CONFIG_HOME"/asdf/config
 export ASDF_PLUGINS="$XDG_CONFIG_HOME"/asdf/.asdf-plugins
 export ASDF_DATA_DIR="$XDG_DATA_HOME"/asdf
@@ -33,6 +32,7 @@ export PATH="$PATH:$CARGO_HOME/bin"
 export PATH="${KREW_ROOT}/bin:$PATH"
 export PATH="/opt/homebrew/opt/curl/bin:$PATH"
 export PATH="/opt/homebrew/opt/gnu-getopt/bin:$PATH"
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 
 export DOCKER_DEFAULT_PLATFORM=linux/amd64
 
