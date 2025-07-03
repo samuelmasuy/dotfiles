@@ -26,6 +26,22 @@ return {
           dark = "wave", -- try "dragon" !
           light = "lotus",
         },
+        overrides = function(colors)
+          return {
+            -- Blink highlights
+            Pmenu = { fg = colors.theme.ui.shade0, bg = colors.theme.ui.bg_p1 }, -- add `blend = vim.o.pumblend` to enable transparency
+            PmenuSel = { fg = "NONE", bg = colors.theme.ui.bg_p2 },
+            BlinkCmpMenu = { fg = colors.palette.autumnYellow },
+            BlinkCursorLine = { bg = colors.palette.sumiInk3 },
+            BlinkCursorColumn = { bg = colors.palette.waveBlue1 },
+            BlinkCursorLineInsert = { bg = colors.palette.autumnYellow },
+            BlinkCursorLineVisual = { bg = colors.palette.springBlue },
+            BlinkCursorLineReplace = { bg = colors.palette.samuraiRed },
+            BlinkCursorColumnInsert = { bg = colors.palette.autumnYellow },
+            BlinkCursorColumnVisual = { bg = colors.palette.springBlue },
+            BlinkCursorColumnReplace = { bg = colors.palette.samuraiRed },
+          }
+        end,
       })
 
       vim.opt.background = "dark"
