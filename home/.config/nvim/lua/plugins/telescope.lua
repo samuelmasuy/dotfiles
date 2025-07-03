@@ -5,6 +5,7 @@ return {
     branch = "0.1.x",
     dependencies = {
       "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope-ui-select.nvim",
       {
         "nvim-telescope/telescope-fzf-native.nvim",
         build = "make",
@@ -78,25 +79,11 @@ return {
       },
       -- utils
       {
-        "<leader>co",
-        function()
-          require("telescope.builtin").colorscheme()
-        end,
-        desc = "[c]olorscheme",
-      },
-      {
         "<leader><CR>",
         function()
           require("telescope.builtin").buffers()
         end,
         desc = "[<CR>] Find existing buffers",
-      },
-      {
-        "<leader>m",
-        function()
-          require("telescope.builtin").keymaps()
-        end,
-        desc = "Key[m]aps",
       },
       {
         "<leader><space>",
@@ -150,9 +137,11 @@ return {
     config = function()
       local actions = require("telescope.actions")
 
+      vim.api.nvim_create_user_command("Color", function()
+        require("telescope.builtin").colorscheme()
+      end, { desc = "Pick a colorscheme" })
+
       require("telescope").load_extension("fzf")
-      require("telescope").load_extension("projects")
-      require("telescope").load_extension("git_worktree")
 
       require("telescope").setup({
         defaults = {
