@@ -25,8 +25,8 @@ alias mv="mv -i"
 alias f='open .'
 # Clear the terminal
 alias c='clear'
-# Beautiful Cat
-# alias cat='colorize'
+# bat > cat
+alias cat="bat"
 # Prevent the system from sleeping for one hour.
 alias cafe='caffeinate -t 3600 &'
 # Open tmux

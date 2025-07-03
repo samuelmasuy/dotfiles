@@ -1,12 +1,3 @@
-# bat > cat
-function cat() {
-  if [[ "$1" == *.md ]]; then
-    glow -p "$1"
-  else
-    bat "$1"
-  fi
-}
-
 # Change cd to do a ls right after executing.
 function chpwd() {
     emulate -L zsh
