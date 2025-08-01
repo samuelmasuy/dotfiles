@@ -81,3 +81,5 @@ alias kn=kubens
 alias kx=kubectx
 # alias kx=kubeswap
 alias minikube='DOCKER_DEFAULT_PLATFORM=linux/arm64/v8 minikube'
+
+alias oc=opencode
