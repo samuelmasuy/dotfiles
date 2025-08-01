@@ -1,5 +1,6 @@
 return {
   "ThePrimeagen/harpoon",
+  enabled = false,
   event = "VeryLazy",
   opts = {
     settings = {
