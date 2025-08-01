@@ -1,29 +1,30 @@
-export GOPATH=$HOME
-export GOBIN="$HOME/.local/bin"
-export IDEA_HOME="/Applications/IntelliJ IDEA CE.app/Contents"
-export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
+export ASDF_CONFIG_FILE="$XDG_CONFIG_HOME"/asdf/config
+export ASDF_DATA_DIR="$XDG_DATA_HOME"/asdf
+export ASDF_DIR="$(brew --prefix asdf)/libexec"
+export ASDF_PLUGINS="$XDG_CONFIG_HOME"/asdf/.asdf-plugins
+export AZURE_CONFIG_DIR=$XDG_DATA_HOME/azure
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
-export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
-export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
-export MINIKUBE_HOME="$XDG_CONFIG_HOME"/minikube
-export _ZO_DATA_DIR="$XDG_DATA_HOME/zoxide"
 export GEM_HOME="$XDG_DATA_HOME"/gem
 export GEM_SPEC_CACHE="$XDG_CACHE_HOME"/gem
-export HTTPIE_CONFIG_DIR="$XDG_CONFIG_HOME"/httpie
-export PYLINTHOME="$XDG_CACHE_HOME"/pylint
-export AZURE_CONFIG_DIR=$XDG_DATA_HOME/azure
-export _RESURRECT_DIR=$XDG_DATA_HOME/tmux/resurrect
+export GOBIN="$HOME/.local/bin"
+export GOPATH=$HOME
 export GRADLE_USER_HOME="$XDG_DATA_HOME"/gradle
-export SHPOTIFY_CONFIG_FILE="$XDG_CONFIG_HOME"/shpotify/config
-export ASDF_CONFIG_FILE="$XDG_CONFIG_HOME"/asdf/config
-export ASDF_PLUGINS="$XDG_CONFIG_HOME"/asdf/.asdf-plugins
-export ASDF_DATA_DIR="$XDG_DATA_HOME"/asdf
-export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/ripgreprc"
+export GROOVY_HOME=/usr/local/opt/groovy/libexec
+export HTTPIE_CONFIG_DIR="$XDG_CONFIG_HOME"/httpie
+export IDEA_HOME="/Applications/IntelliJ IDEA CE.app/Contents"
 export KREW_ROOT="$XDG_DATA_HOME"/krew
+export MINIKUBE_HOME="$XDG_CONFIG_HOME"/minikube
+export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
+export PYLINTHOME="$XDG_CACHE_HOME"/pylint
+export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/ripgreprc"
+export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
 export TEALDEER_CONFIG_DIR=$XDG_CONFIG_HOME/tealdeer
+export _RESURRECT_DIR=$XDG_DATA_HOME/tmux/resurrect
+export _ZO_DATA_DIR="$XDG_DATA_HOME/zoxide"
 
 export PATH="$PATH:$HOME/.local/bin/:$HOME/.local/bin/aws/:$HOME/.local/bin/git-toolbelt/"
-export PATH="$PATH:/usr/local/sbin:/Applications/VirtualBox.app/Contents/MacOS"
+export PATH="$PATH:/usr/local/sbin"
 export PATH="$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export PATH="$PATH:$JAVA_HOME/bin"
 export PATH="$PATH:$XDG_DATA_HOME/yarn/bin"
@@ -54,8 +55,6 @@ export LESSHISTFILE=-
 
 # Tmux config.
 export DISABLE_AUTO_TITLE=true
-
-export GROOVY_HOME=/usr/local/opt/groovy/libexec
 
 export BAT_THEME="kanagawa"
 export BAT_STYLE="changes"
