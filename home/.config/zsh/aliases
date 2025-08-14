@@ -38,7 +38,7 @@ alias ivm="nvim"
 # load vim with very basic settings
 alias vi='vi -u ${XDG_CONFIG_HOME:-$HOME/.config}/vim/.vimrc'
 # upgrade neovim nightly
-alias upgrade-neovim-nightly='asdf uninstall neovim nightly && asdf install neovim nightly'
+alias upgrade-neovim-nightly='mise uninstall neovim@nightly && mise install neovim@nightly'
 # dotfiles
 alias cdd='cd $DOTFILES_HOME'
 
@@ -65,7 +65,6 @@ alias gcn!='git commit -v -s --no-edit --amend'
 alias gp='git push'
 alias gbr='git branch --sort=-committerdate | fzf --header "Checkout Recent Branch" --preview "git diff --color=always {1}" --pointer="" | xargs git checkout'
 
-alias gprm="hub pull-request -a samuelmasuy"
 alias ci="hub ci-status"
 
 alias gpr="gh prs"

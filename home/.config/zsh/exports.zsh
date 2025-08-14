@@ -1,7 +1,3 @@
-export ASDF_CONFIG_FILE="$XDG_CONFIG_HOME"/asdf/config
-export ASDF_DATA_DIR="$XDG_DATA_HOME"/asdf
-export ASDF_DIR="$(brew --prefix asdf)/libexec"
-export ASDF_PLUGINS="$XDG_CONFIG_HOME"/asdf/.asdf-plugins
 export AZURE_CONFIG_DIR=$XDG_DATA_HOME/azure
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
 export GEM_HOME="$XDG_DATA_HOME"/gem
@@ -33,14 +29,11 @@ export PATH="$PATH:$CARGO_HOME/bin"
 export PATH="${KREW_ROOT}/bin:$PATH"
 export PATH="/opt/homebrew/opt/curl/bin:$PATH"
 export PATH="/opt/homebrew/opt/gnu-getopt/bin:$PATH"
-export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 
-export DOCKER_DEFAULT_PLATFORM=linux/amd64
+# export DOCKER_DEFAULT_PLATFORM=linux/amd64
 
 export MANPAGER='nvim +Man!'
 export MANPATH="/usr/local/man:$MANPATH"
-
-export MAVEN_OPTS="-Xmx1024m -Xms512m"
 
 # Colors handling.
 autoload colors; colors;

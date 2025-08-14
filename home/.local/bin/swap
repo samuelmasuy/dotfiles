@@ -2,32 +2,23 @@
 
 set -euo pipefail
 
-__list_installed_plugins() {
-    asdf plugin list 2>/dev/null | sort
-}
+# Fetch all installed tools and their versions as JSON
+installed_tools_json=$(mise ls --installed --json)
 
-__list_installed_versions() {
-    asdf list $1 2>/dev/null
-}
+# Present the list of tool names for user selection
+tool_name=$(echo "$installed_tools_json" | jq -r 'keys[]' | fzf)
+if [[ -z "$tool_name" ]]; then
+   echo "No tool selected"
+   exit 1
+fi
 
-__select_installed_version() {
-    __list_installed_versions $1 | \
-    fzf --tac --ansi --no-sort | \
-    awk '{print $1}'
-}
+# Present the list of installed versions for the selected tool
+tool_versions=$(echo "$installed_tools_json" | jq -r --arg tool "$tool_name" '.[$tool][] | .version')
+selected_version=$(echo "$tool_versions" | fzf)
+if [[ -z "$selected_version" ]]; then
+   echo "No version selected for $tool_name"
+   exit 1
+fi
 
-main() {
-    plugin=`__list_installed_plugins | fzf`
-    if [[ -z "$plugin" ]]; then
-        echo "No plugin selected"
-        exit 1
-    fi
-    version=$(__select_installed_version $plugin)
-    if [[ -z "$version" ]]; then
-        echo "No version selected for $plugin"
-        exit 1
-    fi
-    asdf set --home $plugin $version
-}
-
-main
+# Set the selected version globally for the chosen tool
+mise use --global "${tool_name}@${selected_version}"

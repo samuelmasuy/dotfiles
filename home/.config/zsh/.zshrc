@@ -71,14 +71,7 @@ bindkey -M vicmd '^v' edit-command-line
 # +------------+
 source ${XDG_CONFIG_HOME}/zsh/exports.zsh #1
 
-if [ -f $XDG_CONFIG_HOME/asdf/.asdf-plugins ]; then
-  for plugin in $(cat $XDG_CONFIG_HOME/asdf/.asdf-plugins); do
-      asdf plugin list | grep $plugin > /dev/null 2>&1
-      if [ $? -ne 0 ]; then
-          asdf plugin add $plugin
-      fi
-  done
-fi
+eval "$(mise activate zsh)"
 
 if [[ -d ${XDG_CONFIG_HOME}/zsh/work ]]; then
   for file in ${XDG_CONFIG_HOME}/zsh/work/*.zsh; do
@@ -97,7 +90,13 @@ plug "zsh-users/zsh-completions"
 # plug "marlonrichert/zsh-autocomplete"
 plug "zdharma-continuum/fast-syntax-highlighting"
 plug "zsh-users/zsh-history-substring-search"
-plug "loiccoyle/zsh-github-copilot"
+# plug "loiccoyle/zsh-github-copilot"
+
+# On the first monday of the month, update zap and zap plugins
+if [ $(date +%d) -le 7 ] && [ $(date +%u) -eq 1 ]; then
+  zap update self
+  zap update plugins
+fi
 # +------------+
 # | COMPLETION |
 # +------------+
@@ -133,8 +132,8 @@ bindkey -M vicmd 'gj' history-substring-search-down
 # +---------+
 # | COPILOT |
 # +---------+
-bindkey '^e' zsh_gh_copilot_explain  # bind Ctrl+e to explain
-bindkey '^s' zsh_gh_copilot_suggest  # bind Alt+\ to suggest
+# bindkey '^e' zsh_gh_copilot_explain  # bind Ctrl+e to explain
+# bindkey '^s' zsh_gh_copilot_suggest  # bind Alt+\ to suggest
 
 # zprof
 # Load and initialise completion system

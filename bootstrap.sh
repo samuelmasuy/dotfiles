@@ -47,7 +47,7 @@ pushd "$HOME/.dotfiles.git/master"
 brew bundle || true
 popd
 
-asdf install
+mise install
 gh extension install github/gh-copilot
 
 echo "**************************************************************************"
