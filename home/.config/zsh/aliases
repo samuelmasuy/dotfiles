@@ -65,7 +65,7 @@ alias gcn!='git commit -v -s --no-edit --amend'
 alias gp='git push'
 alias gbr='git branch --sort=-committerdate | fzf --header "Checkout Recent Branch" --preview "git diff --color=always {1}" --pointer="" | xargs git checkout'
 
-alias ci="hub ci-status"
+alias ci="gh pr checks"
 
 alias gpr="gh prs"
 alias gprc="gh pr checks -w"
