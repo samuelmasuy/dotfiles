@@ -1,7 +1,8 @@
 [tools]
 go = "0"
-kubectx = "0"
-node = "0"
-kubectl = "0"
 helm = "0"
+kubecolor = "0"
+kubectl = "0"
+kubectx = "0"
 neovim = "0"
+node = "0"
