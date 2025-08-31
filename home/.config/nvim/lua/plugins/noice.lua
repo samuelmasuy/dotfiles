@@ -2,6 +2,7 @@ return {
   {
     "folke/noice.nvim",
     event = "VeryLazy",
+    enabled = false,
     opts = {
       cmdline = {
         view = "cmdline",
