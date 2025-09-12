@@ -4,7 +4,9 @@ return {
     dependencies = { "folke/snacks.nvim" },
     ---@type opencode.Config
     opts = {
-      auto_fallback_to_embedded = false,
+      on_opencode_not_found = function()
+        return false
+      end,
     },
     -- stylua: ignore
     keys = {
