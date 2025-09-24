@@ -49,7 +49,7 @@ window-decoration = true
 # 
 #   * `title` - Set the window title via shell integration.
 # 
-shell-integration-features = cursor,sudo,title
+shell-integration-features = no-cursor,sudo,title
 
 macos-option-as-alt = true
 
