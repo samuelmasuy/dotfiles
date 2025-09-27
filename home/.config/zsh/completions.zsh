@@ -79,6 +79,7 @@ zstyle ':completion:*:*:*:cd:*' file-sort modification reverse
 # cd will never select the parent directory
 zstyle ':completion:*:*:*:cd:*' ignore-parents parent pwd
 # zstyle ':completion:*:*:cd:*:*' group-order alias builtins functions commands
+zstyle ':completion:*:cd:*' users false
 
 # zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 #
