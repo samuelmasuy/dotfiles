@@ -82,9 +82,9 @@ fi
 # +-----+
 # | ZAP |
 # +-----+
-if ! [ -f $HOME/.local/share/zap/zap.zsh ]; then
-  zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1 --keep
-fi
+# if ! [ -f $HOME/.local/share/zap/zap.zsh ]; then
+#   zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1 --keep
+# fi
 [ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
 plug "zsh-users/zsh-completions"
 # plug "marlonrichert/zsh-autocomplete"
