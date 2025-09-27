@@ -5,6 +5,10 @@ alias cdp="cd ~-"
 alias ..='cd -- ..'
 alias ...='cd -- ../..'
 alias ....='cd -- ../../..'
+# Use z to jump around
+alias cd='z'
+# z with fzf
+alias zz='zi'
 
 # eza for ls
 alias l='eza -a --git-ignore'
