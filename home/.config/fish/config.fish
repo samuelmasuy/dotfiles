@@ -25,7 +25,6 @@ if type -q starship
         starship init fish --print-full-init >$__fish_cache_dir/starship_init.fish
     end
     source $__fish_cache_dir/starship_init.fish
-    enable_transience
 end
 
 fish_config theme choose kanagawa
