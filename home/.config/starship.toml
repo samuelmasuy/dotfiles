@@ -22,11 +22,11 @@ $character"""
 # """
 
 [directory]
-style = 'blue'
+style = '#7E9CD8'
 # truncation_length = 2
 truncate_to_repo = true
 fish_style_pwd_dir_length = 1
-repo_root_style = 'bold blue'
+repo_root_style = 'bold #7E9CD8'
 # use_logical_path = true
 
 [fill]
@@ -42,9 +42,9 @@ disabled = false
 format = '[$status]($style) '
 
 [character]
-success_symbol = '[❯](green)'
-error_symbol = '[❯](red)'
-vicmd_symbol = '[❮](green)'
+success_symbol = '[❯](#76946A)'
+error_symbol = '[❯](#C34043)'
+vicmd_symbol = '[❮](#76946A)'
 
 [git_branch]
 symbol = ' '
@@ -55,7 +55,7 @@ style = '#889D66'
 format = '([\[$all_status$ahead_behind\]]($style) )'
 deleted = '✗'
 untracked = '?'
-staged = '[++\($count\)](green)'
+staged = '[++\($count\)](#889D66)'
 stashed = ''
 ahead = '⇡${count}'
 diverged = '⇕⇡${ahead_count}⇣${behind_count}'
@@ -72,17 +72,17 @@ format = ' [$time](242)'
 
 [cmd_duration]
 format = '[$duration]($style) '
-style = 'yellow'
+style = '#C0A36E'
 
 [python]
 format = '[$symbol$virtualenv]($style) '
 symbol = '󰌠 '
-style = 'bright-black'
+style = 'bright-#727169'
 
 [kubernetes]
 disabled = false
-format = '[$context([@](blue)$namespace)]($style)'
-style = 'cyan bold'
+format = '[$context([@](#7E9CD8)$namespace)]($style)'
+style = '#7AA89F bold'
 
 [[kubernetes.contexts]]
 context_pattern = '.+:(?P<cluster>.+)'
