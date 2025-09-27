@@ -6,3 +6,5 @@ zsh/.zsh_sessions/
 zsh/.zcompdump
 zsh/.zsh_history
 helm/repositories.lock
+fish/work/
+fish/fish_variables
