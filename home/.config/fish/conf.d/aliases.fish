@@ -1,14 +1,14 @@
 #!/usr/bin/env fish
 
-# cd in the previous directory.
-abbr -a -- cdp 'cd ~-'
-abbr -a -- '..' 'cd -- ..'
-abbr -a -- '...' 'cd -- ../..'
-abbr -a -- '....' 'cd -- ../../..'
 # Use z to jump around
-abbr -a -- cd 'z'
+alias cd='z'
 # z with fzf
 abbr -a -- zz 'zi'
+# cd in the previous directory.
+abbr -a -- cdp 'cd ~-'
+alias ..='cd -- ..'
+alias ...='cd -- ../..'
+alias ....='cd -- ../../..'
 
 # eza for ls
 alias l='eza -a --git-ignore'

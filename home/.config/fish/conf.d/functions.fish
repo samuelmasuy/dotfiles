@@ -1,9 +1,3 @@
-# Change cd to do a ls right after executing.
-function cd --wraps cd
-    builtin cd $argv
-    and ls -A
-end
-
 # Display ip address.
 function my_ip
     ifconfig | grep 'broadcast' | awk '{print $6}'
