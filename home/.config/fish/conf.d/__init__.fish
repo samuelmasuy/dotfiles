@@ -70,7 +70,6 @@ set -g prepath (
 )
 fish_add_path --prepend --move $prepath
 
-
 if test -d $__fish_config_dir/work
     for file in $__fish_config_dir/work/*.fish
         source $file

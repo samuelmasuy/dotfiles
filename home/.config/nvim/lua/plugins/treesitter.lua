@@ -23,6 +23,7 @@ return {
           "cmake",
           "csv",
           "dockerfile",
+          "fish",
           "git_config",
           "git_rebase",
           "gitattributes",

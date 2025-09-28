@@ -34,4 +34,3 @@ set -x DISABLE_AUTO_TITLE true
 
 set -x BAT_THEME kanagawa
 set -x BAT_STYLE changes
-
