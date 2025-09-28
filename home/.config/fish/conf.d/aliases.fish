@@ -3,12 +3,13 @@
 # Use z to jump around
 alias cd='z'
 # z with fzf
-abbr -a -- zz 'zi'
+abbr -a -- zz zi
 # cd in the previous directory.
 abbr -a -- cdp 'cd ~-'
-alias ..='cd -- ..'
-alias ...='cd -- ../..'
-alias ....='cd -- ../../..'
+function multicd
+    echo cd -- (string repeat -n (math (string length -- $argv[1]) - 1) ../)
+end
+abbr --add dotdot --regex '^\.\.+$' --function multicd
 
 # eza for ls
 alias l='eza -a --git-ignore'
@@ -26,9 +27,9 @@ abbr -a -- mv 'mv -i'
 # Open the given directory in finder.
 abbr -a -- f 'open .'
 # Clear the terminal
-abbr -a -- c 'clear'
+abbr -a -- c clear
 # bat > cat
-abbr -a -- cat 'bat'
+abbr -a -- cat bat
 # Prevent the system from sleeping for one hour.
 abbr -a -- cafe 'caffeinate -t 3600 &'
 # Open tmux
@@ -61,7 +62,7 @@ alias tldrf='tldr --list | fzf --preview "tldr --color=always {1}" --preview-win
 # +-----+
 # | Git |
 # +-----+
-abbr -a -- g 'git'
+abbr -a -- g git
 abbr -a -- gl 'git pull'
 abbr -a -- gst 'git status'
 abbr -a -- ga 'git add'
@@ -84,6 +85,11 @@ if command -v kubecolor >/dev/null 2>&1
 end
 alias k=kubectl
 abbr -a -- ks 'kubectl -n kube-system'
+abbr -a -- kgp 'kubectl get po --no-headers | fzf | awk \'{print $1}\''
+abbr -a -- kd 'kubectl get po --no-headers | fzf | awk \'{print $1}\' | xargs -n 1 kubectl describe po'
+abbr -a -- klo 'kubectl get po --no-headers | fzf | awk \'{print $1}\' | xargs kubectl logs -f'
+abbr -a -- ko 'kubectl get po --no-headers | fzf | awk \'{print $1}\' | xargs kubectl get po -o yaml'
+
 alias kn=kubens
 alias kx=kubectx
 abbr -a -- minikube 'DOCKER_DEFAULT_PLATFORM=linux/arm64/v8 minikube'
