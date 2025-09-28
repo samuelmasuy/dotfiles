@@ -7,6 +7,11 @@ set -q XDG_CONFIG_HOME; or set -Ux XDG_CONFIG_HOME $HOME/.config
 set -q XDG_DATA_HOME; or set -Ux XDG_DATA_HOME $HOME/.local/share
 set -q XDG_STATE_HOME; or set -Ux XDG_STATE_HOME $HOME/.local/state
 set -q XDG_CACHE_HOME; or set -Ux XDG_CACHE_HOME $HOME/.cache
+set -q XDG_RUNTIME_DIR; or set -Ux XDG_RUNTIME_DIR $TMPDIR
+
+set -Ux EDITOR nvim
+set -Ux VISUAL nvim
+set -Ux DOTFILES_HOME $HOME/.dotfiles.git/master
 
 # Ensure manpath is set to something so we can add to it.
 set -q MANPATH || set -gx MANPATH ''
@@ -42,11 +47,6 @@ if not test -s $__fish_cache_dir/brew_init.fish
     end
     source $__fish_cache_dir/brew_init.fish
 end
-
-mise activate fish | source
-
-# Fisher
-# init_fisher
 
 # Add bin directories to path.
 set -g prepath (
