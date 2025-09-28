@@ -1,5 +1,7 @@
 add_newline = false
 
+palette = "kanagawa"
+
 format = """
 $directory\
 $git_branch\
@@ -22,19 +24,18 @@ $character"""
 # """
 
 [directory]
-style = '#7E9CD8'
-# truncation_length = 2
+style = 'blue'
 truncate_to_repo = true
 fish_style_pwd_dir_length = 1
-repo_root_style = 'bold #7E9CD8'
-# use_logical_path = true
+repo_root_style = 'bold blue'
 
 [fill]
 symbol = ' '
 style = 'None'
 
 [terraform]
-format = ' [\($workspace\)](65) '
+format = ' [\($workspace\)]($style) '
+style = 'cyan'
 
 [status]
 disabled = false
@@ -42,20 +43,20 @@ disabled = false
 format = '[$status]($style) '
 
 [character]
-success_symbol = '[❯](#76946A)'
-error_symbol = '[❯](#C34043)'
-vicmd_symbol = '[❮](#76946A)'
+success_symbol = '[❯](green)'
+error_symbol = '[❯](red)'
+vicmd_symbol = '[❮](green)'
 
 [git_branch]
 symbol = ' '
 format = '[$symbol$branch ]($style)'
-style = '#889D66'
+style = 'green'
 
 [git_status]
 format = '([\[$all_status$ahead_behind\]]($style) )'
 deleted = '✗'
 untracked = '?'
-staged = '[++\($count\)](#889D66)'
+staged = '[++\($count\)](green)'
 stashed = ''
 ahead = '⇡${count}'
 diverged = '⇕⇡${ahead_count}⇣${behind_count}'
@@ -63,26 +64,26 @@ behind = '⇣${count}'
 
 [git_state]
 format = '\([$state( $progress_current/$progress_total)]($style)\) '
-# style = "bright-black"
 
 [time]
 disabled = false
 time_format = '%H:%M'
-format = ' [$time](242)'
+format = ' [$time]($style)'
+style = 'gray'
 
 [cmd_duration]
 format = '[$duration]($style) '
-style = '#C0A36E'
+style = 'yellow'
 
 [python]
 format = '[$symbol$virtualenv]($style) '
 symbol = '󰌠 '
-style = 'bright-#727169'
+style = 'bg0'
 
 [kubernetes]
 disabled = false
-format = '[$context([@](#7E9CD8)$namespace)]($style)'
-style = '#7AA89F bold'
+format = '[$context([@](blue)$namespace)]($style)'
+style = 'bold cyan'
 
 [[kubernetes.contexts]]
 context_pattern = '.+:(?P<cluster>.+)'
@@ -95,3 +96,40 @@ context_alias = '$cluster'
 # format = '[(:$output)]($style)'
 # style = 'cyan'
 # ignore_timeout = true
+
+# Define custom colors
+[palettes.kanagawa]
+# Main colors for the theme
+fg0 = '#DCD7BA'      # fujiWhite - main text
+fg1 = '#C8C093'      # oldWhite - secondary text
+bg0 = '#16161D'      # sumiInk0 - darkest background
+bg1 = '#1F1F28'      # sumiInk3 - main background
+bg2 = '#2A2A37'      # sumiInk4 - medium background
+bg3 = '#54546D'      # sumiInk6 - light background/borders
+
+# Highlight colors
+red = '#C34043'      # autumnRed
+green = '#76946A'    # autumnGreen  
+yellow = '#C0A36E'   # boatYellow2
+blue = '#7E9CD8'     # crystalBlue
+purple = '#957FB8'   # oniViolet
+cyan = '#6A9589'     # waveAqua1
+orange = '#FFA066'   # surimiOrange
+pink = '#D27E99'
+gray = '#727169'        # fujiGray
+
+# Bright/alternative colors
+bright_red = '#E82424'     # samuraiRed
+bright_green = '#98BB6C'   # springGreen
+bright_yellow = '#E6C384'  # carpYellow
+bright_blue = '#7FB4CA'    # springBlue
+bright_purple = '#938AA9'  # springViolet1
+bright_cyan = '#7AA89F'    # waveAqua2
+
+# Git/Diff specific colors
+color_git_add = '#76946A'        # autumnGreen
+color_git_change = '#DCA561'     # autumnYellow
+color_git_delete = '#C34043'     # autumnRed
+
+# Comments and details colors
+color_wave_blue = '#2D4F67'      # waveBlue2 - for popups/floats
