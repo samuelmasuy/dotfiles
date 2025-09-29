@@ -1,26 +1,9 @@
-#!/usr/bin/env fish
-
-# Use z to jump around
-alias cd='z'
 # z with fzf
 abbr -a -- zz zi
 # cd in the previous directory.
 abbr -a -- cdp 'cd ~-'
-function multicd
-    echo cd -- (string repeat -n (math (string length -- $argv[1]) - 1) ../)
-end
+# cd to any parent directory
 abbr --add dotdot --regex '^\.\.+$' --function multicd
-
-# eza for ls
-alias l='eza -a --git-ignore'
-alias lf='eza -lF --color=always | grep -v /'
-alias lh='eza -dl .* --group-directories-first'
-alias ll='eza -la --no-permissions --no-user --git-ignore --git --sort modified --icons always'
-alias la='eza -la --git --sort modified --icons always'
-# or not
-alias ls='/bin/ls -AG'
-# Make the terminal say all the files and directories.
-alias lt="/bin/ls | say -va"
 
 # confirm && verbose
 abbr -a -- mv 'mv -i'
@@ -32,22 +15,6 @@ abbr -a -- c clear
 abbr -a -- cat bat
 # Prevent the system from sleeping for one hour.
 abbr -a -- cafe 'caffeinate -t 3600 &'
-# Open tmux
-function tmux
-    set -l config_dir (test -n "$XDG_CONFIG_HOME"; and echo $XDG_CONFIG_HOME; or echo $HOME/.config)
-    command tmux -f $config_dir/tmux/tmux.conf $argv
-end
-# Using neovim
-alias vim="nvim"
-alias vimdiff="nvim -d"
-alias ivm="nvim"
-# load vim with very basic settings
-function vi
-    set -l config_dir (test -n "$XDG_CONFIG_HOME"; and echo $XDG_CONFIG_HOME; or echo $HOME/.config)
-    command vi -u $config_dir/vim/.vimrc $argv
-end
-# upgrade neovim nightly
-alias upgrade-neovim-nightly='mise uninstall neovim:neovim@nightly && mise install neovim:neovim@nightly'
 # dotfiles
 abbr -a -- cdd 'cd $DOTFILES_HOME'
 
@@ -57,7 +24,7 @@ abbr -a -- weather 'curl wttr.in/montreal'
 abbr -a -- killseg 'kill -s SIGSEGV $$'
 
 # tldr with fzf
-alias tldrf='tldr --list | fzf --preview "tldr --color=always {1}" --preview-window=right,70% | xargs tldr'
+abbr -a -- tldrf 'tldr --list | fzf --preview "tldr --color=always {1}" --preview-window=right,70% | xargs tldr'
 
 # +-----+
 # | Git |
@@ -80,18 +47,10 @@ abbr -a -- gprc 'gh pr checks -w'
 # +-----+
 # | k8s |
 # +-----+
-if command -v kubecolor >/dev/null 2>&1
-    alias kubectl="kubecolor"
-end
-alias k=kubectl
 abbr -a -- ks 'kubectl -n kube-system'
 abbr -a -- kgp 'kubectl get po --no-headers | fzf | awk \'{print $1}\''
 abbr -a -- kd 'kubectl get po --no-headers | fzf | awk \'{print $1}\' | xargs -n 1 kubectl describe po'
 abbr -a -- klo 'kubectl get po --no-headers | fzf | awk \'{print $1}\' | xargs kubectl logs -f'
 abbr -a -- ko 'kubectl get po --no-headers | fzf | awk \'{print $1}\' | xargs kubectl get po -o yaml'
 
-alias kn=kubens
-alias kx=kubectx
 abbr -a -- minikube 'DOCKER_DEFAULT_PLATFORM=linux/arm64/v8 minikube'
-
-alias oc=opencode
