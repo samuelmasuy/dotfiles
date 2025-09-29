@@ -61,6 +61,7 @@ stashed = ''
 ahead = '⇡${count}'
 diverged = '⇕⇡${ahead_count}⇣${behind_count}'
 behind = '⇣${count}'
+style = 'bold color_wave_red'
 
 [git_state]
 format = '\([$state( $progress_current/$progress_total)]($style)\) '
@@ -109,7 +110,7 @@ bg3 = '#54546D'      # sumiInk6 - light background/borders
 
 # Highlight colors
 red = '#C34043'      # autumnRed
-green = '#76946A'    # autumnGreen  
+green = '#76946A'    # autumnGreen
 yellow = '#C0A36E'   # boatYellow2
 blue = '#7E9CD8'     # crystalBlue
 purple = '#957FB8'   # oniViolet
@@ -133,3 +134,6 @@ color_git_delete = '#C34043'     # autumnRed
 
 # Comments and details colors
 color_wave_blue = '#2D4F67'      # waveBlue2 - for popups/floats
+color_samourai_red = '#E82424'
+color_wave_red = '#E46876' # for git status
+color_peach_red = '#FF5D62'
