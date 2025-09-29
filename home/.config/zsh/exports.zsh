@@ -16,6 +16,7 @@ export PYLINTHOME="$XDG_CACHE_HOME"/pylint
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/ripgreprc"
 export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
 export TEALDEER_CONFIG_DIR=$XDG_CONFIG_HOME/tealdeer
+export EZA_CONFIG_DIR=$XDG_CONFIG_HOME/eza
 export _RESURRECT_DIR=$XDG_DATA_HOME/tmux/resurrect
 export _ZO_DATA_DIR="$XDG_DATA_HOME/zoxide"
 

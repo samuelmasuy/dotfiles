@@ -1,5 +1,6 @@
 set -x AZURE_CONFIG_DIR $XDG_DATA_HOME/azure
 set -x CARGO_HOME $XDG_DATA_HOME/cargo
+set -x EZA_CONFIG_DIR $XDG_CONFIG_HOME/eza
 set -x GEM_HOME $XDG_DATA_HOME/gem
 set -x GEM_SPEC_CACHE $XDG_CACHE_HOME/gem
 set -x GOBIN $HOME/.local/bin

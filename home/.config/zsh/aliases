@@ -16,8 +16,7 @@ alias lf='eza -lF --color=always | grep -v /'
 alias lh='eza -dl .* --group-directories-first'
 alias ll='eza -la --no-permissions --no-user --git-ignore --git --sort modified --icons always'
 alias la='eza -la --git --sort modified --icons always'
-# or not
-alias ls='/bin/ls -AG'
+alias ls='eza -AG'
 # Make the terminal say all the files and directories.
 alias lt="/bin/ls | say -va"
 
@@ -36,9 +35,9 @@ alias cafe='caffeinate -t 3600 &'
 # Open tmux
 alias tmux='tmux -f ${XDG_CONFIG_HOME:-$HOME/.config}/tmux/tmux.conf'
 # Using neovim
-alias -g vim="nvim"
-alias -g vimdiff="nvim -d"
-alias ivm="nvim"
+alias -g vim="TERM=tmux-direct nvim"
+alias -g vimdiff="TERM=tmux-direct nvim -d"
+alias ivm="TERM=tmux-direct nvim"
 # load vim with very basic settings
 alias vi='vi -u ${XDG_CONFIG_HOME:-$HOME/.config}/vim/.vimrc'
 # upgrade neovim nightly
