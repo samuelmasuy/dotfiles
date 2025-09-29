@@ -85,9 +85,9 @@ disabled = false
 format = '[$context([@](blue)$namespace)]($style)'
 style = 'bold cyan'
 
-[[kubernetes.contexts]]
-context_pattern = '.+:(?P<cluster>.+)'
-context_alias = '$cluster'
+# [[kubernetes.contexts]]
+# context_pattern = '.+:(?P<cluster>.+)'
+# context_alias = '$cluster'
 
 # [custom.kube_version]
 # command = 'kubectl version --client --output=json | jq -r .clientVersion.minor'
