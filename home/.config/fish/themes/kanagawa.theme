@@ -2,36 +2,24 @@
 # A template was taken and modified from Tokyonight:
 # https://github.com/folke/tokyonight.nvim/blob/main/extras/fish_tokyonight_night.fish
 
-#set -l foreground DCD7BA normal
-#set -l selection 2D4F67 brcyan
-#set -l comment 727169 brblack
-#set -l red C34043 red
-#set -l orange FF9E64 brred
-#set -l yellow C0A36E yellow
-#set -l green 76946A green
-#set -l purple 957FB8 magenta
-#set -l cyan 7AA89F cyan
-#set -l pink D27E99 brmagenta
-#set -l blue 7E9CD8 blue
-
 # Syntax Highlighting Colors
-fish_color_normal DCD7BA
-fish_color_command 76946A
-fish_color_keyword D27E99
-fish_color_quote C0A36E
-fish_color_redirection DCD7BA
-fish_color_end FF9E64
-fish_color_error C34043
-fish_color_param 957FB8
-fish_color_comment 727169
-fish_color_selection --background=2D4F67
-fish_color_search_match --background=2D4F67
-fish_color_operator 76946A
-fish_color_escape D27E99
-fish_color_autosuggestion 727169
+fish_color_normal DCD7BA # fuji white
+fish_color_command 76946A # wave green
+fish_color_keyword D27E99 # sakura pink
+fish_color_quote C0A36E # autumn yellow
+fish_color_redirection DCD7BA # fuji white
+fish_color_end FF9E64 # surimi orange
+fish_color_error C34043 # coral red
+fish_color_param 957FB8 # wisteria purple
+fish_color_comment 727169 # boat gray
+fish_color_selection --background=2D4F67 # wave blue
+fish_color_search_match --background=2D4F67 # wave blue
+fish_color_operator 76946A # wave green
+fish_color_escape D27E99 # sakura pink
+fish_color_autosuggestion 727169 # boat gray
 
 # Completion Pager Colors
-fish_pager_color_progress 727169
-fish_pager_color_prefix 7AA89F
-fish_pager_color_completion DCD7BA
-fish_pager_color_description 727169
+fish_pager_color_progress 727169 # boat gray
+fish_pager_color_prefix 7AA89F # wave teal
+fish_pager_color_completion DCD7BA # fuji white
+fish_pager_color_description 727169 # boat gray

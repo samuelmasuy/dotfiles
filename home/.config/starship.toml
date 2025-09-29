@@ -115,8 +115,8 @@ blue = '#7E9CD8'     # crystalBlue
 purple = '#957FB8'   # oniViolet
 cyan = '#6A9589'     # waveAqua1
 orange = '#FFA066'   # surimiOrange
-pink = '#D27E99'
-gray = '#727169'        # fujiGray
+pink = '#D27E99'     # sakuraPink
+gray = '#727169'     # fujiGray
 
 # Bright/alternative colors
 bright_red = '#E82424'     # samuraiRed
