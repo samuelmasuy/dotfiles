@@ -56,9 +56,16 @@ return {
       {
         "<leader>j",
         function()
-          require("sam.telescope").search_work_dirs()
+          require("sam.telescope").search_work_dirs(vim.fn.getenv("WORKPATH"))
         end,
         desc = "Work dirs",
+      },
+      {
+        "<leader>a",
+        function()
+          require("sam.telescope").search_work_dirs(vim.fn.getenv("WORKPATH_ALT"))
+        end,
+        desc = "Work alt dirs",
       },
       {
         "<leader>?",

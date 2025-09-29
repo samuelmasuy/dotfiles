@@ -92,8 +92,7 @@ local function find_project_files(prompt_bufnr)
   end
 end
 
-M.search_work_dirs = function()
-  local workpath = vim.fn.getenv("WORKPATH")
+M.search_work_dirs = function(workpath)
   local handle = io.popen("cd '" .. workpath .. "' && eza -L 1 -D -s modified -1 -r")
   if not handle then
     vim.notify("Failed to execute eza command", vim.log.levels.ERROR)
