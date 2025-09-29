@@ -1,3 +1,3 @@
 function src --description 'Source the shell configuration file'
-    exec $SHELL
+    exec fish
 end
