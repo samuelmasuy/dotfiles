@@ -1,3 +1,3 @@
 function kx --wraps=kubectx --description 'alias kx=kubectx'
-  kubectx $argv
+  command kubectx $argv
 end

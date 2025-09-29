@@ -1,3 +1,3 @@
 function kn --wraps=kubens --description 'alias kn=kubens'
-  kubens $argv
+  command kubens $argv
 end

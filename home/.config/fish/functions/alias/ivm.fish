@@ -1,3 +1,3 @@
 function ivm --wraps=nvim --description 'alias ivm=nvim'
-  nvim $argv
+  command nvim $argv
 end

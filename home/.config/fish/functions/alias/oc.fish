@@ -1,3 +1,3 @@
 function oc --wraps=opencode --description 'alias oc=opencode'
-  opencode $argv
+  command opencode $argv
 end
