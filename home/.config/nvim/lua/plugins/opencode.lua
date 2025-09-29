@@ -2,12 +2,13 @@ return {
   {
     "NickvanDyke/opencode.nvim",
     dependencies = { "folke/snacks.nvim" },
-    ---@type opencode.Config
-    opts = {
-      on_opencode_not_found = function()
-        return false
-      end,
-    },
+    config = function()
+      vim.g.opencode_opts = {
+        on_opencode_not_found = function()
+          return false
+        end,
+      }
+    end,
     -- stylua: ignore
     keys = {
       {

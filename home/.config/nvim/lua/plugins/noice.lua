@@ -1,6 +1,7 @@
 return {
   {
     "folke/noice.nvim",
+    enabled = false,
     event = "VeryLazy",
     enabled = false,
     opts = {
@@ -10,7 +11,13 @@ return {
           cmdline = { icon = "❯" },
         },
       },
+      -- messages = {
+      --   enabled = false,
+      -- },
       lsp = {
+        progress = {
+          enabled = false,
+        },
         -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
         override = {
           ["vim.lsp.util.convert_input_to_markdown_lines"] = true,

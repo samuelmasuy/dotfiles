@@ -1,7 +1,7 @@
 local actions = require("telescope.actions")
 local themes = require("telescope.themes")
 local action_state = require("telescope.actions.state")
-local project = require("project_nvim.project")
+local project = require("project.api")
 local make_entry = require("telescope.make_entry")
 local pickers = require("telescope.pickers")
 local conf = require("telescope.config").values
@@ -30,7 +30,7 @@ M.live_multigrep = function(opts)
   opts = opts or {}
   opts.cwd = opts.cwd or vim.uv.cwd()
 
-  local finder = finders.new_async_job {
+  local finder = finders.new_async_job({
     command_generator = function(prompt)
       if not prompt or prompt == "" then
         return nil
@@ -48,22 +48,24 @@ M.live_multigrep = function(opts)
       end
 
       ---@diagnostic disable-next-line: deprecated
-      return vim.tbl_flatten {
+      return vim.tbl_flatten({
         args,
         { "--color=never", "--no-heading", "--with-filename", "--line-number", "--column", "--smart-case" },
-      }
+      })
     end,
     entry_maker = make_entry.gen_from_vimgrep(opts),
     cwd = opts.cwd,
-  }
+  })
 
-  pickers.new(opts, {
-    debounce = 100,
-    prompt_title = "Multi Grep",
-    finder = finder,
-    previewer = conf.grep_previewer(opts),
-    sorter = require("telescope.sorters").empty(),
-  }):find()
+  pickers
+      .new(opts, {
+        debounce = 100,
+        prompt_title = "Multi Grep",
+        finder = finder,
+        previewer = conf.grep_previewer(opts),
+        sorter = require("telescope.sorters").empty(),
+      })
+      :find()
 end
 
 local function change_working_directory(prompt_bufnr, _)
@@ -91,18 +93,33 @@ local function find_project_files(prompt_bufnr)
 end
 
 M.search_work_dirs = function()
-  local opts = {
-    find_command = { "eza", "-L", "1", "-D", "-s", "modified", "-1", "-r" },
-    prompt_title = "< Work Dirs >",
-    cwd = "$WORKPATH",
-  }
-  opts.cwd = vim.fn.expand(opts.cwd)
+  local workpath = vim.fn.getenv("WORKPATH")
+  local handle = io.popen("cd '" .. workpath .. "' && eza -L 1 -D -s modified -1 -r")
+  if not handle then
+    vim.notify("Failed to execute eza command", vim.log.levels.ERROR)
+    return
+  end
+  local result = handle:read("*a")
+  handle:close()
+  -- Split the result into lines
+  local dirs = {}
+  for line in result:gmatch("[^\r\n]+") do
+    if line ~= "" then
+      table.insert(dirs, line)
+    end
+  end
 
-  opts.entry_maker = opts.entry_maker or make_entry.gen_from_file(opts)
+  local opts = {
+    prompt_title = "< Work Dirs >",
+    cwd = workpath,
+  }
 
   pickers
       .new(opts, {
-        finder = finders.new_oneshot_job(opts.find_command, opts),
+        finder = finders.new_table({
+          results = dirs,
+          entry_maker = make_entry.gen_from_file(opts),
+        }),
         previewer = conf.file_previewer(opts),
         sorter = conf.file_sorter(opts),
         attach_mappings = function(prompt_bufnr, _)

@@ -52,8 +52,8 @@ return {
 
       -- undercurl
       vim.cmd([[
-	       hi SpellBad     gui=undercurl term=undercurl cterm=undercurl
-	     ]])
+        hi SpellBad     gui=undercurl term=undercurl cterm=undercurl
+      ]])
       vim.cmd.colorscheme("kanagawa")
 
       vim.diagnostic.config({

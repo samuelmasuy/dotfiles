@@ -3,6 +3,7 @@ return {
     "echasnovski/mini.files",
     lazy = false,
     version = false,
+    enabled = true,
     opts = {
       mappings = {
         close = "q",
@@ -35,6 +36,29 @@ return {
           require("mini.files").open(vim.api.nvim_buf_get_name(0))
         end,
         desc = "Open mini.files",
+      },
+    },
+  },
+  {
+    "stevearc/oil.nvim",
+    enabled = false,
+    lazy = false,
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    ---@module 'oil'
+    ---@type oil.SetupOpts
+    opts = {
+      float = {
+        max_width = 0.4,
+        max_height = 0.4,
+      },
+    },
+    keys = {
+      {
+        "-",
+        function()
+          require("oil").open_float()
+        end,
+        desc = "Open file explorer",
       },
     },
   },

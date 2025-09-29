@@ -6,7 +6,7 @@ return {
     config = function()
       vim.cmd.delcommand("Gremove") -- Superseded by |:GRemove|.
       vim.cmd.delcommand("Gdelete") -- Superseded by |:GDelete|.
-      vim.cmd.delcommand("Gmove") -- Superseded by |:GMove|.
+      vim.cmd.delcommand("Gmove")   -- Superseded by |:GMove|.
       vim.cmd.delcommand("Grename") -- Superseded by |:GRename|.
       vim.cmd.delcommand("Gbrowse") -- Superseded by |:GBrowse|.
       vim.api.nvim_create_user_command("GBlame", "G blame", {})

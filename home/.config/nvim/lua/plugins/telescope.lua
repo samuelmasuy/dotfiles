@@ -1,5 +1,15 @@
 return {
   {
+    "DrKJeff16/project.nvim",
+    -- name = "project_nvim",
+    cond = vim.fn.has("nvim-0.11") == 1, -- RECOMMENDED
+    opts = {
+      fzf_lua = {
+        enabled = false,
+      },
+    },
+  },
+  {
     "nvim-telescope/telescope.nvim",
     event = "VeryLazy",
     branch = "0.1.x",
@@ -10,12 +20,6 @@ return {
         "nvim-telescope/telescope-fzf-native.nvim",
         build = "make",
         cond = vim.fn.executable("make") == 1,
-      },
-      {
-        "LennyPhoenix/project.nvim", -- instead of ahmedkhalf/project.nvim, -- auto cwd in root git repo
-        branch = "fix-get_clients",
-        name = "project_nvim",
-        opts = {},
       },
     },
     cmd = "Telescope",
