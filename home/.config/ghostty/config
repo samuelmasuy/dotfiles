@@ -8,7 +8,7 @@ command = /opt/homebrew/bin/fish --login --interactive
 font-family = JetBrainsMono Nerd Font Mono
 font-family-italic = "Monaspace Neon"
 
-font-size = 22.0
+font-size = 16.0
 
 # The initial window height and width in character cells.
 # Absurdly large values will be clamped to the maximum size of the window
@@ -41,7 +41,6 @@ fullscreen = true
 # Whether to enable shell integration auto-injection or not. Shell integration
 # greatly enhances the terminal experience by enabling a number of features:
 shell-integration = detect
-window-decoration = true
 # Available features:
 # 
 #   * `cursor` - Set the cursor to a blinking bar at the prompt.
