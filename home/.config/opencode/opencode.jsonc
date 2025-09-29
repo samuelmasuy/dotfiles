@@ -1,7 +1,11 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  // Theme configuration
-  "theme": "kanagawa",
-  "model": "github-copilot/claude-sonnet-4",
+  "share": "disabled",
   "autoupdate": true,
+  "theme": "kanagawa",
+  "keybinds": {
+    "leader": "ctrl+x",
+    "messages_half_page_up": "ctrl+u",
+    "messages_half_page_down": "ctrl+d",
+  },
 }
