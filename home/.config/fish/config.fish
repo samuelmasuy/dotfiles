@@ -1,5 +1,7 @@
 #!/usr/bin/env fish
 
+/opt/homebrew/bin/brew shellenv | source
+
 if type -q fzf
     if not test -r $__fish_cache_dir/fzf_init.fish
         fzf --fish >$__fish_cache_dir/fzf_init.fish

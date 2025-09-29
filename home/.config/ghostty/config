@@ -1,6 +1,7 @@
 # NOTE:
 # docs:
 # ghostty +show-config --default --docs | nvim
+command = /opt/homebrew/bin/fish --login --interactive
 
 # The font families to use.
 #     ghostty +list-fonts
