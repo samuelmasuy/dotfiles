@@ -1,0 +1,4 @@
+function fish_user_key_bindings
+  # Unsuspend a job and bring it to the foreground
+  bind \cz 'fg 2>/dev/null; commandline -f repaint'
+end
