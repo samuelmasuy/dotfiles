@@ -17,8 +17,8 @@ fish_color_search_match --background=2D4F67 # wave blue
 fish_color_operator 76946A # wave green
 fish_color_escape D27E99 # sakura pink
 # fish_color_autosuggestion 727169 # boat gray
-# fish_color_autosuggestion 4b4b52
-fish_color_autosuggestion 35353d
+# fish_color_autosuggestion 4b4b52 # medium gray
+fish_color_autosuggestion 35353d --italics # dark gray
 
 # Completion Pager Colors
 fish_pager_color_progress 727169 # boat gray
