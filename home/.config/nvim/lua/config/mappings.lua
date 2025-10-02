@@ -83,13 +83,10 @@ nnoremap("<leader>dob", "<cmd>diffget BASE<CR>", { desc = "[d]iff [o]btain [b]as
 noremap("\\", ",")
 
 -- Open new vertical split
-nnoremap("<leader>v", ":vsplit<CR>", { desc = "Open [v]ertical split" })
-
--- Remove trailing whitespace on <leader>S
-nnoremap("<leader>S", ":%s/\\s\\+$//<cr>:let @/=''<CR>", { desc = "Remove trailing whitespace" })
+-- nnoremap("<leader>v", ":vsplit<CR>", { desc = "Open [v]ertical split" })
 
 -- cd to where the file is currently located
-nnoremap("<leader>.", ":lcd %:p:h<CR>", { desc = "Change directory to current file" })
+-- nnoremap("<leader>.", ":lcd %:p:h<CR>", { desc = "Change directory to current file" })
 
 -- Google search word under cursor from http://www.vimbits.com/bits/551
 nnoremap("<leader>is", ':let @p=@"<cr>yiw:!open "https://www.google.com/search?q=""<cr><cr>:let @"=@p<cr>')
@@ -98,18 +95,18 @@ vnoremap("<leader>is", 'y:!open "https://www.google.com/search?q=""<cr><cr>')
 nnoremap("<leader>id", ':let @p=@"<cr>yiw:!open "https://www.google.com/search?q=define ""<cr><cr>:let @"=@p<cr>')
 
 -- urlencode selection
-vnoremap(
-  "<leader>en",
-  ":!python -c 'import sys,urllib;print urllib.quote(sys.stdin.read().strip())'<cr>",
-  { desc = "URLEncode selection" }
-)
+-- vnoremap(
+--   "<leader>en",
+--   ":!python -c 'import sys,urllib;print urllib.quote(sys.stdin.read().strip())'<cr>",
+--   { desc = "URLEncode selection" }
+-- )
 
 -- Easy substitution
 nnoremap("<leader>;", ":%s::cg<Left><Left><Left>")
 vnoremap("<leader>;", ":s::g<Left><Left>")
 
 -- Don't lose what's in "" register
-vnoremap("<leader>p", '"_dP', { desc = "Paste without losing register" })
+-- vnoremap("<leader>p", '"_dP', { desc = "Paste without losing register" })
 
 -- redraw screen
 -- keymap.set("n", "<leader>1", ":redraw!<CR>", { desc = "Redraw screen" })
