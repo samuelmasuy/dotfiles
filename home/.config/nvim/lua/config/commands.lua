@@ -24,3 +24,8 @@ vim.api.nvim_create_autocmd("User", {
     print("Lazy plugins synced in " .. total_time .. "ms")
   end,
 })
+
+-- Colorscheme picker user command (Snacks)
+vim.api.nvim_create_user_command("Color", function()
+  require("snacks").picker.colorschemes({})
+end, { desc = "Open colorscheme picker" })

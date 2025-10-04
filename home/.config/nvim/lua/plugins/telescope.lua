@@ -11,6 +11,7 @@ return {
   },
   {
     "nvim-telescope/telescope.nvim",
+    enabled = false, -- disabled in favor of snacks picker
     event = "VeryLazy",
     branch = "0.1.x",
     dependencies = {

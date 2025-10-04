@@ -114,17 +114,15 @@ return {
           vim.keymap.set("n", lhs, rhs, { noremap = true, silent = true, buffer = bufnr, desc = "LSP: " .. desc })
         end
 
-        nmap("gD", vim.lsp.buf.declaration, "[g]oto [D]eclaration")
-        nmap("gd", vim.lsp.buf.definition, "[g]oto [d]efinition")
+        nmap("gd", Snacks.picker.lsp_definitions, "[g]oto [d]efinition")
+        nmap("gD", Snacks.picker.lsp_declarations, "[g]oto [D]eclaration")
+        nmap("grr", Snacks.picker.lsp_references, "[g]oto [r]eferences")
+        nmap("gi", Snacks.picker.lsp_implementations, "[g]oto [i]mplementation")
+        nmap("gy", Snacks.picker.lsp_type_definitions, "[g]oto t[y]pe definition")
+        nmap("<leader>ds", Snacks.picker.lsp_symbols, "[S]earch document [S]ymbols")
+        nmap("<leader>ws", Snacks.picker.lsp_workspace_symbols, "[S]earch workspace [S]ymbols")
+
         nmap("K", vim.lsp.buf.hover, "Hover Documentation")
-        nmap("gi", require("telescope.builtin").lsp_implementations, "[g]oto [i]mplementation")
-        nmap("go", vim.lsp.buf.type_definition, "Type [d]efinition")
-        nmap("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
-        nmap("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
-        -- Keymaps with default in neovim 0.11
-        nmap("grr", require("telescope.builtin").lsp_references, "[g]oto [r]eferences")
-        -- nmap("grn", vim.lsp.buf.rename, "[R]e[n]ame")
-        -- nmap("gra", vim.lsp.buf.code_action, "[C]ode [A]ction")
         nmap("gss", vim.lsp.buf.signature_help, "[g]oto [s]ignature documentation") -- <C-s> in insert mode (neovim 0.11)
 
         nmap("<leader>wa", vim.lsp.buf.add_workspace_folder, "[W]orkspace [A]dd Folder")
