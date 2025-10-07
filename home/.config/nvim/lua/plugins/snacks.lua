@@ -75,8 +75,8 @@ return {
             cwd = vim.fn.stdpath("config"),
             hidden = true,
             follow = true,
-            prompt = "~ nvim ~",
-            layout = "telescope",
+            prompt = "~ nvim ~ ",
+            layout = "ivy",
           })
         end,
         desc = "[e]dit Neovim configs",
@@ -182,7 +182,7 @@ return {
         prompt = "❯ ",
         layout = {
           preset = function()
-            return vim.o.columns >= 120 and "telescope" or "vertical"
+            return vim.o.columns >= 120 and "ivy" or "vertical"
           end,
         },
         matcher = { fuzzy = true, smartcase = true, ignorecase = true },
