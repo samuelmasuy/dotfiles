@@ -1,6 +1,6 @@
 return {
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     lazy = false,
     config = true,
   },
@@ -15,18 +15,18 @@ return {
         opts = {},
       },
       { "saghen/blink.cmp" },
-      { "williamboman/mason-lspconfig.nvim" },
+      { "mason-org/mason-lspconfig.nvim" },
       { "nvimtools/none-ls.nvim" },
       { "jay-babu/mason-null-ls.nvim" },
+      { "WhoIsSethDaniel/mason-tool-installer.nvim" },
     },
     config = function()
       -- Inlay hints
       vim.lsp.inlay_hint.enable()
 
-      local lspconfig = require("lspconfig")
       local lsp_capabilities = require("blink.cmp").get_lsp_capabilities()
       local default_setup = function(server)
-        lspconfig[server].setup({
+        vim.lsp.config(server, {
           capabilities = lsp_capabilities,
           flags = {
             allow_incremental_sync = true,
@@ -35,8 +35,7 @@ return {
         })
       end
 
-      require("mason-lspconfig").setup({
-        automatic_installation = true,
+      require("mason-tool-installer").setup({
         ensure_installed = {
           "bashls",
           "dockerls",
@@ -51,10 +50,15 @@ return {
           "vimls",
           "yamlls",
         },
+        auto_update = true,
+      })
+
+      require("mason-lspconfig").setup({
+        automatic_installation = true,
         handlers = {
           default_setup,
           lua_ls = function()
-            lspconfig.lua_ls.setup({
+            vim.lsp.config("lua_ls", {
               settings = {
                 Lua = {
                   workspace = {
@@ -68,7 +72,7 @@ return {
             })
           end,
           helm_ls = function()
-            lspconfig.helm_ls.setup({
+            vim.lsp.config("helm_ls", {
               settings = {
                 ["helm-ls"] = {
                   yamlls = {
@@ -111,7 +115,12 @@ return {
 
       local remap_on_attach = function(_, bufnr)
         local nmap = function(lhs, rhs, desc)
-          vim.keymap.set("n", lhs, rhs, { noremap = true, silent = true, buffer = bufnr, desc = "LSP: " .. desc })
+          vim.keymap.set(
+            "n",
+            lhs,
+            rhs,
+            { noremap = true, silent = true, buffer = bufnr, desc = "LSP: " .. desc }
+          )
         end
 
         nmap("gd", Snacks.picker.lsp_definitions, "[g]oto [d]efinition")
@@ -143,12 +152,13 @@ return {
       nnoremap("gl", vim.diagnostic.open_float, { desc = "Open diagnostic" })
       nnoremap("<leader>d", vim.diagnostic.setloclist, { desc = "Diagnostic to location list" })
 
-      vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-        virtual_text = true,
-        signs = true,
-        underline = true,
-        update_in_insert = false,
-      })
+      vim.lsp.handlers["textDocument/publishDiagnostics"] =
+          vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+            virtual_text = true,
+            signs = true,
+            underline = true,
+            update_in_insert = false,
+          })
 
       local disable_autoformat_filetypes = {
         "yaml",
