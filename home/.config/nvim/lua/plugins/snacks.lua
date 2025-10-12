@@ -144,6 +144,14 @@ return {
         end,
         desc = "Git [S]tatus",
       },
+      {
+        "<leader>gB",
+        function()
+          Snacks.gitbrowse()
+        end,
+        desc = "Git Browse",
+        mode = { "n", "v" },
+      },
     },
     opts = {
       dashboard = {
@@ -191,6 +199,9 @@ return {
           explorer = { layout = { preset = "sidebar" } },
         },
         actions = {},
+      },
+      gitbrowse = {
+        -- what = "permalink",
       },
     },
   },

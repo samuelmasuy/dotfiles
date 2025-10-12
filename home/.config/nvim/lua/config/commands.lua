@@ -25,7 +25,23 @@ vim.api.nvim_create_autocmd("User", {
   end,
 })
 
+-- Mason tools update completed autocommand
+vim.api.nvim_create_autocmd("User", {
+  pattern = "MasonToolsUpdateCompleted",
+  callback = function(e)
+    vim.schedule(function()
+      print(vim.inspect(e.data)) -- print the table that lists the programs that were installed
+    end)
+  end,
+})
+
 -- Colorscheme picker user command (Snacks)
 vim.api.nvim_create_user_command("Color", function()
   require("snacks").picker.colorschemes({})
 end, { desc = "Open colorscheme picker" })
+
+-- Git brwowse command (Snacks)
+-- Usage: :Gbrowse
+vim.api.nvim_create_user_command("Gbrowse", function()
+  Snacks.gitbrowse()
+end, { range = true, desc = "Open Git browse for current file/selection" })
