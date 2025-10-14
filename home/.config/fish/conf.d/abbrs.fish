@@ -29,7 +29,6 @@ abbr -a -- tldrf 'tldr --list | fzf --preview "tldr --color=always {1}" --previe
 # +-----+
 # | Git |
 # +-----+
-abbr -a -- g git
 abbr -a -- gl 'git pull'
 abbr -a -- gst 'git status'
 abbr -a -- ga 'git add'
