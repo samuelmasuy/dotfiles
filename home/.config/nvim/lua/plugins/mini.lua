@@ -43,7 +43,7 @@ return {
     "stevearc/oil.nvim",
     enabled = false,
     lazy = false,
-    dependencies = { "nvim-tree/nvim-web-devicons" },
+    dependencies = { "nvim-mini/mini.icons" },
     ---@module 'oil'
     ---@type oil.SetupOpts
     opts = {
