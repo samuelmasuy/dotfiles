@@ -33,6 +33,7 @@ return {
         },
         workspace_folders = {
           vim.fn.expand("$WORKPATH/.."),
+          vim.fn.expand("$WORKPATH_ALT/.."),
         },
       })
       local copilot_on = true
