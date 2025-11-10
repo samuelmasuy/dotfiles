@@ -49,8 +49,8 @@ abbr --add gpsup --function gpsup_abbr
 # +-----+
 # | k8s |
 # +-----+
-abbr -a -- k 'kubectl'
-abbr -a -- ks 'kubectl -n kube-system'
+# abbr -a -- k 'kubectl'
+# abbr -a -- ks 'kubectl -n kube-system'
 abbr -a -- kgp 'kubectl get po --no-headers | fzf | awk \'{print $1}\''
 abbr -a -- kd 'kubectl get po --no-headers | fzf | awk \'{print $1}\' | xargs -n 1 kubectl describe po'
 abbr -a -- klo 'kubectl get po --no-headers | fzf | awk \'{print $1}\' | xargs kubectl logs -f'
