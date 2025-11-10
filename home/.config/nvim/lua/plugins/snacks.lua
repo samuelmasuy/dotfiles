@@ -152,6 +152,13 @@ return {
         desc = "Git Browse",
         mode = { "n", "v" },
       },
+      {
+        "<leader>gpr",
+        function()
+          Snacks.picker.gh_pr()
+        end,
+        desc = "GitHub Pull Requests (open)",
+      },
     },
     opts = {
       dashboard = {
@@ -178,12 +185,12 @@ return {
             allign = "center",
             height = 5,
           },
-          { section = "keys",         gap = 0,                              padding = 1 },
-          { title = "MRU",            padding = 0 },
-          { section = "recent_files", limit = 4,                            padding = 1 },
-          { title = "MRU ",           file = vim.fn.fnamemodify(".", ":~"), padding = 0 },
-          { section = "recent_files", cwd = true,                           limit = 4,  padding = 1 },
-          { title = "Projects",       section = "projects",                 limit = 4,  padding = 1 },
+          { section = "keys", gap = 0, padding = 1 },
+          { title = "MRU", padding = 0 },
+          { section = "recent_files", limit = 4, padding = 1 },
+          { title = "MRU ", file = vim.fn.fnamemodify(".", ":~"), padding = 0 },
+          { section = "recent_files", cwd = true, limit = 4, padding = 1 },
+          { title = "Projects", section = "projects", limit = 4, padding = 1 },
         },
       },
       picker = {
@@ -197,12 +204,14 @@ return {
         ui_select = true,
         sources = {
           explorer = { layout = { preset = "sidebar" } },
+          gh_pr = {},
         },
         actions = {},
       },
       gitbrowse = {
         -- what = "permalink",
       },
+      gh = {},
     },
   },
 }
