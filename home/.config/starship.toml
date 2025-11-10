@@ -79,7 +79,7 @@ style = 'yellow'
 [python]
 format = '[$symbol$virtualenv]($style) '
 symbol = '󰌠 '
-style = 'bg0'
+style = 'cyan'
 
 [kubernetes]
 disabled = false
