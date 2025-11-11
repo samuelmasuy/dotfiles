@@ -5,9 +5,10 @@ return {
     config = function()
       vim.g.opencode_opts = {
         provider = {
-          start = function()
-            return false
-          end,
+          enabled = "tmux",
+          -- start = function()
+          --   return false
+          -- end,
         },
       }
     end,
@@ -17,13 +18,7 @@ return {
         '<leader>oa',
         function() require('opencode').ask('@this: ', { submit = true }) end,
         desc = 'Ask opencode',
-        mode = 'n',
-      },
-      {
-        '<leader>oa',
-        function() require('opencode').ask('@selection: ', { submit = true }) end,
-        desc = 'Ask opencode about selection',
-        mode = 'v',
+        mode = { 'n', 'x' },
       },
       {
         '<leader>op',
