@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+mise up --bump opencode
+mise uninstall neovim@nightly; mise install neovim@nightly
