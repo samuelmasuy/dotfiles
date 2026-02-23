@@ -7,5 +7,4 @@ return {
     { "cs",  mode = { "n" }, desc = "Change surround" },
     { "S",   mode = { "v" }, desc = "Add surround" },
   },
-  opts = {},
 }
