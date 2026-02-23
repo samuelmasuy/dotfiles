@@ -9,11 +9,11 @@ return {
     cmd = { "LspInfo", "LspInstall", "LspStart" },
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
-      {
-        "folke/lazydev.nvim",
-        ft = { "lua", "vim" },
-        opts = {},
-      },
+      -- {
+      --   "folke/lazydev.nvim",
+      --   ft = { "lua", "vim" },
+      --   opts = {},
+      -- },
       { "saghen/blink.cmp" },
       { "mason-org/mason-lspconfig.nvim" },
       { "nvimtools/none-ls.nvim" },
@@ -39,9 +39,9 @@ return {
         ensure_installed = {
           "bashls",
           "dockerls",
+          "gh-actions-language-server",
           "gopls",
           "helm_ls",
-          "html",
           "jsonls",
           "lua_ls",
           "pyright",
@@ -152,13 +152,12 @@ return {
       nnoremap("gl", vim.diagnostic.open_float, { desc = "Open diagnostic" })
       nnoremap("<leader>d", vim.diagnostic.setloclist, { desc = "Diagnostic to location list" })
 
-      vim.lsp.handlers["textDocument/publishDiagnostics"] =
-          vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-            virtual_text = true,
-            signs = true,
-            underline = true,
-            update_in_insert = false,
-          })
+      vim.diagnostic.config({
+        virtual_text = true,
+        signs = true,
+        underline = true,
+        update_in_insert = false,
+      })
 
       local disable_autoformat_filetypes = {
         "yaml",
