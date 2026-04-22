@@ -21,9 +21,6 @@ return {
       { "WhoIsSethDaniel/mason-tool-installer.nvim" },
     },
     config = function()
-      -- Inlay hints
-      vim.lsp.inlay_hint.enable()
-
       local lsp_capabilities = require("blink.cmp").get_lsp_capabilities()
       local default_setup = function(server)
         vim.lsp.config(server, {
@@ -38,6 +35,7 @@ return {
       require("mason-tool-installer").setup({
         ensure_installed = {
           "bashls",
+          -- "copilot-language-server",
           "dockerls",
           "gh-actions-language-server",
           "gopls",
@@ -90,7 +88,7 @@ return {
           "stylua",
           "hadolint",
           "prettier",
-          "markdownlint",
+          -- "markdownlint-cli2",
           "shfmt",
           "goimports",
         },
@@ -105,10 +103,13 @@ return {
           null_ls.builtins.hover.dictionary,
         },
       })
+      null_ls.builtins.formatting.prettier.with({
+        disabled_filetypes = { "markdown" },
+      })
 
-      local disable_lsp_on_attach = function(client, _)
+      local disable_lsp_on_attach = function(client, bufnr)
         -- vim.notify(client.name .. " lsp client on ft: " .. vim.bo.filetype)
-        if client.name == "yamlls" and vim.bo.filetype == "helm" then
+        if client.name == "yamlls" and vim.bo[bufnr].filetype == "helm" then
           vim.lsp.stop_client(client.id)
         end
       end
@@ -170,6 +171,9 @@ return {
           local client = vim.lsp.get_client_by_id(args.data.client_id)
           if not client then
             return
+          end
+          if client:supports_method("textDocument/inlayHint") then
+            vim.lsp.inlay_hint.enable(client.name ~= "lua_ls", { bufnr = args.buf })
           end
           disable_lsp_on_attach(client, args.buf)
           remap_on_attach(client, args.buf)
