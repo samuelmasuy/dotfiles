@@ -13,9 +13,9 @@ return {
     -- },
     cmd = "Copilot",
     event = "InsertEnter",
-    -- enabled = function()
-    --   return vim.fn.isdirectory(vim.fn.expand("$WORKPATH")) ~= 0
-    -- end,
+    enabled = function()
+      return vim.fn.isdirectory(vim.fn.expand("$WORKPATH")) ~= 0
+    end,
     config = function()
       require("copilot").setup({
         filetypes = {

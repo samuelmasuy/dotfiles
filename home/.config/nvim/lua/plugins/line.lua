@@ -42,14 +42,8 @@ return {
         show_colors = false,
         padding = 2,
         color = { bg = colors.sumiInk4, fg = colors.fujiWhite },
-      }
-
-      local codeium = {
-        padding = 1,
-        color = { bg = colors.sumiInk4, fg = colors.fujiWhite },
-        'vim.fn["codeium#GetStatusString"]()',
-        fmt = function(_)
-          return "{…}" .. vim.fn["codeium#GetStatusString"]()
+        cond = function()
+          return package.loaded["copilot"] ~= nil
         end,
       }
 
@@ -66,11 +60,25 @@ return {
         lsp,
         filetype,
       }
-      if require("lazy.core.config").plugins["copilot.lua"] then
-        table.insert(lualine_x, 1, copilot)
+      local function is_plugin_enabled(name)
+        local spec = require("lazy.core.config").plugins[name]
+        if not spec then
+          return false
+        end
+        -- lazy stores evaluated result in spec._.enabled when disabled
+        if spec._ and spec._.enabled == false then
+          return false
+        end
+        if type(spec.enabled) == "boolean" then
+          return spec.enabled
+        end
+        if type(spec.enabled) == "function" then
+          return spec.enabled() ~= false
+        end
+        return true
       end
-      if require("lazy.core.config").plugins["codeium.vim"] then
-        table.insert(lualine_x, 1, codeium)
+      if is_plugin_enabled("copilot.lua") then
+        table.insert(lualine_x, 1, copilot)
       end
 
       local config = {
