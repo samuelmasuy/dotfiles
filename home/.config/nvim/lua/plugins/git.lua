@@ -42,12 +42,6 @@ return {
     },
   },
   {
-    "ThePrimeagen/git-worktree.nvim",
-    event = "VeryLazy",
-    config = true,
-    enabled = false,
-  },
-  {
     "lewis6991/gitsigns.nvim",
     event = "VeryLazy",
     config = function()
