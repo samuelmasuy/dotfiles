@@ -1,11 +1,20 @@
 return {
-  { "towolf/vim-helm", ft = "helm", event = "VeryLazy" },
   {
-    "godlygeek/tabular", -- Quickly align text by pattern :'<,'>Tabularize /:
-    cmd = "Tabularize",
+    "echasnovski/mini.align",
+    version = "*",
+    event = "VeryLazy",
+    opts = {},
   },
   {
-    "ap/vim-css-color",
+    "brenoprata10/nvim-highlight-colors",
     event = "VeryLazy",
+    opts = {
+      render = "background",
+      enable_named_colors = true,
+      enable_tailwind = true,
+    },
+    config = function(_, opts)
+      require("nvim-highlight-colors").setup(opts)
+    end,
   },
 }

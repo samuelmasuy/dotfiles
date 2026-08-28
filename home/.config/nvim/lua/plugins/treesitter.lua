@@ -26,6 +26,7 @@ return {
         "gomod",
         "groovy",
         "hcl",
+        "helm",
         "html",
         "http",
         "javascript",
