@@ -8,6 +8,9 @@ local copilot_maps = {
 return {
   {
     "zbirenbaum/copilot.lua",
+    -- dependencies = {
+    --   "copilotlsp-nvim/copilot-lsp", -- (optional) for NES functionality
+    -- },
     cmd = "Copilot",
     event = "InsertEnter",
     -- enabled = function()
@@ -28,9 +31,17 @@ return {
             accept = copilot_maps.accept,
             next = copilot_maps.next,
             prev = copilot_maps.prev,
-            dismiss = copilot_maps.dissmiss,
+            dismiss = copilot_maps.dismiss,
           },
         },
+        -- nes = {
+        --   enabled = true,
+        --   keymap = {
+        --     accept_and_goto = "<leader>m",
+        --     accept = false,
+        --     dismiss = "<Esc>",
+        --   },
+        -- },
         workspace_folders = {
           vim.fn.expand("$WORKPATH/.."),
           vim.fn.expand("$WORKPATH_ALT/.."),
