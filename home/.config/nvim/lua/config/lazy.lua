@@ -11,7 +11,7 @@ require("lazy").setup("plugins", {
         -- "matchparen",
         "netrwPlugin",
         -- "tarPlugin",
-        "tohtml",
+        -- "tohtml",
         "tutor",
         -- "zipPlugin",
       },
@@ -24,3 +24,5 @@ require("lazy").setup("plugins", {
   checker = { enabled = true },
   -- dev = { },
 })
+
+vim.cmd.packadd("nvim.undotree")

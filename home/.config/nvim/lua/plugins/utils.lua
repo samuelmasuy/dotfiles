@@ -3,11 +3,6 @@ return {
     "tpope/vim-eunuch", -- Adds Unix commands to vim.
     event = "VeryLazy",
   },
-  -- {
-  --   "vim-scripts/DirDiff.vim", -- :DirDiff <A:Src Directory> <B:Src Directory>
-  --   cmd = "DirDiff",
-  --   enabled = false,
-  -- },
   {
     "nvim-mini/mini.trailspace",
     version = "*",
