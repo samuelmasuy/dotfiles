@@ -56,3 +56,5 @@ export BAT_STYLE="changes"
 if [[ $(uname -m) == 'arm64' ]]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
+
+export KUBECTL_EXTERNAL_DIFF=delta
