@@ -8,7 +8,8 @@ return {
     -- },
     branch = "main",
     lazy = false,
-    build = ":TSUpdate",
+    -- macOS 26.2+ requires code signing on .so files - sign after TSUpdate
+    build = ":TSUpdate | !find ~/.local/share/nvim/site/parser -name '*.so' -exec codesign -fs - {} \\;",
 
     config = function()
       local ensure_install = {
@@ -53,7 +54,7 @@ return {
       for _, v in ipairs(ensure_install) do
         syntax_on[v] = true
       end
-      syntax_on["gitcommit"] = false
+      -- syntax_on["gitcommit"] = false
 
       local group = vim.api.nvim_create_augroup("custom-treesitter", { clear = true })
       vim.api.nvim_create_autocmd("FileType", {
