@@ -10,3 +10,5 @@ foo.groovy
 foo.sh
 f
 f.*
+
+**/.claude/settings.local.json
