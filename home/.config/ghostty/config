@@ -27,7 +27,6 @@ theme = kanagawabones
 # make it difficult to find the cursor.
 cursor-opacity = 0.8
 
-# has no effect: https://github.com/ghostty-org/ghostty/discussions/2812
 cursor-style-blink = false
 
 # Hides mouse while typing
@@ -37,6 +36,9 @@ mouse-hide-while-typing = true
 # does not apply to tabs, splits, etc. However, this setting will apply to all
 # new windows, not just the first one.
 fullscreen = true
+# to go real full screen (on top of notch) but on local space
+# macos-non-native-fullscreen = true
+scrollbar = never
 
 # Whether to enable shell integration auto-injection or not. Shell integration
 # greatly enhances the terminal experience by enabling a number of features:
@@ -49,7 +51,7 @@ shell-integration = detect
 # 
 #   * `title` - Set the window title via shell integration.
 # 
-shell-integration-features = no-cursor,sudo,title
+shell-integration-features = cursor,sudo,title
 
 macos-option-as-alt = true
 
@@ -69,6 +71,10 @@ term = xterm-ghostty
 # managers that are not centrally controlled by Ghostty.
 auto-update = download
 auto-update-channel = stable
+
+notify-on-command-finish = unfocused
+notify-on-command-finish-action = no-bell,notify
+notify-on-command-finish-after = 30s
 
 # keymaps
 keybind = global:cmd+`=toggle_quick_terminal
