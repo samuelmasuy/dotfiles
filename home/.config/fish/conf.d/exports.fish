@@ -35,3 +35,5 @@ set -gx DISABLE_AUTO_TITLE true
 
 set -gx BAT_THEME kanagawa
 set -gx BAT_STYLE changes
+
+set -gx KUBECTL_EXTERNAL_DIFF true
