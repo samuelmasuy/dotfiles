@@ -57,3 +57,5 @@ abbr -a -- klo 'kubectl get po --no-headers | fzf | awk \'{print $1}\' | xargs k
 abbr -a -- ko 'kubectl get po --no-headers | fzf | awk \'{print $1}\' | xargs kubectl get po -o yaml'
 
 abbr -a -- minikube 'DOCKER_DEFAULT_PLATFORM=linux/arm64/v8 minikube'
+
+abbr -a -- ocs opencode_search_session_title
