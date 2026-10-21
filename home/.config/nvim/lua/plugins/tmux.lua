@@ -4,8 +4,22 @@ return {
     event = "VeryLazy",
   },
   {
-    "mrjones2014/smart-splits.nvim",
+    "smart-splits-nvim/smart-splits.nvim",
     lazy = false,
+    dependencies = {
+      {
+        "smart-splits-nvim/backend-tmux",
+        main = "smart-splits-backend-tmux",
+        opts = {
+          disable_nav_when_zoomed = false,
+        },
+      },
+    },
+    opts = {
+      mux = {
+        backend = "smart-splits-backend-tmux",
+      },
+    },
     keys = {
       -- window movement
       {
@@ -56,9 +70,6 @@ return {
           require("smart-splits").resize_right()
         end,
       },
-    },
-    opts = {
-      disable_multiplexer_nav_when_zoomed = false,
     },
   },
 }
