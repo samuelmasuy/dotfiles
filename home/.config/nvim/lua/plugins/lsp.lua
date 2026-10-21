@@ -23,7 +23,7 @@ return {
         dockerfile = { "hadolint" },
       },
       format_on_save = function(bufnr)
-        local disable_filetypes = { "yaml", "json", "html", "sh", "markdown", "markdown.mdx" }
+        local disable_filetypes = { "yaml", "json", "jsonc", "html", "sh", "markdown", "markdown.mdx" }
         if vim.tbl_contains(disable_filetypes, vim.bo[bufnr].filetype) then
           return nil
         end
