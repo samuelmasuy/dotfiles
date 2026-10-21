@@ -5,3 +5,4 @@ save-exact=true
 git-tag-version=false
 package-lock=true
 message=chore(release): %s
+allow-scripts=@opencode/cli
