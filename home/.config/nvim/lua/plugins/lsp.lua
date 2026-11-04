@@ -76,6 +76,9 @@ return {
         capabilities = lsp_capabilities,
         settings = {
           Lua = {
+            diagnostics = {
+              globals = { "rex" },
+            },
             workspace = {
               checkThirdParty = false,
             },

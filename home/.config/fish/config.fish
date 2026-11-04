@@ -32,3 +32,5 @@ end
 fish_config theme choose kanagawa
 
 mise activate fish | source
+
+set -q REX_BIN_DIR; and fish_add_path --path --prepend --move $REX_BIN_DIR

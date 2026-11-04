@@ -22,6 +22,7 @@ set -gx _ZO_DATA_DIR $XDG_DATA_HOME/zoxide
 
 fish_add_path $CARGO_HOME/bin
 fish_add_path $KREW_ROOT/bin
+set -q REX_BIN_DIR; or fish_add_path --path --append "/Applications/Rex Beta.app/Contents/Helpers/Rex Server.rex/Contents/MacOS"
 
 # set -x DOCKER_DEFAULT_PLATFORM linux/amd64
 

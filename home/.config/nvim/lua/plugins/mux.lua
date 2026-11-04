@@ -14,10 +14,11 @@ return {
           disable_nav_when_zoomed = false,
         },
       },
+      "rawnly/smart-splits-backend-rex",
     },
     opts = {
       mux = {
-        backend = "smart-splits-backend-tmux",
+        backend = { "smart-splits-backend-tmux", "smart-splits-backend-rex" },
       },
     },
     keys = {
