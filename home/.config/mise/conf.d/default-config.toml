@@ -1,8 +1,0 @@
-[tools]
-go = "latest"
-helm = "latest"
-kubecolor = "latest"
-kubectl = "latest"
-kubectx = "latest"
-node = "latest"
-neovim = "nightly"
