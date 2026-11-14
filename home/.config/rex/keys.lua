@@ -2,7 +2,7 @@
 rex.bind("ctrl+a>ctrl+a", "pane.send_key", { key = "ctrl+a" })
 rex.bind("ctrl+a>c", "client.tab.new")
 rex.bind("ctrl+a>,", "client.tab.rename")
-rex.bind("ctrl+a>x>y", "pane.close")
+rex.bind("ctrl+a>x", "pane.close")
 rex.bind("ctrl+a>n", "client.tab.next")
 rex.bind("ctrl+a>p", "client.tab.previous")
 rex.bind("ctrl+a>shift+=", "pane.zoom")
@@ -17,3 +17,7 @@ for key, direction in pairs({ h = "left", j = "down", k = "up", l = "right" }) d
 end
 rex.bind("ctrl+a>h", "swap_tab", { direction = "backward" })
 rex.bind("ctrl+a>l", "swap_tab", { direction = "forward" })
+
+-- Capture screen
+require("capture")
+rex.bind("ctrl+a>shift+/", "browse_capture")

@@ -1,5 +1,9 @@
 require("keys")
+require("extensions.tab-numbers")
 
-dofile((os.getenv("XDG_CONFIG_HOME") or os.getenv("HOME") .. "/.config") .. "/rex/workforge.lua")({
-  agent = "opencode", -- executable name or path, not a command with arguments
-})
+local ok, workforge = pcall(require, "workforge")
+if ok and workforge then
+  workforge({
+    agent = "opencode",
+  })
+end
