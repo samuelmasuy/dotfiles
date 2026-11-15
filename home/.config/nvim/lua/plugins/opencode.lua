@@ -1,6 +1,6 @@
 return {
   {
-    "NickvanDyke/opencode.nvim",
+    "nickjvandyke/opencode.nvim",
     dependencies = { "folke/snacks.nvim" },
     config = function()
       -- vim.g doesn't support Lua functions, so we must set them on the config directly.
@@ -23,9 +23,7 @@ return {
             return
           end
           local pane_id = vim.trim(
-            vim.fn.system(
-              string.format("tmux split-window -d -h -P -F '#{pane_id}' 'opencode --port %d'", port)
-            )
+            vim.fn.system(string.format("tmux split-window -d -h -P -F '#{pane_id}' 'opencode --port %d'", port))
           )
           vim.fn.system("tmux set-option -t " .. pane_id .. " -p allow-passthrough off")
           vim.g._opencode_tmux_pane_id = pane_id
@@ -33,8 +31,7 @@ return {
         stop = function()
           local pane_id = vim.g._opencode_tmux_pane_id
           if pane_id then
-            local pid =
-                vim.trim(vim.fn.system("tmux display-message -p -t " .. pane_id .. " '#{pane_pid}'"))
+            local pid = vim.trim(vim.fn.system("tmux display-message -p -t " .. pane_id .. " '#{pane_pid}'"))
             if pid and pid ~= "" then
               os.execute("kill -TERM -" .. pid .. " 2>/dev/null")
             end

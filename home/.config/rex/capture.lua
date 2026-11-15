@@ -61,7 +61,6 @@ rex.action({
       end
       assert(file:close())
 
-      -- Resolve Neovim through mise so the action does not depend on brew.
       local nvim
       nvim, err = rex.exec({ "/bin/zsh", "-lc", "mise which nvim" })
       if not nvim then
