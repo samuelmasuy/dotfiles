@@ -5,7 +5,6 @@ return {
       "folke/lazydev.nvim",
       ft = "lua", -- only load on lua files
     },
-    "mgalliou/blink-cmp-tmux",
   },
 
   version = "1.*",
@@ -24,7 +23,7 @@ return {
     completion = { documentation = { auto_show = false } },
 
     sources = {
-      default = { "lsp", "path", "buffer", "tmux" },
+      default = { "lsp", "path", "buffer" },
       per_filetype = {
         codecompanion = { "codecompanion" },
         lua = { "lazydev", inherit_defaults = true },
@@ -35,10 +34,6 @@ return {
           module = "lazydev.integrations.blink",
           -- make lazydev completions top priority (see `:h blink.cmp`)
           score_offset = 100,
-        },
-        tmux = {
-          module = "blink-cmp-tmux",
-          name = "tmux",
         },
       },
     },
