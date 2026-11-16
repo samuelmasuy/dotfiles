@@ -1,0 +1,1 @@
+/opt/homebrew/share/rex-agent-restore/rex-agent-restore.lua
