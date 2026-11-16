@@ -1,6 +1,6 @@
 require("keys")
 
-local ok, workforge = pcall(require, "workforge")
+local ok, workforge = pcall(require, "work.workforge")
 if ok and workforge then
   workforge({
     agent = "opencode",

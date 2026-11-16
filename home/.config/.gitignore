@@ -8,3 +8,6 @@ zsh/.zsh_history
 helm/repositories.lock
 fish/work/
 fish/fish_variables
+fish/functions/work/
+fish/completions/work/
+rex/work/
